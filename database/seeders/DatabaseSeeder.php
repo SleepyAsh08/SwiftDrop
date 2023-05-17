@@ -13,8 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
         $this->call(PermissionsDemoSeeder::class);
+
+        $user = \App\Models\User::factory()->create();
+
+        $this->command->getOutput()->writeln("<comment>Created User :</comment>\nemail: {$user->email}\npassword: password");
     }
 }
