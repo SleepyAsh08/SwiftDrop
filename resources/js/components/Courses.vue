@@ -43,7 +43,7 @@ export default {
                 course: '',
                 limit: '',
                 min_GPA: '',
-                is_scholar: '',
+                is_scholar: 0,
             }),
         }
     },

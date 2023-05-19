@@ -71,7 +71,7 @@ class HomeController extends Controller
             'course' => 'required|string',
             'limit' => 'required|integer',
             'min_GPA' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'is_scholar' => 'required|boolean',
+            'is_scholar' => 'required|in:1,0',
         ]);
 
         course::create([

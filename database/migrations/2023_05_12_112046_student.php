@@ -23,7 +23,11 @@ class Student extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('course_id')->references('id')->on('course');
+            $table
+                ->foreign('course_id')
+                ->references('id')
+                ->on('courses')
+                ->onDelete('CASCADE');
 
             $table->index('course_id');
         });
