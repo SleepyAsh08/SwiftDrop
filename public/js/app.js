@@ -5746,7 +5746,7 @@ __webpack_require__.r(__webpack_exports__);
         course: '',
         limit: '',
         min_GPA: '',
-        is_scholar: ''
+        is_scholar: 0
       })
     };
   },
@@ -53577,16 +53577,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "AlertError": () => (/* reexport safe */ _AlertError_vue__WEBPACK_IMPORTED_MODULE_1__["default"]),
-/* harmony export */   "AlertErrors": () => (/* reexport safe */ _AlertErrors_vue__WEBPACK_IMPORTED_MODULE_2__["default"]),
-/* harmony export */   "AlertSuccess": () => (/* reexport safe */ _AlertSuccess_vue__WEBPACK_IMPORTED_MODULE_3__["default"]),
-/* harmony export */   "HasError": () => (/* reexport safe */ _HasError_vue__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "AlertError": () => (/* reexport safe */ _AlertError_vue__WEBPACK_IMPORTED_MODULE_2__["default"]),
+/* harmony export */   "AlertErrors": () => (/* reexport safe */ _AlertErrors_vue__WEBPACK_IMPORTED_MODULE_3__["default"]),
+/* harmony export */   "AlertSuccess": () => (/* reexport safe */ _AlertSuccess_vue__WEBPACK_IMPORTED_MODULE_4__["default"]),
+/* harmony export */   "Button": () => (/* reexport safe */ _Button_vue__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "HasError": () => (/* reexport safe */ _HasError_vue__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
-/* harmony import */ var _HasError_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HasError.vue */ "./node_modules/vform/src/components/bootstrap5/HasError.vue");
-/* harmony import */ var _AlertError_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AlertError.vue */ "./node_modules/vform/src/components/bootstrap5/AlertError.vue");
-/* harmony import */ var _AlertErrors_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AlertErrors.vue */ "./node_modules/vform/src/components/bootstrap5/AlertErrors.vue");
-/* harmony import */ var _AlertSuccess_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AlertSuccess.vue */ "./node_modules/vform/src/components/bootstrap5/AlertSuccess.vue");
-// import Button from './Button.vue'
+/* harmony import */ var _Button_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue */ "./node_modules/vform/src/components/bootstrap5/Button.vue");
+/* harmony import */ var _HasError_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HasError.vue */ "./node_modules/vform/src/components/bootstrap5/HasError.vue");
+/* harmony import */ var _AlertError_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AlertError.vue */ "./node_modules/vform/src/components/bootstrap5/AlertError.vue");
+/* harmony import */ var _AlertErrors_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AlertErrors.vue */ "./node_modules/vform/src/components/bootstrap5/AlertErrors.vue");
+/* harmony import */ var _AlertSuccess_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AlertSuccess.vue */ "./node_modules/vform/src/components/bootstrap5/AlertSuccess.vue");
+
 
 
 
@@ -53781,6 +53783,76 @@ __webpack_require__.r(__webpack_exports__);
   name: 'AlertSuccess',
 
   extends: _AlertSuccess__WEBPACK_IMPORTED_MODULE_0__["default"]
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vform/src/components/bootstrap5/Button.vue":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vform/src/components/bootstrap5/Button.vue ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Button.vue?vue&type=template&id=573acfe8& */ "./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8&");
+/* harmony import */ var _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button.vue?vue&type=script&lang=js& */ "./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/vform/src/components/bootstrap5/Button.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'Button',
+
+  props: {
+    form: {
+      type: Object,
+      required: true
+    },
+
+    spinner: {
+      type: Boolean,
+      default: true
+    }
+  }
 });
 
 
@@ -55224,6 +55296,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************!*\
+  !*** ./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./node_modules/vform/src/components/bootstrap5/HasError.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************!*\
   !*** ./node_modules/vform/src/components/bootstrap5/HasError.vue?vue&type=script&lang=js& ***!
@@ -55291,6 +55379,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8&":
+/*!************************************************************************************************!*\
+  !*** ./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8& ***!
+  \************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_ruleSet_1_rules_2_vue_loader_lib_index_js_vue_loader_options_Button_vue_vue_type_template_id_573acfe8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!../../../../vue-loader/lib/index.js??vue-loader-options!./Button.vue?vue&type=template&id=573acfe8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8&");
+
+
+/***/ }),
+
 /***/ "./node_modules/vform/src/components/bootstrap5/HasError.vue?vue&type=template&id=4d07aac4&":
 /*!**************************************************************************************************!*\
   !*** ./node_modules/vform/src/components/bootstrap5/HasError.vue?vue&type=template&id=4d07aac4& ***!
@@ -55326,8 +55431,19 @@ var render = function render() {
   return _vm.form.errors.any()
     ? _c(
         "div",
-        { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+        {
+          staticClass: "alert alert-danger alert-dismissible",
+          attrs: { role: "alert" },
+        },
         [
+          _vm.dismissible
+            ? _c("button", {
+                staticClass: "btn-close",
+                attrs: { type: "button", "aria-label": "Dismiss" },
+                on: { click: _vm.dismiss },
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _vm._t("default", function () {
             return [
               _vm.form.errors.has("error")
@@ -55375,8 +55491,19 @@ var render = function render() {
   return _vm.form.errors.any()
     ? _c(
         "div",
-        { staticClass: "alert alert-danger", attrs: { role: "alert" } },
+        {
+          staticClass: "alert alert-danger alert-dismissible",
+          attrs: { role: "alert" },
+        },
         [
+          _vm.dismissible
+            ? _c("button", {
+                staticClass: "btn-close",
+                attrs: { type: "button", "aria-label": "Dismiss" },
+                on: { click: _vm.dismiss },
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _vm.message
             ? _c("div", {
                 staticClass: "mb-2",
@@ -55424,8 +55551,19 @@ var render = function render() {
   return _vm.form.successful
     ? _c(
         "div",
-        { staticClass: "alert alert-success", attrs: { role: "alert" } },
+        {
+          staticClass: "alert alert-success alert-dismissible",
+          attrs: { role: "alert" },
+        },
         [
+          _vm.dismissible
+            ? _c("button", {
+                staticClass: "btn-close",
+                attrs: { type: "button", "aria-label": "Dismiss" },
+                on: { click: _vm.dismiss },
+              })
+            : _vm._e(),
+          _vm._v(" "),
           _vm._t("default", function () {
             return [_c("div", { domProps: { innerHTML: _vm._s(_vm.message) } })]
           }),
@@ -55433,6 +55571,50 @@ var render = function render() {
         2
       )
     : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./node_modules/vform/src/components/bootstrap5/Button.vue?vue&type=template&id=573acfe8& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c
+  return _c(
+    "button",
+    {
+      attrs: {
+        type: "submit",
+        disabled: _vm.form.busy,
+        "aria-disabled": _vm.form.busy,
+      },
+    },
+    [
+      _vm.form.busy && _vm.spinner
+        ? _c("span", {
+            staticClass: "spinner-border spinner-border-sm",
+            attrs: { role: "status", "aria-hidden": "true" },
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._t("default"),
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

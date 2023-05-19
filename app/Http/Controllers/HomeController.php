@@ -41,25 +41,31 @@ class HomeController extends Controller
             'GPA' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'course_id.id' => 'required|integer',
         ]);
+        $count = student::where('course_id', $request->course_id['id'])->count();
+        $limit = course::select('limit')->where('id', $request->course_id['id'])->first();
         $data = course::where('id', $request->course_id['id'])->get();
         if ($data[0]['min_GPA'] <= $request->GPA) {
-            if ($data[0]['is_scholar'] == true && $request->scholarship != null) {
-                student::create([
-                    'name' => $request->name,
-                    'scholarship' => $request->scholarship,
-                    'GPA' => $request->GPA,
-                    'course_id' => $request->course_id['id'],
-                ]);
-                return response(['message' => 'success'], 200);
-            }
-            if ($data[0]['is_scholar'] == false) {
-                student::create([
-                    'name' => $request->name,
-                    'scholarship' => $request->scholarship,
-                    'GPA' => $request->GPA,
-                    'course_id' => $request->course_id['id'],
-                ]);
-                return response(['message' => 'success'], 200);
+            if ($limit['limit'] > $count) {
+                if ($data[0]['is_scholar'] == true && $request->scholarship != null) {
+                    student::create([
+                        'name' => $request->name,
+                        'scholarship' => $request->scholarship,
+                        'GPA' => $request->GPA,
+                        'course_id' => $request->course_id['id'],
+                    ]);
+                    return response(['message' => 'success'], 200);
+                }
+                if ($data[0]['is_scholar'] == false) {
+                    student::create([
+                        'name' => $request->name,
+                        'scholarship' => $request->scholarship,
+                        'GPA' => $request->GPA,
+                        'course_id' => $request->course_id['id'],
+                    ]);
+                    return response(['message' => 'success'], 200);
+                }
+            } else {
+                return response(['message' => 'The Course have reach the maximum limit of enrollee'], 400);
             }
         }
         return response(['message' => 'You are not qualified to take this course either you dont have scholarship or not meeting the minimum GPA'], 400);
@@ -71,7 +77,7 @@ class HomeController extends Controller
             'course' => 'required|string',
             'limit' => 'required|integer',
             'min_GPA' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'is_scholar' => 'required|in:1,0',
+            'is_scholar' => 'nullable|in:1,0',
         ]);
 
         course::create([
