@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\student;
 use App\Models\course;
 use Illuminate\Http\Request;
+use App\Services\StudentService;
 
 class HomeController extends Controller
 {
@@ -13,9 +14,16 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    private student $StudentRepo;
+    private course $CourseRepo;
+
+    public function __construct(student $StudentRepo, course $CourseRepo)
     {
         $this->middleware('auth');
+
+        $this->StudentRepo = $StudentRepo;
+        $this->CourseRepo = $CourseRepo;
     }
 
     /**
@@ -29,11 +37,11 @@ class HomeController extends Controller
     }
     public function all_courses()
     {
-        $data = course::select('id', 'course')->get();
+        $data = $this->CourseRepo->getallcourse();
 
         return response(['data' => $data], 200);
     }
-    public function store_student(Request $request)
+    public function store_student(Request $request, StudentService $StudentService)
     {
         $this->validate($request, [
             'name' => 'required|string',
@@ -41,34 +49,16 @@ class HomeController extends Controller
             'GPA' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'course_id.id' => 'required|integer',
         ]);
-        $count = student::where('course_id', $request->course_id['id'])->count();
-        $limit = course::select('limit')->where('id', $request->course_id['id'])->first();
-        $data = course::where('id', $request->course_id['id'])->get();
-        if ($data[0]['min_GPA'] <= $request->GPA) {
-            if ($limit['limit'] > $count) {
-                if ($data[0]['is_scholar'] == true && $request->scholarship != null) {
-                    student::create([
-                        'name' => $request->name,
-                        'scholarship' => $request->scholarship,
-                        'GPA' => $request->GPA,
-                        'course_id' => $request->course_id['id'],
-                    ]);
-                    return response(['message' => 'success'], 200);
-                }
-                if ($data[0]['is_scholar'] == false) {
-                    student::create([
-                        'name' => $request->name,
-                        'scholarship' => $request->scholarship,
-                        'GPA' => $request->GPA,
-                        'course_id' => $request->course_id['id'],
-                    ]);
-                    return response(['message' => 'success'], 200);
-                }
-            } else {
-                return response(['message' => 'The Course have reach the maximum limit of enrollee'], 400);
-            }
-        }
-        return response(['message' => 'You are not qualified to take this course either you dont have scholarship or not meeting the minimum GPA'], 400);
+
+        //Model
+        $count = $this->StudentRepo->countbyId($request->course_id['id']);
+        $limit = $this->CourseRepo->getLimitById($request->course_id['id']);
+        $data = $this->CourseRepo->getCourseById($request->course_id['id']);
+
+        //services
+        $student = $StudentService->createStudent($data, $request, $limit, $count);
+
+        return $student;
     }
 
     public function store_course(Request $request)

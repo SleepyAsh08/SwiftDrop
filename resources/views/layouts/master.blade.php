@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('/images/jd life.png') }}" rel="icon">
-    <title>{{ config('app.name', 'JD Life Limited') }}</title>
+    <link href="{{ asset('/images/AgrishopLogo.png') }}" rel="icon">
+    <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css"> --}}
@@ -28,11 +28,10 @@
             </ul>
         </nav>
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="/" class="brand-link">
-                <img src="/images/jd life.png" alt="AdminLTE Logo" class="brand-image"
+            <div class="container ">
+                <img src="/images/AgrishopLogo.png" alt="AdminLTE Logo" class="user-panel brand-image img-fluid mx-auto"
                     style="opacity: .8">
-                <span class="brand-text font-weight-light">JD Life Limited</span>
-            </a>
+            </div>
             <div class="sidebar">
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
@@ -40,7 +39,7 @@
                     </div>
                     <div class="info" >
                         <span class="font-weight-bold" style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
-                        {{-- <span  style="color:#595959"><small>{{ strtoupper(Auth::user()->getRoleNames()) }}</small></span> --}}
+                        <span  style="color:#595959"><small>{{ strtoupper(Auth::user()->getRoleNames([1])[0]) }}</small></span>
                     </div>
                 </div>
                 <nav class="mt-2">

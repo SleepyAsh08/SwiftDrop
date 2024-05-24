@@ -1,4 +1,4 @@
-## How to Install and try the JD_Life_Limited Enrollment Module Application
+## How to Install Application
 
 1. composer install
 
@@ -15,7 +15,3 @@
 7. php artisan passport:install
 
 8. Register to have Access
-
-7. Add Course
-
-6. Add Student to be Enroll

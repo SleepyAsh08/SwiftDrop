@@ -14,4 +14,8 @@ class student extends Model
     {
         return $this->belongsTo(course::class);
     }
+    public function countbyId($id)
+    {
+        return student::where('course_id', $id)->count();
+    }
 }
