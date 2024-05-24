@@ -1,17 +1,35 @@
 ## How to Install Application
 
-1. composer install
+1. composer install or composer update
 
-2. npm install
+3. npm install
 
-3. cp .env.example .env
+4. cp .env.example .env
 
-4. php artisan key:generate
+5. php artisan key:generate
 
-5. php artisan migrate
+6. php artisan migrate
 
-6. php artisan db:seed
+7. php artisan db:seed
+   
+9. change DB_DATABASE=agrishop in .env
 
-7. php artisan passport:install
+10. create database name agrishop 
 
-8. Register to have Access
+11. php artisan passport:install
+
+12. Register to have Access
+
+13. Default Account
+
+    demo users
+        name = Example User
+        email = test@example.com
+   
+        name = Example Admin User
+        email = admin@example.com
+    
+        name = Example Super-Admin User
+        email = superadmin@example.com
+
+    Default Password = password
