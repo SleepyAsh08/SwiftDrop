@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::prefix('product')->group(function () {
+    Route::get('/', [ProductsController::class, 'index']);
+});
 Auth::routes();
 Route::get('/student', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 // Route::get('/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '.*');

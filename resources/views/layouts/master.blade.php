@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{{ asset('/images/AgrishopLogo.png') }}" rel="icon">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css"> --}}
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
     {{-- <link href="public/css/app.css" rel="stylesheet"> --}}
     <script type="text/javascript">
         window.Laravel = {
             csrfToken: "{{ csrf_token() }}",
-            jsPermissions: {!! auth()->check()?auth()->user()->jsPermissions():0 !!}
+            jsPermissions: {!! auth()->check() ? auth()->user()->jsPermissions() : 0 !!}
         }
     </script>
 </head>
+
 <body class="hold-transition sidebar-mini">
     <div class="wrapper" id="app">
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -37,14 +40,28 @@
                     <div class="image">
                         <img src="/images/default_image.png" class="img-circle elevation-2" alt="User Image">
                     </div>
-                    <div class="info" >
-                        <span class="font-weight-bold" style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
-                        <span  style="color:#595959"><small>{{ strtoupper(Auth::user()->getRoleNames([1])[0]) }}</small></span>
+                    <div class="info">
+                        <span class="font-weight-bold"
+                            style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
+                        <span
+                            style="color:#595959"><small>{{ strtoupper(Auth::user()->getRoleNames([1])[0]) }}</small></span>
                     </div>
                 </div>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        <li class="nav-item">
+                            <router-link to="/Products" class="nav-link">
+                                <i class="nav-icon fas fa fa-cutlery"></i>
+                                <p>Products</p>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/Purchase" class="nav-link">
+                                <i class="nav-icon fa fa-credit-card"></i>
+                                <p>Purchase Order</p>
+                            </router-link>
+                        </li>
                         <li class="nav-item">
                             <router-link to="/Student" class="nav-link">
                                 <i class="nav-icon fas fa-user-alt"></i>
@@ -58,6 +75,29 @@
                                     Courses
                                 </p>
                             </router-link>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa fa-tag"></i>
+                                <p>
+                                    Others
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <router-link to="/Category" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Category</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/Measurement" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Measurement</p>
+                                    </router-link>
+                                </li>
+                            </ul>
                         </li>
                         @can('access user')
                             <li class="nav-item">
@@ -110,7 +150,8 @@
                             </li>
                         @endcan
                         <li class="nav-item">
-                            <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" class="nav-link"
+                                onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 <i class="nav-icon fas fa-power-off"></i>
                                 <p>
@@ -152,4 +193,5 @@
     </script> --}}
 
 </body>
+
 </html>

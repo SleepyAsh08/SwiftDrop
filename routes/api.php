@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProductsController;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +18,35 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
     return $request->user();
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'course'], function () {
         Route::get('all', [App\Http\Controllers\HomeController::class, 'all_courses']);
+    });
+
+    Route::group(['prefix' => 'product'], function () {
+        Route::get('list', [App\Http\Controllers\ProductsController::class, 'index']);
+        Route::post('create', [App\Http\Controllers\ProductsController::class, 'store']);
+        Route::put('update/{id}', [App\Http\Controllers\ProductsController::class, 'update']);
+        Route::delete('delete/{id}', [App\Http\Controllers\ProductsController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'category'], function () {
+        Route::get('list', [App\Http\Controllers\CategoryController::class, 'index']);
+        Route::post('create', [App\Http\Controllers\CategoryController::class, 'store']);
+        Route::put('update/{id}', [App\Http\Controllers\CategoryController::class, 'update']);
+        Route::delete('delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
+    });
+
+    Route::group(['prefix' => 'measurement'], function () {
+        Route::get('list', [App\Http\Controllers\MeasurementController::class, 'index']);
+        Route::get('all', [App\Http\Controllers\MeasurementController::class, 'index_all']);
+        Route::post('create', [App\Http\Controllers\MeasurementController::class, 'store']);
+        Route::put('update/{id}', [App\Http\Controllers\MeasurementController::class, 'update']);
+        Route::delete('delete/{id}', [App\Http\Controllers\MeasurementController::class, 'destroy']);
     });
     Route::group(['prefix' => 'create'], function () {
         Route::post('student', [App\Http\Controllers\HomeController::class, 'store_student']);

@@ -18,9 +18,11 @@
 
 11. php artisan passport:install
 
-12. Register to have Access
+12. php artisan key:generate
 
-13. Default Account
+13. Register to have Access
+
+14. Default Account
 
     demo users
         name = Example User

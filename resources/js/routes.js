@@ -8,6 +8,41 @@ const routes = [
         component: require('./components/NotFound.vue').default
     },
     {
+        path: '/Products',
+        name: 'Products',
+        component: require('./components/Products/Index.vue').default,
+    },
+    {
+        path: '/ProductsCreate',
+        name: 'Create',
+        component: require('./components/Products/Create.vue').default,
+    },
+    {
+        path: '/Purchase',
+        name: 'Purchase',
+        component: require('./components/PurchaseOrder/Index.vue').default,
+    },
+    {
+        path: '/Category',
+        name: 'Category',
+        component: require('./components/Category/Index.vue').default,
+    },
+    {
+        path: '/CategoryCreate',
+        name: 'Create',
+        component: require('./components/Category/Create.vue').default,
+    },
+    {
+        path: '/Measurement',
+        name: 'Measurement',
+        component: require('./components/Measurement/Index.vue').default,
+    },
+    {
+        path: '/MeasurementCreate',
+        name: 'Create',
+        component: require('./components/Measurement/Create.vue').default,
+    },
+    {
         path: '/Student',
         name: 'Student',
         component: require('./components/Student.vue').default,

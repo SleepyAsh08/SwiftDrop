@@ -9,7 +9,7 @@
         <div class="modal-body">
             <alert-error :form="form"></alert-error>
             <div class="form-group">
-                <label >Name</label>
+                <label>Name</label>
                 <input v-model="form.name" type="text" class="form-control">
                 <has-error :form="form" field="name"/>
             </div>
