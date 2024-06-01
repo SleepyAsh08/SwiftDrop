@@ -6554,8 +6554,8 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('Photos before posting:', this.photos);
       var formData = new FormData();
-      formData.append('product_name', this.form.product_name);
-      formData.append('measurement_id', this.form.measurement_id.id);
+      formData.append('product_name', this.form.product_name); // formData.append('measurement_id', this.form.measurement_id.id);
+
       formData.append('price', this.form.price);
       formData.append('quantity', this.form.quantity);
       formData.append('description', this.form.description); // Append each selected photo file to the formData
