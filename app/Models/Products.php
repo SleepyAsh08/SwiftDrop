@@ -13,7 +13,7 @@ class Products extends Model
         'price',
         'Quantity',
         'Description',
-        'idMeasurement',
+        // 'idMeasurement',
         'photos',
     ];
 }

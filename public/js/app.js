@@ -6645,10 +6645,8 @@ __webpack_require__.r(__webpack_exports__);
     update: function update() {
       var _this = this;
 
-      var measurementIds = this.form.measurement_id.map(function (measurement) {
-        return measurement.id;
-      });
-      this.form.measurement_id = measurementIds;
+      // const measurementIds = this.form.measurement_id.map(measurement => measurement.id);
+      // this.form.measurement_id = measurementIds;
       this.form.put('api/product/update/' + this.form.id).then(function () {
         toast.fire({
           icon: 'success',

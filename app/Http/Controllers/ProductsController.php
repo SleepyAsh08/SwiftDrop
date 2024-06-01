@@ -76,7 +76,7 @@ class ProductsController extends Controller
             'price' => $request->price,
             'Quantity' => $request->Quantity,
             'Description' => $request->Description,
-            'idMeasurement' => $request->measurement_id,
+            // 'idMeasurement' => $request->measurement_id,
         ]);
 
         return response(['message' => 'success'], 200);
