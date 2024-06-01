@@ -53,7 +53,7 @@ class ProductsController extends Controller
             'price' => $request->price,
             'Quantity' => $request->quantity,
             'Description' => $request->description,
-            'idMeasurement' => $request->measurement_id,
+            // 'idMeasurement' => $request->measurement_id,
             'photos' => json_encode($photoPaths), // Store photo paths as JSON
         ]);
 
