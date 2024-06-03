@@ -52,12 +52,29 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // }
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class);
+    // }
 
+    // public function roles()
+    // {
+    //     return $this->hasManyThrough(Role::class, User::class, 'id', 'id');
+    // }
+
+    // public function permissions()
+    // {
+    //     return $this->roles()->pluck('permissions')->flatten(); // Get all permissions from all roles (optional)
+    // }
     public function jsPermissions()
     {
         return json_encode([
-                'roles' => $this->getRoleNames(),
-                'permissions' => $this->getAllPermissions()->pluck('name'),
-            ]);
+            'roles' => $this->getRoleNames(),
+            'permissions' => $this->getAllPermissions()->pluck('name'),
+        ]);
     }
 }
