@@ -27,6 +27,16 @@ Vue.use(LaravelPermissionToVueJS)
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
+//vue v-viewer
+import 'viewerjs/dist/viewer.css';
+import Viewer from 'v-viewer';
+Vue.component('Viewer', Viewer)
+Vue.use(Viewer, {
+    debug: true,
+    defaultOptions: {
+        zIndex: 9999
+    }
+})
 
 Vue.prototype.can = function (value) {
     return window.Laravel.jsPermissions.permissions.includes(value);

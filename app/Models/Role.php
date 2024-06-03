@@ -14,4 +14,14 @@ class Role extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guard_name = 'api';
     protected $guarded = [];
+
+    // public function users()
+    // {
+    //     return $this->belongsToMany('App\Models\User');
+    // }s
+
+    // public function permissions()
+    // {
+    //     return $this->belongsToMany(Permission::class);
+    // }
 }

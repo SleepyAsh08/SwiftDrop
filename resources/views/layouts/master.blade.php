@@ -44,7 +44,7 @@
                         <span class="font-weight-bold"
                             style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
                         <span
-                            style="color:#595959"><small>{{ strtoupper(Auth::user()->getRoleNames([1])[0]) }}</small></span>
+                            style="color:#595959"><small>@if (Auth::check())  {{ strtoupper(Auth::user()->getRoleNames()->first() ?? 'Not Verified')  }} @endif</small></span>
                     </div>
                 </div>
                 <nav class="mt-2">
@@ -62,7 +62,7 @@
                                 <p>Purchase Order</p>
                             </router-link>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <router-link to="/Student" class="nav-link">
                                 <i class="nav-icon fas fa-user-alt"></i>
                                 <p>Student</p>
@@ -75,7 +75,7 @@
                                     Courses
                                 </p>
                             </router-link>
-                        </li>
+                        </li> --}}
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa fa-tag"></i>

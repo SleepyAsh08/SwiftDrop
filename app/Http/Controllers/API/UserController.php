@@ -23,11 +23,12 @@ class UserController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('list user'), 403, 'You do not have the required authorization.');
-        $data = User::with('roles','permissions')->latest();
-        if($request->search){
-                $data = $data->where('name','LIKE', '%'.$request->search.'%');
+        $data = User::with('roles', 'permissions')->latest();
+        if ($request->search) {
+            $data = $data->where('name', 'LIKE', '%' . $request->search . '%');
         }
-        $data= $data->paginate($request->length);
+        $data = $data->paginate($request->length);
+        // dd($data);
         return response(['data' => $data], 200);
     }
 
@@ -39,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string',
@@ -77,9 +78,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         // dd($request->password);
-        $this->validate($request,[
-            'name' => 'required|string|unique:users,name,'.$request->id,
-            'email' => 'required|email|unique:users,email,'.$request->id,
+        $this->validate($request, [
+            'name' => 'required|string|unique:users,name,' . $request->id,
+            'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|sometimes',
         ]);
         $user = User::findOrFail($id);
@@ -88,7 +89,7 @@ class UserController extends Controller
             'email' => $request->email,
         ]);
         // dd($user, $request->password);
-        if($request->password){
+        if ($request->password) {
             $user->password = Hash::make($request->password);
             $user->save();
         }

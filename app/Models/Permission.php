@@ -14,4 +14,9 @@ class Permission extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
     protected $guard_name = 'api';
     protected $guarded = [];
+
+    // public function roles()
+    // {
+    //     return $this->belongsToMany(Role::class);
+    // }
 }

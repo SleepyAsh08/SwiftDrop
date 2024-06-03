@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -53,6 +54,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'photos' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048' // validate each uploaded file
         ]);
     }
 
@@ -64,10 +66,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-        ]);
+        // dd($photo = $data['photos']->file('photo'));
+        // Handle file uploads
+        // $filename = [];
+        $photos = $data['photos'];
+
+        if (!empty($photos)) {
+            $path = [];
+            foreach ($photos as $photo) {
+                $filename = time() . '.' . $photo->getClientOriginalExtension();
+                $path = Storage::disk('public')->put('Personal_Info_Photo', $photo, $filename);
+                // $paths[] = $path; // Add path to the array
+
+            }
+
+            // Handle file uploads
+            // $photoPaths = [];
+            // if ($request->hasFile('photos')) {
+            //     foreach ($request->file('photos') as $photo) {
+            //         $path = $photo->store('product_photos', 'public');
+            //         $photoPaths[] = $path;
+            //     }
+            // }
+            dd($photos);
+            // return User::create([
+            //     'name' => $data['name'],
+            //     'email' => $data['email'],
+            //     'password' => $data['password'],
+            //     'photos' => json_encode($paths), // Store photo paths as JSON
+            // ]);
+        }
     }
 }
