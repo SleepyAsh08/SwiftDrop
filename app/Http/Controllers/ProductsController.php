@@ -46,7 +46,7 @@ class ProductsController extends Controller
                 $photoPaths[] = $path;
             }
         }
-
+        // dd($photoPaths);
         // Create product with photo paths
         $product = Products::create([
             'Product_Name' => $request->product_name,

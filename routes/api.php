@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
+    
     Route::group(['prefix' => 'course'], function () {
         Route::get('all', [App\Http\Controllers\HomeController::class, 'all_courses']);
     });
