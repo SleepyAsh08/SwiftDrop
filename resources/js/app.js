@@ -27,7 +27,7 @@ Vue.use(LaravelPermissionToVueJS)
 import Multiselect from 'vue-multiselect'
 Vue.component('multiselect', Multiselect)
 
-//vue v-viewer
+// vue v - viewer
 import 'viewerjs/dist/viewer.css';
 import Viewer from 'v-viewer';
 Vue.component('Viewer', Viewer)

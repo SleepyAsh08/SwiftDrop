@@ -76,15 +76,20 @@
 
                                             <td v-if="data.roles.length > 0" class="text-center">
                                             </td>
-                                            <td v-else class="text-center">
+
+                                            <td> <img v-if="data.photos && data.photos.length"
+                                                    :src="'/storage/' + formatPhotoPath(data.photos) " alt="Product Photo"
+                                                    style="max-width: 200px; max-height: 200px;">
+                                            </td>
+                                            <!-- <td v-else class="text-center">
                                                 <span class=" badge badge-danger text-center">For Evaluation and
-                                                    Approval</span>
+                                                    Approval</span> -->
                                                 <!-- <img v-if="data.photos && data.photos.length"
                                                     :src="'/storage/' + formatPhotoPath(data.photos)"
                                                     alt="Personal Info Photo"
                                                     style="max-width: 200px; max-height: 200px;"> -->
 
-                                                <div class="gallery mx-auto d-block pb-0"
+                                                <!-- <div class="gallery mx-auto d-block pb-0"
                                                     style="width: 100px; height: 100px;">
                                                     <div v-viewer="options" class="images clearfix">
                                                         <template class=" card">
@@ -96,7 +101,7 @@
                                                         </template>
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </td> -->
 
 
                                             <td class="text-right">
@@ -167,6 +172,15 @@ export default {
         }
     },
     methods: {
+        formatPhotoPath(photoPath) {
+            if (photoPath) {
+                return photoPath.replace(/^\["(.+)"\]$/, '$1');
+            } else {
+                return '';
+            }
+
+
+        },
         openAddModal() {
             $('#add-user').modal('show');
         },
