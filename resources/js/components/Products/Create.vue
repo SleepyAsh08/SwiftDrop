@@ -8,6 +8,10 @@
                     <div class="card-body">
                         <alert-error :form="form"></alert-error>
                         <form method="POST">
+                            <input type="hidden" required>
+                            <input type="hidden" v-model="form.userID" class="form-control"
+                                autocomplete="positionchrome-off">
+
                             <div class="form-group">
                                 <label>Product Name</label>
                                 <input v-model="form.product_name" type="text" class="form-control">
@@ -32,6 +36,20 @@
                             <div class="form-group">
                                 <label>Upload Photos</label>
                                 <input type="file" @change="onFileChange" multiple class="form-control">
+                                <br>
+                                <input type="file" @change="onFileChange1" multiple class="form-control">
+                                <br>
+                                <input type="file" @change="onFileChange2" multiple class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Upload Photos</label>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Upload Photos</label>
+
                             </div>
                             <div class="form-group required">
                                 <label>Measurement</label>
@@ -62,6 +80,7 @@ export default {
     data() {
         return {
             form: new Form({
+                userID: 0,
                 product_name: '',
                 measurement_id: null,
                 price: 0,
@@ -70,13 +89,21 @@ export default {
             }),
             option_measurement: [],
             photos: [],
+            photos1: [],
+            photos2: [],
 
         }
     },
     methods: {
         onFileChange(e) {
             this.photos = Array.from(e.target.files);
-            console.log('Selected photos:', this.photos);
+        },
+        onFileChange1(e) {
+            this.photos1 = Array.from(e.target.files);
+        },
+        onFileChange2(e) {
+            this.photos2 = Array.from(e.target.files);
+
         },
         create() {
             console.log('Photos before posting:', this.photos);
@@ -91,6 +118,16 @@ export default {
             // Append each selected photo file to the formData
             this.photos.forEach((photo, index) => {
                 formData.append(`photos[${index}]`, photo);
+            });
+
+            // Append each selected photo file to the formData
+            this.photos1.forEach((photo, index) => {
+                formData.append(`photos1[${index}]`, photo);
+            });
+
+            // Append each selected photo file to the formData
+            this.photos2.forEach((photo, index) => {
+                formData.append(`photos2[${index}]`, photo);
             });
 
             axios.post('/api/product/create', formData, {

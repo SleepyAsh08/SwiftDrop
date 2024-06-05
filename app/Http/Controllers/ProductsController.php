@@ -19,23 +19,32 @@ class ProductsController extends Controller
 
     public function index(Request $request)
     {
-
+        $userID = auth()->user()->id;
+        // dd($emp_code);
         $data = Products::OrderBy('Quantity', 'desc')
+            ->where('userID', $userID)
             ->latest();
         $data = $data->paginate($request->length);
-        return response(['data' => $data], 200);
+        return response([
+            'data' => $data,
+            'userID' => $userID,
+        ], 200);
     }
 
 
     public function store(Request $request)
     {
+        $userID = auth()->user()->id;
+        // dd();
         // dd($request->measurement_id);
         $request->validate([
             'product_name' => 'required|string|max:255',
             'price' => 'required|numeric',
             'quantity' => 'required|integer',
             'description' => 'required|string',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048' // validate each uploaded file
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            'photos1.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            'photos2.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
         ]);
 
         // Handle file uploads
@@ -46,6 +55,22 @@ class ProductsController extends Controller
                 $photoPaths[] = $path;
             }
         }
+
+        $photoPaths1 = [];
+        if ($request->hasFile('photos1')) {
+            foreach ($request->file('photos1') as $photo) {
+                $path = $photo->store('product_photos', 'public');
+                $photoPaths1[] = $path;
+            }
+        }
+
+        $photoPaths2 = [];
+        if ($request->hasFile('photos2')) {
+            foreach ($request->file('photos2') as $photo) {
+                $path = $photo->store('product_photos', 'public');
+                $photoPaths2[] = $path;
+            }
+        }
         // dd($photoPaths);
         // Create product with photo paths
         $product = Products::create([
@@ -54,7 +79,11 @@ class ProductsController extends Controller
             'Quantity' => $request->quantity,
             'Description' => $request->description,
             // 'idMeasurement' => $request->measurement_id,
-            'photos' => json_encode($photoPaths), // Store photo paths as JSON
+            'photos' => json_encode($photoPaths),
+            'photos1' => json_encode($photoPaths1),
+            'photos2' => json_encode($photoPaths2),
+            'userID' => $userID,
+            // Store photo paths as JSON
         ]);
 
         // Dump a message indicating product creation with photos

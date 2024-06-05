@@ -112,6 +112,7 @@ export default {
     data() {
         return {
             option_users: [],
+            userID: null,
             length: 10,
             search: '',
             showSchedule: false,
@@ -167,7 +168,9 @@ export default {
                     .then(response => {
                         if (response.data.data) {
                             this.option_users = response.data.data;
+                            this.userID = response.data.userID;
                         }
+                        console.log(this.userID);
                     }).catch(error => {
                         this.error = error;
                         toast.fire({

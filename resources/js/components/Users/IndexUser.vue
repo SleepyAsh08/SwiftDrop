@@ -74,27 +74,9 @@
                                                     Approval
                                                 </span>
                                             </td>
-<<<<<<< HEAD
-                                            <td v-if="data.roles.length > 0" class="text-center">
-                                            </td>
-                                            <td> <img v-if="data.photos && data.photos.length"
-                                                    :src="'/storage/' + formatPhotoPath(data.photos) " alt="Product Photo"
-                                                    style="max-width: 200px; max-height: 200px;">
-                                            </td>
-                                            <!-- <td v-else class="text-center">
-                                                <span class=" badge badge-danger text-center">For Evaluation and
-                                                    Approval</span> -->
-                                                <!-- <img v-if="data.photos && data.photos.length"
-                                                    :src="'/storage/' + formatPhotoPath(data.photos)"
-                                                    alt="Personal Info Photo"
-                                                    style="max-width: 200px; max-height: 200px;"> -->
-
-                                                <!-- <div class="gallery mx-auto d-block pb-0"
-=======
 
                                             <td v-if="data.roles.length === 0" class="text-center">
                                                 <div class="gallery mx-auto d-block pb-0"
->>>>>>> 0bba602bfab7a9f141ea2ef0ebb942d42260a4d8
                                                     style="width: 100px; height: 100px;">
                                                     <div v-viewer="options" class="images clearfix">
                                                         <template class=" card">
@@ -105,14 +87,10 @@
                                                         </template>
                                                     </div>
                                                 </div>
-<<<<<<< HEAD
-                                            </td> -->
-=======
                                             </td>
                                             <td v-else class="text-center">
                                             </td>
 
->>>>>>> 0bba602bfab7a9f141ea2ef0ebb942d42260a4d8
                                             <td class="text-right">
                                                 <button v-if="data.approved_at === null && can('approve user')"
                                                     type="button" class="btn btn-success btn-sm"
@@ -122,17 +100,13 @@
                                                     @click="openEditModal(data)"
                                                     v-if="data.approved_at != null && can('edit user')"><i
                                                         class="fas fa-edit"></i> Edit</button>
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    @click="remove(data.id)" v-if="can('delete user')"><i
-                                                        class="fas fa-trash-alt"></i> Remove</button>
+                                                <button type="button" class="btn btn-danger btn-sm"></button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <ul class="pagination pagination-sm m-1 float-right">
-                                    <li class="page-item"
-                                        v-for="(       link, index       ) in        option_users.links       "
-                                        :key="index">
+                                    <li class="page-item" v-for="(link, index) in option_users.links" :key="index">
                                         <button v-html="link.label" @click="getData(link.url)" class="page-link"
                                             :disabled="link.url == null || link.active"
                                             :class="{ 'text-muted': link.url == null || link.active }">

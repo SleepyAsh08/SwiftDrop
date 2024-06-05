@@ -15,5 +15,8 @@ class Products extends Model
         'Description',
         // 'idMeasurement',
         'photos',
+        'photos1',
+        'photos2',
+        'userID',
     ];
 }
