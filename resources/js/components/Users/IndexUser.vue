@@ -73,10 +73,8 @@
                                                     No User Type
                                                 </span>
                                             </td>
-
                                             <td v-if="data.roles.length > 0" class="text-center">
                                             </td>
-
                                             <td> <img v-if="data.photos && data.photos.length"
                                                     :src="'/storage/' + formatPhotoPath(data.photos) " alt="Product Photo"
                                                     style="max-width: 200px; max-height: 200px;">
@@ -102,8 +100,6 @@
                                                     </div>
                                                 </div>
                                             </td> -->
-
-
                                             <td class="text-right">
                                                 <button v-if="data.roles.length == empty" type="button"
                                                     class="btn btn-success btn-sm" @click="approve(data.id)"><i
