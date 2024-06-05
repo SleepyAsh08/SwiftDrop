@@ -166,7 +166,7 @@ export default {
             axios.get('/api/category/all')
                 .then(response => {
                     this.option_category = response.data.data;
-                    console.log('Loaded measurements:', this.option_measurement);
+                    console.log('Loaded category:', this.option_category);
                 });
         },
     },
