@@ -7916,38 +7916,34 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
       });
     },
-    approve: function approve(id) {
+    approve: function approve(data) {
+      var _this3 = this;
+
       Swal.fire({
         title: 'Are you sure you want to approve the user?',
         text: "You won't be able to revert this!",
         icon: 'warning',
-        showCancelButton: true,
+        // showCancelButton: true,
         showDenyButton: true,
         confirmButtonColor: '#3085d6',
         // buyer
-        cancelButtonColor: '#3085d6',
-        // Seller
+        // cancelButtonColor: '#3085d6',   // Seller
         denyButtonTextColor: '#3085d6',
-        cancelButtonText: 'Approved as Seller',
-        confirmButtonText: 'Approved as Buyer',
+        // cancelButtonText: 'Approved as Seller',
+        confirmButtonText: 'Approved, This User',
         denyButtonText: 'Cancel'
       }).then(function (result) {
         if (result.isConfirmed) {
-          // axios.delete('/api/user/delete/' + id)
-          //     .then(response => {
-          toast.fire({
-            icon: 'success',
-            text: 'Data Saved.'
-          }); //         this.getData();
-          //     })
-        } else if (result.dismiss) {
-          // axios.delete('/api/user/delete/' + id)
-          //     .then(response => {
-          toast.fire({
-            icon: 'success',
-            text: 'Data Saved.'
-          }); //         this.getData();
-          //     })
+          axios.put('api/user/approve/' + data.id).then(function () {
+            toast.fire({
+              icon: 'success',
+              text: 'Data Saved.'
+            });
+
+            _this3.openEditModal(data);
+
+            _this3.getData();
+          });
         }
       })["catch"](function () {
         toast.fire({
@@ -12592,240 +12588,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function render() {
-  var _vm = this,
-      _c = _vm._self._c;
+var render = function render() {};
 
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "content"
-  }, [_c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row justify-content-center"
-  }, [_c("div", {
-    staticClass: "col-12"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header p-3"
-  }, [_c("h3", {
-    staticClass: "card-title"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "card-tools float-left"
-  }, [_c("div", {
-    staticClass: "input-group input-group-sm"
-  }, [_c("select", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.length,
-      expression: "length"
-    }],
-    staticClass: "form-control form-control-sm",
-    on: {
-      change: [function ($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
-          return o.selected;
-        }).map(function (o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val;
-        });
-        _vm.length = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
-      }, _vm.getData]
-    }
-  }, [_c("option", {
-    attrs: {
-      value: "10"
-    }
-  }, [_vm._v("10")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "25"
-    }
-  }, [_vm._v("25")]), _vm._v(" "), _c("option", {
-    attrs: {
-      value: "30"
-    }
-  }, [_vm._v("30")])]), _vm._v(" "), _vm.can("create user") ? _c("button", {
-    staticClass: "btn btn-success btn-sm ml-auto",
-    on: {
-      click: _vm.openAddModal
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-user-plus"
-  }), _vm._v(" Add")]) : _vm._e()])]), _vm._v(" "), _c("div", {
-    staticClass: "card-tools"
-  }, [_c("div", {
-    staticClass: "input-group input-group-sm"
-  }, [_c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.search,
-      expression: "search"
-    }],
-    staticClass: "form-control float-right",
-    attrs: {
-      type: "text",
-      name: "table_search",
-      placeholder: "Search"
-    },
-    domProps: {
-      value: _vm.search
-    },
-    on: {
-      keyup: _vm.getData,
-      input: function input($event) {
-        if ($event.target.composing) return;
-        _vm.search = $event.target.value;
-      }
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "input-group-append"
-  }, [_c("button", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "button"
-    },
-    on: {
-      click: _vm.getData
-    }
-  }, [_c("i", {
-    staticClass: "fas fa-search"
-  })])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body table-responsive p-0"
-  }, [_c("table", {
-    staticClass: "table table-head-fixed text-nowrap"
-  }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.option_users.data, function (data, index) {
-    return _c("tr", {
-      key: index
-    }, [_c("td", [_vm._v(_vm._s(data.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.email))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
-      return _c("span", {
-        key: role.id
-      }, [_vm._v("\n                                                " + _vm._s(role.name) + "\n                                            ")]);
-    }), 0) : _c("td", [_c("span", {
-      staticClass: "badge badge-danger"
-    }, [_vm._v("\n                                                No User Type\n                                            ")])]), _vm._v(" "), data.roles.length > 0 ? _c("td", {
-      staticClass: "text-center"
-    }) : _vm._e(), _vm._v(" "), _c("td", [data.photos && data.photos.length ? _c("img", {
-      staticStyle: {
-        "max-width": "200px",
-        "max-height": "200px"
-      },
-      attrs: {
-        src: "/storage/" + _vm.formatPhotoPath(data.photos),
-        alt: "Product Photo"
-      }
-    }) : _vm._e()]), _vm._v(" "), _c("td", {
-      staticClass: "text-right"
-    }, [data.roles.length == _vm.empty ? _c("button", {
-      staticClass: "btn btn-success btn-sm",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.approve(data.id);
-        }
-      }
-    }, [_c("i", {
-      staticClass: "fas fa-check"
-    }), _vm._v(" Approve")]) : _vm._e(), _vm._v(" "), _vm.can("edit user") ? _c("button", {
-      staticClass: "btn btn-primary btn-sm",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.openEditModal(data);
-        }
-      }
-    }, [_c("i", {
-      staticClass: "fas fa-edit"
-    }), _vm._v(" Edit")]) : _vm._e(), _vm._v(" "), _vm.can("delete user") ? _c("button", {
-      staticClass: "btn btn-danger btn-sm",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          return _vm.remove(data.id);
-        }
-      }
-    }, [_c("i", {
-      staticClass: "fas fa-trash-alt"
-    }), _vm._v(" Remove")]) : _vm._e()])]);
-  }), 0)]), _vm._v(" "), _c("ul", {
-    staticClass: "pagination pagination-sm m-1 float-right"
-  }, _vm._l(_vm.option_users.links, function (link, index) {
-    return _c("li", {
-      key: index,
-      staticClass: "page-item"
-    }, [_c("button", {
-      staticClass: "page-link",
-      "class": {
-        "text-muted": link.url == null || link.active
-      },
-      attrs: {
-        disabled: link.url == null || link.active
-      },
-      domProps: {
-        innerHTML: _vm._s(link.label)
-      },
-      on: {
-        click: function click($event) {
-          return _vm.getData(link.url);
-        }
-      }
-    })]);
-  }), 0)])])]), _vm._v(" "), _c("add-modal", {
-    on: {
-      getData: _vm.getData
-    }
-  }), _vm._v(" "), _c("edit-modal", {
-    attrs: {
-      row: _vm.selected_user,
-      page: _vm.current_page
-    },
-    on: {
-      getData: _vm.getData
-    }
-  })], 1)])])]);
-};
-
-var staticRenderFns = [function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "content-header"
-  }, [_c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row mb-2"
-  }, [_c("div", {
-    staticClass: "col-sm-6"
-  }, [_c("h1", {
-    staticClass: "m-0"
-  }, [_vm._v("Users")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6"
-  }, [_c("ol", {
-    staticClass: "breadcrumb float-sm-right"
-  }, [_c("li", {
-    staticClass: "breadcrumb-item"
-  }, [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Users")])])])])])])]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("Id")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Email")]), _vm._v(" "), _c("th", [_vm._v("Type of User")]), _vm._v(" "), _c("th", {
-    staticClass: "text-center"
-  }, [_vm._v("Status")]), _vm._v(" "), _c("th")])]);
-}];
-render._withStripped = true;
+var staticRenderFns = [];
 
 
 /***/ }),
