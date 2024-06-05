@@ -17,6 +17,14 @@
                                 <input v-model="form.product_name" type="text" class="form-control">
                                 <has-error :form="form" field="Product Name" />
                             </div>
+
+                            <div class="form-group required">
+                                <label>Category</label>
+                                <multiselect v-model="form.category_id" placeholder="Search Category" label="category"
+                                    track-by="id" :options="option_category" :close-on-select="true"
+                                    :clear-on-select="false"></multiselect>
+                                <has-error :form="form" field="category_id" />
+                            </div>
                             <div class="form-group">
                                 <label>Price</label>
                                 <input v-model="form.price" type="text" class="form-control">
@@ -27,11 +35,15 @@
                                 <input v-model="form.quantity" type="number" class="form-control">
                                 <has-error :form="form" field="Quantity" />
                             </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea v-model="form.description" type="text" class="form-control"></textarea>
-                                <has-error :form="form" field="Description" />
+
+                            <div class="form-group required">
+                                <label>Measurement</label>
+                                <multiselect v-model="form.measurement_id" placeholder="Search Measurement"
+                                    label="measurement" track-by="id" :options="option_measurement"
+                                    :close-on-select="true" :clear-on-select="false"></multiselect>
+                                <has-error :form="form" field="measurement_id" />
                             </div>
+
 
                             <div class="form-group">
                                 <label>Upload Photos</label>
@@ -42,22 +54,16 @@
                                 <input type="file" @change="onFileChange2" multiple class="form-control">
                             </div>
 
-                            <div class="form-group">
-                                <label>Upload Photos</label>
-
-                            </div>
 
                             <div class="form-group">
-                                <label>Upload Photos</label>
+                                <label>Description</label>
+                                <textarea v-model="form.description" type="text" class="form-control"></textarea>
+                                <has-error :form="form" field="Description" />
+                            </div>
 
-                            </div>
-                            <div class="form-group required">
-                                <label>Measurement</label>
-                                <multiselect v-model="form.measurement_id" placeholder="Search Measurement"
-                                    label="measurement" track-by="id" :options="option_measurement"
-                                    :close-on-select="true" :clear-on-select="false"></multiselect>
-                                <has-error :form="form" field="measurement_id" />
-                            </div>
+
+
+
                             <button type="button" class="btn btn-primary" @click="create">Save</button>
                         </form>
                     </div>
@@ -88,6 +94,7 @@ export default {
                 description: '',
             }),
             option_measurement: [],
+            option_category: [],
             photos: [],
             photos1: [],
             photos2: [],
@@ -155,6 +162,13 @@ export default {
                     console.log('Loaded measurements:', this.option_measurement);
                 });
         },
+        loadCategory() {
+            axios.get('/api/category/all')
+                .then(response => {
+                    this.option_category = response.data.data;
+                    console.log('Loaded measurements:', this.option_measurement);
+                });
+        },
     },
     watch: {
         row: function () {
@@ -164,6 +178,7 @@ export default {
     },
     mounted() {
         this.loadMeasurement();
+        this.loadCategory();
     }
 }
 </script>

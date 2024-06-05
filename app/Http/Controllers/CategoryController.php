@@ -21,6 +21,11 @@ class CategoryController extends Controller
         $data = $data->paginate($request->length);
         return response(['data' => $data], 200);
     }
+    public function index_all()
+    {
+        $data = Category::all();
+        return response(['data' => $data], 200);
+    }
     public function store(Request $request)
     {
         // $this->validate($request, [
