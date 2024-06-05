@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -63,9 +64,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function approve($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        $user->update([
+            'approved_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        return response(['message' => 'success'], 200);
     }
 
     /**
@@ -88,11 +96,16 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
         ]);
-        // dd($user, $request->password);
+
         if ($request->password) {
             $user->password = Hash::make($request->password);
             $user->save();
         }
+
+        $user->roles()->detach();
+
+        $user->assignRole($request->roles['name']);
+
         foreach ($user->permissions as $permission) {
             $user->revokePermissionTo($permission['name']);
         }

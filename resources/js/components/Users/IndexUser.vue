@@ -47,14 +47,14 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
-                                <table class="table table-head-fixed text-nowrap">
+                                <table class="table table-head-fixed text-nowrap text-center">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Type of User</th>
-                                            <th class="text-center">Status</th>
+                                            <th>Supporting Documents</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -70,46 +70,35 @@
                                             </td>
                                             <td v-else>
                                                 <span class="badge badge-danger">
-                                                    No User Type
+                                                    No User Type for Evaluation and
+                                                    Approval
                                                 </span>
                                             </td>
 
-                                            <td v-if="data.roles.length > 0" class="text-center">
-                                            </td>
-
-                                            <td> <img v-if="data.photos && data.photos.length"
-                                                    :src="'/storage/' + formatPhotoPath(data.photos) " alt="Product Photo"
-                                                    style="max-width: 200px; max-height: 200px;">
-                                            </td>
-                                            <!-- <td v-else class="text-center">
-                                                <span class=" badge badge-danger text-center">For Evaluation and
-                                                    Approval</span> -->
-                                                <!-- <img v-if="data.photos && data.photos.length"
-                                                    :src="'/storage/' + formatPhotoPath(data.photos)"
-                                                    alt="Personal Info Photo"
-                                                    style="max-width: 200px; max-height: 200px;"> -->
-
-                                                <!-- <div class="gallery mx-auto d-block pb-0"
+                                            <td v-if="data.roles.length === 0" class="text-center">
+                                                <div class="gallery mx-auto d-block pb-0"
                                                     style="width: 100px; height: 100px;">
                                                     <div v-viewer="options" class="images clearfix">
                                                         <template class=" card">
-                                                            <img :data-source="'/storage/product_photos/ZGSjw3J0j27Oc7SJxp1Qhe7R2T9kRjqItNUSRj4s.png'"
-                                                                :src="'/storage/product_photos/ZGSjw3J0j27Oc7SJxp1Qhe7R2T9kRjqItNUSRj4s.png'"
-                                                                lass="image" :alt="'/images/0_noimage.jpg'"
-                                                                style="height:100px;">
+                                                            <img :data-source="'/storage/' + formatPhotoPath(data.photos)"
+                                                                :src="'/storage/' + formatPhotoPath(data.photos)"
+                                                                lass="image" style="height:100px;">
 
                                                         </template>
                                                     </div>
                                                 </div>
-                                            </td> -->
-
+                                            </td>
+                                            <td v-else class="text-center">
+                                            </td>
 
                                             <td class="text-right">
-                                                <button v-if="data.roles.length == empty" type="button"
-                                                    class="btn btn-success btn-sm" @click="approve(data.id)"><i
-                                                        class="fas fa-check"></i> Approve</button>
+                                                <button v-if="data.approved_at === null && can('approve user')"
+                                                    type="button" class="btn btn-success btn-sm"
+                                                    @click="approve(data)"><i class="fas fa-check"></i>
+                                                    Approve</button>
                                                 <button type="button" class="btn btn-primary btn-sm"
-                                                    @click="openEditModal(data)" v-if="can('edit user')"><i
+                                                    @click="openEditModal(data)"
+                                                    v-if="data.approved_at != null && can('edit user')"><i
                                                         class="fas fa-edit"></i> Edit</button>
                                                 <button type="button" class="btn btn-danger btn-sm"
                                                     @click="remove(data.id)" v-if="can('delete user')"><i
@@ -250,39 +239,29 @@ export default {
                 })
             });
         },
-        approve(id) {
+        approve(data) {
             Swal.fire({
                 title: 'Are you sure you want to approve the user?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
-                showCancelButton: true,
+                // showCancelButton: true,
                 showDenyButton: true,
                 confirmButtonColor: '#3085d6', // buyer
-                cancelButtonColor: '#3085d6',   // Seller
+                // cancelButtonColor: '#3085d6',   // Seller
                 denyButtonTextColor: '#3085d6',
-                cancelButtonText: 'Approved as Seller',
-                confirmButtonText: 'Approved as Buyer',
+                // cancelButtonText: 'Approved as Seller',
+                confirmButtonText: 'Approved, This User',
                 denyButtonText: 'Cancel',
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // axios.delete('/api/user/delete/' + id)
-                    //     .then(response => {
-                    toast.fire({
-                        icon: 'success',
-                        text: 'Data Saved.',
+                    axios.put('api/user/approve/' + data.id).then(() => {
+                        toast.fire({
+                            icon: 'success',
+                            text: 'Data Saved.',
+                        })
+                        this.openEditModal(data)
+                        this.getData();
                     })
-                    //         this.getData();
-                    //     })
-                }
-                else if (result.dismiss) {
-                    // axios.delete('/api/user/delete/' + id)
-                    //     .then(response => {
-                    toast.fire({
-                        icon: 'success',
-                        text: 'Data Saved.',
-                    })
-                    //         this.getData();
-                    //     })
                 }
             }).catch(() => {
                 toast.fire({

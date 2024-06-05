@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => 'auth:api'], function () {
-    
+
     Route::group(['prefix' => 'course'], function () {
         Route::get('all', [App\Http\Controllers\HomeController::class, 'all_courses']);
     });
@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', [App\Http\Controllers\API\UserController::class, 'index']);
         Route::post('create', [App\Http\Controllers\API\UserController::class, 'store']);
+        Route::put('approve/{id}', [App\Http\Controllers\API\UserController::class, 'approve']);
         Route::put('update/{id}', [App\Http\Controllers\API\UserController::class, 'update']);
         Route::delete('delete/{id}', [App\Http\Controllers\API\UserController::class, 'destroy']);
     });

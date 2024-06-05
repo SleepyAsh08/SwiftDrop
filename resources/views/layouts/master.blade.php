@@ -87,13 +87,13 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <router-link to="/Category" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-table-list nav-icon"></i>
                                         <p>Category</p>
                                     </router-link>
                                 </li>
                                 <li class="nav-item">
                                     <router-link to="/Measurement" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="far fa-ruler-combined nav-icon"></i>
                                         <p>Measurement</p>
                                     </router-link>
                                 </li>
