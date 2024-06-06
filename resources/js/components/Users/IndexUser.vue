@@ -100,7 +100,9 @@
                                                     @click="openEditModal(data)"
                                                     v-if="data.approved_at != null && can('edit user')"><i
                                                         class="fas fa-edit"></i> Edit</button>
-                                                <button type="button" class="btn btn-danger btn-sm"></button>
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    @click="remove(data.id)" v-if="can('delete user')"><i
+                                                        class="fas fa-trash-alt"></i> Remove</button>
                                             </td>
                                         </tr>
                                     </tbody>
