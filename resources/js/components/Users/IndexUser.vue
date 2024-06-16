@@ -54,7 +54,6 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Type of User</th>
-                                            <th>Supporting Documents</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -68,41 +67,31 @@
                                                     {{ role.name }}
                                                 </span>
                                             </td>
+                                            <td v-else-if="data.reason_of_disapproval != null">
+                                                <span class="badge badge-danger">
+                                                    This user is denied
+                                                </span>
+                                            </td>
                                             <td v-else>
                                                 <span class="badge badge-danger">
                                                     No User Type for Evaluation and
                                                     Approval
                                                 </span>
                                             </td>
-
-                                            <td v-if="data.roles.length === 0" class="text-center">
-                                                <div class="gallery mx-auto d-block pb-0"
-                                                    style="width: 100px; height: 100px;">
-                                                    <div v-viewer="options" class="images clearfix">
-                                                        <template class=" card">
-                                                            <img :data-source="'/storage/' + formatPhotoPath(data.photos)"
-                                                                :src="'/storage/' + formatPhotoPath(data.photos)"
-                                                                lass="image" style="height:100px;">
-
-                                                        </template>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td v-else class="text-center">
-                                            </td>
-
                                             <td class="text-right">
-                                                <button v-if="data.approved_at === null && can('approve user')"
+                                                <button
+                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null && can('approve user')"
                                                     type="button" class="btn btn-success btn-sm"
-                                                    @click="approve(data)"><i class="fas fa-check"></i>
-                                                    Approve</button>
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    @click="openEditModal(data)"
-                                                    v-if="data.approved_at != null && can('edit user')"><i
-                                                        class="fas fa-edit"></i> Edit</button>
+                                                    @click="openValidateModal(data)"><i class="fas fa-search"></i>
+                                                    Validate</button>
+                                                <button
+                                                    v-if="data.approved_at != null && data.reason_of_disapproval === null && can('approve user')"
+                                                    type="button" class="btn btn-primary btn-sm"
+                                                    @click="openEditModal(data)"><i class="fas fa-edit"></i>
+                                                    Edit</button>
                                                 <button type="button" class="btn btn-danger btn-sm"
                                                     @click="remove(data.id)" v-if="can('delete user')"><i
-                                                        class="fas fa-trash-alt"></i> Remove</button>
+                                                        class="fas fa-ban"></i> Disable </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -124,6 +113,8 @@
                     <add-modal @getData="getData"></add-modal>
                     <!-- declare the edit modal -->
                     <edit-modal @getData="getData" :row="selected_user" :page="current_page"></edit-modal>
+                    <!-- declare the approve modal -->
+                    <validate-modal @getData="getData" :row="selected_user" :page="current_page"></validate-modal>
                 </div>
             </div>
         </div>
@@ -132,19 +123,15 @@
 <script>
 import addModal from "./AddUser.vue";
 import EditModal from "./EditUser.vue";
+import ValidateModal from "./ValidateUser.vue";
 export default {
     components: {
         addModal,
         EditModal,
+        ValidateModal,
     },
     data() {
         return {
-            options: {
-                toolbar: true,
-                url: 'data-source',
-                toolbar: true,
-                title: true
-            },
             option_users: [],
             length: 10,
             search: '',
@@ -159,21 +146,16 @@ export default {
         }
     },
     methods: {
-        formatPhotoPath(photoPath) {
-            if (photoPath) {
-                return photoPath.replace(/^\["(.+)"\]$/, '$1');
-            } else {
-                return '';
-            }
-
-
-        },
         openAddModal() {
             $('#add-user').modal('show');
         },
         openEditModal(data) {
             this.selected_user = data;
             $('#edit-user').modal('show');
+        },
+        openValidateModal(data) {
+            this.selected_user = data;
+            $('#validate-user').modal('show');
         },
         getData(page) {
             if (typeof page === 'undefined' || page.type == 'keyup' || page.type == 'change' || page.type == 'click') {
@@ -216,58 +198,26 @@ export default {
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
+                confirmButtonText: 'Yes, Deactivate this account!',
             }).then((result) => {
                 if (result.isConfirmed) {
                     axios.delete('/api/user/delete/' + id)
                         .then(response => {
                             Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
+                                'Disable!',
+                                'Your file has been Deactivated.',
                                 'success'
                             )
                             this.getData();
                         })
                 }
             }).catch(() => {
-
                 toast.fire({
                     icon: 'error',
                     text: 'Something went wrong!',
                 })
             });
         },
-        approve(data) {
-            Swal.fire({
-                title: 'Are you sure you want to approve the user?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                // showCancelButton: true,
-                showDenyButton: true,
-                confirmButtonColor: '#3085d6', // buyer
-                // cancelButtonColor: '#3085d6',   // Seller
-                denyButtonTextColor: '#3085d6',
-                // cancelButtonText: 'Approved as Seller',
-                confirmButtonText: 'Approved, This User',
-                denyButtonText: 'Cancel',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    axios.put('api/user/approve/' + data.id).then(() => {
-                        toast.fire({
-                            icon: 'success',
-                            text: 'Data Saved.',
-                        })
-                        this.openEditModal(data)
-                        this.getData();
-                    })
-                }
-            }).catch(() => {
-                toast.fire({
-                    icon: 'error',
-                    text: 'Something went wrong!',
-                })
-            });
-        }
     },
     created() {
         this.getData();

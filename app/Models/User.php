@@ -12,10 +12,11 @@ use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
 use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles, LaravelPermissionToVueJS;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles, LaravelPermissionToVueJS, SoftDeletes;
 
     protected $guard_name = 'api';
     /**
@@ -27,8 +28,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'lastname',
+        'middle_initial',
+        'date_of_birth',
+        'contact_number',
+        'telephone_number',
+        'reason_of_disapproval',
         'photos',
-        'approved_at'
+        'approved_at',
+        'user_photo'
     ];
 
     /**

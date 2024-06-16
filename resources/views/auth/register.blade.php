@@ -27,7 +27,86 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="lastname"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('lastname') }}</label>
 
+                                <div class="col-md-6">
+                                    <input id="lastname" type="text"
+                                        class="form-control @error('lastname') is-invalid @enderror" name="lastname"
+                                        value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
+
+                                    @error('lastname')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="middle_initial"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('middle_initial') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="middle_initial" type="text"
+                                        class="form-control @error('middle_initial') is-invalid @enderror" name="middle_initial"
+                                        value="{{ old('middle_initial') }}" required autocomplete="middle_initial" autofocus>
+
+                                    @error('middle_initial')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="date_of_birth"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('date_of_birth') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="date_of_birth" type="date"
+                                        class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth"
+                                        value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth" autofocus>
+
+                                    @error('date_of_birth')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="contact_number"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('contact_number') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="contact_number" type="number"
+                                        class="form-control @error('contact_number') is-invalid @enderror" name="contact_number"
+                                        value="{{ old('contact_number') }}" required autocomplete="contact_number" autofocus>
+
+                                    @error('contact_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="telephone_number"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('telephone_number') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="telephone_number" type="number"
+                                        class="form-control @error('telephone_number') is-invalid @enderror" name="telephone_number"
+                                        value="{{ old('telephone_number') }}" required autocomplete="telephone_number" autofocus>
+
+                                    @error('telephone_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="row mb-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -75,7 +154,14 @@
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label text-md-end">Upload Supporting Information</label>
                                 <div class="col-md-6">
-                                    <input type="file" name='photos[]' multiple class="form-control">
+                                    <input id="photos" type="file"
+                                        class="form-control @error('photos') is-invalid @enderror" name="photos[]"
+                                        value="{{ old('photos') }}" required autocomplete="photos" autofocus>
+                                    @error('photos')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 

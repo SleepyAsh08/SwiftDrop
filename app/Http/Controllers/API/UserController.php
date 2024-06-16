@@ -33,6 +33,14 @@ class UserController extends Controller
         return response(['data' => $data], 200);
     }
 
+    public function show()
+    {
+        abort_if(Gate::denies('access user'), 403, 'You do not have the required authorization.');
+        $data = User::with('roles', 'permissions')->where('id', Auth::user()->id)->get();
+
+        return response(['data' => $data], 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -64,7 +72,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function approve($id)
+    public function validated(Request $request, $id)
+    {
+        //
+        if ($request->selectedOption == 'approve') {
+            $user = User::findOrFail($id);
+
+            $user->update([
+                'approved_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]);
+        } else {
+            // dd($request->txtdesapproval);
+            $user = User::findOrFail($id);
+
+            $user->update([
+                'reason_of_disapproval' => $request->txtdesapproval
+            ]);
+        }
+
+        return response(['message' => 'success'], 200);
+    }
+    public function disapprove($id)
     {
         //
         $user = User::findOrFail($id);
@@ -75,7 +103,6 @@ class UserController extends Controller
 
         return response(['message' => 'success'], 200);
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -85,16 +112,42 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->password);
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|sometimes',
+            'lastname' => 'required|string',
+            'middle_initial' => 'required|string|max:2',
+            'date_of_birth' => 'required|date',
+            'contact_number' => 'required|string|digits:11',
+            'telephone_number' => 'nullable|string|digits:7',
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
+
+        // $photos = request()->file('user_photo');
+        // $paths = [];
+
+        // if (!empty($photos)) {
+        //     foreach ($photos as $photo) {
+        //         $filename = time() . '.' . $photo->getClientOriginalExtension();
+        //         $path = $photo->storeAs('User_Photo', $filename, 'public');
+        //         $paths[] = $path; // Add path to the array
+        //     }
+        // }
+        // dd(json_encode($paths));
+
         $user = User::findOrFail($id);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'lastname' => $request->lastname,
+            'middle_initial' => $request->middle_initial,
+            'date_of_birth' => $request->date_of_birth,
+            'contact_number' => $request->contact_number,
+            'telephone_number' => $request->telephone_number,
+            'photos' => $request->photos,
+            // 'user_photo' => json_encode($paths)
         ]);
 
         if ($request->password) {
@@ -102,16 +155,18 @@ class UserController extends Controller
             $user->save();
         }
 
-        $user->roles()->detach();
+        if (isset($request->roles['name'])) {
+            $user->roles()->detach();
+            $user->assignRole($request->roles['name']);
 
-        $user->assignRole($request->roles['name']);
+            foreach ($user->permissions as $permission) {
+                $user->revokePermissionTo($permission['name']);
+            }
+            foreach ($request->permissions as $permission) {
+                $user->givePermissionTo($permission['name']);
+            }
+        }
 
-        foreach ($user->permissions as $permission) {
-            $user->revokePermissionTo($permission['name']);
-        }
-        foreach ($request->permissions as $permission) {
-            $user->givePermissionTo($permission['name']);
-        }
         return response(['message' => 'success'], 200);
     }
 
