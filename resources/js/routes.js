@@ -8,6 +8,11 @@ const routes = [
         component: require('./components/NotFound.vue').default
     },
     {
+        path: '/Account',
+        name: 'Account',
+        component: require('./components/Account/Index.vue').default,
+    },
+    {
         path: '/Products',
         name: 'Products',
         component: require('./components/Products/Index.vue').default,

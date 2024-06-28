@@ -8,10 +8,41 @@
                 </div>
                 <div class="modal-body">
                     <alert-error :form="form"></alert-error>
+                    <!-- <div class="form-group">
+                        <label>Upload User photo</label>
+                        <input ref="userPhotoInput" @change="handleFileChange" type="file" class="form-control"
+                            required>
+                         <has-error :form="form" field="user_photo" /> 
+                </div> -->
                     <div class="form-group">
                         <label>Name</label>
                         <input v-model="form.name" type="text" class="form-control">
                         <has-error :form="form" field="name" />
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <input v-model="form.lastname" type="text" class="form-control">
+                        <has-error :form="form" field="lastname" />
+                    </div>
+                    <div class="form-group">
+                        <label>Middle Initial</label>
+                        <input v-model="form.middle_initial" type="text" class="form-control">
+                        <has-error :form="form" field="middle_initial" />
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input v-model="form.date_of_birth" type="date" class="form-control">
+                        <has-error :form="form" field="date_of_birth" />
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input v-model="form.contact_number" type="number" class="form-control">
+                        <has-error :form="form" field="contact_number" />
+                    </div>
+                    <div class="form-group">
+                        <label>Telephone Number</label>
+                        <input v-model="form.telephone_number" type="number" class="form-control">
+                        <has-error :form="form" field="telephone_number" />
                     </div>
                     <div class="form-group">
                         <label>Email address</label>
@@ -23,7 +54,7 @@
                         <input v-model="form.password" type="password" class="form-control">
                         <has-error :form="form" field="password" />
                     </div>
-                    <div class="form-group">
+                    <div v-if="can('approve user')" class="form-group">
                         <label>Role</label>
                         <multiselect v-model="form.roles" :options="option_roles" :multiple="false"
                             :close-on-select="true" :clear-on-select="false" :preserve-search="true"
@@ -33,7 +64,7 @@
                         <has-error :form="form" field="roles" />
 
                     </div>
-                    <div class="form-group">
+                    <div v-if="can('approve user')" class="form-group">
                         <label>Permission</label>
                         <multiselect v-model="form.permissions" :options="option_permissions" :multiple="true"
                             :close-on-select="false" :clear-on-select="false" :preserve-search="true"
@@ -62,21 +93,52 @@ export default {
             form: new Form({
                 id: '',
                 name: '',
+                lastname: '',
+                middle_initial: '',
+                date_of_birth: '',
+                contact_number: '',
+                telephone_number: '',
                 email: '',
                 password: '',
+                user_photo: '',
                 roles: null,
                 permissions: null,
             }),
             option_permissions: [],
             option_roles: [],
+            options: {
+                toolbar: true,
+                url: 'data-source',
+                toolbar: true,
+                title: true
+            },
         }
     },
     methods: {
+        // handleFileChange(event) {
+        //     if (event.target.files.length === 0) {
+        //         // Handle no file selected case (optional: display an error message)
+        //         return;
+        //     }
+
+        //     const file = event.target.files[0]; // Get the first selected file
+        //     this.form.user_photo = file;
+        // },
+        formatPhotoPath(photoPath) {
+            if (photoPath) {
+                return photoPath.replace(/^\["(.+)"\]$/, '$1');
+            } else {
+                return '';
+            }
+        },
         selectRole() {
             this.form.permissions = this.form.roles.permissions;
         },
         update() {
-            this.form.put('api/user/update/' + this.form.id).then(() => {
+            // const formData = new FormData();
+            // formData.append('user_photo', this.form.user_photo);
+            this.form.put('api/user/update/' + this.form.id, {
+            }).then(() => {
                 toast.fire({
                     icon: 'success',
                     text: 'Data Saved.',
@@ -107,6 +169,7 @@ export default {
     watch: {
         row: function () {
             this.form.fill(this.row);
+            // console.log(this.row);
         }
     },
     mounted() {

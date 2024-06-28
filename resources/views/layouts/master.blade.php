@@ -36,17 +36,19 @@
                     style="opacity: .8">
             </div>
             <div class="sidebar">
-                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="/images/default_image.png" class="img-circle elevation-2" alt="User Image">
+                <router-link to="/Account" class="nav-link">
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="/images/default_image.png" class="img-circle elevation-2 mt-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <span class="font-weight-bold"
+                                style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
+                            <span
+                                style="color:#595959"><small>@if (Auth::check())  {{ strtoupper(Auth::user()->getRoleNames()->first() ?? 'Not Verified')  }} @endif</small></span>
+                        </div>
                     </div>
-                    <div class="info">
-                        <span class="font-weight-bold"
-                            style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
-                        <span
-                            style="color:#595959"><small>@if (Auth::check())  {{ strtoupper(Auth::user()->getRoleNames()->first() ?? 'Not Verified')  }} @endif</small></span>
-                    </div>
-                </div>
+                </router-link>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">

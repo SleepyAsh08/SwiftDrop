@@ -27,7 +27,7 @@
         "admin-lte": "3.1",
         "axios": "^0.27.2",
         "laravel-permission-to-vuejs": "^2.0.5",
-        "sweetalert2": "^11.4.35",
+        "sweetalert2": "^11.11.1",
         "v-viewer": "^1.7.4",
         "vform": "^2.1.2",
         "viewer": "^0.10.11",
