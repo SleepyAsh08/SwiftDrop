@@ -44,26 +44,19 @@
                         <div class="info">
                             <span class="font-weight-bold"
                                 style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
-                            <span
-                                style="color:#595959"><small>@if (Auth::check())  {{ strtoupper(Auth::user()->getRoleNames()->first() ?? 'Not Verified')  }} @endif</small></span>
+                            <span style="color:#595959"><small>
+                                    @if (Auth::check())
+                                        {{ strtoupper(Auth::user()->getRoleNames()->first() ?? 'Not Verified') }}
+                                    @endif
+                                </small></span>
                         </div>
                     </div>
                 </router-link>
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item">
-                            <router-link to="/Products" class="nav-link">
-                                <i class="nav-icon fas fa fa-cutlery"></i>
-                                <p>Products</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/Purchase" class="nav-link">
-                                <i class="nav-icon fa fa-credit-card"></i>
-                                <p>Purchase Order</p>
-                            </router-link>
-                        </li>
+
+
                         {{-- <li class="nav-item">
                             <router-link to="/Student" class="nav-link">
                                 <i class="nav-icon fas fa-user-alt"></i>
@@ -78,25 +71,75 @@
                                 </p>
                             </router-link>
                         </li> --}}
+
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa fa-tag"></i>
+                                <i class="nav-icon fas fa fa-address-book"></i>
                                 <p>
-                                    Others
+                                    Product Management
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <router-link to="/Category" class="nav-link">
-                                        <i class="far fa-table-list nav-icon"></i>
-                                        <p>Category</p>
+                                    <router-link to="/Products" class="nav-link">
+                                        <i class="nav-icon fas fa fa-cutlery"></i>
+                                        <p>Products</p>
                                     </router-link>
                                 </li>
                                 <li class="nav-item">
-                                    <router-link to="/Measurement" class="nav-link">
+                                    <router-link to="/Replenishment" class="nav-link">
+                                        <i class="nav-icon fas fa fa-plus-square"></i>
+                                        <p>Replenishment</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa fa-tag"></i>
+                                        <p>
+                                            Others
+                                            <i class="right fas fa-angle-left"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">
+                                            <router-link to="/Category" class="nav-link">
+                                                <i class="far fa-table-list nav-icon"></i>
+                                                <p>Category</p>
+                                            </router-link>
+                                        </li>
+                                        <li class="nav-item">
+                                            <router-link to="/Measurement" class="nav-link">
+                                                <i class="far fa-ruler-combined nav-icon"></i>
+                                                <p>Measurement</p>
+                                            </router-link>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa fa-bell"></i>
+                                <p>
+                                    Manage Orders
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <router-link to="/Purchase" class="nav-link">
+                                        <i class="nav-icon fa fa-credit-card"></i>
+                                        <p>Purchase Order</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/Order" class="nav-link">
                                         <i class="far fa-ruler-combined nav-icon"></i>
-                                        <p>Measurement</p>
+                                        <p>Complete Orders</p>
                                     </router-link>
                                 </li>
                             </ul>

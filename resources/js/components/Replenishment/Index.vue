@@ -4,15 +4,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Orders</h1>
+                        <h1 class="m-0">Products Replenishment</h1>
                     </div>
                     <div class="col-sm-6">
-                        <!-- <ol class="breadcrumb float-sm-right">
+                        <ol class="breadcrumb float-sm-right">
                             <button class="nav-link btn" @click="goToAddProducts">
                                 <i class="nav-icon fas fa-user-tag"></i>
                                 <p>Add Products</p>
                             </button>
-                        </ol> -->
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -51,25 +51,31 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th style="width: 20%;">Buyer's Name</th>
-                                            <th style="width: 20%;">Product Name</th>
-                                            <th style="width: 20%;">Ordered Quantity</th>
-                                            <th style="width: 20%;">Total Price</th>
-                                            <th style="width: 20%;"></th>
+                                            <th style="width: 10%;">Photo</th>
+                                            <th style="width: 10%;">Product Name</th>
+                                            <th style="width: 10%;">Price</th>
+                                            <th style="width: 10%;">Quantity</th>
+                                            <th style="width: 10%;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr v-for="(data, index) in option_users.data" :key="index">
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
+
+                                            <td> <img v-if="data.photos && data.photos.length"
+                                                    :src="'/storage/' + formatPhotoPath(data.photos)" alt="Product Photo"
+                                                    style="max-width: 200px; max-height: 200px;">
+                                            </td>
+                                            <td>{{ data.Product_Name }}</td>
+                                            <td>{{ data.price }}</td>
+                                            <td>{{ data.Quantity }}</td>
                                             <td class="text-right">
-                                                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>
-                                                    Confirm Order</button>
-                                                <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>
-                                                    Cancel Order</button>
+                                                <button type="button" class="btn btn-primary btn-sm"
+                                                    @click="openEditModal(data)"><i class="fas fa-edit"></i>
+                                                    Edit</button>
+                                                <button type="button" class="btn btn-danger btn-sm"
+                                                    @click="remove(data.id)"><i class="fas fa-trash-alt"></i>
+                                                    Remove</button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -90,7 +96,7 @@
                     <!-- declare the add modal -->
                     <!-- <add-modal @getData="getData"></add-modal> -->
                     <!-- declare the edit modal -->
-                    <!-- <edit-modal @getData="getData" :row="selected_user" :page="current_page"></edit-modal> -->
+                    <edit-modal @getData="getData" :row="selected_user" :page="current_page"></edit-modal>
                 </div>
             </div>
         </div>
@@ -98,14 +104,15 @@
 </template>
 <script>
 
-// import EditModal from "./EditProduct.vue";
+import EditModal from "./EditReplenishment.vue";
 export default {
     components: {
-        // EditModal,
+        EditModal,
     },
     data() {
         return {
             option_users: [],
+            userID: null,
             length: 10,
             search: '',
             showSchedule: false,
@@ -119,6 +126,15 @@ export default {
         }
     },
     methods: {
+        formatPhotoPath(photoPath) {
+            if (photoPath) {
+                return photoPath.replace(/^\["(.+)"\]$/, '$1');
+            } else {
+                return '';
+            }
+
+
+        },
         // openAddModal() {
         //     $('#add-user').modal('show');
         // },
@@ -131,7 +147,7 @@ export default {
         },
         getData(page) {
             if (typeof page === 'undefined' || page.type == 'keyup' || page.type == 'change' || page.type == 'click') {
-                page = '/api/product/list/?page=1';
+                page = '/api/replenishment/list/?page=1';
             }
             this.current_page = page;
             if (this.timer) {
@@ -152,7 +168,9 @@ export default {
                     .then(response => {
                         if (response.data.data) {
                             this.option_users = response.data.data;
+                            this.userID = response.data.userID;
                         }
+                        console.log(this.userID);
                     }).catch(error => {
                         this.error = error;
                         toast.fire({

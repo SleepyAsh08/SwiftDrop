@@ -18,6 +18,11 @@ const routes = [
         component: require('./components/Products/Index.vue').default,
     },
     {
+        path: '/Replenishment',
+        name: 'Replenishment',
+        component: require('./components/Replenishment/Index.vue').default,
+    },
+    {
         path: '/ProductsCreate',
         name: 'Create',
         component: require('./components/Products/Create.vue').default,
@@ -26,6 +31,11 @@ const routes = [
         path: '/Purchase',
         name: 'Purchase',
         component: require('./components/PurchaseOrder/Index.vue').default,
+    },
+    {
+        path: '/Order',
+        name: 'Order',
+        component: require('./components/CompletedOrder/Index.vue').default,
     },
     {
         path: '/Category',

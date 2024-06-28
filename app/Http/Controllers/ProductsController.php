@@ -20,10 +20,30 @@ class ProductsController extends Controller
     public function index(Request $request)
     {
         $userID = auth()->user()->id;
+
         // dd($emp_code);
         $data = Products::OrderBy('Quantity', 'desc')
             ->where('userID', $userID)
+            ->where('Quantity', '>', 10)
             ->latest();
+        $data = $data->paginate($request->length);
+        return response([
+            'data' => $data,
+            'userID' => $userID,
+        ], 200);
+    }
+
+    public function index1(Request $request)
+    {
+        $userID = auth()->user()->id;
+
+        // dd($emp_code);
+        $data = Products::OrderBy('Quantity', 'desc')
+            ->where('userID', $userID)
+            ->where('Quantity', '<=', 10)
+            ->latest();
+
+        // dd($data);
         $data = $data->paginate($request->length);
         return response([
             'data' => $data,
@@ -100,6 +120,26 @@ class ProductsController extends Controller
 
         $this->validate($request, []);
         $user = Products::findOrFail($id);
+        $user->update([
+            'Product_Name' => $request->Product_Name,
+            'price' => $request->price,
+            'Quantity' => $request->Quantity,
+            'Description' => $request->Description,
+            // 'idMeasurement' => $request->measurement_id,
+        ]);
+
+        return response(['message' => 'success'], 200);
+    }
+
+    public function update1(Request $request, $id)
+    {
+
+        // dd($request->measurement_id);
+
+
+        $this->validate($request, []);
+        $user = Products::findOrFail($id);
+        // dd($user);
         $user->update([
             'Product_Name' => $request->Product_Name,
             'price' => $request->price,
