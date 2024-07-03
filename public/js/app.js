@@ -8122,23 +8122,23 @@ __webpack_require__.r(__webpack_exports__);
     create: function create() {
       var _this = this;
 
-      var formData = new FormData(); // formData.append('id', this.form.id);
-      // formData.append('name', this.form.name);
-      // formData.append('lastname', this.form.lastname);
-      // formData.append('middle_initial', this.form.middle_initial);
-      // formData.append('date_of_birth', this.form.date_of_birth);
-      // formData.append('contact_number', this.form.contact_number);
-      // formData.append('telephone_number', this.form.telephone_number);
-      // formData.append('email', this.form.email);
-      // formData.append('password', this.form.password);
-      // formData.append('roles', this.form.roles);
-      // formData.append('permissions', this.form.permissions);
-      // Append each selected photo file to the formData
+      var formData = new FormData();
+      formData.append('id', this.form.id);
+      formData.append('name', this.form.name);
+      formData.append('lastname', this.form.lastname);
+      formData.append('middle_initial', this.form.middle_initial);
+      formData.append('date_of_birth', this.form.date_of_birth);
+      formData.append('contact_number', this.form.contact_number);
+      formData.append('telephone_number', this.form.telephone_number);
+      formData.append('email', this.form.email);
+      formData.append('password', this.form.password);
+      formData.append('roles', this.form.roles);
+      formData.append('permissions', this.form.permissions); // Append each selected photo file to the formData
 
       this.photos.forEach(function (photo, index) {
         formData.append("photos[".concat(index, "]"), photo);
       });
-      this.form.post('api/user/create/' + formData, {
+      this.form.post('/api/user/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -8149,6 +8149,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this.form.reset();
+
+        _this.photos = [];
 
         _this.$emit('getData'); // call method from parent
 
@@ -8224,6 +8226,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         roles: null,
         permissions: null
       }),
+      photos: [],
       option_permissions: [],
       option_roles: [],
       options: (_options = {
@@ -8233,20 +8236,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
-    // handleFileChange(event) {
-    //     if (event.target.files.length === 0) {
-    //         // Handle no file selected case (optional: display an error message)
-    //         return;
-    //     }
-    //     const file = event.target.files[0]; // Get the first selected file
-    //     this.form.user_photo = file;
-    // },
-    formatPhotoPath: function formatPhotoPath(photoPath) {
-      if (photoPath) {
-        return photoPath.replace(/^\["(.+)"\]$/, '$1');
-      } else {
-        return '';
-      }
+    onFileChange: function onFileChange(e) {
+      this.photos = Array.from(e.target.files);
     },
     selectRole: function selectRole() {
       this.form.permissions = this.form.roles.permissions;
@@ -8254,9 +8245,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     update: function update() {
       var _this = this;
 
-      // const formData = new FormData();
-      // formData.append('user_photo', this.form.user_photo);
-      this.form.put('api/user/update/' + this.form.id, {}).then(function () {
+      var formData = new FormData();
+      formData.append('id', this.form.id);
+      formData.append('name', this.form.name);
+      formData.append('lastname', this.form.lastname);
+      formData.append('middle_initial', this.form.middle_initial);
+      formData.append('date_of_birth', this.form.date_of_birth);
+      formData.append('contact_number', this.form.contact_number);
+      formData.append('telephone_number', this.form.telephone_number);
+      formData.append('email', this.form.email);
+      formData.append('password', this.form.password);
+      formData.append('roles', this.form.roles);
+      formData.append('permissions', this.form.permissions); // Append each selected photo file to the formData
+
+      this.photos.forEach(function (photo, index) {
+        formData.append("photos[".concat(index, "]"), photo);
+      });
+      this.form.put('/api/user/update', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function () {
         toast.fire({
           icon: 'success',
           text: 'Data Saved.'
@@ -8329,6 +8338,7 @@ __webpack_require__.r(__webpack_exports__);
       option_users: [],
       length: 10,
       search: '',
+      filter: 'All',
       showSchedule: false,
       is_searching: true,
       selected_user: [],
@@ -8370,6 +8380,7 @@ __webpack_require__.r(__webpack_exports__);
           params: {
             search: _this.search,
             length: _this.length,
+            filter: _this.filter,
             time_start: _this.time_start,
             time_end: _this.time_end,
             day: _this.day,
@@ -8405,6 +8416,32 @@ __webpack_require__.r(__webpack_exports__);
             Swal.fire('Disable!', 'Your file has been Deactivated.', 'success');
 
             _this2.getData();
+          });
+        }
+      })["catch"](function () {
+        toast.fire({
+          icon: 'error',
+          text: 'Something went wrong!'
+        });
+      });
+    },
+    activate: function activate(id) {
+      var _this3 = this;
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Activate this account!'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios.put('/api/user/activate/' + id).then(function (response) {
+            Swal.fire('Enabled!', 'Your file has been Activated.', 'success');
+
+            _this3.getData();
           });
         }
       })["catch"](function () {
@@ -13887,7 +13924,7 @@ var render = function render() {
   }), _vm._v(" "), _c("has-error", {
     attrs: {
       form: _vm.form,
-      field: "photo"
+      field: "photos"
     }
   })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm.can("approve user") ? _c("div", {
     staticClass: "form-group"
@@ -14031,6 +14068,23 @@ var render = function render() {
       form: _vm.form
     }
   }), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Upload User photo")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "file",
+      required: "",
+      multiple: ""
+    },
+    on: {
+      change: _vm.onFileChange
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "user_photo"
+    }
+  })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Name")]), _vm._v(" "), _c("input", {
     directives: [{
@@ -14391,6 +14445,37 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
+      value: _vm.filter,
+      expression: "filter"
+    }],
+    staticClass: "form-control form-control-sm pr-3 input-group-append bg-white",
+    on: {
+      change: [function ($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function (o) {
+          return o.selected;
+        }).map(function (o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val;
+        });
+        _vm.filter = $event.target.multiple ? $$selectedVal : $$selectedVal[0];
+      }, _vm.getData]
+    }
+  }, [_c("option", {
+    attrs: {
+      value: "All"
+    }
+  }, [_vm._v("All")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Deactivate"
+    }
+  }, [_vm._v("Deactivate")]), _vm._v(" "), _c("option", {
+    attrs: {
+      value: "Activate"
+    }
+  }, [_vm._v("Activate")])]), _vm._v(" "), _c("select", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
       value: _vm.length,
       expression: "length"
     }],
@@ -14505,7 +14590,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-edit"
-    }), _vm._v("\n                                                Edit")]) : _vm._e(), _vm._v(" "), _vm.can("delete user") ? _c("button", {
+    }), _vm._v("\n                                                Edit")]) : _vm._e(), _vm._v(" "), data.deleted_at === null && _vm.can("delete user") ? _c("button", {
       staticClass: "btn btn-danger btn-sm",
       attrs: {
         type: "button"
@@ -14517,7 +14602,19 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-ban"
-    }), _vm._v(" Disable ")]) : _vm._e()])]);
+    }), _vm._v(" Deactivate\n                                            ")]) : _vm._e(), _vm._v(" "), data.deleted_at != null && _vm.can("delete user") ? _c("button", {
+      staticClass: "btn btn-success btn-sm",
+      attrs: {
+        type: "button"
+      },
+      on: {
+        click: function click($event) {
+          return _vm.activate(data.id);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fas fa-check"
+    }), _vm._v(" Activate\n                                            ")]) : _vm._e()])]);
   }), 0)]), _vm._v(" "), _c("ul", {
     staticClass: "pagination pagination-sm m-1 float-right"
   }, _vm._l(_vm.option_users.links, function (link, index) {

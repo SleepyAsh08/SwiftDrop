@@ -24,6 +24,12 @@
                                 <h3 class="card-title"> </h3>
                                 <div class="card-tools float-left">
                                     <div class="input-group input-group-sm">
+                                        <select v-model="filter" @change="getData"
+                                            class="form-control form-control-sm pr-3 input-group-append bg-white">
+                                            <option value="All">All</option>
+                                            <option value="Deactivate">Deactivate</option>
+                                            <option value="Activate">Activate</option>
+                                        </select>
                                         <select v-model="length" @change="getData" class="form-control form-control-sm">
                                             <option value="10">10</option>
                                             <option value="25">25</option>
@@ -89,9 +95,14 @@
                                                     type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
                                                     Edit</button>
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    @click="remove(data.id)" v-if="can('delete user')"><i
-                                                        class="fas fa-ban"></i> Disable </button>
+                                                <button v-if="data.deleted_at === null && can('delete user')"
+                                                    type="button" class="btn btn-danger btn-sm"
+                                                    @click="remove(data.id)"><i class="fas fa-ban"></i> Deactivate
+                                                </button>
+                                                <button v-if="data.deleted_at != null && can('delete user')"
+                                                    type="button" class="btn btn-success btn-sm"
+                                                    @click="activate(data.id)"><i class="fas fa-check"></i> Activate
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -135,6 +146,7 @@ export default {
             option_users: [],
             length: 10,
             search: '',
+            filter: 'All',
             showSchedule: false,
             is_searching: true,
             selected_user: [],
@@ -171,6 +183,7 @@ export default {
                     params: {
                         search: this.search,
                         length: this.length,
+                        filter: this.filter,
                         time_start: this.time_start,
                         time_end: this.time_end,
                         day: this.day,
@@ -206,6 +219,34 @@ export default {
                             Swal.fire(
                                 'Disable!',
                                 'Your file has been Deactivated.',
+                                'success'
+                            )
+                            this.getData();
+                        })
+                }
+            }).catch(() => {
+                toast.fire({
+                    icon: 'error',
+                    text: 'Something went wrong!',
+                })
+            });
+        },
+        activate(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Activate this account!',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.put('/api/user/activate/' + id)
+                        .then(response => {
+                            Swal.fire(
+                                'Enabled!',
+                                'Your file has been Activated.',
                                 'success'
                             )
                             this.getData();

@@ -38,9 +38,9 @@
             <div class="sidebar">
                 <router-link to="/Account" class="nav-link">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
+                        {{-- <div class="image">
                             <img src="/images/default_image.png" class="img-circle elevation-2 mt-2" alt="User Image">
-                        </div>
+                        </div> --}}
                         <div class="info">
                             <span class="font-weight-bold"
                                 style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
@@ -217,9 +217,9 @@
         </div>
         <footer class="main-footer">
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+                One-Stop Shop for Quality Agricultural Products
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="#">AdminLTE.io</a>.</strong> All rights
+            Copyright &copy; 2024 <strong>AgriShop.com</strong> All rights
             reserved.
         </footer>
     </div>

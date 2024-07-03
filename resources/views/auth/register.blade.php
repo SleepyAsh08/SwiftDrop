@@ -50,7 +50,7 @@
                                 <div class="col-md-6">
                                     <input id="middle_initial" type="text"
                                         class="form-control @error('middle_initial') is-invalid @enderror" name="middle_initial"
-                                        value="{{ old('middle_initial') }}" required autocomplete="middle_initial" autofocus>
+                                        value="{{ old('middle_initial') }}" autocomplete="middle_initial" autofocus>
 
                                     @error('middle_initial')
                                         <span class="invalid-feedback" role="alert">
@@ -98,7 +98,7 @@
                                 <div class="col-md-6">
                                     <input id="telephone_number" type="number"
                                         class="form-control @error('telephone_number') is-invalid @enderror" name="telephone_number"
-                                        value="{{ old('telephone_number') }}" required autocomplete="telephone_number" autofocus>
+                                        value="{{ old('telephone_number') }}" autocomplete="telephone_number" autofocus>
 
                                     @error('telephone_number')
                                         <span class="invalid-feedback" role="alert">

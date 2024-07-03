@@ -8,12 +8,11 @@
                 </div>
                 <div class="modal-body">
                     <alert-error :form="form"></alert-error>
-                    <!-- <div class="form-group">
+                    <div class="form-group">
                         <label>Upload User photo</label>
-                        <input ref="userPhotoInput" @change="handleFileChange" type="file" class="form-control"
-                            required>
-                         <has-error :form="form" field="user_photo" /> 
-                </div> -->
+                        <input type="file" @change="onFileChange" required multiple class="form-control">
+                        <has-error :form="form" field="user_photo" />
+                    </div>
                     <div class="form-group">
                         <label>Name</label>
                         <input v-model="form.name" type="text" class="form-control">
@@ -104,6 +103,7 @@ export default {
                 roles: null,
                 permissions: null,
             }),
+            photos: [],
             option_permissions: [],
             option_roles: [],
             options: {
@@ -115,29 +115,35 @@ export default {
         }
     },
     methods: {
-        // handleFileChange(event) {
-        //     if (event.target.files.length === 0) {
-        //         // Handle no file selected case (optional: display an error message)
-        //         return;
-        //     }
-
-        //     const file = event.target.files[0]; // Get the first selected file
-        //     this.form.user_photo = file;
-        // },
-        formatPhotoPath(photoPath) {
-            if (photoPath) {
-                return photoPath.replace(/^\["(.+)"\]$/, '$1');
-            } else {
-                return '';
-            }
+        onFileChange(e) {
+            this.photos = Array.from(e.target.files);
         },
         selectRole() {
             this.form.permissions = this.form.roles.permissions;
         },
         update() {
-            // const formData = new FormData();
-            // formData.append('user_photo', this.form.user_photo);
-            this.form.put('api/user/update/' + this.form.id, {
+            const formData = new FormData();
+            formData.append('id', this.form.id);
+            formData.append('name', this.form.name);
+            formData.append('lastname', this.form.lastname);
+            formData.append('middle_initial', this.form.middle_initial);
+            formData.append('date_of_birth', this.form.date_of_birth);
+            formData.append('contact_number', this.form.contact_number);
+            formData.append('telephone_number', this.form.telephone_number);
+            formData.append('email', this.form.email);
+            formData.append('password', this.form.password);
+            formData.append('roles', this.form.roles);
+            formData.append('permissions', this.form.permissions);
+
+            // Append each selected photo file to the formData
+            this.photos.forEach((photo, index) => {
+                formData.append(`photos[${index}]`, photo);
+            });
+
+            this.form.put('/api/user/update', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }).then(() => {
                 toast.fire({
                     icon: 'success',

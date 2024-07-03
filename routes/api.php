@@ -65,10 +65,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'user'], function () {
         Route::get('list', [App\Http\Controllers\API\UserController::class, 'index']);
         Route::get('show', [App\Http\Controllers\API\UserController::class, 'show']);
-        Route::post('create/{formData}', [App\Http\Controllers\API\UserController::class, 'store']);
+        Route::post('create', [App\Http\Controllers\API\UserController::class, 'store']);
         Route::put('validate/{id}', [App\Http\Controllers\API\UserController::class, 'validated']);
-        Route::put('update/{id}', [App\Http\Controllers\API\UserController::class, 'update']);
+        Route::put('update', [App\Http\Controllers\API\UserController::class, 'update']);
         Route::delete('delete/{id}', [App\Http\Controllers\API\UserController::class, 'destroy']);
+        Route::put('activate/{id}', [App\Http\Controllers\API\UserController::class, 'activate']);
     });
     Route::group(['prefix' => 'permission'], function () {
         Route::get('list', [App\Http\Controllers\API\PermissionController::class, 'index']);
