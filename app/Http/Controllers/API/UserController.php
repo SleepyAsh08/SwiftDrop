@@ -47,21 +47,46 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $formData)
     {
         $this->validate($request, [
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'required|string',
+            'name' => 'required|string|unique:users,name,' . $request->id,
+            'email' => 'required|email|unique:users,email,' . $request->id,
+            'password' => 'required|sometimes',
+            'lastname' => 'required|string',
+            'middle_initial' => 'required|string|max:2',
+            'date_of_birth' => 'required|date',
+            'contact_number' => 'required|string|digits:11',
+            'telephone_number' => 'nullable|string|digits:7',
+            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $photoPaths = [];
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('Personal_Info_Photo', 'public');
+                $photoPaths[] = $path;
+            }
+        }
+        dd($formData);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'lastname' => $request->lastname,
+            'middle_initial' => $request->middle_initial,
+            'date_of_birth' => $request->date_of_birth,
+            'contact_number' => $request->contact_number,
+            'telephone_number' => $request->telephone_number,
+            'photos' => json_encode($photoPaths),
         ]);
-        $user->assignRole($request->role['name']);
-        foreach ($request->permissions as $permission) {
-            $user->givePermissionTo($permission['name']);
+
+        if (isset($request->roles['name'])) {
+            $user->assignRole($request->roles['name']);
+
+            foreach ($request->permissions as $permission) {
+                $user->givePermissionTo($permission['name']);
+            }
         }
         return response(['message' => 'success'], 200);
     }
@@ -121,7 +146,7 @@ class UserController extends Controller
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
             'telephone_number' => 'nullable|string|digits:7',
-            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            // 'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
             // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
@@ -146,7 +171,7 @@ class UserController extends Controller
             'date_of_birth' => $request->date_of_birth,
             'contact_number' => $request->contact_number,
             'telephone_number' => $request->telephone_number,
-            'photos' => $request->photos,
+            // 'photos' => $request->photos,
             // 'user_photo' => json_encode($paths)
         ]);
 

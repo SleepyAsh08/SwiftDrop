@@ -7775,24 +7775,56 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: new Form({
+        id: '',
         name: '',
+        lastname: '',
+        middle_initial: '',
+        date_of_birth: '',
+        contact_number: '',
+        telephone_number: '',
         email: '',
         password: '',
-        role: null,
+        photos: '',
+        user_photo: '',
+        roles: null,
         permissions: null
       }),
+      photos: [],
       option_permissions: [],
       option_roles: []
     };
   },
   methods: {
+    onFileChange: function onFileChange(e) {
+      this.photos = Array.from(e.target.files);
+    },
     selectRole: function selectRole() {
       this.form.permissions = this.form.role.permissions;
     },
     create: function create() {
       var _this = this;
 
-      this.form.post('api/user/create').then(function () {
+      var formData = new FormData(); // formData.append('id', this.form.id);
+      // formData.append('name', this.form.name);
+      // formData.append('lastname', this.form.lastname);
+      // formData.append('middle_initial', this.form.middle_initial);
+      // formData.append('date_of_birth', this.form.date_of_birth);
+      // formData.append('contact_number', this.form.contact_number);
+      // formData.append('telephone_number', this.form.telephone_number);
+      // formData.append('email', this.form.email);
+      // formData.append('password', this.form.password);
+      // formData.append('roles', this.form.roles);
+      // formData.append('permissions', this.form.permissions);
+      // Append each selected photo file to the formData
+
+      this.photos.forEach(function (photo, index) {
+        formData.append("photos[".concat(index, "]"), photo);
+      });
+      this.form.post('api/user/create/' + formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(function () {
         toast.fire({
           icon: 'success',
           text: 'Data Saved.'
@@ -12631,6 +12663,146 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
+  }, [_c("label", [_vm._v("Last Name")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.lastname,
+      expression: "form.lastname"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.lastname
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "lastname", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "lastname"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Middle Initial")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.middle_initial,
+      expression: "form.middle_initial"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    },
+    domProps: {
+      value: _vm.form.middle_initial
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "middle_initial", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "middle_initial"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Date of Birth")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.date_of_birth,
+      expression: "form.date_of_birth"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "date"
+    },
+    domProps: {
+      value: _vm.form.date_of_birth
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "date_of_birth", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "date_of_birth"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Contact Number")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.contact_number,
+      expression: "form.contact_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number"
+    },
+    domProps: {
+      value: _vm.form.contact_number
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "contact_number", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "contact_number"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
+  }, [_c("label", [_vm._v("Telephone Number")]), _vm._v(" "), _c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.form.telephone_number,
+      expression: "form.telephone_number"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      type: "number"
+    },
+    domProps: {
+      value: _vm.form.telephone_number
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.form, "telephone_number", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "telephone_number"
+    }
+  })], 1), _vm._v(" "), _c("div", {
+    staticClass: "form-group"
   }, [_c("label", [_vm._v("Email address")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -12687,6 +12859,23 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
+  }, [_c("label", [_vm._v("Upload Supporting Information")]), _vm._v(" "), _c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "file",
+      required: "",
+      multiple: ""
+    },
+    on: {
+      change: _vm.onFileChange
+    }
+  }), _vm._v(" "), _c("has-error", {
+    attrs: {
+      form: _vm.form,
+      field: "photo"
+    }
+  })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm.can("approve user") ? _c("div", {
+    staticClass: "form-group"
   }, [_c("label", [_vm._v("Role")]), _vm._v(" "), _c("multiselect", {
     attrs: {
       options: _vm.option_roles,
@@ -12714,7 +12903,7 @@ var render = function render() {
       form: _vm.form,
       field: "guard_name"
     }
-  })], 1), _vm._v(" "), _c("div", {
+  })], 1) : _vm._e(), _vm._v(" "), _vm.can("approve user") ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Permission")]), _vm._v(" "), _c("multiselect", {
     attrs: {
@@ -12740,7 +12929,7 @@ var render = function render() {
       form: _vm.form,
       field: "guard_name"
     }
-  })], 1)], 1), _vm._v(" "), _c("div", {
+  })], 1) : _vm._e()], 1), _vm._v(" "), _c("div", {
     staticClass: "modal-footer"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -12778,6 +12967,17 @@ var staticRenderFns = [function () {
       "aria-label": "Close"
     }
   })]);
+}, function () {
+  var _vm = this,
+      _c = _vm._self._c;
+
+  return _c("div", {
+    staticClass: "form-group"
+  }, [_c("span", {
+    staticClass: "ml-5 text-danger"
+  }, [_vm._v("You are Buyer provide your valid Id")]), _c("br"), _vm._v(" "), _c("span", {
+    staticClass: "ml-5 text-danger"
+  }, [_vm._v("You are Seller provide your Business Permit")])]);
 }];
 render._withStripped = true;
 
