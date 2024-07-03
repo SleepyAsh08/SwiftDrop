@@ -35,6 +35,13 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('delete/{id}', [App\Http\Controllers\ProductsController::class, 'destroy']);
     });
 
+    Route::group(['prefix' => 'replenishment'], function () {
+        Route::get('list', [App\Http\Controllers\ProductsController::class, 'index1']);
+        Route::post('create', [App\Http\Controllers\ProductsController::class, 'store1']);
+        Route::put('update/{id}', [App\Http\Controllers\ProductsController::class, 'update1']);
+        Route::delete('delete/{id}', [App\Http\Controllers\ProductsController::class, 'destroy1']);
+    });
+
     Route::group(['prefix' => 'category'], function () {
         Route::get('list', [App\Http\Controllers\CategoryController::class, 'index']);
         Route::get('all', [App\Http\Controllers\CategoryController::class, 'index_all']);
@@ -42,6 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::put('update/{id}', [App\Http\Controllers\CategoryController::class, 'update']);
         Route::delete('delete/{id}', [App\Http\Controllers\CategoryController::class, 'destroy']);
     });
+
 
     Route::group(['prefix' => 'measurement'], function () {
         Route::get('list', [App\Http\Controllers\MeasurementController::class, 'index']);

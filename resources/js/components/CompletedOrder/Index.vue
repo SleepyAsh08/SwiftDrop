@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Orders</h1>
+                        <h1 class="m-0">Completed Orders</h1>
                     </div>
                     <div class="col-sm-6">
                         <!-- <ol class="breadcrumb float-sm-right">
@@ -66,9 +66,11 @@
                                             <td>{{ }}</td>
                                             <td>{{ }}</td>
                                             <td class="text-right">
-                                                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i>
+                                                <button type="button" class="btn btn-primary btn-sm"><i
+                                                        class="fas fa-edit"></i>
                                                     Confirm Order</button>
-                                                <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>
+                                                <button type="button" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-trash-alt"></i>
                                                     Cancel Order</button>
                                             </td>
                                         </tr>
