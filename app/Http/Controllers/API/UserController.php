@@ -165,7 +165,7 @@ class UserController extends Controller
                 $photoPaths[] = $path;
             }
         }
-        // dd(json_encode($photoPaths));
+        dd(json_encode($photoPaths));
 
         $user = User::findOrFail($request->id);
         $user->update([
