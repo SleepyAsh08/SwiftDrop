@@ -19,8 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('product')->group(function () {
-    Route::get('/', [ProductsController::class, 'index']);
+Route::prefix('products')->group(function () {
+    Route::get('/all', [ProductsController::class, 'index_all']);
 });
 Auth::routes();
 Route::get('/student', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');

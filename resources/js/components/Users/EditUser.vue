@@ -12,7 +12,7 @@
                         <label>Upload User photo</label>
                         <input ref="userPhotoInput" @change="handleFileChange" type="file" class="form-control"
                             required>
-                         <has-error :form="form" field="user_photo" /> 
+                         <has-error :form="form" field="user_photo" />
                 </div> -->
                     <div class="form-group">
                         <label>Name</label>
@@ -64,6 +64,13 @@
                         <has-error :form="form" field="roles" />
 
                     </div>
+
+                    <div class="form-group">
+                        <label>Upload Profile</label>
+                        <input type="file" @change="onFileChange" multiple class="form-control">
+                    </div>
+
+
                     <div v-if="can('approve user')" class="form-group">
                         <label>Permission</label>
                         <multiselect v-model="form.permissions" :options="option_permissions" :multiple="true"
@@ -100,10 +107,10 @@ export default {
                 telephone_number: '',
                 email: '',
                 password: '',
-                user_photo: '',
                 roles: null,
                 permissions: null,
             }),
+            user_photo: [],
             option_permissions: [],
             option_roles: [],
             options: {
@@ -124,6 +131,10 @@ export default {
         //     const file = event.target.files[0]; // Get the first selected file
         //     this.form.user_photo = file;
         // },
+        onFileChange(e) {
+            this.user_photo = Array.from(e.target.files);
+        },
+
         formatPhotoPath(photoPath) {
             if (photoPath) {
                 return photoPath.replace(/^\["(.+)"\]$/, '$1');
@@ -135,23 +146,66 @@ export default {
             this.form.permissions = this.form.roles.permissions;
         },
         update() {
-            // const formData = new FormData();
-            // formData.append('user_photo', this.form.user_photo);
-            this.form.put('api/user/update/' + this.form.id, {
+
+            const formData = new FormData();
+
+            // formData.append('name', this.form.name);
+            formData.append('lastname', this.form.lastname);
+            formData.append('middle_initial', this.form.middle_initial);
+            formData.append('date_of_birth', this.form.date_of_birth);
+            formData.append('contact_number', this.form.contact_number);
+            formData.append('telephone_number', this.form.telephone_number);
+            formData.append('email', this.form.email);
+            formData.append('password', this.form.password);
+
+            // Append each photo to the FormData
+            this.user_photo.forEach((photo, index) => {
+                formData.append(`user_photo[${index}]`, photo);
+            });
+
+
+
+            // console.log(this.user_photo);
+            axios.put(`api/user/update/${this.form.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             }).then(() => {
                 toast.fire({
                     icon: 'success',
                     text: 'Data Saved.',
-                })
-                //"page" maintain selected page in the parent page
-                this.$emit('getData', this.page);// call method from parent (reload data table)
+                });
+                this.$emit('getData', this.page);
                 $('#edit-user').modal('hide');
             }).catch(error => {
                 toast.fire({
                     icon: 'error',
                     text: error.message,
-                })
+                });
             });
+
+
+
+
+            // const formData = new FormData();
+            // formData.append('user_photo', this.form.user_photo);
+
+
+            // this.form.put('api/user/update/' + this.form.id, {
+            // }).then(() => {
+            //     toast.fire({
+            //         icon: 'success',
+            //         text: 'Data Saved.',
+            //     })
+            //     //"page" maintain selected page in the parent page
+            //     this.$emit('getData', this.page);// call method from parent (reload data table)
+            //     $('#edit-user').modal('hide');
+            // }).catch(error => {
+            //     toast.fire({
+            //         icon: 'error',
+            //         text: error.message,
+            //     })
+            // });
         },
         loadPermissions() {
             axios.get('/api/permission/all')

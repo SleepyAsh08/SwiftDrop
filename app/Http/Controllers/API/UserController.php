@@ -112,6 +112,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
@@ -121,34 +122,23 @@ class UserController extends Controller
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
             'telephone_number' => 'nullable|string|digits:7',
-            'photos.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
-            // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+            'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
         ]);
-
-        // $photos = request()->file('user_photo');
-        // $paths = [];
-
-        // if (!empty($photos)) {
-        //     foreach ($photos as $photo) {
-        //         $filename = time() . '.' . $photo->getClientOriginalExtension();
-        //         $path = $photo->storeAs('User_Photo', $filename, 'public');
-        //         $paths[] = $path; // Add path to the array
-        //     }
-        // }
-        // dd(json_encode($paths));
 
         $user = User::findOrFail($id);
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'lastname' => $request->lastname,
-            'middle_initial' => $request->middle_initial,
-            'date_of_birth' => $request->date_of_birth,
-            'contact_number' => $request->contact_number,
-            'telephone_number' => $request->telephone_number,
-            'photos' => $request->photos,
-            // 'user_photo' => json_encode($paths)
-        ]);
+        $user->update($request->except('user_photo'));
+
+        if ($request->hasFile('user_photo')) {
+            $photos = [];
+            foreach ($request->file('user_photo') as $photo) {
+                $path = $photo->store('photos', 'public');
+                $photos[] = $path;
+            }
+            $user->user_photo = json_encode($photos);
+        }
+
+
+        $user->save();
 
         if ($request->password) {
             $user->password = Hash::make($request->password);
