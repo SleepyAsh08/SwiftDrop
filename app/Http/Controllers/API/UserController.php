@@ -79,7 +79,8 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            // 'password' => Hash::make($request->password),
+            'password' => $request->password,
             'lastname' => $request->lastname,
             'middle_initial' => $request->middle_initial,
             'date_of_birth' => $request->date_of_birth,
@@ -164,7 +165,7 @@ class UserController extends Controller
                 $photoPaths[] = $path;
             }
         }
-        dd(json_encode($photoPaths));
+        // dd(json_encode($photoPaths));
 
         $user = User::findOrFail($request->id);
         $user->update([
@@ -180,7 +181,8 @@ class UserController extends Controller
         ]);
 
         if ($request->password) {
-            $user->password = Hash::make($request->password);
+            // $user->password = Hash::make($request->password);
+            $user->password  = $request->password;
             $user->save();
         }
 
