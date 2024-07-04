@@ -160,7 +160,7 @@ class UserController extends Controller
         $photoPaths = [];
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('Personal_Info_Photo', 'public');
+                $path = $photo->store('user_photo', 'public');
                 $photoPaths[] = $path;
             }
         }

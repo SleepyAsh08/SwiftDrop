@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+    @php
+    use Illuminate\Support\Facades\Storage;
+    @endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,9 +40,9 @@
             <div class="sidebar">
                 <router-link to="/Account" class="nav-link">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        {{-- <div class="image">
-                            <img src="/images/default_image.png" class="img-circle elevation-2 mt-2" alt="User Image">
-                        </div> --}}
+                        <div class="image">
+                            <img src="/storage/{{substr(Auth::user()->user_photo, 2, -2)}}" onerror="this.src='/images/default_image.png'" class="img-circle elevation-2 mt-2" alt="User Image">
+                        </div>
                         <div class="info">
                             <span class="font-weight-bold"
                                 style="color:rgb(202, 202, 202)">{{ strtoupper(Auth::user()->name) }}</span> <br>
