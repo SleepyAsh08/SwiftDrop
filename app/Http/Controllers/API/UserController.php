@@ -145,6 +145,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
@@ -154,6 +155,25 @@ class UserController extends Controller
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
             'telephone_number' => 'nullable|string|digits:7',
+<<<<<<< HEAD
+            'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($request->except('user_photo'));
+
+        if ($request->hasFile('user_photo')) {
+            $photos = [];
+            foreach ($request->file('user_photo') as $photo) {
+                $path = $photo->store('photos', 'public');
+                $photos[] = $path;
+            }
+            $user->user_photo = json_encode($photos);
+        }
+
+
+        $user->save();
+=======
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
             // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
@@ -179,6 +199,7 @@ class UserController extends Controller
             // 'photos' => $request->photos,
             'user_photo' => json_encode($photoPaths)
         ]);
+>>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 
         if ($request->password) {
             // $user->password = Hash::make($request->password);

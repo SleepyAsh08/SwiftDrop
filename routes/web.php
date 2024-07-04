@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('product')->group(function () {
-    Route::get('/', [ProductsController::class, 'index']);
+Route::prefix('products')->group(function () {
+    Route::get('/all', [ProductsController::class, 'index_all']);
 });
 Route::prefix('login')->group(function () {
     Route::get('/', [UserController::class, 'index']);

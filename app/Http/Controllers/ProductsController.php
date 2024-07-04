@@ -33,6 +33,12 @@ class ProductsController extends Controller
         ], 200);
     }
 
+    public function index_all()
+    {
+        $data = Products::all();
+        return response()->json(['data' => $data], 200);
+    }
+
     public function index1(Request $request)
     {
         $userID = auth()->user()->id;
@@ -55,7 +61,7 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         $userID = auth()->user()->id;
-        // dd();
+        // dd($request->all());
         // dd($request->measurement_id);
         $request->validate([
             'product_name' => 'required|string|max:255',

@@ -63,6 +63,13 @@
                         <has-error :form="form" field="roles" />
 
                     </div>
+
+                    <div class="form-group">
+                        <label>Upload Profile</label>
+                        <input type="file" @change="onFileChange" multiple class="form-control">
+                    </div>
+
+
                     <div v-if="can('approve user')" class="form-group">
                         <label>Permission</label>
                         <multiselect v-model="form.permissions" :options="option_permissions" :multiple="true"
@@ -99,7 +106,6 @@ export default {
                 telephone_number: '',
                 email: '',
                 password: '',
-                user_photo: '',
                 roles: null,
                 permissions: null,
             }),
@@ -148,21 +154,32 @@ export default {
                 toast.fire({
                     icon: 'success',
                     text: 'Data Saved.',
-                })
-                //"page" maintain selected page in the parent page
-                this.$emit('getData', this.page);// call method from parent (reload data table)
+                });
+                this.$emit('getData', this.page);
                 $('#edit-user').modal('hide');
             }).catch(error => {
-                toast.fire({
-                    icon: 'error',
-                    text: error.message,
-                })
+
+            // this.form.put('api/user/update/' + this.form.id, {
+            // }).then(() => {
+            //     toast.fire({
+            //         icon: 'success',
+            //         text: 'Data Saved.',
+            //     })
+            //     //"page" maintain selected page in the parent page
+            //     this.$emit('getData', this.page);// call method from parent (reload data table)
+            // }).catch(error => {
+            //     toast.fire({
+            //         icon: 'error',
+            //         text: error.message,
+            //     })
+            // });
             });
-        },
-        loadPermissions() {
-            axios.get('/api/permission/all')
+         },
+        loadMeasurement() {
+            axios.get('/api/measurement/all')
                 .then(response => {
-                    this.option_permissions = response.data.data;
+                    this.option_measurement = response.data.data;
+                    console.log('Loaded measurements:', this.option_measurement);
                 });
         },
         loadRoles() {
