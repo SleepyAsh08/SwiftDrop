@@ -24,9 +24,15 @@ class UserController extends Controller
     public function index(Request $request)
     {
         abort_if(Gate::denies('list user'), 403, 'You do not have the required authorization.');
-        $data = User::with('roles', 'permissions')->latest();
+        $data = User::withTrashed()->with('roles', 'permissions')->latest();
         if ($request->search) {
             $data = $data->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+        if ($request->filter == 'Deactivate') {
+            $data = $data->where('deleted_at', null);
+        }
+        if ($request->filter == 'Activate') {
+            $data = $data->whereNotNull('deleted_at');
         }
         $data = $data->paginate($request->length);
         // dd($data);
@@ -50,18 +56,45 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string',
-            'email' => 'required|email',
-            'password' => 'required|string',
+            'name' => 'required|string|unique:users,name,' . $request->id,
+            'email' => 'required|email|unique:users,email,' . $request->id,
+            'password' => 'required|sometimes',
+            'lastname' => 'required|string',
+            'middle_initial' => 'nullable|string|max:2',
+            'date_of_birth' => 'required|date',
+            'contact_number' => 'required|string|digits:11',
+            'telephone_number' => 'nullable|string|digits:7',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        $photoPaths = [];
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('Personal_Info_Photo', 'public');
+                $photoPaths[] = $path;
+            }
+        }
+
+        dd($photoPaths);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            // 'password' => Hash::make($request->password),
+            'password' => $request->password,
+            'lastname' => $request->lastname,
+            'middle_initial' => $request->middle_initial,
+            'date_of_birth' => $request->date_of_birth,
+            'contact_number' => $request->contact_number,
+            'telephone_number' => $request->telephone_number,
+            'photos' => json_encode($photoPaths),
         ]);
-        $user->assignRole($request->role['name']);
-        foreach ($request->permissions as $permission) {
-            $user->givePermissionTo($permission['name']);
+
+        if (isset($request->roles['name'])) {
+            $user->assignRole($request->roles['name']);
+
+            foreach ($request->permissions as $permission) {
+                $user->givePermissionTo($permission['name']);
+            }
         }
         return response(['message' => 'success'], 200);
     }
@@ -110,7 +143,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         dd($request->all());
         $this->validate($request, [
@@ -118,10 +151,11 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|sometimes',
             'lastname' => 'required|string',
-            'middle_initial' => 'required|string|max:2',
+            'middle_initial' => 'nullable|string|max:2',
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
             'telephone_number' => 'nullable|string|digits:7',
+<<<<<<< HEAD
             'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
         ]);
 
@@ -139,9 +173,37 @@ class UserController extends Controller
 
 
         $user->save();
+=======
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
+        ]);
+
+        $photoPaths = [];
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $photo) {
+                $path = $photo->store('user_photo', 'public');
+                $photoPaths[] = $path;
+            }
+        }
+        // dd(json_encode($photoPaths));
+
+        $user = User::findOrFail($request->id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'lastname' => $request->lastname,
+            'middle_initial' => $request->middle_initial,
+            'date_of_birth' => $request->date_of_birth,
+            'contact_number' => $request->contact_number,
+            'telephone_number' => $request->telephone_number,
+            // 'photos' => $request->photos,
+            'user_photo' => json_encode($photoPaths)
+        ]);
+>>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 
         if ($request->password) {
-            $user->password = Hash::make($request->password);
+            // $user->password = Hash::make($request->password);
+            $user->password  = $request->password;
             $user->save();
         }
 
@@ -170,6 +232,12 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
+        return response(['message' => 'success'], 200);
+    }
+    public function activate($id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->restore();
         return response(['message' => 'success'], 200);
     }
 }

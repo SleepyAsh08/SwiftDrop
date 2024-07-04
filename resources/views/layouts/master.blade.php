@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
+    @php
+    use Illuminate\Support\Facades\Storage;
+    @endphp
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -39,7 +41,7 @@
                 <router-link to="/Account" class="nav-link">
                     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                         <div class="image">
-                            <img src="/images/default_image.png" class="img-circle elevation-2 mt-2" alt="User Image">
+                            <img src="/storage/{{substr(Auth::user()->user_photo, 2, -2)}}" onerror="this.src='/images/default_image.png'" class="img-circle elevation-2 mt-2" alt="User Image">
                         </div>
                         <div class="info">
                             <span class="font-weight-bold"
@@ -217,9 +219,9 @@
         </div>
         <footer class="main-footer">
             <div class="float-right d-none d-sm-inline">
-                Anything you want
+                One-Stop Shop for Quality Agricultural Products
             </div>
-            <strong>Copyright &copy; 2014-2021 <a href="#">AdminLTE.io</a>.</strong> All rights
+            Copyright &copy; 2024 <strong>AgriShop.com</strong> All rights
             reserved.
         </footer>
     </div>
