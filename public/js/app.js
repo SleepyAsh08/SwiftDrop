@@ -8093,14 +8093,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: new Form({
-<<<<<<< HEAD
-        name: '',
-        email: '',
-        password: '',
-        role: null,
-        permissions: null
-      }),
-=======
         id: '',
         name: '',
         lastname: '',
@@ -8116,27 +8108,20 @@ __webpack_require__.r(__webpack_exports__);
         permissions: null
       }),
       photos: [],
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       option_permissions: [],
       option_roles: []
     };
   },
   methods: {
-<<<<<<< HEAD
-=======
     onFileChange: function onFileChange(e) {
       this.photos = Array.from(e.target.files);
     },
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     selectRole: function selectRole() {
       this.form.permissions = this.form.role.permissions;
     },
     create: function create() {
       var _this = this;
 
-<<<<<<< HEAD
-      this.form.post('api/user/create').then(function () {
-=======
       var formData = new FormData();
       formData.append('id', this.form.id);
       formData.append('name', this.form.name);
@@ -8158,7 +8143,6 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': 'multipart/form-data'
         }
       }).then(function () {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         toast.fire({
           icon: 'success',
           text: 'Data Saved.'
@@ -8166,11 +8150,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.form.reset();
 
-<<<<<<< HEAD
-=======
         _this.photos = [];
 
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         _this.$emit('getData'); // call method from parent
 
 
@@ -8241,18 +8222,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         telephone_number: '',
         email: '',
         password: '',
-<<<<<<< HEAD
-        roles: null,
-        permissions: null
-      }),
-      user_photo: [],
-=======
-        user_photo: '',
         roles: null,
         permissions: null
       }),
       photos: [],
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       option_permissions: [],
       option_roles: [],
       options: (_options = {
@@ -8262,28 +8235,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   methods: {
-<<<<<<< HEAD
-    // handleFileChange(event) {
-    //     if (event.target.files.length === 0) {
-    //         // Handle no file selected case (optional: display an error message)
-    //         return;
-    //     }
-    //     const file = event.target.files[0]; // Get the first selected file
-    //     this.form.user_photo = file;
-    // },
-    onFileChange: function onFileChange(e) {
-      this.user_photo = Array.from(e.target.files);
-    },
-    formatPhotoPath: function formatPhotoPath(photoPath) {
-      if (photoPath) {
-        return photoPath.replace(/^\["(.+)"\]$/, '$1');
-      } else {
-        return '';
-      }
-=======
     onFileChange: function onFileChange(e) {
       this.photos = Array.from(e.target.files);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     },
     selectRole: function selectRole() {
       this.form.permissions = this.form.roles.permissions;
@@ -8291,29 +8244,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     update: function update() {
       var _this = this;
 
-<<<<<<< HEAD
-      var formData = new FormData(); // formData.append('name', this.form.name);
-
-=======
       var formData = new FormData();
       formData.append('id', this.form.id);
       formData.append('name', this.form.name);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       formData.append('lastname', this.form.lastname);
       formData.append('middle_initial', this.form.middle_initial);
       formData.append('date_of_birth', this.form.date_of_birth);
       formData.append('contact_number', this.form.contact_number);
       formData.append('telephone_number', this.form.telephone_number);
       formData.append('email', this.form.email);
-<<<<<<< HEAD
-      formData.append('password', this.form.password); // Append each photo to the FormData
-
-      this.user_photo.forEach(function (photo, index) {
-        formData.append("user_photo[".concat(index, "]"), photo);
-      }); // console.log(this.user_photo);
-
-      axios.put("api/user/update/".concat(this.form.id), formData, {
-=======
       formData.append('password', this.form.password);
       formData.append('roles', this.form.roles);
       formData.append('permissions', this.form.permissions); // Append each selected photo file to the formData
@@ -8322,7 +8261,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         formData.append("photos[".concat(index, "]"), photo);
       });
       this.form.put('/api/user/update', formData, {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -8330,50 +8268,33 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         toast.fire({
           icon: 'success',
           text: 'Data Saved.'
-<<<<<<< HEAD
         });
 
         _this.$emit('getData', _this.page);
-=======
-        }); //"page" maintain selected page in the parent page
-
-        _this.$emit('getData', _this.page); // call method from parent (reload data table)
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 
         $('#edit-user').modal('hide');
-      })["catch"](function (error) {
-        toast.fire({
-          icon: 'error',
-          text: error.message
-        });
-<<<<<<< HEAD
-      }); // const formData = new FormData();
-      // formData.append('user_photo', this.form.user_photo);
-      // this.form.put('api/user/update/' + this.form.id, {
-      // }).then(() => {
-      //     toast.fire({
-      //         icon: 'success',
-      //         text: 'Data Saved.',
-      //     })
-      //     //"page" maintain selected page in the parent page
-      //     this.$emit('getData', this.page);// call method from parent (reload data table)
-      //     $('#edit-user').modal('hide');
-      // }).catch(error => {
-      //     toast.fire({
-      //         icon: 'error',
-      //         text: error.message,
-      //     })
-      // });
-=======
+      })["catch"](function (error) {// this.form.put('api/user/update/' + this.form.id, {
+        // }).then(() => {
+        //     toast.fire({
+        //         icon: 'success',
+        //         text: 'Data Saved.',
+        //     })
+        //     //"page" maintain selected page in the parent page
+        //     this.$emit('getData', this.page);// call method from parent (reload data table)
+        // }).catch(error => {
+        //     toast.fire({
+        //         icon: 'error',
+        //         text: error.message,
+        //     })
+        // });
       });
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     },
-    loadPermissions: function loadPermissions() {
+    loadMeasurement: function loadMeasurement() {
       var _this2 = this;
 
-      axios.get('/api/permission/all').then(function (response) {
-        _this2.option_permissions = response.data.data;
+      axios.get('/api/measurement/all').then(function (response) {
+        _this2.option_measurement = response.data.data;
+        console.log('Loaded measurements:', _this2.option_measurement);
       });
     },
     loadRoles: function loadRoles() {
@@ -8425,10 +8346,7 @@ __webpack_require__.r(__webpack_exports__);
       option_users: [],
       length: 10,
       search: '',
-<<<<<<< HEAD
-=======
       filter: 'All',
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       showSchedule: false,
       is_searching: true,
       selected_user: [],
@@ -8470,10 +8388,7 @@ __webpack_require__.r(__webpack_exports__);
           params: {
             search: _this.search,
             length: _this.length,
-<<<<<<< HEAD
-=======
             filter: _this.filter,
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
             time_start: _this.time_start,
             time_end: _this.time_end,
             day: _this.day,
@@ -8517,8 +8432,6 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Something went wrong!'
         });
       });
-<<<<<<< HEAD
-=======
     },
     activate: function activate(id) {
       var _this3 = this;
@@ -8545,7 +8458,6 @@ __webpack_require__.r(__webpack_exports__);
           text: 'Something went wrong!'
         });
       });
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     }
   },
   created: function created() {
@@ -8697,7 +8609,6 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-<<<<<<< HEAD
   return _c("div", [_c("div", {
     staticClass: "content-header"
   }, [_c("div", {
@@ -8717,9 +8628,6 @@ var render = function render() {
       click: _vm.openEditModal
     }
   }, [_vm._v("\n                            Edit Profile\n                        ")])])])])])]), _vm._v(" "), _c("div", {
-=======
-  return _c("div", [_vm._m(0), _vm._v(" "), _c("div", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     staticClass: "content"
   }, [_c("div", {
     staticClass: "container-fluid"
@@ -8740,11 +8648,7 @@ var render = function render() {
     }
   })]), _vm._v(" "), _c("h3", {
     staticClass: "profile-username text-center"
-<<<<<<< HEAD
   }, [_vm._v(_vm._s(_vm.user.name + " " + _vm.user.middle_initial + "." + " " + _vm.user.lastname))]), _vm._v(" "), _c("p", {
-=======
-  }, [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c("p", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     staticClass: "text-muted text-center"
   }, [_vm._v(_vm._s(_vm.user.roles[0].name))]), _vm._v(" "), _c("ul", {
     staticClass: "list-group list-group-unbordered mb-3"
@@ -8797,33 +8701,10 @@ var staticRenderFns = [function () {
       _c = _vm._self._c;
 
   return _c("div", {
-<<<<<<< HEAD
     staticClass: "col-sm-6"
   }, [_c("h1", {
     staticClass: "m-0"
   }, [_vm._v("User Account")])]);
-=======
-    staticClass: "content-header"
-  }, [_c("div", {
-    staticClass: "container-fluid"
-  }, [_c("div", {
-    staticClass: "row mb-2"
-  }, [_c("div", {
-    staticClass: "col-sm-6"
-  }, [_c("h1", {
-    staticClass: "m-0"
-  }, [_vm._v("User Account")])]), _vm._v(" "), _c("div", {
-    staticClass: "col-sm-6"
-  }, [_c("ol", {
-    staticClass: "breadcrumb float-sm-right"
-  }, [_c("li", {
-    staticClass: "breadcrumb-item"
-  }, [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("User Account")])])])])])])]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 }];
 render._withStripped = true;
 
@@ -13844,8 +13725,6 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-<<<<<<< HEAD
-=======
   }, [_c("label", [_vm._v("Last Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -13986,7 +13865,6 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   }, [_c("label", [_vm._v("Email address")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -14043,8 +13921,6 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-<<<<<<< HEAD
-=======
   }, [_c("label", [_vm._v("Upload Supporting Information")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
@@ -14062,7 +13938,6 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _vm.can("approve user") ? _c("div", {
     staticClass: "form-group"
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   }, [_c("label", [_vm._v("Role")]), _vm._v(" "), _c("multiselect", {
     attrs: {
       options: _vm.option_roles,
@@ -14090,11 +13965,7 @@ var render = function render() {
       form: _vm.form,
       field: "guard_name"
     }
-<<<<<<< HEAD
-  })], 1), _vm._v(" "), _c("div", {
-=======
   })], 1) : _vm._e(), _vm._v(" "), _vm.can("approve user") ? _c("div", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Permission")]), _vm._v(" "), _c("multiselect", {
     attrs: {
@@ -14120,11 +13991,7 @@ var render = function render() {
       form: _vm.form,
       field: "guard_name"
     }
-<<<<<<< HEAD
-  })], 1)], 1), _vm._v(" "), _c("div", {
-=======
   })], 1) : _vm._e()], 1), _vm._v(" "), _c("div", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     staticClass: "modal-footer"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -14162,8 +14029,6 @@ var staticRenderFns = [function () {
       "aria-label": "Close"
     }
   })]);
-<<<<<<< HEAD
-=======
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -14175,7 +14040,6 @@ var staticRenderFns = [function () {
   }, [_vm._v("You are Buyer provide your valid Id")]), _c("br"), _vm._v(" "), _c("span", {
     staticClass: "ml-5 text-danger"
   }, [_vm._v("You are Seller provide your Business Permit")])]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 }];
 render._withStripped = true;
 
@@ -14215,8 +14079,6 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-<<<<<<< HEAD
-=======
   }, [_c("label", [_vm._v("Upload User photo")]), _vm._v(" "), _c("input", {
     staticClass: "form-control",
     attrs: {
@@ -14234,7 +14096,6 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   }, [_c("label", [_vm._v("Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
@@ -14486,7 +14347,6 @@ var render = function render() {
       form: _vm.form,
       field: "roles"
     }
-<<<<<<< HEAD
   })], 1) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Upload Profile")]), _vm._v(" "), _c("input", {
@@ -14499,9 +14359,6 @@ var render = function render() {
       change: _vm.onFileChange
     }
   })]), _vm._v(" "), _vm.can("approve user") ? _c("div", {
-=======
-  })], 1) : _vm._e(), _vm._v(" "), _vm.can("approve user") ? _c("div", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Permission")]), _vm._v(" "), _c("multiselect", {
     attrs: {
@@ -14609,8 +14466,6 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-<<<<<<< HEAD
-=======
       value: _vm.filter,
       expression: "filter"
     }],
@@ -14642,7 +14497,6 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       value: _vm.length,
       expression: "length"
     }],
@@ -14757,11 +14611,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-edit"
-<<<<<<< HEAD
-    }), _vm._v("\n                                                Edit")]) : _vm._e(), _vm._v(" "), _vm.can("delete user") ? _c("button", {
-=======
     }), _vm._v("\n                                                Edit")]) : _vm._e(), _vm._v(" "), data.deleted_at === null && _vm.can("delete user") ? _c("button", {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       staticClass: "btn btn-danger btn-sm",
       attrs: {
         type: "button"
@@ -14773,9 +14623,6 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-ban"
-<<<<<<< HEAD
-    }), _vm._v(" Disable ")]) : _vm._e()])]);
-=======
     }), _vm._v(" Deactivate\n                                            ")]) : _vm._e(), _vm._v(" "), data.deleted_at != null && _vm.can("delete user") ? _c("button", {
       staticClass: "btn btn-success btn-sm",
       attrs: {
@@ -14789,7 +14636,6 @@ var render = function render() {
     }, [_c("i", {
       staticClass: "fas fa-check"
     }), _vm._v(" Activate\n                                            ")]) : _vm._e()])]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   }), 0)]), _vm._v(" "), _c("ul", {
     staticClass: "pagination pagination-sm m-1 float-right"
   }, _vm._l(_vm.option_users.links, function (link, index) {
@@ -33565,11 +33411,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-c3c451e8] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-c3c451e8] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-c3c451e8]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-c3c451e8] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-c3c451e8] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-c3c451e8]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33593,11 +33435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-98c5f55e] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-98c5f55e] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-98c5f55e]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-98c5f55e] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-98c5f55e] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-98c5f55e]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33621,11 +33459,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-62bcfb78] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-62bcfb78] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-62bcfb78]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-62bcfb78] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-62bcfb78] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-62bcfb78]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33649,11 +33483,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-1dc5b81c] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-1dc5b81c] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-1dc5b81c]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-1dc5b81c] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-1dc5b81c] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-1dc5b81c]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33677,11 +33507,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-a6ae3e56] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-a6ae3e56] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-a6ae3e56]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-a6ae3e56] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-a6ae3e56] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-a6ae3e56]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33705,11 +33531,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-<<<<<<< HEAD
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-609380cc] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-609380cc] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-609380cc]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
-=======
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-609380cc] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-609380cc] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-609380cc]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -54489,17 +54311,12 @@ module.exports = function (list, options) {
 /***/ (function(module) {
 
 /*!
-<<<<<<< HEAD
 * sweetalert2 v11.4.35
-=======
-* sweetalert2 v11.11.1
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 * Released under the MIT License.
 */
 (function (global, factory) {
    true ? module.exports = factory() :
   0;
-<<<<<<< HEAD
 }(this, function () { 'use strict';
 
   /**
@@ -55103,188 +54920,6 @@ module.exports = function (list, options) {
   const globalState = {};
 
   const focusPreviousActiveElement = () => {
-=======
-})(this, (function () { 'use strict';
-
-  function _arrayLikeToArray(r, a) {
-    (null == a || a > r.length) && (a = r.length);
-    for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-    return n;
-  }
-  function _arrayWithHoles(r) {
-    if (Array.isArray(r)) return r;
-  }
-  function _arrayWithoutHoles(r) {
-    if (Array.isArray(r)) return _arrayLikeToArray(r);
-  }
-  function _assertClassBrand(e, t, n) {
-    if ("function" == typeof e ? e === t : e.has(t)) return arguments.length < 3 ? t : n;
-    throw new TypeError("Private element is not present on this object");
-  }
-  function _assertThisInitialized(e) {
-    if (void 0 === e) throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    return e;
-  }
-  function _callSuper(t, o, e) {
-    return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e));
-  }
-  function _checkPrivateRedeclaration(e, t) {
-    if (t.has(e)) throw new TypeError("Cannot initialize the same private elements twice on an object");
-  }
-  function _classCallCheck(a, n) {
-    if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function");
-  }
-  function _classPrivateFieldGet2(s, a) {
-    return s.get(_assertClassBrand(s, a));
-  }
-  function _classPrivateFieldInitSpec(e, t, a) {
-    _checkPrivateRedeclaration(e, t), t.set(e, a);
-  }
-  function _classPrivateFieldSet2(s, a, r) {
-    return s.set(_assertClassBrand(s, a), r), r;
-  }
-  function _construct(t, e, r) {
-    if (_isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
-    var o = [null];
-    o.push.apply(o, e);
-    var p = new (t.bind.apply(t, o))();
-    return p;
-  }
-  function _defineProperties(e, r) {
-    for (var t = 0; t < r.length; t++) {
-      var o = r[t];
-      o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o);
-    }
-  }
-  function _createClass(e, r, t) {
-    return r && _defineProperties(e.prototype, r), Object.defineProperty(e, "prototype", {
-      writable: !1
-    }), e;
-  }
-  function _get() {
-    return _get = "undefined" != typeof Reflect && Reflect.get ? Reflect.get.bind() : function (e, t, r) {
-      var p = _superPropBase(e, t);
-      if (p) {
-        var n = Object.getOwnPropertyDescriptor(p, t);
-        return n.get ? n.get.call(arguments.length < 3 ? e : r) : n.value;
-      }
-    }, _get.apply(null, arguments);
-  }
-  function _getPrototypeOf(t) {
-    return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) {
-      return t.__proto__ || Object.getPrototypeOf(t);
-    }, _getPrototypeOf(t);
-  }
-  function _inherits(t, e) {
-    if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
-    t.prototype = Object.create(e && e.prototype, {
-      constructor: {
-        value: t,
-        writable: !0,
-        configurable: !0
-      }
-    }), Object.defineProperty(t, "prototype", {
-      writable: !1
-    }), e && _setPrototypeOf(t, e);
-  }
-  function _isNativeReflectConstruct() {
-    try {
-      var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {}));
-    } catch (t) {}
-    return (_isNativeReflectConstruct = function () {
-      return !!t;
-    })();
-  }
-  function _iterableToArray(r) {
-    if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r);
-  }
-  function _iterableToArrayLimit(r, l) {
-    var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-    if (null != t) {
-      var e,
-        n,
-        i,
-        u,
-        a = [],
-        f = !0,
-        o = !1;
-      try {
-        if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-      } catch (r) {
-        o = !0, n = r;
-      } finally {
-        try {
-          if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
-        } finally {
-          if (o) throw n;
-        }
-      }
-      return a;
-    }
-  }
-  function _nonIterableRest() {
-    throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _nonIterableSpread() {
-    throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-  }
-  function _possibleConstructorReturn(t, e) {
-    if (e && ("object" == typeof e || "function" == typeof e)) return e;
-    if (void 0 !== e) throw new TypeError("Derived constructors may only return object or undefined");
-    return _assertThisInitialized(t);
-  }
-  function _setPrototypeOf(t, e) {
-    return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) {
-      return t.__proto__ = e, t;
-    }, _setPrototypeOf(t, e);
-  }
-  function _slicedToArray(r, e) {
-    return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
-  }
-  function _superPropBase(t, o) {
-    for (; !{}.hasOwnProperty.call(t, o) && null !== (t = _getPrototypeOf(t)););
-    return t;
-  }
-  function _toConsumableArray(r) {
-    return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread();
-  }
-  function _toPrimitive(t, r) {
-    if ("object" != typeof t || !t) return t;
-    var e = t[Symbol.toPrimitive];
-    if (void 0 !== e) {
-      var i = e.call(t, r );
-      if ("object" != typeof i) return i;
-      throw new TypeError("@@toPrimitive must return a primitive value.");
-    }
-    return (String )(t);
-  }
-  function _toPropertyKey(t) {
-    var i = _toPrimitive(t, "string");
-    return "symbol" == typeof i ? i : i + "";
-  }
-  function _typeof(o) {
-    "@babel/helpers - typeof";
-
-    return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
-      return typeof o;
-    } : function (o) {
-      return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
-    }, _typeof(o);
-  }
-  function _unsupportedIterableToArray(r, a) {
-    if (r) {
-      if ("string" == typeof r) return _arrayLikeToArray(r, a);
-      var t = {}.toString.call(r).slice(8, -1);
-      return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-    }
-  }
-
-  var RESTORE_FOCUS_TIMEOUT = 100;
-
-  /** @type {GlobalState} */
-  var globalState = {};
-  var focusPreviousActiveElement = function focusPreviousActiveElement() {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (globalState.previousActiveElement instanceof HTMLElement) {
       globalState.previousActiveElement.focus();
       globalState.previousActiveElement = null;
@@ -55292,15 +54927,10 @@ module.exports = function (list, options) {
       document.body.focus();
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Restore previous active (focused) element
    *
    * @param {boolean} returnFocus
-<<<<<<< HEAD
    * @returns {Promise}
    */
 
@@ -55314,18 +54944,6 @@ module.exports = function (list, options) {
       const x = window.scrollX;
       const y = window.scrollY;
       globalState.restoreFocusTimeout = setTimeout(() => {
-=======
-   * @returns {Promise<void>}
-   */
-  var restoreActiveElement = function restoreActiveElement(returnFocus) {
-    return new Promise(function (resolve) {
-      if (!returnFocus) {
-        return resolve();
-      }
-      var x = window.scrollX;
-      var y = window.scrollY;
-      globalState.restoreFocusTimeout = setTimeout(function () {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         focusPreviousActiveElement();
         resolve();
       }, RESTORE_FOCUS_TIMEOUT); // issues/900
@@ -55334,729 +54952,11 @@ module.exports = function (list, options) {
     });
   };
 
-<<<<<<< HEAD
-=======
-  var swalPrefix = 'swal2-';
-
-  /**
-   * @typedef
-   * { | 'container'
-   *   | 'shown'
-   *   | 'height-auto'
-   *   | 'iosfix'
-   *   | 'popup'
-   *   | 'modal'
-   *   | 'no-backdrop'
-   *   | 'no-transition'
-   *   | 'toast'
-   *   | 'toast-shown'
-   *   | 'show'
-   *   | 'hide'
-   *   | 'close'
-   *   | 'title'
-   *   | 'html-container'
-   *   | 'actions'
-   *   | 'confirm'
-   *   | 'deny'
-   *   | 'cancel'
-   *   | 'default-outline'
-   *   | 'footer'
-   *   | 'icon'
-   *   | 'icon-content'
-   *   | 'image'
-   *   | 'input'
-   *   | 'file'
-   *   | 'range'
-   *   | 'select'
-   *   | 'radio'
-   *   | 'checkbox'
-   *   | 'label'
-   *   | 'textarea'
-   *   | 'inputerror'
-   *   | 'input-label'
-   *   | 'validation-message'
-   *   | 'progress-steps'
-   *   | 'active-progress-step'
-   *   | 'progress-step'
-   *   | 'progress-step-line'
-   *   | 'loader'
-   *   | 'loading'
-   *   | 'styled'
-   *   | 'top'
-   *   | 'top-start'
-   *   | 'top-end'
-   *   | 'top-left'
-   *   | 'top-right'
-   *   | 'center'
-   *   | 'center-start'
-   *   | 'center-end'
-   *   | 'center-left'
-   *   | 'center-right'
-   *   | 'bottom'
-   *   | 'bottom-start'
-   *   | 'bottom-end'
-   *   | 'bottom-left'
-   *   | 'bottom-right'
-   *   | 'grow-row'
-   *   | 'grow-column'
-   *   | 'grow-fullscreen'
-   *   | 'rtl'
-   *   | 'timer-progress-bar'
-   *   | 'timer-progress-bar-container'
-   *   | 'scrollbar-measure'
-   *   | 'icon-success'
-   *   | 'icon-warning'
-   *   | 'icon-info'
-   *   | 'icon-question'
-   *   | 'icon-error'
-   * } SwalClass
-   * @typedef {Record<SwalClass, string>} SwalClasses
-   */
-
-  /**
-   * @typedef {'success' | 'warning' | 'info' | 'question' | 'error'} SwalIcon
-   * @typedef {Record<SwalIcon, string>} SwalIcons
-   */
-
-  /** @type {SwalClass[]} */
-  var classNames = ['container', 'shown', 'height-auto', 'iosfix', 'popup', 'modal', 'no-backdrop', 'no-transition', 'toast', 'toast-shown', 'show', 'hide', 'close', 'title', 'html-container', 'actions', 'confirm', 'deny', 'cancel', 'default-outline', 'footer', 'icon', 'icon-content', 'image', 'input', 'file', 'range', 'select', 'radio', 'checkbox', 'label', 'textarea', 'inputerror', 'input-label', 'validation-message', 'progress-steps', 'active-progress-step', 'progress-step', 'progress-step-line', 'loader', 'loading', 'styled', 'top', 'top-start', 'top-end', 'top-left', 'top-right', 'center', 'center-start', 'center-end', 'center-left', 'center-right', 'bottom', 'bottom-start', 'bottom-end', 'bottom-left', 'bottom-right', 'grow-row', 'grow-column', 'grow-fullscreen', 'rtl', 'timer-progress-bar', 'timer-progress-bar-container', 'scrollbar-measure', 'icon-success', 'icon-warning', 'icon-info', 'icon-question', 'icon-error'];
-  var swalClasses = classNames.reduce(function (acc, className) {
-    acc[className] = swalPrefix + className;
-    return acc;
-  }, /** @type {SwalClasses} */{});
-
-  /** @type {SwalIcon[]} */
-  var icons = ['success', 'warning', 'info', 'question', 'error'];
-  var iconTypes = icons.reduce(function (acc, icon) {
-    acc[icon] = swalPrefix + icon;
-    return acc;
-  }, /** @type {SwalIcons} */{});
-
-  var consolePrefix = 'SweetAlert2:';
-
-  /**
-   * Capitalize the first letter of a string
-   *
-   * @param {string} str
-   * @returns {string}
-   */
-  var capitalizeFirstLetter = function capitalizeFirstLetter(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  /**
-   * Standardize console warnings
-   *
-   * @param {string | string[]} message
-   */
-  var warn = function warn(message) {
-    console.warn("".concat(consolePrefix, " ").concat(_typeof(message) === 'object' ? message.join(' ') : message));
-  };
-
-  /**
-   * Standardize console errors
-   *
-   * @param {string} message
-   */
-  var error = function error(message) {
-    console.error("".concat(consolePrefix, " ").concat(message));
-  };
-
-  /**
-   * Private global state for `warnOnce`
-   *
-   * @type {string[]}
-   * @private
-   */
-  var previousWarnOnceMessages = [];
-
-  /**
-   * Show a console warning, but only if it hasn't already been shown
-   *
-   * @param {string} message
-   */
-  var warnOnce = function warnOnce(message) {
-    if (!previousWarnOnceMessages.includes(message)) {
-      previousWarnOnceMessages.push(message);
-      warn(message);
-    }
-  };
-
-  /**
-   * Show a one-time console warning about deprecated params/methods
-   *
-   * @param {string} deprecatedParam
-   * @param {string} useInstead
-   */
-  var warnAboutDeprecation = function warnAboutDeprecation(deprecatedParam, useInstead) {
-    warnOnce("\"".concat(deprecatedParam, "\" is deprecated and will be removed in the next major release. Please use \"").concat(useInstead, "\" instead."));
-  };
-
-  /**
-   * If `arg` is a function, call it (with no arguments or context) and return the result.
-   * Otherwise, just pass the value through
-   *
-   * @param {Function | any} arg
-   * @returns {any}
-   */
-  var callIfFunction = function callIfFunction(arg) {
-    return typeof arg === 'function' ? arg() : arg;
-  };
-
-  /**
-   * @param {any} arg
-   * @returns {boolean}
-   */
-  var hasToPromiseFn = function hasToPromiseFn(arg) {
-    return arg && typeof arg.toPromise === 'function';
-  };
-
-  /**
-   * @param {any} arg
-   * @returns {Promise<any>}
-   */
-  var asPromise = function asPromise(arg) {
-    return hasToPromiseFn(arg) ? arg.toPromise() : Promise.resolve(arg);
-  };
-
-  /**
-   * @param {any} arg
-   * @returns {boolean}
-   */
-  var isPromise = function isPromise(arg) {
-    return arg && Promise.resolve(arg) === arg;
-  };
-
-  /**
-   * Gets the popup container which contains the backdrop and the popup itself.
-   *
-   * @returns {HTMLElement | null}
-   */
-  var getContainer = function getContainer() {
-    return document.body.querySelector(".".concat(swalClasses.container));
-  };
-
-  /**
-   * @param {string} selectorString
-   * @returns {HTMLElement | null}
-   */
-  var elementBySelector = function elementBySelector(selectorString) {
-    var container = getContainer();
-    return container ? container.querySelector(selectorString) : null;
-  };
-
-  /**
-   * @param {string} className
-   * @returns {HTMLElement | null}
-   */
-  var elementByClass = function elementByClass(className) {
-    return elementBySelector(".".concat(className));
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getPopup = function getPopup() {
-    return elementByClass(swalClasses.popup);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getIcon = function getIcon() {
-    return elementByClass(swalClasses.icon);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getIconContent = function getIconContent() {
-    return elementByClass(swalClasses['icon-content']);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getTitle = function getTitle() {
-    return elementByClass(swalClasses.title);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getHtmlContainer = function getHtmlContainer() {
-    return elementByClass(swalClasses['html-container']);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getImage = function getImage() {
-    return elementByClass(swalClasses.image);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getProgressSteps = function getProgressSteps() {
-    return elementByClass(swalClasses['progress-steps']);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getValidationMessage = function getValidationMessage() {
-    return elementByClass(swalClasses['validation-message']);
-  };
-
-  /**
-   * @returns {HTMLButtonElement | null}
-   */
-  var getConfirmButton = function getConfirmButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.confirm));
-  };
-
-  /**
-   * @returns {HTMLButtonElement | null}
-   */
-  var getCancelButton = function getCancelButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.cancel));
-  };
-
-  /**
-   * @returns {HTMLButtonElement | null}
-   */
-  var getDenyButton = function getDenyButton() {
-    return /** @type {HTMLButtonElement} */elementBySelector(".".concat(swalClasses.actions, " .").concat(swalClasses.deny));
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getInputLabel = function getInputLabel() {
-    return elementByClass(swalClasses['input-label']);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getLoader = function getLoader() {
-    return elementBySelector(".".concat(swalClasses.loader));
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getActions = function getActions() {
-    return elementByClass(swalClasses.actions);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getFooter = function getFooter() {
-    return elementByClass(swalClasses.footer);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getTimerProgressBar = function getTimerProgressBar() {
-    return elementByClass(swalClasses['timer-progress-bar']);
-  };
-
-  /**
-   * @returns {HTMLElement | null}
-   */
-  var getCloseButton = function getCloseButton() {
-    return elementByClass(swalClasses.close);
-  };
-
-  // https://github.com/jkup/focusable/blob/master/index.js
-  var focusable = "\n  a[href],\n  area[href],\n  input:not([disabled]),\n  select:not([disabled]),\n  textarea:not([disabled]),\n  button:not([disabled]),\n  iframe,\n  object,\n  embed,\n  [tabindex=\"0\"],\n  [contenteditable],\n  audio[controls],\n  video[controls],\n  summary\n";
-  /**
-   * @returns {HTMLElement[]}
-   */
-  var getFocusableElements = function getFocusableElements() {
-    var popup = getPopup();
-    if (!popup) {
-      return [];
-    }
-    /** @type {NodeListOf<HTMLElement>} */
-    var focusableElementsWithTabindex = popup.querySelectorAll('[tabindex]:not([tabindex="-1"]):not([tabindex="0"])');
-    var focusableElementsWithTabindexSorted = Array.from(focusableElementsWithTabindex)
-    // sort according to tabindex
-    .sort(function (a, b) {
-      var tabindexA = parseInt(a.getAttribute('tabindex') || '0');
-      var tabindexB = parseInt(b.getAttribute('tabindex') || '0');
-      if (tabindexA > tabindexB) {
-        return 1;
-      } else if (tabindexA < tabindexB) {
-        return -1;
-      }
-      return 0;
-    });
-
-    /** @type {NodeListOf<HTMLElement>} */
-    var otherFocusableElements = popup.querySelectorAll(focusable);
-    var otherFocusableElementsFiltered = Array.from(otherFocusableElements).filter(function (el) {
-      return el.getAttribute('tabindex') !== '-1';
-    });
-    return _toConsumableArray(new Set(focusableElementsWithTabindexSorted.concat(otherFocusableElementsFiltered))).filter(function (el) {
-      return isVisible$1(el);
-    });
-  };
-
-  /**
-   * @returns {boolean}
-   */
-  var isModal = function isModal() {
-    return hasClass(document.body, swalClasses.shown) && !hasClass(document.body, swalClasses['toast-shown']) && !hasClass(document.body, swalClasses['no-backdrop']);
-  };
-
-  /**
-   * @returns {boolean}
-   */
-  var isToast = function isToast() {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    return hasClass(popup, swalClasses.toast);
-  };
-
-  /**
-   * @returns {boolean}
-   */
-  var isLoading = function isLoading() {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    return popup.hasAttribute('data-loading');
-  };
-
-  /**
-   * Securely set innerHTML of an element
-   * https://github.com/sweetalert2/sweetalert2/issues/1926
-   *
-   * @param {HTMLElement} elem
-   * @param {string} html
-   */
-  var setInnerHtml = function setInnerHtml(elem, html) {
-    elem.textContent = '';
-    if (html) {
-      var parser = new DOMParser();
-      var parsed = parser.parseFromString(html, "text/html");
-      var head = parsed.querySelector('head');
-      head && Array.from(head.childNodes).forEach(function (child) {
-        elem.appendChild(child);
-      });
-      var body = parsed.querySelector('body');
-      body && Array.from(body.childNodes).forEach(function (child) {
-        if (child instanceof HTMLVideoElement || child instanceof HTMLAudioElement) {
-          elem.appendChild(child.cloneNode(true)); // https://github.com/sweetalert2/sweetalert2/issues/2507
-        } else {
-          elem.appendChild(child);
-        }
-      });
-    }
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @param {string} className
-   * @returns {boolean}
-   */
-  var hasClass = function hasClass(elem, className) {
-    if (!className) {
-      return false;
-    }
-    var classList = className.split(/\s+/);
-    for (var i = 0; i < classList.length; i++) {
-      if (!elem.classList.contains(classList[i])) {
-        return false;
-      }
-    }
-    return true;
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @param {SweetAlertOptions} params
-   */
-  var removeCustomClasses = function removeCustomClasses(elem, params) {
-    Array.from(elem.classList).forEach(function (className) {
-      if (!Object.values(swalClasses).includes(className) && !Object.values(iconTypes).includes(className) && !Object.values(params.showClass || {}).includes(className)) {
-        elem.classList.remove(className);
-      }
-    });
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @param {SweetAlertOptions} params
-   * @param {string} className
-   */
-  var applyCustomClass = function applyCustomClass(elem, params, className) {
-    removeCustomClasses(elem, params);
-    if (params.customClass && params.customClass[className]) {
-      if (typeof params.customClass[className] !== 'string' && !params.customClass[className].forEach) {
-        warn("Invalid type of customClass.".concat(className, "! Expected string or iterable object, got \"").concat(_typeof(params.customClass[className]), "\""));
-        return;
-      }
-      addClass(elem, params.customClass[className]);
-    }
-  };
-
-  /**
-   * @param {HTMLElement} popup
-   * @param {import('./renderers/renderInput').InputClass | SweetAlertInput} inputClass
-   * @returns {HTMLInputElement | null}
-   */
-  var getInput$1 = function getInput(popup, inputClass) {
-    if (!inputClass) {
-      return null;
-    }
-    switch (inputClass) {
-      case 'select':
-      case 'textarea':
-      case 'file':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses[inputClass]));
-      case 'checkbox':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.checkbox, " input"));
-      case 'radio':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.radio, " input:checked")) || popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.radio, " input:first-child"));
-      case 'range':
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.range, " input"));
-      default:
-        return popup.querySelector(".".concat(swalClasses.popup, " > .").concat(swalClasses.input));
-    }
-  };
-
-  /**
-   * @param {HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement} input
-   */
-  var focusInput = function focusInput(input) {
-    input.focus();
-
-    // place cursor at end of text in text input
-    if (input.type !== 'file') {
-      // http://stackoverflow.com/a/2345915
-      var val = input.value;
-      input.value = '';
-      input.value = val;
-    }
-  };
-
-  /**
-   * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[] | undefined} classList
-   * @param {boolean} condition
-   */
-  var toggleClass = function toggleClass(target, classList, condition) {
-    if (!target || !classList) {
-      return;
-    }
-    if (typeof classList === 'string') {
-      classList = classList.split(/\s+/).filter(Boolean);
-    }
-    classList.forEach(function (className) {
-      if (Array.isArray(target)) {
-        target.forEach(function (elem) {
-          condition ? elem.classList.add(className) : elem.classList.remove(className);
-        });
-      } else {
-        condition ? target.classList.add(className) : target.classList.remove(className);
-      }
-    });
-  };
-
-  /**
-   * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[] | undefined} classList
-   */
-  var addClass = function addClass(target, classList) {
-    toggleClass(target, classList, true);
-  };
-
-  /**
-   * @param {HTMLElement | HTMLElement[] | null} target
-   * @param {string | string[] | readonly string[] | undefined} classList
-   */
-  var removeClass = function removeClass(target, classList) {
-    toggleClass(target, classList, false);
-  };
-
-  /**
-   * Get direct child of an element by class name
-   *
-   * @param {HTMLElement} elem
-   * @param {string} className
-   * @returns {HTMLElement | undefined}
-   */
-  var getDirectChildByClass = function getDirectChildByClass(elem, className) {
-    var children = Array.from(elem.children);
-    for (var i = 0; i < children.length; i++) {
-      var child = children[i];
-      if (child instanceof HTMLElement && hasClass(child, className)) {
-        return child;
-      }
-    }
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @param {string} property
-   * @param {*} value
-   */
-  var applyNumericalStyle = function applyNumericalStyle(elem, property, value) {
-    if (value === "".concat(parseInt(value))) {
-      value = parseInt(value);
-    }
-    if (value || parseInt(value) === 0) {
-      elem.style.setProperty(property, typeof value === 'number' ? "".concat(value, "px") : value);
-    } else {
-      elem.style.removeProperty(property);
-    }
-  };
-
-  /**
-   * @param {HTMLElement | null} elem
-   * @param {string} display
-   */
-  var show = function show(elem) {
-    var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'flex';
-    elem && (elem.style.display = display);
-  };
-
-  /**
-   * @param {HTMLElement | null} elem
-   */
-  var hide = function hide(elem) {
-    elem && (elem.style.display = 'none');
-  };
-
-  /**
-   * @param {HTMLElement | null} elem
-   * @param {string} display
-   */
-  var showWhenInnerHtmlPresent = function showWhenInnerHtmlPresent(elem) {
-    var display = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'block';
-    if (!elem) {
-      return;
-    }
-    new MutationObserver(function () {
-      toggle(elem, elem.innerHTML, display);
-    }).observe(elem, {
-      childList: true,
-      subtree: true
-    });
-  };
-
-  /**
-   * @param {HTMLElement} parent
-   * @param {string} selector
-   * @param {string} property
-   * @param {string} value
-   */
-  var setStyle = function setStyle(parent, selector, property, value) {
-    /** @type {HTMLElement | null} */
-    var el = parent.querySelector(selector);
-    if (el) {
-      el.style.setProperty(property, value);
-    }
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @param {any} condition
-   * @param {string} display
-   */
-  var toggle = function toggle(elem, condition) {
-    var display = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'flex';
-    condition ? show(elem, display) : hide(elem);
-  };
-
-  /**
-   * borrowed from jquery $(elem).is(':visible') implementation
-   *
-   * @param {HTMLElement | null} elem
-   * @returns {boolean}
-   */
-  var isVisible$1 = function isVisible(elem) {
-    return !!(elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length));
-  };
-
-  /**
-   * @returns {boolean}
-   */
-  var allButtonsAreHidden = function allButtonsAreHidden() {
-    return !isVisible$1(getConfirmButton()) && !isVisible$1(getDenyButton()) && !isVisible$1(getCancelButton());
-  };
-
-  /**
-   * @param {HTMLElement} elem
-   * @returns {boolean}
-   */
-  var isScrollable = function isScrollable(elem) {
-    return !!(elem.scrollHeight > elem.clientHeight);
-  };
-
-  /**
-   * borrowed from https://stackoverflow.com/a/46352119
-   *
-   * @param {HTMLElement} elem
-   * @returns {boolean}
-   */
-  var hasCssAnimation = function hasCssAnimation(elem) {
-    var style = window.getComputedStyle(elem);
-    var animDuration = parseFloat(style.getPropertyValue('animation-duration') || '0');
-    var transDuration = parseFloat(style.getPropertyValue('transition-duration') || '0');
-    return animDuration > 0 || transDuration > 0;
-  };
-
-  /**
-   * @param {number} timer
-   * @param {boolean} reset
-   */
-  var animateTimerProgressBar = function animateTimerProgressBar(timer) {
-    var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-    var timerProgressBar = getTimerProgressBar();
-    if (!timerProgressBar) {
-      return;
-    }
-    if (isVisible$1(timerProgressBar)) {
-      if (reset) {
-        timerProgressBar.style.transition = 'none';
-        timerProgressBar.style.width = '100%';
-      }
-      setTimeout(function () {
-        timerProgressBar.style.transition = "width ".concat(timer / 1000, "s linear");
-        timerProgressBar.style.width = '0%';
-      }, 10);
-    }
-  };
-  var stopTimerProgressBar = function stopTimerProgressBar() {
-    var timerProgressBar = getTimerProgressBar();
-    if (!timerProgressBar) {
-      return;
-    }
-    var timerProgressBarWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
-    timerProgressBar.style.removeProperty('transition');
-    timerProgressBar.style.width = '100%';
-    var timerProgressBarFullWidth = parseInt(window.getComputedStyle(timerProgressBar).width);
-    var timerProgressBarPercent = timerProgressBarWidth / timerProgressBarFullWidth * 100;
-    timerProgressBar.style.width = "".concat(timerProgressBarPercent, "%");
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Detect Node env
    *
    * @returns {boolean}
    */
-<<<<<<< HEAD
   const isNodeEnv = () => typeof window === 'undefined' || typeof document === 'undefined';
 
   const sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses['html-container'], "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n   <div class=\"").concat(swalClasses.icon, "\"></div>\n   <img class=\"").concat(swalClasses.image, "\" />\n   <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n   <div class=\"").concat(swalClasses['html-container'], "\" id=\"").concat(swalClasses['html-container'], "\"></div>\n   <input class=\"").concat(swalClasses.input, "\" />\n   <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n   <div class=\"").concat(swalClasses.range, "\">\n     <input type=\"range\" />\n     <output></output>\n   </div>\n   <select class=\"").concat(swalClasses.select, "\"></select>\n   <div class=\"").concat(swalClasses.radio, "\"></div>\n   <label for=\"").concat(swalClasses.checkbox, "\" class=\"").concat(swalClasses.checkbox, "\">\n     <input type=\"checkbox\" />\n     <span class=\"").concat(swalClasses.label, "\"></span>\n   </label>\n   <textarea class=\"").concat(swalClasses.textarea, "\"></textarea>\n   <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <div class=\"").concat(swalClasses.loader, "\"></div>\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.deny, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
@@ -56071,27 +54971,10 @@ module.exports = function (list, options) {
       return false;
     }
 
-=======
-  var isNodeEnv = function isNodeEnv() {
-    return typeof window === 'undefined' || typeof document === 'undefined';
-  };
-
-  var sweetHTML = "\n <div aria-labelledby=\"".concat(swalClasses.title, "\" aria-describedby=\"").concat(swalClasses['html-container'], "\" class=\"").concat(swalClasses.popup, "\" tabindex=\"-1\">\n   <button type=\"button\" class=\"").concat(swalClasses.close, "\"></button>\n   <ul class=\"").concat(swalClasses['progress-steps'], "\"></ul>\n   <div class=\"").concat(swalClasses.icon, "\"></div>\n   <img class=\"").concat(swalClasses.image, "\" />\n   <h2 class=\"").concat(swalClasses.title, "\" id=\"").concat(swalClasses.title, "\"></h2>\n   <div class=\"").concat(swalClasses['html-container'], "\" id=\"").concat(swalClasses['html-container'], "\"></div>\n   <input class=\"").concat(swalClasses.input, "\" id=\"").concat(swalClasses.input, "\" />\n   <input type=\"file\" class=\"").concat(swalClasses.file, "\" />\n   <div class=\"").concat(swalClasses.range, "\">\n     <input type=\"range\" />\n     <output></output>\n   </div>\n   <select class=\"").concat(swalClasses.select, "\" id=\"").concat(swalClasses.select, "\"></select>\n   <div class=\"").concat(swalClasses.radio, "\"></div>\n   <label class=\"").concat(swalClasses.checkbox, "\">\n     <input type=\"checkbox\" id=\"").concat(swalClasses.checkbox, "\" />\n     <span class=\"").concat(swalClasses.label, "\"></span>\n   </label>\n   <textarea class=\"").concat(swalClasses.textarea, "\" id=\"").concat(swalClasses.textarea, "\"></textarea>\n   <div class=\"").concat(swalClasses['validation-message'], "\" id=\"").concat(swalClasses['validation-message'], "\"></div>\n   <div class=\"").concat(swalClasses.actions, "\">\n     <div class=\"").concat(swalClasses.loader, "\"></div>\n     <button type=\"button\" class=\"").concat(swalClasses.confirm, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.deny, "\"></button>\n     <button type=\"button\" class=\"").concat(swalClasses.cancel, "\"></button>\n   </div>\n   <div class=\"").concat(swalClasses.footer, "\"></div>\n   <div class=\"").concat(swalClasses['timer-progress-bar-container'], "\">\n     <div class=\"").concat(swalClasses['timer-progress-bar'], "\"></div>\n   </div>\n </div>\n").replace(/(^|\n)\s*/g, '');
-
-  /**
-   * @returns {boolean}
-   */
-  var resetOldContainer = function resetOldContainer() {
-    var oldContainer = getContainer();
-    if (!oldContainer) {
-      return false;
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     oldContainer.remove();
     removeClass([document.documentElement, document.body], [swalClasses['no-backdrop'], swalClasses['toast-shown'], swalClasses['has-column']]);
     return true;
   };
-<<<<<<< HEAD
 
   const resetValidationMessage = () => {
     globalState.currentInstance.resetValidationMessage();
@@ -56128,43 +55011,10 @@ module.exports = function (list, options) {
       rangeOutput.value = range.value;
     };
   };
-=======
-  var resetValidationMessage$1 = function resetValidationMessage() {
-    globalState.currentInstance.resetValidationMessage();
-  };
-  var addInputChangeListeners = function addInputChangeListeners() {
-    var popup = getPopup();
-    var input = getDirectChildByClass(popup, swalClasses.input);
-    var file = getDirectChildByClass(popup, swalClasses.file);
-    /** @type {HTMLInputElement} */
-    var range = popup.querySelector(".".concat(swalClasses.range, " input"));
-    /** @type {HTMLOutputElement} */
-    var rangeOutput = popup.querySelector(".".concat(swalClasses.range, " output"));
-    var select = getDirectChildByClass(popup, swalClasses.select);
-    /** @type {HTMLInputElement} */
-    var checkbox = popup.querySelector(".".concat(swalClasses.checkbox, " input"));
-    var textarea = getDirectChildByClass(popup, swalClasses.textarea);
-    input.oninput = resetValidationMessage$1;
-    file.onchange = resetValidationMessage$1;
-    select.onchange = resetValidationMessage$1;
-    checkbox.onchange = resetValidationMessage$1;
-    textarea.oninput = resetValidationMessage$1;
-    range.oninput = function () {
-      resetValidationMessage$1();
-      rangeOutput.value = range.value;
-    };
-    range.onchange = function () {
-      resetValidationMessage$1();
-      rangeOutput.value = range.value;
-    };
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {string | HTMLElement} target
    * @returns {HTMLElement}
    */
-<<<<<<< HEAD
 
 
   const getTarget = target => typeof target === 'string' ? document.querySelector(target) : target;
@@ -56178,51 +55028,25 @@ module.exports = function (list, options) {
     popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
     popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
 
-=======
-  var getTarget = function getTarget(target) {
-    return typeof target === 'string' ? document.querySelector(target) : target;
-  };
-
-  /**
-   * @param {SweetAlertOptions} params
-   */
-  var setupAccessibility = function setupAccessibility(params) {
-    var popup = getPopup();
-    popup.setAttribute('role', params.toast ? 'alert' : 'dialog');
-    popup.setAttribute('aria-live', params.toast ? 'polite' : 'assertive');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!params.toast) {
       popup.setAttribute('aria-modal', 'true');
     }
   };
-<<<<<<< HEAD
   /**
    * @param {HTMLElement} targetElement
    */
 
 
   const setupRTL = targetElement => {
-=======
-
-  /**
-   * @param {HTMLElement} targetElement
-   */
-  var setupRTL = function setupRTL(targetElement) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (window.getComputedStyle(targetElement).direction === 'rtl') {
       addClass(getContainer(), swalClasses.rtl);
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Add modal + backdrop + no-war message for Russians to DOM
    *
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const init = params => {
@@ -56230,16 +55054,10 @@ module.exports = function (list, options) {
     const oldContainerExisted = resetOldContainer();
     /* istanbul ignore if */
 
-=======
-  var init = function init(params) {
-    // Clean up the old popup container if it exists
-    var oldContainerExisted = resetOldContainer();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (isNodeEnv()) {
       error('SweetAlert2 requires document to initialize');
       return;
     }
-<<<<<<< HEAD
 
     const container = document.createElement('div');
     container.className = swalClasses.container;
@@ -56250,15 +55068,6 @@ module.exports = function (list, options) {
 
     setInnerHtml(container, sweetHTML);
     const targetElement = getTarget(params.target);
-=======
-    var container = document.createElement('div');
-    container.className = swalClasses.container;
-    if (oldContainerExisted) {
-      addClass(container, swalClasses['no-transition']);
-    }
-    setInnerHtml(container, sweetHTML);
-    var targetElement = getTarget(params.target);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     targetElement.appendChild(container);
     setupAccessibility(params);
     setupRTL(targetElement);
@@ -56269,7 +55078,6 @@ module.exports = function (list, options) {
    * @param {HTMLElement | object | string} param
    * @param {HTMLElement} target
    */
-<<<<<<< HEAD
 
   const parseHtmlToContainer = (param, target) => {
     // DOM element
@@ -56279,25 +55087,10 @@ module.exports = function (list, options) {
     else if (typeof param === 'object') {
       handleObject(param, target);
     } // Plain string
-=======
-  var parseHtmlToContainer = function parseHtmlToContainer(param, target) {
-    // DOM element
-    if (param instanceof HTMLElement) {
-      target.appendChild(param);
-    }
-
-    // Object
-    else if (_typeof(param) === 'object') {
-      handleObject(param, target);
-    }
-
-    // Plain string
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     else if (param) {
       setInnerHtml(target, param);
     }
   };
-<<<<<<< HEAD
   /**
    * @param {object} param
    * @param {HTMLElement} target
@@ -56308,25 +55101,10 @@ module.exports = function (list, options) {
     if (param.jquery) {
       handleJqueryElem(target, param);
     } // For other objects use their string representation
-=======
-
-  /**
-   * @param {any} param
-   * @param {HTMLElement} target
-   */
-  var handleObject = function handleObject(param, target) {
-    // JQuery element(s)
-    if (param.jquery) {
-      handleJqueryElem(target, param);
-    }
-
-    // For other objects use their string representation
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     else {
       setInnerHtml(target, param.toString());
     }
   };
-<<<<<<< HEAD
   /**
    * @param {HTMLElement} target
    * @param {HTMLElement} elem
@@ -56338,17 +55116,6 @@ module.exports = function (list, options) {
 
     if (0 in elem) {
       for (let i = 0; (i in elem); i++) {
-=======
-
-  /**
-   * @param {HTMLElement} target
-   * @param {any} elem
-   */
-  var handleJqueryElem = function handleJqueryElem(target, elem) {
-    target.textContent = '';
-    if (0 in elem) {
-      for (var i = 0; (i in elem); i++) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         target.appendChild(elem[i].cloneNode(true));
       }
     } else {
@@ -56359,7 +55126,6 @@ module.exports = function (list, options) {
   /**
    * @returns {'webkitAnimationEnd' | 'animationend' | false}
    */
-<<<<<<< HEAD
 
   const animationEndEvent = (() => {
     // Prevent run in Node env
@@ -56411,44 +55177,10 @@ module.exports = function (list, options) {
     const actions = getActions();
     const loader = getLoader(); // Actions (buttons) wrapper
 
-=======
-  var animationEndEvent = function () {
-    // Prevent run in Node env
-    if (isNodeEnv()) {
-      return false;
-    }
-    var testEl = document.createElement('div');
-
-    // Chrome, Safari and Opera
-    if (typeof testEl.style.webkitAnimation !== 'undefined') {
-      return 'webkitAnimationEnd';
-    }
-
-    // Standard syntax
-    if (typeof testEl.style.animation !== 'undefined') {
-      return 'animationend';
-    }
-    return false;
-  }();
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderActions = function renderActions(instance, params) {
-    var actions = getActions();
-    var loader = getLoader();
-    if (!actions || !loader) {
-      return;
-    }
-
-    // Actions (buttons) wrapper
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!params.showConfirmButton && !params.showDenyButton && !params.showCancelButton) {
       hide(actions);
     } else {
       show(actions);
-<<<<<<< HEAD
     } // Custom class
 
 
@@ -56459,52 +55191,22 @@ module.exports = function (list, options) {
     setInnerHtml(loader, params.loaderHtml);
     applyCustomClass(loader, params, 'loader');
   };
-=======
-    }
-
-    // Custom class
-    applyCustomClass(actions, params, 'actions');
-
-    // Render all the buttons
-    renderButtons(actions, loader, params);
-
-    // Loader
-    setInnerHtml(loader, params.loaderHtml || '');
-    applyCustomClass(loader, params, 'loader');
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} actions
    * @param {HTMLElement} loader
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   function renderButtons(actions, loader, params) {
     const confirmButton = getConfirmButton();
     const denyButton = getDenyButton();
     const cancelButton = getCancelButton(); // Render buttons
 
-=======
-  function renderButtons(actions, loader, params) {
-    var confirmButton = getConfirmButton();
-    var denyButton = getDenyButton();
-    var cancelButton = getCancelButton();
-    if (!confirmButton || !denyButton || !cancelButton) {
-      return;
-    }
-
-    // Render buttons
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     renderButton(confirmButton, 'confirm', params);
     renderButton(denyButton, 'deny', params);
     renderButton(cancelButton, 'cancel', params);
     handleButtonsStyling(confirmButton, denyButton, cancelButton, params);
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.reverseButtons) {
       if (params.toast) {
         actions.insertBefore(cancelButton, confirmButton);
@@ -56516,17 +55218,12 @@ module.exports = function (list, options) {
       }
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} confirmButton
    * @param {HTMLElement} denyButton
    * @param {HTMLElement} cancelButton
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   function handleButtonsStyling(confirmButton, denyButton, cancelButton, params) {
@@ -56536,47 +55233,26 @@ module.exports = function (list, options) {
 
     addClass([confirmButton, denyButton, cancelButton], swalClasses.styled); // Buttons background colors
 
-=======
-  function handleButtonsStyling(confirmButton, denyButton, cancelButton, params) {
-    if (!params.buttonsStyling) {
-      removeClass([confirmButton, denyButton, cancelButton], swalClasses.styled);
-      return;
-    }
-    addClass([confirmButton, denyButton, cancelButton], swalClasses.styled);
-
-    // Buttons background colors
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.confirmButtonColor) {
       confirmButton.style.backgroundColor = params.confirmButtonColor;
       addClass(confirmButton, swalClasses['default-outline']);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.denyButtonColor) {
       denyButton.style.backgroundColor = params.denyButtonColor;
       addClass(denyButton, swalClasses['default-outline']);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.cancelButtonColor) {
       cancelButton.style.backgroundColor = params.cancelButtonColor;
       addClass(cancelButton, swalClasses['default-outline']);
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} button
    * @param {'confirm' | 'deny' | 'cancel'} buttonType
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   function renderButton(button, buttonType, params) {
@@ -56623,61 +55299,11 @@ module.exports = function (list, options) {
 
     applyCustomClass(container, params, 'container');
   };
-=======
-  function renderButton(button, buttonType, params) {
-    var buttonName = /** @type {'Confirm' | 'Deny' | 'Cancel'} */capitalizeFirstLetter(buttonType);
-    toggle(button, params["show".concat(buttonName, "Button")], 'inline-block');
-    setInnerHtml(button, params["".concat(buttonType, "ButtonText")] || ''); // Set caption text
-    button.setAttribute('aria-label', params["".concat(buttonType, "ButtonAriaLabel")] || ''); // ARIA label
-
-    // Add buttons custom classes
-    button.className = swalClasses[buttonType];
-    applyCustomClass(button, params, "".concat(buttonType, "Button"));
-  }
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderCloseButton = function renderCloseButton(instance, params) {
-    var closeButton = getCloseButton();
-    if (!closeButton) {
-      return;
-    }
-    setInnerHtml(closeButton, params.closeButtonHtml || '');
-
-    // Custom class
-    applyCustomClass(closeButton, params, 'closeButton');
-    toggle(closeButton, params.showCloseButton);
-    closeButton.setAttribute('aria-label', params.closeButtonAriaLabel || '');
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderContainer = function renderContainer(instance, params) {
-    var container = getContainer();
-    if (!container) {
-      return;
-    }
-    handleBackdropParam(container, params.backdrop);
-    handlePositionParam(container, params.position);
-    handleGrowParam(container, params.grow);
-
-    // Custom class
-    applyCustomClass(container, params, 'container');
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['backdrop']} backdrop
    */
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   function handleBackdropParam(container, backdrop) {
     if (typeof backdrop === 'string') {
       container.style.background = backdrop;
@@ -56685,24 +55311,13 @@ module.exports = function (list, options) {
       addClass([document.documentElement, document.body], swalClasses['no-backdrop']);
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['position']} position
    */
-<<<<<<< HEAD
 
 
   function handlePositionParam(container, position) {
-=======
-  function handlePositionParam(container, position) {
-    if (!position) {
-      return;
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (position in swalClasses) {
       addClass(container, swalClasses[position]);
     } else {
@@ -56710,15 +55325,10 @@ module.exports = function (list, options) {
       addClass(container, swalClasses.center);
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {SweetAlertOptions['grow']} grow
    */
-<<<<<<< HEAD
 
 
   function handleGrowParam(container, grow) {
@@ -56751,60 +55361,10 @@ module.exports = function (list, options) {
 
       inputContainer.className = swalClasses[inputClass];
 
-=======
-  function handleGrowParam(container, grow) {
-    if (!grow) {
-      return;
-    }
-    addClass(container, swalClasses["grow-".concat(grow)]);
-  }
-
-  /**
-   * This module contains `WeakMap`s for each effectively-"private  property" that a `Swal` has.
-   * For example, to set the private property "foo" of `this` to "bar", you can `privateProps.foo.set(this, 'bar')`
-   * This is the approach that Babel will probably take to implement private methods/fields
-   *   https://github.com/tc39/proposal-private-methods
-   *   https://github.com/babel/babel/pull/7555
-   * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
-   *   then we can use that language feature.
-   */
-
-  var privateProps = {
-    innerParams: new WeakMap(),
-    domCache: new WeakMap()
-  };
-
-  /** @type {InputClass[]} */
-  var inputClasses = ['input', 'file', 'range', 'select', 'radio', 'checkbox', 'textarea'];
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderInput = function renderInput(instance, params) {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var innerParams = privateProps.innerParams.get(instance);
-    var rerender = !innerParams || params.input !== innerParams.input;
-    inputClasses.forEach(function (inputClass) {
-      var inputContainer = getDirectChildByClass(popup, swalClasses[inputClass]);
-      if (!inputContainer) {
-        return;
-      }
-
-      // set attributes
-      setAttributes(inputClass, params.inputAttributes);
-
-      // set class
-      inputContainer.className = swalClasses[inputClass];
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (rerender) {
         hide(inputContainer);
       }
     });
-<<<<<<< HEAD
 
     if (params.input) {
       if (rerender) {
@@ -56842,60 +55402,14 @@ module.exports = function (list, options) {
       const attrName = input.attributes[i].name;
 
       if (!['type', 'value', 'style'].includes(attrName)) {
-=======
-    if (params.input) {
-      if (rerender) {
-        showInput(params);
-      }
-      // set custom class
-      setCustomClass(params);
-    }
-  };
-
-  /**
-   * @param {SweetAlertOptions} params
-   */
-  var showInput = function showInput(params) {
-    if (!params.input) {
-      return;
-    }
-    if (!renderInputType[params.input]) {
-      error("Unexpected type of input! Expected ".concat(Object.keys(renderInputType).join(' | '), ", got \"").concat(params.input, "\""));
-      return;
-    }
-    var inputContainer = getInputContainer(params.input);
-    var input = renderInputType[params.input](inputContainer, params);
-    show(inputContainer);
-
-    // input autofocus
-    if (params.inputAutoFocus) {
-      setTimeout(function () {
-        focusInput(input);
-      });
-    }
-  };
-
-  /**
-   * @param {HTMLInputElement} input
-   */
-  var removeAttributes = function removeAttributes(input) {
-    for (var i = 0; i < input.attributes.length; i++) {
-      var attrName = input.attributes[i].name;
-      if (!['id', 'type', 'value', 'style'].includes(attrName)) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         input.removeAttribute(attrName);
       }
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {InputClass} inputClass
    * @param {SweetAlertOptions['inputAttributes']} inputAttributes
    */
-<<<<<<< HEAD
 
 
   const setAttributes = (inputClass, inputAttributes) => {
@@ -56923,54 +55437,22 @@ module.exports = function (list, options) {
       addClass(inputContainer, params.customClass.input);
     }
   };
-=======
-  var setAttributes = function setAttributes(inputClass, inputAttributes) {
-    var input = getInput$1(getPopup(), inputClass);
-    if (!input) {
-      return;
-    }
-    removeAttributes(input);
-    for (var attr in inputAttributes) {
-      input.setAttribute(attr, inputAttributes[attr]);
-    }
-  };
-
-  /**
-   * @param {SweetAlertOptions} params
-   */
-  var setCustomClass = function setCustomClass(params) {
-    var inputContainer = getInputContainer(params.input);
-    if (_typeof(params.customClass) === 'object') {
-      addClass(inputContainer, params.customClass.input);
-    }
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement | HTMLTextAreaElement} input
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const setInputPlaceholder = (input, params) => {
-=======
-  var setInputPlaceholder = function setInputPlaceholder(input, params) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!input.placeholder || params.inputPlaceholder) {
       input.placeholder = params.inputPlaceholder;
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {Input} input
    * @param {Input} prependTo
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const setInputLabel = (input, prependTo, params) => {
@@ -56985,46 +55467,23 @@ module.exports = function (list, options) {
         addClass(label, params.customClass.inputLabel);
       }
 
-=======
-  var setInputLabel = function setInputLabel(input, prependTo, params) {
-    if (params.inputLabel) {
-      var label = document.createElement('label');
-      var labelClass = swalClasses['input-label'];
-      label.setAttribute('for', input.id);
-      label.className = labelClass;
-      if (_typeof(params.customClass) === 'object') {
-        addClass(label, params.customClass.inputLabel);
-      }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       label.innerText = params.inputLabel;
       prependTo.insertAdjacentElement('beforebegin', label);
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {SweetAlertOptions['input']} inputType
    * @returns {HTMLElement}
    */
-<<<<<<< HEAD
 
 
   const getInputContainer = inputType => {
     return getDirectChildByClass(getPopup(), swalClasses[inputType] || swalClasses.input);
   };
-=======
-  var getInputContainer = function getInputContainer(inputType) {
-    return getDirectChildByClass(getPopup(), swalClasses[inputType] || swalClasses.input);
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement | HTMLOutputElement | HTMLTextAreaElement} input
    * @param {SweetAlertOptions['inputValue']} inputValue
    */
-<<<<<<< HEAD
 
 
   const checkAndSetInputValue = (input, inputValue) => {
@@ -57038,92 +55497,52 @@ module.exports = function (list, options) {
 
 
   const renderInputType = {};
-=======
-  var checkAndSetInputValue = function checkAndSetInputValue(input, inputValue) {
-    if (['string', 'number'].includes(_typeof(inputValue))) {
-      input.value = "".concat(inputValue);
-    } else if (!isPromise(inputValue)) {
-      warn("Unexpected type of inputValue! Expected \"string\", \"number\" or \"Promise\", got \"".concat(_typeof(inputValue), "\""));
-    }
-  };
-
-  /** @type {Record<SweetAlertInput, (input: Input | HTMLElement, params: SweetAlertOptions) => Input>} */
-  var renderInputType = {};
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement} input
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
    */
-<<<<<<< HEAD
 
   renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = (input, params) => {
-=======
-  renderInputType.text = renderInputType.email = renderInputType.password = renderInputType.number = renderInputType.tel = renderInputType.url = renderInputType.search = renderInputType.date = renderInputType['datetime-local'] = renderInputType.time = renderInputType.week = renderInputType.month = function (input, params) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     checkAndSetInputValue(input, params.inputValue);
     setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     input.type = params.input;
     return input;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement} input
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.file = (input, params) => {
-=======
-  renderInputType.file = function (input, params) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     setInputLabel(input, input, params);
     setInputPlaceholder(input, params);
     return input;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement} range
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.range = (range, params) => {
     const rangeInput = range.querySelector('input');
     const rangeOutput = range.querySelector('output');
-=======
-  renderInputType.range = function (range, params) {
-    var rangeInput = range.querySelector('input');
-    var rangeOutput = range.querySelector('output');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     checkAndSetInputValue(rangeInput, params.inputValue);
     rangeInput.type = params.input;
     checkAndSetInputValue(rangeOutput, params.inputValue);
     setInputLabel(rangeInput, range, params);
     return range;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLSelectElement} select
    * @param {SweetAlertOptions} params
    * @returns {HTMLSelectElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.select = (select, params) => {
@@ -57131,53 +55550,31 @@ module.exports = function (list, options) {
 
     if (params.inputPlaceholder) {
       const placeholder = document.createElement('option');
-=======
-  renderInputType.select = function (select, params) {
-    select.textContent = '';
-    if (params.inputPlaceholder) {
-      var placeholder = document.createElement('option');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       setInnerHtml(placeholder, params.inputPlaceholder);
       placeholder.value = '';
       placeholder.disabled = true;
       placeholder.selected = true;
       select.appendChild(placeholder);
     }
-<<<<<<< HEAD
 
     setInputLabel(select, select, params);
     return select;
   };
-=======
-    setInputLabel(select, select, params);
-    return select;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLInputElement} radio
    * @returns {HTMLInputElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.radio = radio => {
     radio.textContent = '';
     return radio;
   };
-=======
-  renderInputType.radio = function (radio) {
-    radio.textContent = '';
-    return radio;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLLabelElement} checkboxContainer
    * @param {SweetAlertOptions} params
    * @returns {HTMLInputElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.checkbox = (checkboxContainer, params) => {
@@ -57189,41 +55586,21 @@ module.exports = function (list, options) {
     setInnerHtml(label, params.inputPlaceholder);
     return checkbox;
   };
-=======
-  renderInputType.checkbox = function (checkboxContainer, params) {
-    var checkbox = getInput$1(getPopup(), 'checkbox');
-    checkbox.value = '1';
-    checkbox.checked = Boolean(params.inputValue);
-    var label = checkboxContainer.querySelector('span');
-    setInnerHtml(label, params.inputPlaceholder);
-    return checkbox;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLTextAreaElement} textarea
    * @param {SweetAlertOptions} params
    * @returns {HTMLTextAreaElement}
    */
-<<<<<<< HEAD
 
 
   renderInputType.textarea = (textarea, params) => {
     checkAndSetInputValue(textarea, params.inputValue);
     setInputPlaceholder(textarea, params);
     setInputLabel(textarea, textarea, params);
-=======
-  renderInputType.textarea = function (textarea, params) {
-    checkAndSetInputValue(textarea, params.inputValue);
-    setInputPlaceholder(textarea, params);
-    setInputLabel(textarea, textarea, params);
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     /**
      * @param {HTMLElement} el
      * @returns {number}
      */
-<<<<<<< HEAD
 
     const getMargin = el => parseInt(window.getComputedStyle(el).marginLeft) + parseInt(window.getComputedStyle(el).marginRight); // https://github.com/sweetalert2/sweetalert2/issues/2291
 
@@ -57243,29 +55620,6 @@ module.exports = function (list, options) {
           }
         };
 
-=======
-    var getMargin = function getMargin(el) {
-      return parseInt(window.getComputedStyle(el).marginLeft) + parseInt(window.getComputedStyle(el).marginRight);
-    };
-
-    // https://github.com/sweetalert2/sweetalert2/issues/2291
-    setTimeout(function () {
-      // https://github.com/sweetalert2/sweetalert2/issues/1699
-      if ('MutationObserver' in window) {
-        var initialPopupWidth = parseInt(window.getComputedStyle(getPopup()).width);
-        var textareaResizeHandler = function textareaResizeHandler() {
-          // check if texarea is still in document (i.e. popup wasn't closed in the meantime)
-          if (!document.body.contains(textarea)) {
-            return;
-          }
-          var textareaWidth = textarea.offsetWidth + getMargin(textarea);
-          if (textareaWidth > initialPopupWidth) {
-            getPopup().style.width = "".concat(textareaWidth, "px");
-          } else {
-            applyNumericalStyle(getPopup(), 'width', params.width);
-          }
-        };
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         new MutationObserver(textareaResizeHandler).observe(textarea, {
           attributes: true,
           attributeFilter: ['style']
@@ -57276,7 +55630,6 @@ module.exports = function (list, options) {
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57297,40 +55650,10 @@ module.exports = function (list, options) {
       hide(htmlContainer);
     }
 
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderContent = function renderContent(instance, params) {
-    var htmlContainer = getHtmlContainer();
-    if (!htmlContainer) {
-      return;
-    }
-    showWhenInnerHtmlPresent(htmlContainer);
-    applyCustomClass(htmlContainer, params, 'htmlContainer');
-
-    // Content as HTML
-    if (params.html) {
-      parseHtmlToContainer(params.html, htmlContainer);
-      show(htmlContainer, 'block');
-    }
-
-    // Content as plain text
-    else if (params.text) {
-      htmlContainer.textContent = params.text;
-      show(htmlContainer, 'block');
-    }
-
-    // No content
-    else {
-      hide(htmlContainer);
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     renderInput(instance, params);
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57344,28 +55667,10 @@ module.exports = function (list, options) {
     } // Custom class
 
 
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderFooter = function renderFooter(instance, params) {
-    var footer = getFooter();
-    if (!footer) {
-      return;
-    }
-    showWhenInnerHtmlPresent(footer);
-    toggle(footer, params.footer, 'block');
-    if (params.footer) {
-      parseHtmlToContainer(params.footer, footer);
-    }
-
-    // Custom class
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     applyCustomClass(footer, params, 'footer');
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57374,43 +55679,23 @@ module.exports = function (list, options) {
     const innerParams = privateProps.innerParams.get(instance);
     const icon = getIcon(); // if the given icon already rendered, apply the styling without re-rendering the icon
 
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderIcon = function renderIcon(instance, params) {
-    var innerParams = privateProps.innerParams.get(instance);
-    var icon = getIcon();
-    if (!icon) {
-      return;
-    }
-
-    // if the given icon already rendered, apply the styling without re-rendering the icon
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (innerParams && params.icon === innerParams.icon) {
       // Custom or default content
       setContent(icon, params);
       applyStyles(icon, params);
       return;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!params.icon && !params.iconHtml) {
       hide(icon);
       return;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.icon && Object.keys(iconTypes).indexOf(params.icon) === -1) {
       error("Unknown icon! Expected \"success\", \"error\", \"warning\", \"info\" or \"question\", got \"".concat(params.icon, "\""));
       hide(icon);
       return;
     }
-<<<<<<< HEAD
 
     show(icon); // Custom or default content
 
@@ -57419,23 +55704,10 @@ module.exports = function (list, options) {
 
     addClass(icon, params.showClass.icon);
   };
-=======
-    show(icon);
-
-    // Custom or default content
-    setContent(icon, params);
-    applyStyles(icon, params);
-
-    // Animate icon
-    addClass(icon, params.showClass && params.showClass.icon);
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   const applyStyles = (icon, params) => {
     for (const iconType in iconTypes) {
@@ -57468,63 +55740,15 @@ module.exports = function (list, options) {
 
   const successIconHtml = "\n  <div class=\"swal2-success-circular-line-left\"></div>\n  <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n  <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n  <div class=\"swal2-success-circular-line-right\"></div>\n";
   const errorIconHtml = "\n  <span class=\"swal2-x-mark\">\n    <span class=\"swal2-x-mark-line-left\"></span>\n    <span class=\"swal2-x-mark-line-right\"></span>\n  </span>\n";
-=======
-  var applyStyles = function applyStyles(icon, params) {
-    for (var _i = 0, _Object$entries = Object.entries(iconTypes); _i < _Object$entries.length; _i++) {
-      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
-        iconType = _Object$entries$_i[0],
-        iconClassName = _Object$entries$_i[1];
-      if (params.icon !== iconType) {
-        removeClass(icon, iconClassName);
-      }
-    }
-    addClass(icon, params.icon && iconTypes[params.icon]);
-
-    // Icon color
-    setColor(icon, params);
-
-    // Success icon background color
-    adjustSuccessIconBackgroundColor();
-
-    // Custom class
-    applyCustomClass(icon, params, 'icon');
-  };
-
-  // Adjust success icon background color to match the popup background color
-  var adjustSuccessIconBackgroundColor = function adjustSuccessIconBackgroundColor() {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var popupBackgroundColor = window.getComputedStyle(popup).getPropertyValue('background-color');
-    /** @type {NodeListOf<HTMLElement>} */
-    var successIconParts = popup.querySelectorAll('[class^=swal2-success-circular-line], .swal2-success-fix');
-    for (var i = 0; i < successIconParts.length; i++) {
-      successIconParts[i].style.backgroundColor = popupBackgroundColor;
-    }
-  };
-  var successIconHtml = "\n  <div class=\"swal2-success-circular-line-left\"></div>\n  <span class=\"swal2-success-line-tip\"></span> <span class=\"swal2-success-line-long\"></span>\n  <div class=\"swal2-success-ring\"></div> <div class=\"swal2-success-fix\"></div>\n  <div class=\"swal2-success-circular-line-right\"></div>\n";
-  var errorIconHtml = "\n  <span class=\"swal2-x-mark\">\n    <span class=\"swal2-x-mark-line-left\"></span>\n    <span class=\"swal2-x-mark-line-right\"></span>\n  </span>\n";
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   const setContent = (icon, params) => {
     let oldContent = icon.innerHTML;
     let newContent;
 
-=======
-  var setContent = function setContent(icon, params) {
-    if (!params.icon && !params.iconHtml) {
-      return;
-    }
-    var oldContent = icon.innerHTML;
-    var newContent = '';
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.iconHtml) {
       newContent = iconContent(params.iconHtml);
     } else if (params.icon === 'success') {
@@ -57532,36 +55756,23 @@ module.exports = function (list, options) {
       oldContent = oldContent.replace(/ style=".*?"/g, ''); // undo adjustSuccessIconBackgroundColor()
     } else if (params.icon === 'error') {
       newContent = errorIconHtml;
-<<<<<<< HEAD
     } else {
       const defaultIconHtml = {
-=======
-    } else if (params.icon) {
-      var defaultIconHtml = {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         question: '?',
         warning: '!',
         info: 'i'
       };
       newContent = iconContent(defaultIconHtml[params.icon]);
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (oldContent.trim() !== newContent.trim()) {
       setInnerHtml(icon, newContent);
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} icon
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const setColor = (icon, params) => {
@@ -57578,26 +55789,10 @@ module.exports = function (list, options) {
 
     setStyle(icon, '.swal2-success-ring', 'borderColor', params.iconColor);
   };
-=======
-  var setColor = function setColor(icon, params) {
-    if (!params.iconColor) {
-      return;
-    }
-    icon.style.color = params.iconColor;
-    icon.style.borderColor = params.iconColor;
-    for (var _i2 = 0, _arr = ['.swal2-success-line-tip', '.swal2-success-line-long', '.swal2-x-mark-line-left', '.swal2-x-mark-line-right']; _i2 < _arr.length; _i2++) {
-      var sel = _arr[_i2];
-      setStyle(icon, sel, 'background-color', params.iconColor);
-    }
-    setStyle(icon, '.swal2-success-ring', 'border-color', params.iconColor);
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {string} content
    * @returns {string}
    */
-<<<<<<< HEAD
 
 
   const iconContent = content => "<div class=\"".concat(swalClasses['icon-content'], "\">").concat(content, "</div>");
@@ -57622,42 +55817,11 @@ module.exports = function (list, options) {
     applyNumericalStyle(image, 'width', params.imageWidth);
     applyNumericalStyle(image, 'height', params.imageHeight); // Class
 
-=======
-  var iconContent = function iconContent(content) {
-    return "<div class=\"".concat(swalClasses['icon-content'], "\">").concat(content, "</div>");
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderImage = function renderImage(instance, params) {
-    var image = getImage();
-    if (!image) {
-      return;
-    }
-    if (!params.imageUrl) {
-      hide(image);
-      return;
-    }
-    show(image, '');
-
-    // Src, alt
-    image.setAttribute('src', params.imageUrl);
-    image.setAttribute('alt', params.imageAlt || '');
-
-    // Width, height
-    applyNumericalStyle(image, 'width', params.imageWidth);
-    applyNumericalStyle(image, 'height', params.imageHeight);
-
-    // Class
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     image.className = swalClasses.image;
     applyCustomClass(image, params, 'image');
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57691,69 +55855,20 @@ module.exports = function (list, options) {
 
     addClasses(popup, params);
   };
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderPopup = function renderPopup(instance, params) {
-    var container = getContainer();
-    var popup = getPopup();
-    if (!container || !popup) {
-      return;
-    }
-
-    // Width
-    // https://github.com/sweetalert2/sweetalert2/issues/2170
-    if (params.toast) {
-      applyNumericalStyle(container, 'width', params.width);
-      popup.style.width = '100%';
-      var loader = getLoader();
-      loader && popup.insertBefore(loader, getIcon());
-    } else {
-      applyNumericalStyle(popup, 'width', params.width);
-    }
-
-    // Padding
-    applyNumericalStyle(popup, 'padding', params.padding);
-
-    // Color
-    if (params.color) {
-      popup.style.color = params.color;
-    }
-
-    // Background
-    if (params.background) {
-      popup.style.background = params.background;
-    }
-    hide(getValidationMessage());
-
-    // Classes
-    addClasses$1(popup, params);
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} popup
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   const addClasses = (popup, params) => {
     // Default Class + showClass when updating Swal.update({})
     popup.className = "".concat(swalClasses.popup, " ").concat(isVisible(popup) ? params.showClass.popup : '');
 
-=======
-  var addClasses$1 = function addClasses(popup, params) {
-    var showClass = params.showClass || {};
-    // Default Class + showClass when updating Swal.update({})
-    popup.className = "".concat(swalClasses.popup, " ").concat(isVisible$1(popup) ? showClass.popup : '');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.toast) {
       addClass([document.documentElement, document.body], swalClasses['toast-shown']);
       addClass(popup, swalClasses.toast);
     } else {
       addClass(popup, swalClasses.modal);
-<<<<<<< HEAD
     } // Custom class
 
 
@@ -57764,24 +55879,12 @@ module.exports = function (list, options) {
     } // Icon class (#1842)
 
 
-=======
-    }
-
-    // Custom class
-    applyCustomClass(popup, params, 'popup');
-    if (typeof params.customClass === 'string') {
-      addClass(popup, params.customClass);
-    }
-
-    // Icon class (#1842)
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.icon) {
       addClass(popup, swalClasses["icon-".concat(params.icon)]);
     }
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57810,68 +55913,25 @@ module.exports = function (list, options) {
 
       if (index !== params.progressSteps.length - 1) {
         const lineEl = createLineElement(params);
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderProgressSteps = function renderProgressSteps(instance, params) {
-    var progressStepsContainer = getProgressSteps();
-    if (!progressStepsContainer) {
-      return;
-    }
-    var progressSteps = params.progressSteps,
-      currentProgressStep = params.currentProgressStep;
-    if (!progressSteps || progressSteps.length === 0 || currentProgressStep === undefined) {
-      hide(progressStepsContainer);
-      return;
-    }
-    show(progressStepsContainer);
-    progressStepsContainer.textContent = '';
-    if (currentProgressStep >= progressSteps.length) {
-      warn('Invalid currentProgressStep parameter, it should be less than progressSteps.length ' + '(currentProgressStep like JS arrays starts from 0)');
-    }
-    progressSteps.forEach(function (step, index) {
-      var stepEl = createStepElement(step);
-      progressStepsContainer.appendChild(stepEl);
-      if (index === currentProgressStep) {
-        addClass(stepEl, swalClasses['active-progress-step']);
-      }
-      if (index !== progressSteps.length - 1) {
-        var lineEl = createLineElement(params);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         progressStepsContainer.appendChild(lineEl);
       }
     });
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {string} step
    * @returns {HTMLLIElement}
    */
-<<<<<<< HEAD
 
   const createStepElement = step => {
     const stepEl = document.createElement('li');
-=======
-  var createStepElement = function createStepElement(step) {
-    var stepEl = document.createElement('li');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     addClass(stepEl, swalClasses['progress-step']);
     setInnerHtml(stepEl, step);
     return stepEl;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {SweetAlertOptions} params
    * @returns {HTMLLIElement}
    */
-<<<<<<< HEAD
 
 
   const createLineElement = params => {
@@ -57882,19 +55942,10 @@ module.exports = function (list, options) {
       applyNumericalStyle(lineEl, 'width', params.progressStepsDistance);
     }
 
-=======
-  var createLineElement = function createLineElement(params) {
-    var lineEl = document.createElement('li');
-    addClass(lineEl, swalClasses['progress-step-line']);
-    if (params.progressStepsDistance) {
-      applyNumericalStyle(lineEl, 'width', params.progressStepsDistance);
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     return lineEl;
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
@@ -57912,42 +55963,15 @@ module.exports = function (list, options) {
     } // Custom class
 
 
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var renderTitle = function renderTitle(instance, params) {
-    var title = getTitle();
-    if (!title) {
-      return;
-    }
-    showWhenInnerHtmlPresent(title);
-    toggle(title, params.title || params.titleText, 'block');
-    if (params.title) {
-      parseHtmlToContainer(params.title, title);
-    }
-    if (params.titleText) {
-      title.innerText = params.titleText;
-    }
-
-    // Custom class
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     applyCustomClass(title, params, 'title');
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {SweetAlertOptions} params
    */
 
   const render = (instance, params) => {
-=======
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var render = function render(instance, params) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     renderPopup(instance, params);
     renderContainer(instance, params);
     renderProgressSteps(instance, params);
@@ -57958,7 +55982,6 @@ module.exports = function (list, options) {
     renderContent(instance, params);
     renderActions(instance, params);
     renderFooter(instance, params);
-<<<<<<< HEAD
 
     if (typeof params.didRender === 'function') {
       params.didRender(getPopup());
@@ -58046,49 +56069,6 @@ module.exports = function (list, options) {
   const clickCancel = () => getCancelButton() && getCancelButton().click();
 
   const DismissReason = Object.freeze({
-=======
-    var popup = getPopup();
-    if (typeof params.didRender === 'function' && popup) {
-      params.didRender(popup);
-    }
-  };
-
-  /*
-   * Global function to determine if SweetAlert2 popup is shown
-   */
-  var isVisible = function isVisible() {
-    return isVisible$1(getPopup());
-  };
-
-  /*
-   * Global function to click 'Confirm' button
-   */
-  var clickConfirm = function clickConfirm() {
-    var _dom$getConfirmButton;
-    return (_dom$getConfirmButton = getConfirmButton()) === null || _dom$getConfirmButton === void 0 ? void 0 : _dom$getConfirmButton.click();
-  };
-
-  /*
-   * Global function to click 'Deny' button
-   */
-  var clickDeny = function clickDeny() {
-    var _dom$getDenyButton;
-    return (_dom$getDenyButton = getDenyButton()) === null || _dom$getDenyButton === void 0 ? void 0 : _dom$getDenyButton.click();
-  };
-
-  /*
-   * Global function to click 'Cancel' button
-   */
-  var clickCancel = function clickCancel() {
-    var _dom$getCancelButton;
-    return (_dom$getCancelButton = getCancelButton()) === null || _dom$getCancelButton === void 0 ? void 0 : _dom$getCancelButton.click();
-  };
-
-  /** @typedef {'cancel' | 'backdrop' | 'close' | 'esc' | 'timer'} DismissReason */
-
-  /** @type {Record<DismissReason, DismissReason>} */
-  var DismissReason = Object.freeze({
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     cancel: 'cancel',
     backdrop: 'backdrop',
     close: 'close',
@@ -58099,12 +56079,8 @@ module.exports = function (list, options) {
   /**
    * @param {GlobalState} globalState
    */
-<<<<<<< HEAD
 
   const removeKeydownHandler = globalState => {
-=======
-  var removeKeydownHandler = function removeKeydownHandler(globalState) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (globalState.keydownTarget && globalState.keydownHandlerAdded) {
       globalState.keydownTarget.removeEventListener('keydown', globalState.keydownHandler, {
         capture: globalState.keydownListenerCapture
@@ -58112,18 +56088,12 @@ module.exports = function (list, options) {
       globalState.keydownHandlerAdded = false;
     }
   };
-<<<<<<< HEAD
   /**
    * @param {SweetAlert2} instance
-=======
-
-  /**
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
    * @param {GlobalState} globalState
    * @param {SweetAlertOptions} innerParams
    * @param {*} dismissWith
    */
-<<<<<<< HEAD
 
   const addKeydownHandler = (instance, globalState, innerParams, dismissWith) => {
     removeKeydownHandler(globalState);
@@ -58131,14 +56101,6 @@ module.exports = function (list, options) {
     if (!innerParams.toast) {
       globalState.keydownHandler = e => keydownHandler(instance, e, dismissWith);
 
-=======
-  var addKeydownHandler = function addKeydownHandler(globalState, innerParams, dismissWith) {
-    removeKeydownHandler(globalState);
-    if (!innerParams.toast) {
-      globalState.keydownHandler = function (e) {
-        return keydownHandler(innerParams, e, dismissWith);
-      };
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       globalState.keydownTarget = innerParams.keydownListenerCapture ? window : getPopup();
       globalState.keydownListenerCapture = innerParams.keydownListenerCapture;
       globalState.keydownTarget.addEventListener('keydown', globalState.keydownHandler, {
@@ -58147,7 +56109,6 @@ module.exports = function (list, options) {
       globalState.keydownHandlerAdded = true;
     }
   };
-<<<<<<< HEAD
   /**
    * @param {SweetAlertOptions} innerParams
    * @param {number} index
@@ -58221,89 +56182,10 @@ module.exports = function (list, options) {
 
 
   const handleEnter = (instance, e, innerParams) => {
-=======
-
-  /**
-   * @param {number} index
-   * @param {number} increment
-   */
-  var setFocus = function setFocus(index, increment) {
-    var _dom$getPopup;
-    var focusableElements = getFocusableElements();
-    // search for visible elements and select the next possible match
-    if (focusableElements.length) {
-      index = index + increment;
-
-      // rollover to first item
-      if (index === focusableElements.length) {
-        index = 0;
-
-        // go to last item
-      } else if (index === -1) {
-        index = focusableElements.length - 1;
-      }
-      focusableElements[index].focus();
-      return;
-    }
-    // no visible focusable elements, focus the popup
-    (_dom$getPopup = getPopup()) === null || _dom$getPopup === void 0 || _dom$getPopup.focus();
-  };
-  var arrowKeysNextButton = ['ArrowRight', 'ArrowDown'];
-  var arrowKeysPreviousButton = ['ArrowLeft', 'ArrowUp'];
-
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @param {KeyboardEvent} event
-   * @param {Function} dismissWith
-   */
-  var keydownHandler = function keydownHandler(innerParams, event, dismissWith) {
-    if (!innerParams) {
-      return; // This instance has already been destroyed
-    }
-
-    // Ignore keydown during IME composition
-    // https://developer.mozilla.org/en-US/docs/Web/API/Document/keydown_event#ignoring_keydown_during_ime_composition
-    // https://github.com/sweetalert2/sweetalert2/issues/720
-    // https://github.com/sweetalert2/sweetalert2/issues/2406
-    if (event.isComposing || event.keyCode === 229) {
-      return;
-    }
-    if (innerParams.stopKeydownPropagation) {
-      event.stopPropagation();
-    }
-
-    // ENTER
-    if (event.key === 'Enter') {
-      handleEnter(event, innerParams);
-    }
-
-    // TAB
-    else if (event.key === 'Tab') {
-      handleTab(event);
-    }
-
-    // ARROWS - switch focus between buttons
-    else if ([].concat(arrowKeysNextButton, arrowKeysPreviousButton).includes(event.key)) {
-      handleArrows(event.key);
-    }
-
-    // ESC
-    else if (event.key === 'Escape') {
-      handleEsc(event, innerParams, dismissWith);
-    }
-  };
-
-  /**
-   * @param {KeyboardEvent} event
-   * @param {SweetAlertOptions} innerParams
-   */
-  var handleEnter = function handleEnter(event, innerParams) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     // https://github.com/sweetalert2/sweetalert2/issues/2386
     if (!callIfFunction(innerParams.allowEnterKey)) {
       return;
     }
-<<<<<<< HEAD
 
     if (e.target && instance.getInput() && e.target instanceof HTMLElement && e.target.outerHTML === instance.getInput().outerHTML) {
       if (['textarea', 'file'].includes(innerParams.input)) {
@@ -58326,31 +56208,10 @@ module.exports = function (list, options) {
     let btnIndex = -1;
 
     for (let i = 0; i < focusableElements.length; i++) {
-=======
-    var input = getInput$1(getPopup(), innerParams.input);
-    if (event.target && input && event.target instanceof HTMLElement && event.target.outerHTML === input.outerHTML) {
-      if (['textarea', 'file'].includes(innerParams.input)) {
-        return; // do not submit
-      }
-      clickConfirm();
-      event.preventDefault();
-    }
-  };
-
-  /**
-   * @param {KeyboardEvent} event
-   */
-  var handleTab = function handleTab(event) {
-    var targetElement = event.target;
-    var focusableElements = getFocusableElements();
-    var btnIndex = -1;
-    for (var i = 0; i < focusableElements.length; i++) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (targetElement === focusableElements[i]) {
         btnIndex = i;
         break;
       }
-<<<<<<< HEAD
     } // Cycle to the next button
 
 
@@ -58393,58 +56254,10 @@ module.exports = function (list, options) {
       }
     }
 
-=======
-    }
-
-    // Cycle to the next button
-    if (!event.shiftKey) {
-      setFocus(btnIndex, 1);
-    }
-
-    // Cycle to the prev button
-    else {
-      setFocus(btnIndex, -1);
-    }
-    event.stopPropagation();
-    event.preventDefault();
-  };
-
-  /**
-   * @param {string} key
-   */
-  var handleArrows = function handleArrows(key) {
-    var actions = getActions();
-    var confirmButton = getConfirmButton();
-    var denyButton = getDenyButton();
-    var cancelButton = getCancelButton();
-    if (!actions || !confirmButton || !denyButton || !cancelButton) {
-      return;
-    }
-    /** @type HTMLElement[] */
-    var buttons = [confirmButton, denyButton, cancelButton];
-    if (document.activeElement instanceof HTMLElement && !buttons.includes(document.activeElement)) {
-      return;
-    }
-    var sibling = arrowKeysNextButton.includes(key) ? 'nextElementSibling' : 'previousElementSibling';
-    var buttonToFocus = document.activeElement;
-    if (!buttonToFocus) {
-      return;
-    }
-    for (var i = 0; i < actions.children.length; i++) {
-      buttonToFocus = buttonToFocus[sibling];
-      if (!buttonToFocus) {
-        return;
-      }
-      if (buttonToFocus instanceof HTMLButtonElement && isVisible$1(buttonToFocus)) {
-        break;
-      }
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (buttonToFocus instanceof HTMLButtonElement) {
       buttonToFocus.focus();
     }
   };
-<<<<<<< HEAD
   /**
    * @param {KeyboardEvent} e
    * @param {SweetAlertOptions} innerParams
@@ -58455,17 +56268,6 @@ module.exports = function (list, options) {
   const handleEsc = (e, innerParams, dismissWith) => {
     if (callIfFunction(innerParams.allowEscapeKey)) {
       e.preventDefault();
-=======
-
-  /**
-   * @param {KeyboardEvent} event
-   * @param {SweetAlertOptions} innerParams
-   * @param {Function} dismissWith
-   */
-  var handleEsc = function handleEsc(event, innerParams, dismissWith) {
-    if (callIfFunction(innerParams.allowEscapeKey)) {
-      event.preventDefault();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       dismissWith(DismissReason.esc);
     }
   };
@@ -58479,24 +56281,15 @@ module.exports = function (list, options) {
    * Once we have the changes from that PR in Babel, and our core class fits reasonable in *one module*
    *   then we can use that language feature.
    */
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   var privateMethods = {
     swalPromiseResolve: new WeakMap(),
     swalPromiseReject: new WeakMap()
   };
 
-<<<<<<< HEAD
-=======
-  // From https://developer.paciellogroup.com/blog/2018/06/the-current-state-of-modal-dialog-accessibility/
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   // Adding aria-hidden="true" to elements outside of the active modal dialog ensures that
   // elements not within the active modal dialog will not be surfaced if a user opens a screen
   // reader’s list of elements (headings, form controls, landmarks, etc.) in the document.
 
-<<<<<<< HEAD
   const setAriaHidden = () => {
     const bodyChildren = Array.from(document.body.children);
     bodyChildren.forEach(el => {
@@ -58516,26 +56309,6 @@ module.exports = function (list, options) {
     bodyChildren.forEach(el => {
       if (el.hasAttribute('data-previous-aria-hidden')) {
         el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden'));
-=======
-  var setAriaHidden = function setAriaHidden() {
-    var container = getContainer();
-    var bodyChildren = Array.from(document.body.children);
-    bodyChildren.forEach(function (el) {
-      if (el.contains(container)) {
-        return;
-      }
-      if (el.hasAttribute('aria-hidden')) {
-        el.setAttribute('data-previous-aria-hidden', el.getAttribute('aria-hidden') || '');
-      }
-      el.setAttribute('aria-hidden', 'true');
-    });
-  };
-  var unsetAriaHidden = function unsetAriaHidden() {
-    var bodyChildren = Array.from(document.body.children);
-    bodyChildren.forEach(function (el) {
-      if (el.hasAttribute('data-previous-aria-hidden')) {
-        el.setAttribute('aria-hidden', el.getAttribute('data-previous-aria-hidden') || '');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         el.removeAttribute('data-previous-aria-hidden');
       } else {
         el.removeAttribute('aria-hidden');
@@ -58543,7 +56316,6 @@ module.exports = function (list, options) {
     });
   };
 
-<<<<<<< HEAD
   /* istanbul ignore file */
 
   const iOSfix = () => {
@@ -58603,56 +56375,10 @@ module.exports = function (list, options) {
       }
     };
   };
-=======
-  // @ts-ignore
-  var isSafariOrIOS = typeof window !== 'undefined' && !!window.GestureEvent; // true for Safari desktop + all iOS browsers https://stackoverflow.com/a/70585394
-
-  /**
-   * Fix iOS scrolling
-   * http://stackoverflow.com/q/39626302
-   */
-  var iOSfix = function iOSfix() {
-    if (isSafariOrIOS && !hasClass(document.body, swalClasses.iosfix)) {
-      var offset = document.body.scrollTop;
-      document.body.style.top = "".concat(offset * -1, "px");
-      addClass(document.body, swalClasses.iosfix);
-      lockBodyScroll();
-    }
-  };
-
-  /**
-   * https://github.com/sweetalert2/sweetalert2/issues/1246
-   */
-  var lockBodyScroll = function lockBodyScroll() {
-    var container = getContainer();
-    if (!container) {
-      return;
-    }
-    /** @type {boolean} */
-    var preventTouchMove;
-    /**
-     * @param {TouchEvent} event
-     */
-    container.ontouchstart = function (event) {
-      preventTouchMove = shouldPreventTouchMove(event);
-    };
-    /**
-     * @param {TouchEvent} event
-     */
-    container.ontouchmove = function (event) {
-      if (preventTouchMove) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-    };
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {TouchEvent} event
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
 
   const shouldPreventTouchMove = event => {
@@ -58676,58 +56402,23 @@ module.exports = function (list, options) {
 
     return false;
   };
-=======
-  var shouldPreventTouchMove = function shouldPreventTouchMove(event) {
-    var target = event.target;
-    var container = getContainer();
-    var htmlContainer = getHtmlContainer();
-    if (!container || !htmlContainer) {
-      return false;
-    }
-    if (isStylus(event) || isZoom(event)) {
-      return false;
-    }
-    if (target === container) {
-      return true;
-    }
-    if (!isScrollable(container) && target instanceof HTMLElement && target.tagName !== 'INPUT' &&
-    // #1603
-    target.tagName !== 'TEXTAREA' &&
-    // #2266
-    !(isScrollable(htmlContainer) &&
-    // #1944
-    htmlContainer.contains(target))) {
-      return true;
-    }
-    return false;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * https://github.com/sweetalert2/sweetalert2/issues/1786
    *
    * @param {*} event
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
 
   const isStylus = event => {
     return event.touches && event.touches.length && event.touches[0].touchType === 'stylus';
   };
-=======
-  var isStylus = function isStylus(event) {
-    return event.touches && event.touches.length && event.touches[0].touchType === 'stylus';
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * https://github.com/sweetalert2/sweetalert2/issues/1891
    *
    * @param {TouchEvent} event
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
 
   const isZoom = event => {
@@ -58737,21 +56428,12 @@ module.exports = function (list, options) {
   const undoIOSfix = () => {
     if (hasClass(document.body, swalClasses.iosfix)) {
       const offset = parseInt(document.body.style.top, 10);
-=======
-  var isZoom = function isZoom(event) {
-    return event.touches && event.touches.length > 1;
-  };
-  var undoIOSfix = function undoIOSfix() {
-    if (hasClass(document.body, swalClasses.iosfix)) {
-      var offset = parseInt(document.body.style.top, 10);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       removeClass(document.body, swalClasses.iosfix);
       document.body.style.top = '';
       document.body.scrollTop = offset * -1;
     }
   };
 
-<<<<<<< HEAD
   const fixScrollbar = () => {
     // for queues, do not do this more than once
     if (states.previousBodyPadding !== null) {
@@ -58776,63 +56458,10 @@ module.exports = function (list, options) {
    * Instance method to close sweetAlert
    */
 
-=======
-  /**
-   * Measure scrollbar width for padding body during modal show/hide
-   * https://github.com/twbs/bootstrap/blob/master/js/src/modal.js
-   *
-   * @returns {number}
-   */
-  var measureScrollbar = function measureScrollbar() {
-    var scrollDiv = document.createElement('div');
-    scrollDiv.className = swalClasses['scrollbar-measure'];
-    document.body.appendChild(scrollDiv);
-    var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
-    document.body.removeChild(scrollDiv);
-    return scrollbarWidth;
-  };
-
-  /**
-   * Remember state in cases where opening and handling a modal will fiddle with it.
-   * @type {number | null}
-   */
-  var previousBodyPadding = null;
-
-  /**
-   * @param {string} initialBodyOverflow
-   */
-  var replaceScrollbarWithPadding = function replaceScrollbarWithPadding(initialBodyOverflow) {
-    // for queues, do not do this more than once
-    if (previousBodyPadding !== null) {
-      return;
-    }
-    // if the body has overflow
-    if (document.body.scrollHeight > window.innerHeight || initialBodyOverflow === 'scroll' // https://github.com/sweetalert2/sweetalert2/issues/2663
-    ) {
-      // add padding so the content doesn't shift after removal of scrollbar
-      previousBodyPadding = parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right'));
-      document.body.style.paddingRight = "".concat(previousBodyPadding + measureScrollbar(), "px");
-    }
-  };
-  var undoReplaceScrollbarWithPadding = function undoReplaceScrollbarWithPadding() {
-    if (previousBodyPadding !== null) {
-      document.body.style.paddingRight = "".concat(previousBodyPadding, "px");
-      previousBodyPadding = null;
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {HTMLElement} container
-   * @param {boolean} returnFocus
-   * @param {Function} didClose
-   */
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   function removePopupAndResetState(instance, container, returnFocus, didClose) {
     if (isToast()) {
       triggerDidCloseAndDispose(instance, didClose);
     } else {
-<<<<<<< HEAD
       restoreActiveElement(returnFocus).then(() => triggerDidCloseAndDispose(instance, didClose));
       removeKeydownHandler(globalState);
     }
@@ -58841,24 +56470,12 @@ module.exports = function (list, options) {
     // for some reason removing the container in Safari will scroll the document to bottom
 
     if (isSafari) {
-=======
-      restoreActiveElement(returnFocus).then(function () {
-        return triggerDidCloseAndDispose(instance, didClose);
-      });
-      removeKeydownHandler(globalState);
-    }
-
-    // workaround for https://github.com/sweetalert2/sweetalert2/issues/2088
-    // for some reason removing the container in Safari will scroll the document to bottom
-    if (isSafariOrIOS) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       container.setAttribute('style', 'display:none !important');
       container.removeAttribute('class');
       container.innerHTML = '';
     } else {
       container.remove();
     }
-<<<<<<< HEAD
 
     if (isModal()) {
       undoScrollbar();
@@ -58869,42 +56486,16 @@ module.exports = function (list, options) {
     removeBodyClasses();
   }
 
-=======
-    if (isModal()) {
-      undoReplaceScrollbarWithPadding();
-      undoIOSfix();
-      unsetAriaHidden();
-    }
-    removeBodyClasses();
-  }
-
-  /**
-   * Remove SweetAlert2 classes from body
-   */
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   function removeBodyClasses() {
     removeClass([document.documentElement, document.body], [swalClasses.shown, swalClasses['height-auto'], swalClasses['no-backdrop'], swalClasses['toast-shown']]);
   }
 
-<<<<<<< HEAD
   function close(resolveValue) {
     resolveValue = prepareResolveValue(resolveValue);
     const swalPromiseResolve = privateMethods.swalPromiseResolve.get(this);
     const didClose = triggerClosePopup(this);
 
     if (this.isAwaitingPromise()) {
-=======
-  /**
-   * Instance method to close sweetAlert
-   *
-   * @param {any} resolveValue
-   */
-  function close(resolveValue) {
-    resolveValue = prepareResolveValue(resolveValue);
-    var swalPromiseResolve = privateMethods.swalPromiseResolve.get(this);
-    var didClose = triggerClosePopup(this);
-    if (this.isAwaitingPromise) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       // A swal awaiting for a promise (after a click on Confirm or Deny) cannot be dismissed anymore #2335
       if (!resolveValue.isDismissed) {
         handleAwaitingPromise(this);
@@ -58915,7 +56506,6 @@ module.exports = function (list, options) {
       swalPromiseResolve(resolveValue);
     }
   }
-<<<<<<< HEAD
   function isAwaitingPromise() {
     return !!privateProps.awaitingPromise.get(this);
   }
@@ -58936,74 +56526,32 @@ module.exports = function (list, options) {
     removeClass(popup, innerParams.showClass.popup);
     addClass(popup, innerParams.hideClass.popup);
     const backdrop = getContainer();
-=======
-  var triggerClosePopup = function triggerClosePopup(instance) {
-    var popup = getPopup();
-    if (!popup) {
-      return false;
-    }
-    var innerParams = privateProps.innerParams.get(instance);
-    if (!innerParams || hasClass(popup, innerParams.hideClass.popup)) {
-      return false;
-    }
-    removeClass(popup, innerParams.showClass.popup);
-    addClass(popup, innerParams.hideClass.popup);
-    var backdrop = getContainer();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     removeClass(backdrop, innerParams.showClass.backdrop);
     addClass(backdrop, innerParams.hideClass.backdrop);
     handlePopupAnimation(instance, popup, innerParams);
     return true;
   };
 
-<<<<<<< HEAD
   function rejectPromise(error) {
     const rejectPromise = privateMethods.swalPromiseReject.get(this);
     handleAwaitingPromise(this);
 
-=======
-  /**
-   * @param {any} error
-   */
-  function rejectPromise(error) {
-    var rejectPromise = privateMethods.swalPromiseReject.get(this);
-    handleAwaitingPromise(this);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (rejectPromise) {
       // Reject Swal promise
       rejectPromise(error);
     }
   }
-<<<<<<< HEAD
   const handleAwaitingPromise = instance => {
     if (instance.isAwaitingPromise()) {
       privateProps.awaitingPromise.delete(instance); // The instance might have been previously partly destroyed, we must resume the destroy process in this case #2335
 
-=======
-
-  /**
-   * @param {SweetAlert} instance
-   */
-  var handleAwaitingPromise = function handleAwaitingPromise(instance) {
-    if (instance.isAwaitingPromise) {
-      delete instance.isAwaitingPromise;
-      // The instance might have been previously partly destroyed, we must resume the destroy process in this case #2335
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (!privateProps.innerParams.get(instance)) {
         instance._destroy();
       }
     }
   };
 
-<<<<<<< HEAD
   const prepareResolveValue = resolveValue => {
-=======
-  /**
-   * @param {any} resolveValue
-   * @returns {SweetAlertResult}
-   */
-  var prepareResolveValue = function prepareResolveValue(resolveValue) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     // When user calls Swal.close()
     if (typeof resolveValue === 'undefined') {
       return {
@@ -59012,10 +56560,7 @@ module.exports = function (list, options) {
         isDismissed: true
       };
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     return Object.assign({
       isConfirmed: false,
       isDenied: false,
@@ -59023,7 +56568,6 @@ module.exports = function (list, options) {
     }, resolveValue);
   };
 
-<<<<<<< HEAD
   const handlePopupAnimation = (instance, popup, innerParams) => {
     const container = getContainer(); // If animation is supported, animate
 
@@ -59033,20 +56577,6 @@ module.exports = function (list, options) {
       innerParams.willClose(popup);
     }
 
-=======
-  /**
-   * @param {SweetAlert} instance
-   * @param {HTMLElement} popup
-   * @param {SweetAlertOptions} innerParams
-   */
-  var handlePopupAnimation = function handlePopupAnimation(instance, popup, innerParams) {
-    var container = getContainer();
-    // If animation is supported, animate
-    var animationIsSupported = animationEndEvent && hasCssAnimation(popup);
-    if (typeof innerParams.willClose === 'function') {
-      innerParams.willClose(popup);
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (animationIsSupported) {
       animatePopup(instance, popup, container, innerParams.returnFocus, innerParams.didClose);
     } else {
@@ -59055,21 +56585,7 @@ module.exports = function (list, options) {
     }
   };
 
-<<<<<<< HEAD
   const animatePopup = (instance, popup, container, returnFocus, didClose) => {
-=======
-  /**
-   * @param {SweetAlert} instance
-   * @param {HTMLElement} popup
-   * @param {HTMLElement} container
-   * @param {boolean} returnFocus
-   * @param {Function} didClose
-   */
-  var animatePopup = function animatePopup(instance, popup, container, returnFocus, didClose) {
-    if (!animationEndEvent) {
-      return;
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     globalState.swalCloseEventFinishedCallback = removePopupAndResetState.bind(null, instance, container, returnFocus, didClose);
     popup.addEventListener(animationEndEvent, function (e) {
       if (e.target === popup) {
@@ -59079,7 +56595,6 @@ module.exports = function (list, options) {
     });
   };
 
-<<<<<<< HEAD
   const triggerDidCloseAndDispose = (instance, didClose) => {
     setTimeout(() => {
       if (typeof didClose === 'function') {
@@ -59087,26 +56602,10 @@ module.exports = function (list, options) {
       }
 
       instance._destroy();
-=======
-  /**
-   * @param {SweetAlert} instance
-   * @param {Function} didClose
-   */
-  var triggerDidCloseAndDispose = function triggerDidCloseAndDispose(instance, didClose) {
-    setTimeout(function () {
-      if (typeof didClose === 'function') {
-        didClose.bind(instance.params)();
-      }
-      // instance might have been destroyed already
-      if (instance._destroy) {
-        instance._destroy();
-      }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     });
   };
 
   /**
-<<<<<<< HEAD
    * @param {SweetAlert2} instance
    * @param {string[]} buttons
    * @param {boolean} disabled
@@ -59134,538 +56633,6 @@ module.exports = function (list, options) {
       const radios = radiosContainer.querySelectorAll('input');
 
       for (let i = 0; i < radios.length; i++) {
-=======
-   * Shows loader (spinner), this is useful with AJAX requests.
-   * By default the loader be shown instead of the "Confirm" button.
-   *
-   * @param {HTMLButtonElement | null} [buttonToReplace]
-   */
-  var showLoading = function showLoading(buttonToReplace) {
-    var popup = getPopup();
-    if (!popup) {
-      new Swal(); // eslint-disable-line no-new
-    }
-    popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    var loader = getLoader();
-    if (isToast()) {
-      hide(getIcon());
-    } else {
-      replaceButton(popup, buttonToReplace);
-    }
-    show(loader);
-    popup.setAttribute('data-loading', 'true');
-    popup.setAttribute('aria-busy', 'true');
-    popup.focus();
-  };
-
-  /**
-   * @param {HTMLElement} popup
-   * @param {HTMLButtonElement | null} [buttonToReplace]
-   */
-  var replaceButton = function replaceButton(popup, buttonToReplace) {
-    var actions = getActions();
-    var loader = getLoader();
-    if (!actions || !loader) {
-      return;
-    }
-    if (!buttonToReplace && isVisible$1(getConfirmButton())) {
-      buttonToReplace = getConfirmButton();
-    }
-    show(actions);
-    if (buttonToReplace) {
-      hide(buttonToReplace);
-      loader.setAttribute('data-button-to-replace', buttonToReplace.className);
-      actions.insertBefore(loader, buttonToReplace);
-    }
-    addClass([popup, actions], swalClasses.loading);
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var handleInputOptionsAndValue = function handleInputOptionsAndValue(instance, params) {
-    if (params.input === 'select' || params.input === 'radio') {
-      handleInputOptions(instance, params);
-    } else if (['text', 'email', 'number', 'tel', 'textarea'].some(function (i) {
-      return i === params.input;
-    }) && (hasToPromiseFn(params.inputValue) || isPromise(params.inputValue))) {
-      showLoading(getConfirmButton());
-      handleInputValue(instance, params);
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} innerParams
-   * @returns {SweetAlertInputValue}
-   */
-  var getInputValue = function getInputValue(instance, innerParams) {
-    var input = instance.getInput();
-    if (!input) {
-      return null;
-    }
-    switch (innerParams.input) {
-      case 'checkbox':
-        return getCheckboxValue(input);
-      case 'radio':
-        return getRadioValue(input);
-      case 'file':
-        return getFileValue(input);
-      default:
-        return innerParams.inputAutoTrim ? input.value.trim() : input.value;
-    }
-  };
-
-  /**
-   * @param {HTMLInputElement} input
-   * @returns {number}
-   */
-  var getCheckboxValue = function getCheckboxValue(input) {
-    return input.checked ? 1 : 0;
-  };
-
-  /**
-   * @param {HTMLInputElement} input
-   * @returns {string | null}
-   */
-  var getRadioValue = function getRadioValue(input) {
-    return input.checked ? input.value : null;
-  };
-
-  /**
-   * @param {HTMLInputElement} input
-   * @returns {FileList | File | null}
-   */
-  var getFileValue = function getFileValue(input) {
-    return input.files && input.files.length ? input.getAttribute('multiple') !== null ? input.files : input.files[0] : null;
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var handleInputOptions = function handleInputOptions(instance, params) {
-    var popup = getPopup();
-    if (!popup) {
-      return;
-    }
-    /**
-     * @param {Record<string, any>} inputOptions
-     */
-    var processInputOptions = function processInputOptions(inputOptions) {
-      if (params.input === 'select') {
-        populateSelectOptions(popup, formatInputOptions(inputOptions), params);
-      } else if (params.input === 'radio') {
-        populateRadioOptions(popup, formatInputOptions(inputOptions), params);
-      }
-    };
-    if (hasToPromiseFn(params.inputOptions) || isPromise(params.inputOptions)) {
-      showLoading(getConfirmButton());
-      asPromise(params.inputOptions).then(function (inputOptions) {
-        instance.hideLoading();
-        processInputOptions(inputOptions);
-      });
-    } else if (_typeof(params.inputOptions) === 'object') {
-      processInputOptions(params.inputOptions);
-    } else {
-      error("Unexpected type of inputOptions! Expected object, Map or Promise, got ".concat(_typeof(params.inputOptions)));
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertOptions} params
-   */
-  var handleInputValue = function handleInputValue(instance, params) {
-    var input = instance.getInput();
-    if (!input) {
-      return;
-    }
-    hide(input);
-    asPromise(params.inputValue).then(function (inputValue) {
-      input.value = params.input === 'number' ? "".concat(parseFloat(inputValue) || 0) : "".concat(inputValue);
-      show(input);
-      input.focus();
-      instance.hideLoading();
-    })["catch"](function (err) {
-      error("Error in inputValue promise: ".concat(err));
-      input.value = '';
-      show(input);
-      input.focus();
-      instance.hideLoading();
-    });
-  };
-
-  /**
-   * @param {HTMLElement} popup
-   * @param {InputOptionFlattened[]} inputOptions
-   * @param {SweetAlertOptions} params
-   */
-  function populateSelectOptions(popup, inputOptions, params) {
-    var select = getDirectChildByClass(popup, swalClasses.select);
-    if (!select) {
-      return;
-    }
-    /**
-     * @param {HTMLElement} parent
-     * @param {string} optionLabel
-     * @param {string} optionValue
-     */
-    var renderOption = function renderOption(parent, optionLabel, optionValue) {
-      var option = document.createElement('option');
-      option.value = optionValue;
-      setInnerHtml(option, optionLabel);
-      option.selected = isSelected(optionValue, params.inputValue);
-      parent.appendChild(option);
-    };
-    inputOptions.forEach(function (inputOption) {
-      var optionValue = inputOption[0];
-      var optionLabel = inputOption[1];
-      // <optgroup> spec:
-      // https://www.w3.org/TR/html401/interact/forms.html#h-17.6
-      // "...all OPTGROUP elements must be specified directly within a SELECT element (i.e., groups may not be nested)..."
-      // check whether this is a <optgroup>
-      if (Array.isArray(optionLabel)) {
-        // if it is an array, then it is an <optgroup>
-        var optgroup = document.createElement('optgroup');
-        optgroup.label = optionValue;
-        optgroup.disabled = false; // not configurable for now
-        select.appendChild(optgroup);
-        optionLabel.forEach(function (o) {
-          return renderOption(optgroup, o[1], o[0]);
-        });
-      } else {
-        // case of <option>
-        renderOption(select, optionLabel, optionValue);
-      }
-    });
-    select.focus();
-  }
-
-  /**
-   * @param {HTMLElement} popup
-   * @param {InputOptionFlattened[]} inputOptions
-   * @param {SweetAlertOptions} params
-   */
-  function populateRadioOptions(popup, inputOptions, params) {
-    var radio = getDirectChildByClass(popup, swalClasses.radio);
-    if (!radio) {
-      return;
-    }
-    inputOptions.forEach(function (inputOption) {
-      var radioValue = inputOption[0];
-      var radioLabel = inputOption[1];
-      var radioInput = document.createElement('input');
-      var radioLabelElement = document.createElement('label');
-      radioInput.type = 'radio';
-      radioInput.name = swalClasses.radio;
-      radioInput.value = radioValue;
-      if (isSelected(radioValue, params.inputValue)) {
-        radioInput.checked = true;
-      }
-      var label = document.createElement('span');
-      setInnerHtml(label, radioLabel);
-      label.className = swalClasses.label;
-      radioLabelElement.appendChild(radioInput);
-      radioLabelElement.appendChild(label);
-      radio.appendChild(radioLabelElement);
-    });
-    var radios = radio.querySelectorAll('input');
-    if (radios.length) {
-      radios[0].focus();
-    }
-  }
-
-  /**
-   * Converts `inputOptions` into an array of `[value, label]`s
-   *
-   * @param {Record<string, any>} inputOptions
-   * @typedef {string[]} InputOptionFlattened
-   * @returns {InputOptionFlattened[]}
-   */
-  var formatInputOptions = function formatInputOptions(inputOptions) {
-    /** @type {InputOptionFlattened[]} */
-    var result = [];
-    if (inputOptions instanceof Map) {
-      inputOptions.forEach(function (value, key) {
-        var valueFormatted = value;
-        if (_typeof(valueFormatted) === 'object') {
-          // case of <optgroup>
-          valueFormatted = formatInputOptions(valueFormatted);
-        }
-        result.push([key, valueFormatted]);
-      });
-    } else {
-      Object.keys(inputOptions).forEach(function (key) {
-        var valueFormatted = inputOptions[key];
-        if (_typeof(valueFormatted) === 'object') {
-          // case of <optgroup>
-          valueFormatted = formatInputOptions(valueFormatted);
-        }
-        result.push([key, valueFormatted]);
-      });
-    }
-    return result;
-  };
-
-  /**
-   * @param {string} optionValue
-   * @param {SweetAlertInputValue} inputValue
-   * @returns {boolean}
-   */
-  var isSelected = function isSelected(optionValue, inputValue) {
-    return !!inputValue && inputValue.toString() === optionValue.toString();
-  };
-
-  var _this = undefined;
-
-  /**
-   * @param {SweetAlert} instance
-   */
-  var handleConfirmButtonClick = function handleConfirmButtonClick(instance) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableButtons();
-    if (innerParams.input) {
-      handleConfirmOrDenyWithInput(instance, 'confirm');
-    } else {
-      confirm(instance, true);
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   */
-  var handleDenyButtonClick = function handleDenyButtonClick(instance) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableButtons();
-    if (innerParams.returnInputValueOnDeny) {
-      handleConfirmOrDenyWithInput(instance, 'deny');
-    } else {
-      deny(instance, false);
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {Function} dismissWith
-   */
-  var handleCancelButtonClick = function handleCancelButtonClick(instance, dismissWith) {
-    instance.disableButtons();
-    dismissWith(DismissReason.cancel);
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {'confirm' | 'deny'} type
-   */
-  var handleConfirmOrDenyWithInput = function handleConfirmOrDenyWithInput(instance, type) {
-    var innerParams = privateProps.innerParams.get(instance);
-    if (!innerParams.input) {
-      error("The \"input\" parameter is needed to be set when using returnInputValueOn".concat(capitalizeFirstLetter(type)));
-      return;
-    }
-    var input = instance.getInput();
-    var inputValue = getInputValue(instance, innerParams);
-    if (innerParams.inputValidator) {
-      handleInputValidator(instance, inputValue, type);
-    } else if (input && !input.checkValidity()) {
-      instance.enableButtons();
-      instance.showValidationMessage(innerParams.validationMessage || input.validationMessage);
-    } else if (type === 'deny') {
-      deny(instance, inputValue);
-    } else {
-      confirm(instance, inputValue);
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {SweetAlertInputValue} inputValue
-   * @param {'confirm' | 'deny'} type
-   */
-  var handleInputValidator = function handleInputValidator(instance, inputValue, type) {
-    var innerParams = privateProps.innerParams.get(instance);
-    instance.disableInput();
-    var validationPromise = Promise.resolve().then(function () {
-      return asPromise(innerParams.inputValidator(inputValue, innerParams.validationMessage));
-    });
-    validationPromise.then(function (validationMessage) {
-      instance.enableButtons();
-      instance.enableInput();
-      if (validationMessage) {
-        instance.showValidationMessage(validationMessage);
-      } else if (type === 'deny') {
-        deny(instance, inputValue);
-      } else {
-        confirm(instance, inputValue);
-      }
-    });
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {any} value
-   */
-  var deny = function deny(instance, value) {
-    var innerParams = privateProps.innerParams.get(instance || _this);
-    if (innerParams.showLoaderOnDeny) {
-      showLoading(getDenyButton());
-    }
-    if (innerParams.preDeny) {
-      instance.isAwaitingPromise = true; // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preDeny's promise is received
-      var preDenyPromise = Promise.resolve().then(function () {
-        return asPromise(innerParams.preDeny(value, innerParams.validationMessage));
-      });
-      preDenyPromise.then(function (preDenyValue) {
-        if (preDenyValue === false) {
-          instance.hideLoading();
-          handleAwaitingPromise(instance);
-        } else {
-          instance.close({
-            isDenied: true,
-            value: typeof preDenyValue === 'undefined' ? value : preDenyValue
-          });
-        }
-      })["catch"](function (error) {
-        return rejectWith(instance || _this, error);
-      });
-    } else {
-      instance.close({
-        isDenied: true,
-        value: value
-      });
-    }
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {any} value
-   */
-  var succeedWith = function succeedWith(instance, value) {
-    instance.close({
-      isConfirmed: true,
-      value: value
-    });
-  };
-
-  /**
-   *
-   * @param {SweetAlert} instance
-   * @param {string} error
-   */
-  var rejectWith = function rejectWith(instance, error) {
-    instance.rejectPromise(error);
-  };
-
-  /**
-   *
-   * @param {SweetAlert} instance
-   * @param {any} value
-   */
-  var confirm = function confirm(instance, value) {
-    var innerParams = privateProps.innerParams.get(instance || _this);
-    if (innerParams.showLoaderOnConfirm) {
-      showLoading();
-    }
-    if (innerParams.preConfirm) {
-      instance.resetValidationMessage();
-      instance.isAwaitingPromise = true; // Flagging the instance as awaiting a promise so it's own promise's reject/resolve methods doesn't get destroyed until the result from this preConfirm's promise is received
-      var preConfirmPromise = Promise.resolve().then(function () {
-        return asPromise(innerParams.preConfirm(value, innerParams.validationMessage));
-      });
-      preConfirmPromise.then(function (preConfirmValue) {
-        if (isVisible$1(getValidationMessage()) || preConfirmValue === false) {
-          instance.hideLoading();
-          handleAwaitingPromise(instance);
-        } else {
-          succeedWith(instance, typeof preConfirmValue === 'undefined' ? value : preConfirmValue);
-        }
-      })["catch"](function (error) {
-        return rejectWith(instance || _this, error);
-      });
-    } else {
-      succeedWith(instance, value);
-    }
-  };
-
-  /**
-   * Hides loader and shows back the button which was hidden by .showLoading()
-   */
-  function hideLoading() {
-    // do nothing if popup is closed
-    var innerParams = privateProps.innerParams.get(this);
-    if (!innerParams) {
-      return;
-    }
-    var domCache = privateProps.domCache.get(this);
-    hide(domCache.loader);
-    if (isToast()) {
-      if (innerParams.icon) {
-        show(getIcon());
-      }
-    } else {
-      showRelatedButton(domCache);
-    }
-    removeClass([domCache.popup, domCache.actions], swalClasses.loading);
-    domCache.popup.removeAttribute('aria-busy');
-    domCache.popup.removeAttribute('data-loading');
-    domCache.confirmButton.disabled = false;
-    domCache.denyButton.disabled = false;
-    domCache.cancelButton.disabled = false;
-  }
-  var showRelatedButton = function showRelatedButton(domCache) {
-    var buttonToReplace = domCache.popup.getElementsByClassName(domCache.loader.getAttribute('data-button-to-replace'));
-    if (buttonToReplace.length) {
-      show(buttonToReplace[0], 'inline-block');
-    } else if (allButtonsAreHidden()) {
-      hide(domCache.actions);
-    }
-  };
-
-  /**
-   * Gets the input DOM node, this method works with input parameter.
-   *
-   * @returns {HTMLInputElement | null}
-   */
-  function getInput() {
-    var innerParams = privateProps.innerParams.get(this);
-    var domCache = privateProps.domCache.get(this);
-    if (!domCache) {
-      return null;
-    }
-    return getInput$1(domCache.popup, innerParams.input);
-  }
-
-  /**
-   * @param {SweetAlert} instance
-   * @param {string[]} buttons
-   * @param {boolean} disabled
-   */
-  function setButtonsDisabled(instance, buttons, disabled) {
-    var domCache = privateProps.domCache.get(instance);
-    buttons.forEach(function (button) {
-      domCache[button].disabled = disabled;
-    });
-  }
-
-  /**
-   * @param {HTMLInputElement | null} input
-   * @param {boolean} disabled
-   */
-  function setInputDisabled(input, disabled) {
-    var popup = getPopup();
-    if (!popup || !input) {
-      return;
-    }
-    if (input.type === 'radio') {
-      /** @type {NodeListOf<HTMLInputElement>} */
-      var radios = popup.querySelectorAll("[name=\"".concat(swalClasses.radio, "\"]"));
-      for (var i = 0; i < radios.length; i++) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         radios[i].disabled = disabled;
       }
     } else {
@@ -59673,7 +56640,6 @@ module.exports = function (list, options) {
     }
   }
 
-<<<<<<< HEAD
   function enableButtons() {
     setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], false);
   }
@@ -59683,41 +56649,10 @@ module.exports = function (list, options) {
   function enableInput() {
     setInputDisabled(this.getInput(), false);
   }
-=======
-  /**
-   * Enable all the buttons
-   * @this {SweetAlert}
-   */
-  function enableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], false);
-  }
-
-  /**
-   * Disable all the buttons
-   * @this {SweetAlert}
-   */
-  function disableButtons() {
-    setButtonsDisabled(this, ['confirmButton', 'denyButton', 'cancelButton'], true);
-  }
-
-  /**
-   * Enable the input field
-   * @this {SweetAlert}
-   */
-  function enableInput() {
-    setInputDisabled(this.getInput(), false);
-  }
-
-  /**
-   * Disable the input field
-   * @this {SweetAlert}
-   */
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   function disableInput() {
     setInputDisabled(this.getInput(), true);
   }
 
-<<<<<<< HEAD
   function showValidationMessage(error) {
     const domCache = privateProps.domCache.get(this);
     const params = privateProps.innerParams.get(this);
@@ -59733,31 +56668,10 @@ module.exports = function (list, options) {
 
     if (input) {
       input.setAttribute('aria-invalid', true);
-=======
-  /**
-   * Show block with validation message
-   *
-   * @param {string} error
-   * @this {SweetAlert}
-   */
-  function showValidationMessage(error) {
-    var domCache = privateProps.domCache.get(this);
-    var params = privateProps.innerParams.get(this);
-    setInnerHtml(domCache.validationMessage, error);
-    domCache.validationMessage.className = swalClasses['validation-message'];
-    if (params.customClass && params.customClass.validationMessage) {
-      addClass(domCache.validationMessage, params.customClass.validationMessage);
-    }
-    show(domCache.validationMessage);
-    var input = this.getInput();
-    if (input) {
-      input.setAttribute('aria-invalid', 'true');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       input.setAttribute('aria-describedby', swalClasses['validation-message']);
       focusInput(input);
       addClass(input, swalClasses.inputerror);
     }
-<<<<<<< HEAD
   } // Hide block with validation message
 
   function resetValidationMessage$1() {
@@ -59769,21 +56683,6 @@ module.exports = function (list, options) {
 
     const input = this.getInput();
 
-=======
-  }
-
-  /**
-   * Hide block with validation message
-   *
-   * @this {SweetAlert}
-   */
-  function resetValidationMessage() {
-    var domCache = privateProps.domCache.get(this);
-    if (domCache.validationMessage) {
-      hide(domCache.validationMessage);
-    }
-    var input = this.getInput();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (input) {
       input.removeAttribute('aria-invalid');
       input.removeAttribute('aria-describedby');
@@ -59791,16 +56690,12 @@ module.exports = function (list, options) {
     }
   }
 
-<<<<<<< HEAD
   function getProgressSteps$1() {
     const domCache = privateProps.domCache.get(this);
     return domCache.progressSteps;
   }
 
   const defaultParams = {
-=======
-  var defaultParams = {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     title: '',
     titleText: '',
     text: '',
@@ -59811,10 +56706,6 @@ module.exports = function (list, options) {
     iconHtml: undefined,
     template: undefined,
     toast: false,
-<<<<<<< HEAD
-=======
-    animation: true,
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     showClass: {
       popup: 'swal2-show',
       backdrop: 'swal2-backdrop-show',
@@ -59875,10 +56766,6 @@ module.exports = function (list, options) {
     inputLabel: '',
     inputValue: '',
     inputOptions: {},
-<<<<<<< HEAD
-=======
-    inputAutoFocus: true,
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     inputAutoTrim: true,
     inputAttributes: {},
     inputValidator: undefined,
@@ -59897,59 +56784,35 @@ module.exports = function (list, options) {
     didDestroy: undefined,
     scrollbarPadding: true
   };
-<<<<<<< HEAD
   const updatableParams = ['allowEscapeKey', 'allowOutsideClick', 'background', 'buttonsStyling', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonText', 'closeButtonAriaLabel', 'closeButtonHtml', 'color', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonText', 'currentProgressStep', 'customClass', 'denyButtonAriaLabel', 'denyButtonColor', 'denyButtonText', 'didClose', 'didDestroy', 'footer', 'hideClass', 'html', 'icon', 'iconColor', 'iconHtml', 'imageAlt', 'imageHeight', 'imageUrl', 'imageWidth', 'preConfirm', 'preDeny', 'progressSteps', 'returnFocus', 'reverseButtons', 'showCancelButton', 'showCloseButton', 'showConfirmButton', 'showDenyButton', 'text', 'title', 'titleText', 'willClose'];
   const deprecatedParams = {};
   const toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusDeny', 'focusCancel', 'returnFocus', 'heightAuto', 'keydownListenerCapture'];
-=======
-  var updatableParams = ['allowEscapeKey', 'allowOutsideClick', 'background', 'buttonsStyling', 'cancelButtonAriaLabel', 'cancelButtonColor', 'cancelButtonText', 'closeButtonAriaLabel', 'closeButtonHtml', 'color', 'confirmButtonAriaLabel', 'confirmButtonColor', 'confirmButtonText', 'currentProgressStep', 'customClass', 'denyButtonAriaLabel', 'denyButtonColor', 'denyButtonText', 'didClose', 'didDestroy', 'footer', 'hideClass', 'html', 'icon', 'iconColor', 'iconHtml', 'imageAlt', 'imageHeight', 'imageUrl', 'imageWidth', 'preConfirm', 'preDeny', 'progressSteps', 'returnFocus', 'reverseButtons', 'showCancelButton', 'showCloseButton', 'showConfirmButton', 'showDenyButton', 'text', 'title', 'titleText', 'willClose'];
-
-  /** @type {Record<string, string>} */
-  var deprecatedParams = {};
-  var toastIncompatibleParams = ['allowOutsideClick', 'allowEnterKey', 'backdrop', 'focusConfirm', 'focusDeny', 'focusCancel', 'returnFocus', 'heightAuto', 'keydownListenerCapture'];
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Is valid parameter
    *
    * @param {string} paramName
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
   const isValidParameter = paramName => {
     return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
   };
-=======
-  var isValidParameter = function isValidParameter(paramName) {
-    return Object.prototype.hasOwnProperty.call(defaultParams, paramName);
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Is valid parameter for Swal.update() method
    *
    * @param {string} paramName
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
   const isUpdatableParameter = paramName => {
     return updatableParams.indexOf(paramName) !== -1;
   };
-=======
-  var isUpdatableParameter = function isUpdatableParameter(paramName) {
-    return updatableParams.indexOf(paramName) !== -1;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Is deprecated parameter
    *
    * @param {string} paramName
    * @returns {string | undefined}
    */
-<<<<<<< HEAD
 
   const isDeprecatedParameter = paramName => {
     return deprecatedParams[paramName];
@@ -59959,39 +56822,20 @@ module.exports = function (list, options) {
    */
 
   const checkIfParamIsValid = param => {
-=======
-  var isDeprecatedParameter = function isDeprecatedParameter(paramName) {
-    return deprecatedParams[paramName];
-  };
-
-  /**
-   * @param {string} param
-   */
-  var checkIfParamIsValid = function checkIfParamIsValid(param) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!isValidParameter(param)) {
       warn("Unknown parameter \"".concat(param, "\""));
     }
   };
-<<<<<<< HEAD
   /**
    * @param {string} param
    */
 
 
   const checkIfToastParamIsValid = param => {
-=======
-
-  /**
-   * @param {string} param
-   */
-  var checkIfToastParamIsValid = function checkIfToastParamIsValid(param) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (toastIncompatibleParams.includes(param)) {
       warn("The parameter \"".concat(param, "\" is incompatible with toasts"));
     }
   };
-<<<<<<< HEAD
   /**
    * @param {string} param
    */
@@ -60002,25 +56846,11 @@ module.exports = function (list, options) {
       warnAboutDeprecation(param, isDeprecatedParameter(param));
     }
   };
-=======
-
-  /**
-   * @param {string} param
-   */
-  var checkIfParamIsDeprecated = function checkIfParamIsDeprecated(param) {
-    var isDeprecated = isDeprecatedParameter(param);
-    if (isDeprecated) {
-      warnAboutDeprecation(param, isDeprecated);
-    }
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Show relevant warnings for given params
    *
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const showWarningsForParams = params => {
@@ -60035,24 +56865,12 @@ module.exports = function (list, options) {
         checkIfToastParamIsValid(param);
       }
 
-=======
-  var showWarningsForParams = function showWarningsForParams(params) {
-    if (params.backdrop === false && params.allowOutsideClick) {
-      warn('"allowOutsideClick" parameter requires `backdrop` parameter to be set to `true`');
-    }
-    for (var param in params) {
-      checkIfParamIsValid(param);
-      if (params.toast) {
-        checkIfToastParamIsValid(param);
-      }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       checkIfParamIsDeprecated(param);
     }
   };
 
   /**
    * Updates popup parameters.
-<<<<<<< HEAD
    */
 
   function update(params) {
@@ -60065,20 +56883,6 @@ module.exports = function (list, options) {
 
     const validUpdatableParams = filterValidParams(params);
     const updatedParams = Object.assign({}, innerParams, validUpdatableParams);
-=======
-   *
-   * @param {SweetAlertOptions} params
-   */
-  function update(params) {
-    var popup = getPopup();
-    var innerParams = privateProps.innerParams.get(this);
-    if (!popup || hasClass(popup, innerParams.hideClass.popup)) {
-      warn("You're trying to update the closed or closing popup, that won't work. Use the update() method in preConfirm parameter or show a new popup.");
-      return;
-    }
-    var validUpdatableParams = filterValidParams(params);
-    var updatedParams = Object.assign({}, innerParams, validUpdatableParams);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     render(this, updatedParams);
     privateProps.innerParams.set(this, updatedParams);
     Object.defineProperties(this, {
@@ -60090,19 +56894,9 @@ module.exports = function (list, options) {
     });
   }
 
-<<<<<<< HEAD
   const filterValidParams = params => {
     const validUpdatableParams = {};
     Object.keys(params).forEach(param => {
-=======
-  /**
-   * @param {SweetAlertOptions} params
-   * @returns {SweetAlertOptions}
-   */
-  var filterValidParams = function filterValidParams(params) {
-    var validUpdatableParams = {};
-    Object.keys(params).forEach(function (param) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (isUpdatableParameter(param)) {
         validUpdatableParams[param] = params[param];
       } else {
@@ -60112,7 +56906,6 @@ module.exports = function (list, options) {
     return validUpdatableParams;
   };
 
-<<<<<<< HEAD
   function _destroy() {
     const domCache = privateProps.domCache.get(this);
     const innerParams = privateProps.innerParams.get(this);
@@ -60124,25 +56917,10 @@ module.exports = function (list, options) {
     } // Check if there is another Swal closing
 
 
-=======
-  /**
-   * Dispose the current SweetAlert2 instance
-   */
-  function _destroy() {
-    var domCache = privateProps.domCache.get(this);
-    var innerParams = privateProps.innerParams.get(this);
-    if (!innerParams) {
-      disposeWeakMaps(this); // The WeakMaps might have been partly destroyed, we must recall it to dispose any remaining WeakMaps #2335
-      return; // This instance has already been destroyed
-    }
-
-    // Check if there is another Swal closing
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (domCache.popup && globalState.swalCloseEventFinishedCallback) {
       globalState.swalCloseEventFinishedCallback();
       delete globalState.swalCloseEventFinishedCallback;
     }
-<<<<<<< HEAD
 
     if (typeof innerParams.didDestroy === 'function') {
       innerParams.didDestroy();
@@ -60726,143 +57504,6 @@ module.exports = function (list, options) {
         domCache.container.onmouseup = undefined; // We only check if the mouseup target is the container because usually it doesn't
         // have any other direct children aside of the popup
 
-=======
-    if (typeof innerParams.didDestroy === 'function') {
-      innerParams.didDestroy();
-    }
-    disposeSwal(this);
-  }
-
-  /**
-   * @param {SweetAlert} instance
-   */
-  var disposeSwal = function disposeSwal(instance) {
-    disposeWeakMaps(instance);
-    // Unset this.params so GC will dispose it (#1569)
-    delete instance.params;
-    // Unset globalState props so GC will dispose globalState (#1569)
-    delete globalState.keydownHandler;
-    delete globalState.keydownTarget;
-    // Unset currentInstance
-    delete globalState.currentInstance;
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   */
-  var disposeWeakMaps = function disposeWeakMaps(instance) {
-    // If the current instance is awaiting a promise result, we keep the privateMethods to call them once the promise result is retrieved #2335
-    if (instance.isAwaitingPromise) {
-      unsetWeakMaps(privateProps, instance);
-      instance.isAwaitingPromise = true;
-    } else {
-      unsetWeakMaps(privateMethods, instance);
-      unsetWeakMaps(privateProps, instance);
-      delete instance.isAwaitingPromise;
-      // Unset instance methods
-      delete instance.disableButtons;
-      delete instance.enableButtons;
-      delete instance.getInput;
-      delete instance.disableInput;
-      delete instance.enableInput;
-      delete instance.hideLoading;
-      delete instance.disableLoading;
-      delete instance.showValidationMessage;
-      delete instance.resetValidationMessage;
-      delete instance.close;
-      delete instance.closePopup;
-      delete instance.closeModal;
-      delete instance.closeToast;
-      delete instance.rejectPromise;
-      delete instance.update;
-      delete instance._destroy;
-    }
-  };
-
-  /**
-   * @param {object} obj
-   * @param {SweetAlert} instance
-   */
-  var unsetWeakMaps = function unsetWeakMaps(obj, instance) {
-    for (var i in obj) {
-      obj[i]["delete"](instance);
-    }
-  };
-
-  var instanceMethods = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    _destroy: _destroy,
-    close: close,
-    closeModal: close,
-    closePopup: close,
-    closeToast: close,
-    disableButtons: disableButtons,
-    disableInput: disableInput,
-    disableLoading: hideLoading,
-    enableButtons: enableButtons,
-    enableInput: enableInput,
-    getInput: getInput,
-    handleAwaitingPromise: handleAwaitingPromise,
-    hideLoading: hideLoading,
-    rejectPromise: rejectPromise,
-    resetValidationMessage: resetValidationMessage,
-    showValidationMessage: showValidationMessage,
-    update: update
-  });
-
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @param {DomCache} domCache
-   * @param {Function} dismissWith
-   */
-  var handlePopupClick = function handlePopupClick(innerParams, domCache, dismissWith) {
-    if (innerParams.toast) {
-      handleToastClick(innerParams, domCache, dismissWith);
-    } else {
-      // Ignore click events that had mousedown on the popup but mouseup on the container
-      // This can happen when the user drags a slider
-      handleModalMousedown(domCache);
-
-      // Ignore click events that had mousedown on the container but mouseup on the popup
-      handleContainerMousedown(domCache);
-      handleModalClick(innerParams, domCache, dismissWith);
-    }
-  };
-
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @param {DomCache} domCache
-   * @param {Function} dismissWith
-   */
-  var handleToastClick = function handleToastClick(innerParams, domCache, dismissWith) {
-    // Closing toast by internal click
-    domCache.popup.onclick = function () {
-      if (innerParams && (isAnyButtonShown(innerParams) || innerParams.timer || innerParams.input)) {
-        return;
-      }
-      dismissWith(DismissReason.close);
-    };
-  };
-
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @returns {boolean}
-   */
-  var isAnyButtonShown = function isAnyButtonShown(innerParams) {
-    return !!(innerParams.showConfirmButton || innerParams.showDenyButton || innerParams.showCancelButton || innerParams.showCloseButton);
-  };
-  var ignoreOutsideClick = false;
-
-  /**
-   * @param {DomCache} domCache
-   */
-  var handleModalMousedown = function handleModalMousedown(domCache) {
-    domCache.popup.onmousedown = function () {
-      domCache.container.onmouseup = function (e) {
-        domCache.container.onmouseup = function () {};
-        // We only check if the mouseup target is the container because usually it doesn't
-        // have any other direct children aside of the popup
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         if (e.target === domCache.container) {
           ignoreOutsideClick = true;
         }
@@ -60870,63 +57511,33 @@ module.exports = function (list, options) {
     };
   };
 
-<<<<<<< HEAD
   const handleContainerMousedown = domCache => {
     domCache.container.onmousedown = () => {
       domCache.popup.onmouseup = function (e) {
         domCache.popup.onmouseup = undefined; // We also need to check if the mouseup target is a child of the popup
 
         if (e.target === domCache.popup || domCache.popup.contains(e.target)) {
-=======
-  /**
-   * @param {DomCache} domCache
-   */
-  var handleContainerMousedown = function handleContainerMousedown(domCache) {
-    domCache.container.onmousedown = function (e) {
-      // prevent the modal text from being selected on double click on the container (allowOutsideClick: false)
-      if (e.target === domCache.container) {
-        e.preventDefault();
-      }
-      domCache.popup.onmouseup = function (e) {
-        domCache.popup.onmouseup = function () {};
-        // We also need to check if the mouseup target is a child of the popup
-        if (e.target === domCache.popup || e.target instanceof HTMLElement && domCache.popup.contains(e.target)) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
           ignoreOutsideClick = true;
         }
       };
     };
   };
 
-<<<<<<< HEAD
   const handleModalClick = (instance, domCache, dismissWith) => {
     domCache.container.onclick = e => {
       const innerParams = privateProps.innerParams.get(instance);
 
-=======
-  /**
-   * @param {SweetAlertOptions} innerParams
-   * @param {DomCache} domCache
-   * @param {Function} dismissWith
-   */
-  var handleModalClick = function handleModalClick(innerParams, domCache, dismissWith) {
-    domCache.container.onclick = function (e) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (ignoreOutsideClick) {
         ignoreOutsideClick = false;
         return;
       }
-<<<<<<< HEAD
 
-=======
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (e.target === domCache.container && callIfFunction(innerParams.allowOutsideClick)) {
         dismissWith(DismissReason.backdrop);
       }
     };
   };
 
-<<<<<<< HEAD
   const isJqueryElement = elem => typeof elem === 'object' && elem.jquery;
 
   const isElement = elem => elem instanceof Element || isJqueryElement(elem);
@@ -60959,43 +57570,6 @@ module.exports = function (list, options) {
     }
 
     return new Swal(...args);
-=======
-  var isJqueryElement = function isJqueryElement(elem) {
-    return _typeof(elem) === 'object' && elem.jquery;
-  };
-  var isElement = function isElement(elem) {
-    return elem instanceof Element || isJqueryElement(elem);
-  };
-  var argsToParams = function argsToParams(args) {
-    var params = {};
-    if (_typeof(args[0]) === 'object' && !isElement(args[0])) {
-      Object.assign(params, args[0]);
-    } else {
-      ['title', 'html', 'icon'].forEach(function (name, index) {
-        var arg = args[index];
-        if (typeof arg === 'string' || isElement(arg)) {
-          params[name] = arg;
-        } else if (arg !== undefined) {
-          error("Unexpected type of ".concat(name, "! Expected \"string\" or \"Element\", got ").concat(_typeof(arg)));
-        }
-      });
-    }
-    return params;
-  };
-
-  /**
-   * Main method to create a new SweetAlert2 popup
-   *
-   * @param  {...SweetAlertOptions} args
-   * @returns {Promise<SweetAlertResult>}
-   */
-  function fire() {
-    var Swal = this; // eslint-disable-line @typescript-eslint/no-this-alias
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-    return _construct(Swal, args);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   }
 
   /**
@@ -61014,7 +57588,6 @@ module.exports = function (list, options) {
    * const {value: firstName} = await TextPrompt('What is your first name?')
    * const {value: lastName} = await TextPrompt('What is your last name?')
    *
-<<<<<<< HEAD
    * @param mixinParams
    */
   function mixin(mixinParams) {
@@ -61025,32 +57598,12 @@ module.exports = function (list, options) {
 
     }
 
-=======
-   * @param {SweetAlertOptions} mixinParams
-   * @returns {SweetAlert}
-   */
-  function mixin(mixinParams) {
-    var MixinSwal = /*#__PURE__*/function (_this) {
-      function MixinSwal() {
-        _classCallCheck(this, MixinSwal);
-        return _callSuper(this, MixinSwal, arguments);
-      }
-      _inherits(MixinSwal, _this);
-      return _createClass(MixinSwal, [{
-        key: "_main",
-        value: function _main(params, priorityMixinParams) {
-          return _get(_getPrototypeOf(MixinSwal.prototype), "_main", this).call(this, params, Object.assign({}, mixinParams, priorityMixinParams));
-        }
-      }]);
-    }(this); // @ts-ignore
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     return MixinSwal;
   }
 
   /**
    * If `timer` parameter is set, returns number of milliseconds of timer remained.
    * Otherwise, returns undefined.
-<<<<<<< HEAD
    */
 
   const getTimerLeft = () => {
@@ -61062,28 +57615,11 @@ module.exports = function (list, options) {
    */
 
   const stopTimer = () => {
-=======
-   *
-   * @returns {number | undefined}
-   */
-  var getTimerLeft = function getTimerLeft() {
-    return globalState.timeout && globalState.timeout.getTimerLeft();
-  };
-
-  /**
-   * Stop timer. Returns number of milliseconds of timer remained.
-   * If `timer` parameter isn't set, returns undefined.
-   *
-   * @returns {number | undefined}
-   */
-  var stopTimer = function stopTimer() {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (globalState.timeout) {
       stopTimerProgressBar();
       return globalState.timeout.stop();
     }
   };
-<<<<<<< HEAD
   /**
    * Resume timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
@@ -61092,23 +57628,10 @@ module.exports = function (list, options) {
   const resumeTimer = () => {
     if (globalState.timeout) {
       const remaining = globalState.timeout.start();
-=======
-
-  /**
-   * Resume timer. Returns number of milliseconds of timer remained.
-   * If `timer` parameter isn't set, returns undefined.
-   *
-   * @returns {number | undefined}
-   */
-  var resumeTimer = function resumeTimer() {
-    if (globalState.timeout) {
-      var remaining = globalState.timeout.start();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       animateTimerProgressBar(remaining);
       return remaining;
     }
   };
-<<<<<<< HEAD
   /**
    * Resume timer. Returns number of milliseconds of timer remained.
    * If `timer` parameter isn't set, returns undefined.
@@ -61126,43 +57649,14 @@ module.exports = function (list, options) {
   const increaseTimer = n => {
     if (globalState.timeout) {
       const remaining = globalState.timeout.increase(n);
-=======
-
-  /**
-   * Resume timer. Returns number of milliseconds of timer remained.
-   * If `timer` parameter isn't set, returns undefined.
-   *
-   * @returns {number | undefined}
-   */
-  var toggleTimer = function toggleTimer() {
-    var timer = globalState.timeout;
-    return timer && (timer.running ? stopTimer() : resumeTimer());
-  };
-
-  /**
-   * Increase timer. Returns number of milliseconds of an updated timer.
-   * If `timer` parameter isn't set, returns undefined.
-   *
-   * @param {number} ms
-   * @returns {number | undefined}
-   */
-  var increaseTimer = function increaseTimer(ms) {
-    if (globalState.timeout) {
-      var remaining = globalState.timeout.increase(ms);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       animateTimerProgressBar(remaining, true);
       return remaining;
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Check if timer is running. Returns true if timer is running
    * or false if timer is paused or stopped.
    * If `timer` parameter isn't set, returns undefined
-<<<<<<< HEAD
    */
 
   const isTimerRunning = () => {
@@ -61175,30 +57669,11 @@ module.exports = function (list, options) {
     let attr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'data-swal-template';
     clickHandlers[attr] = this;
 
-=======
-   *
-   * @returns {boolean}
-   */
-  var isTimerRunning = function isTimerRunning() {
-    return !!(globalState.timeout && globalState.timeout.isRunning());
-  };
-
-  var bodyClickListenerAdded = false;
-  var clickHandlers = {};
-
-  /**
-   * @param {string} attr
-   */
-  function bindClickHandler() {
-    var attr = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'data-swal-template';
-    clickHandlers[attr] = this;
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!bodyClickListenerAdded) {
       document.body.addEventListener('click', bodyClickListener);
       bodyClickListenerAdded = true;
     }
   }
-<<<<<<< HEAD
 
   const bodyClickListener = event => {
     for (let el = event.target; el && el !== document; el = el.parentNode) {
@@ -61208,15 +57683,6 @@ module.exports = function (list, options) {
         if (template) {
           clickHandlers[attr].fire({
             template
-=======
-  var bodyClickListener = function bodyClickListener(event) {
-    for (var el = event.target; el && el !== document; el = el.parentNode) {
-      for (var attr in clickHandlers) {
-        var template = el.getAttribute(attr);
-        if (template) {
-          clickHandlers[attr].fire({
-            template: template
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
           });
           return;
         }
@@ -61224,7 +57690,6 @@ module.exports = function (list, options) {
     }
   };
 
-<<<<<<< HEAD
 
 
   var staticMethods = /*#__PURE__*/Object.freeze({
@@ -61268,69 +57733,17 @@ module.exports = function (list, options) {
   });
 
   class Timer {
-=======
-  var staticMethods = /*#__PURE__*/Object.freeze({
-    __proto__: null,
-    argsToParams: argsToParams,
-    bindClickHandler: bindClickHandler,
-    clickCancel: clickCancel,
-    clickConfirm: clickConfirm,
-    clickDeny: clickDeny,
-    enableLoading: showLoading,
-    fire: fire,
-    getActions: getActions,
-    getCancelButton: getCancelButton,
-    getCloseButton: getCloseButton,
-    getConfirmButton: getConfirmButton,
-    getContainer: getContainer,
-    getDenyButton: getDenyButton,
-    getFocusableElements: getFocusableElements,
-    getFooter: getFooter,
-    getHtmlContainer: getHtmlContainer,
-    getIcon: getIcon,
-    getIconContent: getIconContent,
-    getImage: getImage,
-    getInputLabel: getInputLabel,
-    getLoader: getLoader,
-    getPopup: getPopup,
-    getProgressSteps: getProgressSteps,
-    getTimerLeft: getTimerLeft,
-    getTimerProgressBar: getTimerProgressBar,
-    getTitle: getTitle,
-    getValidationMessage: getValidationMessage,
-    increaseTimer: increaseTimer,
-    isDeprecatedParameter: isDeprecatedParameter,
-    isLoading: isLoading,
-    isTimerRunning: isTimerRunning,
-    isUpdatableParameter: isUpdatableParameter,
-    isValidParameter: isValidParameter,
-    isVisible: isVisible,
-    mixin: mixin,
-    resumeTimer: resumeTimer,
-    showLoading: showLoading,
-    stopTimer: stopTimer,
-    toggleTimer: toggleTimer
-  });
-
-  var Timer = /*#__PURE__*/function () {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     /**
      * @param {Function} callback
      * @param {number} delay
      */
-<<<<<<< HEAD
     constructor(callback, delay) {
-=======
-    function Timer(callback, delay) {
-      _classCallCheck(this, Timer);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       this.callback = callback;
       this.remaining = delay;
       this.running = false;
       this.start();
     }
 
-<<<<<<< HEAD
     start() {
       if (!this.running) {
         this.running = true;
@@ -61383,100 +57796,19 @@ module.exports = function (list, options) {
   }
 
   const swalStringParams = ['swal-title', 'swal-html', 'swal-footer'];
-=======
-    /**
-     * @returns {number}
-     */
-    return _createClass(Timer, [{
-      key: "start",
-      value: function start() {
-        if (!this.running) {
-          this.running = true;
-          this.started = new Date();
-          this.id = setTimeout(this.callback, this.remaining);
-        }
-        return this.remaining;
-      }
-
-      /**
-       * @returns {number}
-       */
-    }, {
-      key: "stop",
-      value: function stop() {
-        if (this.started && this.running) {
-          this.running = false;
-          clearTimeout(this.id);
-          this.remaining -= new Date().getTime() - this.started.getTime();
-        }
-        return this.remaining;
-      }
-
-      /**
-       * @param {number} n
-       * @returns {number}
-       */
-    }, {
-      key: "increase",
-      value: function increase(n) {
-        var running = this.running;
-        if (running) {
-          this.stop();
-        }
-        this.remaining += n;
-        if (running) {
-          this.start();
-        }
-        return this.remaining;
-      }
-
-      /**
-       * @returns {number}
-       */
-    }, {
-      key: "getTimerLeft",
-      value: function getTimerLeft() {
-        if (this.running) {
-          this.stop();
-          this.start();
-        }
-        return this.remaining;
-      }
-
-      /**
-       * @returns {boolean}
-       */
-    }, {
-      key: "isRunning",
-      value: function isRunning() {
-        return this.running;
-      }
-    }]);
-  }();
-
-  var swalStringParams = ['swal-title', 'swal-html', 'swal-footer'];
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {SweetAlertOptions} params
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
   const getTemplateParams = params => {
     /** @type {HTMLTemplateElement} */
     const template = typeof params.template === 'string' ? document.querySelector(params.template) : params.template;
 
-=======
-  var getTemplateParams = function getTemplateParams(params) {
-    /** @type {HTMLTemplateElement} */
-    var template = typeof params.template === 'string' ? document.querySelector(params.template) : params.template;
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!template) {
       return {};
     }
     /** @type {DocumentFragment} */
-<<<<<<< HEAD
 
 
     const templateContent = template.content;
@@ -61484,19 +57816,10 @@ module.exports = function (list, options) {
     const result = Object.assign(getSwalParams(templateContent), getSwalButtons(templateContent), getSwalImage(templateContent), getSwalIcon(templateContent), getSwalInput(templateContent), getSwalStringParams(templateContent, swalStringParams));
     return result;
   };
-=======
-    var templateContent = template.content;
-    showWarningsForElements(templateContent);
-    var result = Object.assign(getSwalParams(templateContent), getSwalFunctionParams(templateContent), getSwalButtons(templateContent), getSwalImage(templateContent), getSwalIcon(templateContent), getSwalInput(templateContent), getSwalStringParams(templateContent, swalStringParams));
-    return result;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
   const getSwalParams = templateContent => {
     const result = {};
@@ -61514,35 +57837,14 @@ module.exports = function (list, options) {
 
       if (typeof defaultParams[paramName] === 'object') {
         result[paramName] = JSON.parse(value);
-=======
-  var getSwalParams = function getSwalParams(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalParams = Array.from(templateContent.querySelectorAll('swal-param'));
-    swalParams.forEach(function (param) {
-      showWarningsForAttributes(param, ['name', 'value']);
-      var paramName = param.getAttribute('name');
-      var value = param.getAttribute('value');
-      if (typeof defaultParams[paramName] === 'boolean') {
-        result[paramName] = value !== 'false';
-      } else if (_typeof(defaultParams[paramName]) === 'object') {
-        result[paramName] = JSON.parse(value);
-      } else {
-        result[paramName] = value;
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       }
     });
     return result;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
 
   const getSwalButtons = templateContent => {
@@ -61560,43 +57862,12 @@ module.exports = function (list, options) {
         result["".concat(type, "ButtonColor")] = button.getAttribute('color');
       }
 
-=======
-  var getSwalFunctionParams = function getSwalFunctionParams(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalFunctions = Array.from(templateContent.querySelectorAll('swal-function-param'));
-    swalFunctions.forEach(function (param) {
-      var paramName = param.getAttribute('name');
-      var value = param.getAttribute('value');
-      result[paramName] = new Function("return ".concat(value))();
-    });
-    return result;
-  };
-
-  /**
-   * @param {DocumentFragment} templateContent
-   * @returns {SweetAlertOptions}
-   */
-  var getSwalButtons = function getSwalButtons(templateContent) {
-    var result = {};
-    /** @type {HTMLElement[]} */
-    var swalButtons = Array.from(templateContent.querySelectorAll('swal-button'));
-    swalButtons.forEach(function (button) {
-      showWarningsForAttributes(button, ['type', 'color', 'aria-label']);
-      var type = button.getAttribute('type');
-      result["".concat(type, "ButtonText")] = button.innerHTML;
-      result["show".concat(capitalizeFirstLetter(type), "Button")] = true;
-      if (button.hasAttribute('color')) {
-        result["".concat(type, "ButtonColor")] = button.getAttribute('color');
-      }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (button.hasAttribute('aria-label')) {
         result["".concat(type, "ButtonAriaLabel")] = button.getAttribute('aria-label');
       }
     });
     return result;
   };
-<<<<<<< HEAD
   /**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
@@ -61631,40 +57902,10 @@ module.exports = function (list, options) {
 
     return result;
   };
-=======
-
-  /**
-   * @param {DocumentFragment} templateContent
-   * @returns {Pick<SweetAlertOptions, 'imageUrl' | 'imageWidth' | 'imageHeight' | 'imageAlt'>}
-   */
-  var getSwalImage = function getSwalImage(templateContent) {
-    var result = {};
-    /** @type {HTMLElement | null} */
-    var image = templateContent.querySelector('swal-image');
-    if (image) {
-      showWarningsForAttributes(image, ['src', 'width', 'height', 'alt']);
-      if (image.hasAttribute('src')) {
-        result.imageUrl = image.getAttribute('src') || undefined;
-      }
-      if (image.hasAttribute('width')) {
-        result.imageWidth = image.getAttribute('width') || undefined;
-      }
-      if (image.hasAttribute('height')) {
-        result.imageHeight = image.getAttribute('height') || undefined;
-      }
-      if (image.hasAttribute('alt')) {
-        result.imageAlt = image.getAttribute('alt') || undefined;
-      }
-    }
-    return result;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
 
   const getSwalIcon = templateContent => {
@@ -61676,20 +57917,11 @@ module.exports = function (list, options) {
     if (icon) {
       showWarningsForAttributes(icon, ['type', 'color']);
 
-=======
-  var getSwalIcon = function getSwalIcon(templateContent) {
-    var result = {};
-    /** @type {HTMLElement} */
-    var icon = templateContent.querySelector('swal-icon');
-    if (icon) {
-      showWarningsForAttributes(icon, ['type', 'color']);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (icon.hasAttribute('type')) {
         /** @type {SweetAlertIcon} */
         // @ts-ignore
         result.icon = icon.getAttribute('type');
       }
-<<<<<<< HEAD
 
       if (icon.hasAttribute('color')) {
         result.iconColor = icon.getAttribute('color');
@@ -61700,21 +57932,10 @@ module.exports = function (list, options) {
 
     return result;
   };
-=======
-      if (icon.hasAttribute('color')) {
-        result.iconColor = icon.getAttribute('color');
-      }
-      result.iconHtml = icon.innerHTML;
-    }
-    return result;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DocumentFragment} templateContent
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
 
   const getSwalInput = templateContent => {
@@ -61723,17 +57944,10 @@ module.exports = function (list, options) {
 
     const input = templateContent.querySelector('swal-input');
 
-=======
-  var getSwalInput = function getSwalInput(templateContent) {
-    var result = {};
-    /** @type {HTMLElement} */
-    var input = templateContent.querySelector('swal-input');
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (input) {
       showWarningsForAttributes(input, ['type', 'label', 'placeholder', 'value']);
       /** @type {SweetAlertInput} */
       // @ts-ignore
-<<<<<<< HEAD
 
       result.input = input.getAttribute('type') || 'text';
 
@@ -61745,21 +57959,11 @@ module.exports = function (list, options) {
         result.inputPlaceholder = input.getAttribute('placeholder');
       }
 
-=======
-      result.input = input.getAttribute('type') || 'text';
-      if (input.hasAttribute('label')) {
-        result.inputLabel = input.getAttribute('label');
-      }
-      if (input.hasAttribute('placeholder')) {
-        result.inputPlaceholder = input.getAttribute('placeholder');
-      }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (input.hasAttribute('value')) {
         result.inputValue = input.getAttribute('value');
       }
     }
     /** @type {HTMLElement[]} */
-<<<<<<< HEAD
 
 
     const inputOptions = Array.from(templateContent.querySelectorAll('swal-input-option'));
@@ -61776,27 +57980,11 @@ module.exports = function (list, options) {
 
     return result;
   };
-=======
-    var inputOptions = Array.from(templateContent.querySelectorAll('swal-input-option'));
-    if (inputOptions.length) {
-      result.inputOptions = {};
-      inputOptions.forEach(function (option) {
-        showWarningsForAttributes(option, ['value']);
-        var optionValue = option.getAttribute('value');
-        var optionName = option.innerHTML;
-        result.inputOptions[optionValue] = optionName;
-      });
-    }
-    return result;
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DocumentFragment} templateContent
    * @param {string[]} paramNames
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
 
   const getSwalStringParams = (templateContent, paramNames) => {
@@ -61808,20 +57996,11 @@ module.exports = function (list, options) {
 
       const tag = templateContent.querySelector(paramName);
 
-=======
-  var getSwalStringParams = function getSwalStringParams(templateContent, paramNames) {
-    var result = {};
-    for (var i in paramNames) {
-      var paramName = paramNames[i];
-      /** @type {HTMLElement} */
-      var tag = templateContent.querySelector(paramName);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (tag) {
         showWarningsForAttributes(tag, []);
         result[paramName.replace(/^swal-/, '')] = tag.innerHTML.trim();
       }
     }
-<<<<<<< HEAD
 
     return result;
   };
@@ -61835,58 +58014,31 @@ module.exports = function (list, options) {
     Array.from(templateContent.children).forEach(el => {
       const tagName = el.tagName.toLowerCase();
 
-=======
-    return result;
-  };
-
-  /**
-   * @param {DocumentFragment} templateContent
-   */
-  var showWarningsForElements = function showWarningsForElements(templateContent) {
-    var allowedElements = swalStringParams.concat(['swal-param', 'swal-function-param', 'swal-button', 'swal-image', 'swal-icon', 'swal-input', 'swal-input-option']);
-    Array.from(templateContent.children).forEach(function (el) {
-      var tagName = el.tagName.toLowerCase();
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (!allowedElements.includes(tagName)) {
         warn("Unrecognized element <".concat(tagName, ">"));
       }
     });
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} el
    * @param {string[]} allowedAttributes
    */
-<<<<<<< HEAD
 
 
   const showWarningsForAttributes = (el, allowedAttributes) => {
     Array.from(el.attributes).forEach(attribute => {
-=======
-  var showWarningsForAttributes = function showWarningsForAttributes(el, allowedAttributes) {
-    Array.from(el.attributes).forEach(function (attribute) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       if (allowedAttributes.indexOf(attribute.name) === -1) {
         warn(["Unrecognized attribute \"".concat(attribute.name, "\" on <").concat(el.tagName.toLowerCase(), ">."), "".concat(allowedAttributes.length ? "Allowed attributes are: ".concat(allowedAttributes.join(', ')) : 'To set the value, use HTML within the element.')]);
       }
     });
   };
 
-<<<<<<< HEAD
   const SHOW_CLASS_TIMEOUT = 10;
-=======
-  var SHOW_CLASS_TIMEOUT = 10;
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Open popup, add necessary classes and styles, fix scrollbar
    *
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   const openPopup = params => {
     const container = getContainer();
@@ -61904,27 +58056,10 @@ module.exports = function (list, options) {
       setScrollingVisibility(container, popup);
     }, SHOW_CLASS_TIMEOUT);
 
-=======
-  var openPopup = function openPopup(params) {
-    var container = getContainer();
-    var popup = getPopup();
-    if (typeof params.willOpen === 'function') {
-      params.willOpen(popup);
-    }
-    var bodyStyles = window.getComputedStyle(document.body);
-    var initialBodyOverflow = bodyStyles.overflowY;
-    addClasses(container, popup, params);
-
-    // scrolling is 'hidden' until animation is done, after that 'auto'
-    setTimeout(function () {
-      setScrollingVisibility(container, popup);
-    }, SHOW_CLASS_TIMEOUT);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (isModal()) {
       fixScrollContainer(container, params.scrollbarPadding, initialBodyOverflow);
       setAriaHidden();
     }
-<<<<<<< HEAD
 
     if (!isToast() && !globalState.previousActiveElement) {
       globalState.previousActiveElement = document.activeElement;
@@ -61951,43 +58086,13 @@ module.exports = function (list, options) {
     popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
     container.style.overflowY = 'auto';
   };
-=======
-    if (!isToast() && !globalState.previousActiveElement) {
-      globalState.previousActiveElement = document.activeElement;
-    }
-    if (typeof params.didOpen === 'function') {
-      setTimeout(function () {
-        return params.didOpen(popup);
-      });
-    }
-    removeClass(container, swalClasses['no-transition']);
-  };
-
-  /**
-   * @param {AnimationEvent} event
-   */
-  var swalOpenAnimationFinished = function swalOpenAnimationFinished(event) {
-    var popup = getPopup();
-    if (event.target !== popup || !animationEndEvent) {
-      return;
-    }
-    var container = getContainer();
-    popup.removeEventListener(animationEndEvent, swalOpenAnimationFinished);
-    container.style.overflowY = 'auto';
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {HTMLElement} popup
    */
-<<<<<<< HEAD
 
 
   const setScrollingVisibility = (container, popup) => {
-=======
-  var setScrollingVisibility = function setScrollingVisibility(container, popup) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (animationEndEvent && hasCssAnimation(popup)) {
       container.style.overflowY = 'hidden';
       popup.addEventListener(animationEndEvent, swalOpenAnimationFinished);
@@ -61995,16 +58100,11 @@ module.exports = function (list, options) {
       container.style.overflowY = 'auto';
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {boolean} scrollbarPadding
    * @param {string} initialBodyOverflow
    */
-<<<<<<< HEAD
 
 
   const fixScrollContainer = (container, scrollbarPadding, initialBodyOverflow) => {
@@ -62019,26 +58119,11 @@ module.exports = function (list, options) {
       container.scrollTop = 0;
     });
   };
-=======
-  var fixScrollContainer = function fixScrollContainer(container, scrollbarPadding, initialBodyOverflow) {
-    iOSfix();
-    if (scrollbarPadding && initialBodyOverflow !== 'hidden') {
-      replaceScrollbarWithPadding(initialBodyOverflow);
-    }
-
-    // sweetalert2/issues/1247
-    setTimeout(function () {
-      container.scrollTop = 0;
-    });
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {HTMLElement} container
    * @param {HTMLElement} popup
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   const addClasses$1 = (container, popup, params) => {
@@ -62055,24 +58140,6 @@ module.exports = function (list, options) {
 
     addClass([document.documentElement, document.body], swalClasses.shown);
 
-=======
-  var addClasses = function addClasses(container, popup, params) {
-    addClass(container, params.showClass.backdrop);
-    if (params.animation) {
-      // this workaround with opacity is needed for https://github.com/sweetalert2/sweetalert2/issues/2059
-      popup.style.setProperty('opacity', '0', 'important');
-      show(popup, 'grid');
-      setTimeout(function () {
-        // Animate popup right after showing it
-        addClass(popup, params.showClass.popup);
-        // and remove the opacity workaround
-        popup.style.removeProperty('opacity');
-      }, SHOW_CLASS_TIMEOUT); // 10ms in order to fix #2062
-    } else {
-      show(popup, 'grid');
-    }
-    addClass([document.documentElement, document.body], swalClasses.shown);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (params.heightAuto && params.backdrop && !params.toast) {
       addClass([document.documentElement, document.body], swalClasses['height-auto']);
     }
@@ -62081,7 +58148,6 @@ module.exports = function (list, options) {
   var defaultInputValidators = {
     /**
      * @param {string} string
-<<<<<<< HEAD
      * @param {string} validationMessage
      * @returns {Promise<void | string>}
      */
@@ -62095,20 +58161,6 @@ module.exports = function (list, options) {
      * @returns {Promise<void | string>}
      */
     url: (string, validationMessage) => {
-=======
-     * @param {string} [validationMessage]
-     * @returns {Promise<string | void>}
-     */
-    email: function email(string, validationMessage) {
-      return /^[a-zA-Z0-9.+_'-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9-]+$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid email address');
-    },
-    /**
-     * @param {string} string
-     * @param {string} [validationMessage]
-     * @returns {Promise<string | void>}
-     */
-    url: function url(string, validationMessage) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       // taken from https://stackoverflow.com/a/3809435 with a small change from #1306 and #2013
       return /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-z]{2,63}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)$/.test(string) ? Promise.resolve() : Promise.resolve(validationMessage || 'Invalid URL');
     }
@@ -62117,7 +58169,6 @@ module.exports = function (list, options) {
   /**
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
   function setDefaultInputValidators(params) {
     // Use default `inputValidator` for supported input types if not provided
@@ -62134,24 +58185,6 @@ module.exports = function (list, options) {
    */
 
 
-=======
-  function setDefaultInputValidators(params) {
-    // Use default `inputValidator` for supported input types if not provided
-    if (params.inputValidator) {
-      return;
-    }
-    if (params.input === 'email') {
-      params.inputValidator = defaultInputValidators['email'];
-    }
-    if (params.input === 'url') {
-      params.inputValidator = defaultInputValidators['url'];
-    }
-  }
-
-  /**
-   * @param {SweetAlertOptions} params
-   */
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   function validateCustomTargetElement(params) {
     // Determine if the custom target element is valid
     if (!params.target || typeof params.target === 'string' && !document.querySelector(params.target) || typeof params.target !== 'string' && !params.target.appendChild) {
@@ -62159,16 +58192,11 @@ module.exports = function (list, options) {
       params.target = 'body';
     }
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * Set type, text and actions on popup
    *
    * @param {SweetAlertOptions} params
    */
-<<<<<<< HEAD
 
 
   function setParameters(params) {
@@ -62191,43 +58219,10 @@ module.exports = function (list, options) {
 
   class SweetAlert {
     constructor() {
-=======
-  function setParameters(params) {
-    setDefaultInputValidators(params);
-
-    // showLoaderOnConfirm && preConfirm
-    if (params.showLoaderOnConfirm && !params.preConfirm) {
-      warn('showLoaderOnConfirm is set to true, but preConfirm is not defined.\n' + 'showLoaderOnConfirm should be used together with preConfirm, see usage example:\n' + 'https://sweetalert2.github.io/#ajax-request');
-    }
-    validateCustomTargetElement(params);
-
-    // Replace newlines with <br> in title
-    if (typeof params.title === 'string') {
-      params.title = params.title.split('\n').join('<br />');
-    }
-    init(params);
-  }
-
-  /** @type {SweetAlert} */
-  var currentInstance;
-  var _promise = /*#__PURE__*/new WeakMap();
-  var SweetAlert = /*#__PURE__*/function () {
-    /**
-     * @param {...any} args
-     * @this {SweetAlert}
-     */
-    function SweetAlert() {
-      _classCallCheck(this, SweetAlert);
-      /**
-       * @type {Promise<SweetAlertResult>}
-       */
-      _classPrivateFieldInitSpec(this, _promise, void 0);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       // Prevent run in Node env
       if (typeof window === 'undefined') {
         return;
       }
-<<<<<<< HEAD
 
       currentInstance = this; // @ts-ignore
 
@@ -62295,81 +58290,10 @@ module.exports = function (list, options) {
   }
   /**
    * @param {SweetAlert2} instance
-=======
-      currentInstance = this;
-
-      // @ts-ignore
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      var outerParams = Object.freeze(this.constructor.argsToParams(args));
-
-      /** @type {Readonly<SweetAlertOptions>} */
-      this.params = outerParams;
-
-      /** @type {boolean} */
-      this.isAwaitingPromise = false;
-      _classPrivateFieldSet2(_promise, this, this._main(currentInstance.params));
-    }
-    return _createClass(SweetAlert, [{
-      key: "_main",
-      value: function _main(userParams) {
-        var mixinParams = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-        showWarningsForParams(Object.assign({}, mixinParams, userParams));
-        if (globalState.currentInstance) {
-          var swalPromiseResolve = privateMethods.swalPromiseResolve.get(globalState.currentInstance);
-          var isAwaitingPromise = globalState.currentInstance.isAwaitingPromise;
-          globalState.currentInstance._destroy();
-          if (!isAwaitingPromise) {
-            swalPromiseResolve({
-              isDismissed: true
-            });
-          }
-          if (isModal()) {
-            unsetAriaHidden();
-          }
-        }
-        globalState.currentInstance = currentInstance;
-        var innerParams = prepareParams(userParams, mixinParams);
-        setParameters(innerParams);
-        Object.freeze(innerParams);
-
-        // clear the previous timer
-        if (globalState.timeout) {
-          globalState.timeout.stop();
-          delete globalState.timeout;
-        }
-
-        // clear the restore focus timeout
-        clearTimeout(globalState.restoreFocusTimeout);
-        var domCache = populateDomCache(currentInstance);
-        render(currentInstance, innerParams);
-        privateProps.innerParams.set(currentInstance, innerParams);
-        return swalPromise(currentInstance, domCache, innerParams);
-      }
-
-      // `catch` cannot be the name of a module export, so we define our thenable methods here instead
-    }, {
-      key: "then",
-      value: function then(onFulfilled) {
-        return _classPrivateFieldGet2(_promise, this).then(onFulfilled);
-      }
-    }, {
-      key: "finally",
-      value: function _finally(onFinally) {
-        return _classPrivateFieldGet2(_promise, this)["finally"](onFinally);
-      }
-    }]);
-  }();
-
-  /**
-   * @param {SweetAlert} instance
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
    * @returns {Promise}
    */
-<<<<<<< HEAD
 
 
   const swalPromise = (instance, domCache, innerParams) => {
@@ -62415,57 +58339,15 @@ module.exports = function (list, options) {
       initFocus(domCache, innerParams); // Scroll container to top on open (#1247, #1946)
 
       setTimeout(() => {
-=======
-  var swalPromise = function swalPromise(instance, domCache, innerParams) {
-    return new Promise(function (resolve, reject) {
-      // functions to handle all closings/dismissals
-      /**
-       * @param {DismissReason} dismiss
-       */
-      var dismissWith = function dismissWith(dismiss) {
-        instance.close({
-          isDismissed: true,
-          dismiss: dismiss
-        });
-      };
-      privateMethods.swalPromiseResolve.set(instance, resolve);
-      privateMethods.swalPromiseReject.set(instance, reject);
-      domCache.confirmButton.onclick = function () {
-        handleConfirmButtonClick(instance);
-      };
-      domCache.denyButton.onclick = function () {
-        handleDenyButtonClick(instance);
-      };
-      domCache.cancelButton.onclick = function () {
-        handleCancelButtonClick(instance, dismissWith);
-      };
-      domCache.closeButton.onclick = function () {
-        dismissWith(DismissReason.close);
-      };
-      handlePopupClick(innerParams, domCache, dismissWith);
-      addKeydownHandler(globalState, innerParams, dismissWith);
-      handleInputOptionsAndValue(instance, innerParams);
-      openPopup(innerParams);
-      setupTimer(globalState, innerParams, dismissWith);
-      initFocus(domCache, innerParams);
-
-      // Scroll container to top on open (#1247, #1946)
-      setTimeout(function () {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         domCache.container.scrollTop = 0;
       });
     });
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {SweetAlertOptions} userParams
    * @param {SweetAlertOptions} mixinParams
    * @returns {SweetAlertOptions}
    */
-<<<<<<< HEAD
 
 
   const prepareParams = (userParams, mixinParams) => {
@@ -62484,28 +58366,6 @@ module.exports = function (list, options) {
 
   const populateDomCache = instance => {
     const domCache = {
-=======
-  var prepareParams = function prepareParams(userParams, mixinParams) {
-    var templateParams = getTemplateParams(userParams);
-    var params = Object.assign({}, defaultParams, mixinParams, templateParams, userParams); // precedence is described in #2131
-    params.showClass = Object.assign({}, defaultParams.showClass, params.showClass);
-    params.hideClass = Object.assign({}, defaultParams.hideClass, params.hideClass);
-    if (params.animation === false) {
-      params.showClass = {
-        backdrop: 'swal2-noanimation'
-      };
-      params.hideClass = {};
-    }
-    return params;
-  };
-
-  /**
-   * @param {SweetAlert} instance
-   * @returns {DomCache}
-   */
-  var populateDomCache = function populateDomCache(instance) {
-    var domCache = {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
       popup: getPopup(),
       container: getContainer(),
       actions: getActions(),
@@ -62520,16 +58380,11 @@ module.exports = function (list, options) {
     privateProps.domCache.set(instance, domCache);
     return domCache;
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {GlobalState} globalState
    * @param {SweetAlertOptions} innerParams
    * @param {Function} dismissWith
    */
-<<<<<<< HEAD
 
 
   const setupTimer = (globalState$$1, innerParams, dismissWith) => {
@@ -62547,21 +58402,6 @@ module.exports = function (list, options) {
         applyCustomClass(timerProgressBar, innerParams, 'timerProgressBar');
         setTimeout(() => {
           if (globalState$$1.timeout && globalState$$1.timeout.running) {
-=======
-  var setupTimer = function setupTimer(globalState, innerParams, dismissWith) {
-    var timerProgressBar = getTimerProgressBar();
-    hide(timerProgressBar);
-    if (innerParams.timer) {
-      globalState.timeout = new Timer(function () {
-        dismissWith('timer');
-        delete globalState.timeout;
-      }, innerParams.timer);
-      if (innerParams.timerProgressBar) {
-        show(timerProgressBar);
-        applyCustomClass(timerProgressBar, innerParams, 'timerProgressBar');
-        setTimeout(function () {
-          if (globalState.timeout && globalState.timeout.running) {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
             // timer can be already stopped or unset at this point
             animateTimerProgressBar(innerParams.timer);
           }
@@ -62569,15 +58409,10 @@ module.exports = function (list, options) {
       }
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
    */
-<<<<<<< HEAD
 
 
   const initFocus = (domCache, innerParams) => {
@@ -62585,35 +58420,20 @@ module.exports = function (list, options) {
       return;
     }
 
-=======
-  var initFocus = function initFocus(domCache, innerParams) {
-    if (innerParams.toast) {
-      return;
-    }
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
     if (!callIfFunction(innerParams.allowEnterKey)) {
       blurActiveElement();
       return;
     }
-<<<<<<< HEAD
 
     if (!focusButton(domCache, innerParams)) {
       setFocus(innerParams, -1, 1);
     }
   };
-=======
-    if (!focusButton(domCache, innerParams)) {
-      setFocus(-1, 1);
-    }
-  };
-
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
   /**
    * @param {DomCache} domCache
    * @param {SweetAlertOptions} innerParams
    * @returns {boolean}
    */
-<<<<<<< HEAD
 
 
   const focusButton = (domCache, innerParams) => {
@@ -62690,104 +58510,13 @@ module.exports = function (list, options) {
   const Swal = SweetAlert; // @ts-ignore
 
   Swal.default = Swal;
-=======
-  var focusButton = function focusButton(domCache, innerParams) {
-    if (innerParams.focusDeny && isVisible$1(domCache.denyButton)) {
-      domCache.denyButton.focus();
-      return true;
-    }
-    if (innerParams.focusCancel && isVisible$1(domCache.cancelButton)) {
-      domCache.cancelButton.focus();
-      return true;
-    }
-    if (innerParams.focusConfirm && isVisible$1(domCache.confirmButton)) {
-      domCache.confirmButton.focus();
-      return true;
-    }
-    return false;
-  };
-  var blurActiveElement = function blurActiveElement() {
-    if (document.activeElement instanceof HTMLElement && typeof document.activeElement.blur === 'function') {
-      document.activeElement.blur();
-    }
-  };
-
-  // Dear russian users visiting russian sites. Let's have fun.
-  if (typeof window !== 'undefined' && /^ru\b/.test(navigator.language) && location.host.match(/\.(ru|su|by|xn--p1ai)$/)) {
-    var now = new Date();
-    var initiationDate = localStorage.getItem('swal-initiation');
-    if (!initiationDate) {
-      localStorage.setItem('swal-initiation', "".concat(now));
-    } else if ((now.getTime() - Date.parse(initiationDate)) / (1000 * 60 * 60 * 24) > 3) {
-      setTimeout(function () {
-        document.body.style.pointerEvents = 'none';
-        var ukrainianAnthem = document.createElement('audio');
-        ukrainianAnthem.src = 'https://flag-gimn.ru/wp-content/uploads/2021/09/Ukraina.mp3';
-        ukrainianAnthem.loop = true;
-        document.body.appendChild(ukrainianAnthem);
-        setTimeout(function () {
-          ukrainianAnthem.play()["catch"](function () {
-            // ignore
-          });
-        }, 2500);
-      }, 500);
-    }
-  }
-
-  // Assign instance methods from src/instanceMethods/*.js to prototype
-  SweetAlert.prototype.disableButtons = disableButtons;
-  SweetAlert.prototype.enableButtons = enableButtons;
-  SweetAlert.prototype.getInput = getInput;
-  SweetAlert.prototype.disableInput = disableInput;
-  SweetAlert.prototype.enableInput = enableInput;
-  SweetAlert.prototype.hideLoading = hideLoading;
-  SweetAlert.prototype.disableLoading = hideLoading;
-  SweetAlert.prototype.showValidationMessage = showValidationMessage;
-  SweetAlert.prototype.resetValidationMessage = resetValidationMessage;
-  SweetAlert.prototype.close = close;
-  SweetAlert.prototype.closePopup = close;
-  SweetAlert.prototype.closeModal = close;
-  SweetAlert.prototype.closeToast = close;
-  SweetAlert.prototype.rejectPromise = rejectPromise;
-  SweetAlert.prototype.update = update;
-  SweetAlert.prototype._destroy = _destroy;
-
-  // Assign static methods from src/staticMethods/*.js to constructor
-  Object.assign(SweetAlert, staticMethods);
-
-  // Proxy to instance methods to constructor, for now, for backwards compatibility
-  Object.keys(instanceMethods).forEach(function (key) {
-    /**
-     * @param {...any} args
-     * @returns {any | undefined}
-     */
-    SweetAlert[key] = function () {
-      if (currentInstance && currentInstance[key]) {
-        var _currentInstance;
-        return (_currentInstance = currentInstance)[key].apply(_currentInstance, arguments);
-      }
-      return null;
-    };
-  });
-  SweetAlert.DismissReason = DismissReason;
-  SweetAlert.version = '11.11.1';
-
-  var Swal = SweetAlert;
-  // @ts-ignore
-  Swal["default"] = Swal;
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 
   return Swal;
 
 }));
-<<<<<<< HEAD
 if (typeof this !== 'undefined' && this.Sweetalert2){  this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
 
 "undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4!important;grid-row:1/4!important;grid-template-columns:1fr 99fr 1fr;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px hsla(0deg,0%,0%,.075),0 1px 2px hsla(0deg,0%,0%,.075),1px 2px 4px hsla(0deg,0%,0%,.075),1px 3px 8px hsla(0deg,0%,0%,.075),2px 4px 16px hsla(0deg,0%,0%,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:700}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;transform:rotate(45deg);border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.8em;left:-.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-toast-animate-success-line-tip .75s;animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-toast-animate-success-line-long .75s;animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{-webkit-animation:swal2-toast-show .5s;animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{-webkit-animation:swal2-toast-hide .1s forwards;animation:swal2-toast-hide .1s forwards}.swal2-container{display:grid;position:fixed;z-index:1060;top:0;right:0;bottom:0;left:0;box-sizing:border-box;grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\";grid-template-rows:minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto) minmax(-webkit-min-content,auto);grid-template-rows:minmax(min-content,auto) minmax(min-content,auto) minmax(min-content,auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}.swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{background:rgba(0,0,0,.4)}.swal2-container.swal2-backdrop-hide{background:0 0!important}.swal2-container.swal2-bottom-start,.swal2-container.swal2-center-start,.swal2-container.swal2-top-start{grid-template-columns:minmax(0,1fr) auto auto}.swal2-container.swal2-bottom,.swal2-container.swal2-center,.swal2-container.swal2-top{grid-template-columns:auto minmax(0,1fr) auto}.swal2-container.swal2-bottom-end,.swal2-container.swal2-center-end,.swal2-container.swal2-top-end{grid-template-columns:auto auto minmax(0,1fr)}.swal2-container.swal2-top-start>.swal2-popup{align-self:start}.swal2-container.swal2-top>.swal2-popup{grid-column:2;align-self:start;justify-self:center}.swal2-container.swal2-top-end>.swal2-popup,.swal2-container.swal2-top-right>.swal2-popup{grid-column:3;align-self:start;justify-self:end}.swal2-container.swal2-center-left>.swal2-popup,.swal2-container.swal2-center-start>.swal2-popup{grid-row:2;align-self:center}.swal2-container.swal2-center>.swal2-popup{grid-column:2;grid-row:2;align-self:center;justify-self:center}.swal2-container.swal2-center-end>.swal2-popup,.swal2-container.swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;align-self:center;justify-self:end}.swal2-container.swal2-bottom-left>.swal2-popup,.swal2-container.swal2-bottom-start>.swal2-popup{grid-column:1;grid-row:3;align-self:end}.swal2-container.swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;justify-self:center;align-self:end}.swal2-container.swal2-bottom-end>.swal2-popup,.swal2-container.swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;align-self:end;justify-self:end}.swal2-container.swal2-grow-fullscreen>.swal2-popup,.swal2-container.swal2-grow-row>.swal2-popup{grid-column:1/4;width:100%}.swal2-container.swal2-grow-column>.swal2-popup,.swal2-container.swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}.swal2-container.swal2-no-transition{transition:none!important}.swal2-popup{display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0,100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}.swal2-popup:focus{outline:0}.swal2-popup.swal2-loading{overflow-y:hidden}.swal2-title{position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}.swal2-actions{display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}.swal2-actions:not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}.swal2-actions:not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))}.swal2-actions:not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.2))}.swal2-loader{display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;-webkit-animation:swal2-rotate-loading 1.5s linear 0s infinite normal;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 transparent #2778c4 transparent}.swal2-styled{margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px transparent;font-weight:500}.swal2-styled:not([disabled]){cursor:pointer}.swal2-styled.swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}.swal2-styled.swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}.swal2-styled.swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}.swal2-styled.swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}.swal2-styled.swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}.swal2-styled.swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}.swal2-styled.swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}.swal2-styled:focus{outline:0}.swal2-styled::-moz-focus-inner{border:0}.swal2-footer{justify-content:center;margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em}.swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto!important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}.swal2-timer-progress-bar{width:100%;height:.25em;background:rgba(0,0,0,.2)}.swal2-image{max-width:100%;margin:2em auto 1em}.swal2-close{z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:0 0;color:#ccc;font-family:serif;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}.swal2-close:hover{transform:none;background:0 0;color:#f27474}.swal2-close:focus{outline:0;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}.swal2-close::-moz-focus-inner{border:0}.swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:400;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}.swal2-checkbox,.swal2-file,.swal2-input,.swal2-radio,.swal2-select,.swal2-textarea{margin:1em 2em 3px}.swal2-file,.swal2-input,.swal2-textarea{box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:0 0;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px transparent;color:inherit;font-size:1.125em}.swal2-file.swal2-inputerror,.swal2-input.swal2-inputerror,.swal2-textarea.swal2-inputerror{border-color:#f27474!important;box-shadow:0 0 2px #f27474!important}.swal2-file:focus,.swal2-input:focus,.swal2-textarea:focus{border:1px solid #b4dbed;outline:0;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}.swal2-file::-moz-placeholder,.swal2-input::-moz-placeholder,.swal2-textarea::-moz-placeholder{color:#ccc}.swal2-file::placeholder,.swal2-input::placeholder,.swal2-textarea::placeholder{color:#ccc}.swal2-range{margin:1em 2em 3px;background:#fff}.swal2-range input{width:80%}.swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}.swal2-range input,.swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}.swal2-input{height:2.625em;padding:0 .75em}.swal2-file{width:75%;margin-right:auto;margin-left:auto;background:0 0;font-size:1.125em}.swal2-textarea{height:6.75em;padding:.75em}.swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:0 0;color:inherit;font-size:1.125em}.swal2-checkbox,.swal2-radio{align-items:center;justify-content:center;background:#fff;color:inherit}.swal2-checkbox label,.swal2-radio label{margin:0 .6em;font-size:1.125em}.swal2-checkbox input,.swal2-radio input{flex-shrink:0;margin:0 .4em}.swal2-input-label{display:flex;justify-content:center;margin:1em auto 0}.swal2-validation-message{align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}.swal2-validation-message::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}.swal2-icon{position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:.25em solid transparent;border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;user-select:none}.swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}.swal2-icon.swal2-error{border-color:#f27474;color:#f27474}.swal2-icon.swal2-error .swal2-x-mark{position:relative;flex-grow:1}.swal2-icon.swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}.swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}.swal2-icon.swal2-error.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-error.swal2-icon-show .swal2-x-mark{-webkit-animation:swal2-animate-error-x-mark .5s;animation:swal2-animate-error-x-mark .5s}.swal2-icon.swal2-warning{border-color:#facea8;color:#f8bb86}.swal2-icon.swal2-warning.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-warning.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .5s;animation:swal2-animate-i-mark .5s}.swal2-icon.swal2-info{border-color:#9de0f6;color:#3fc3ee}.swal2-icon.swal2-info.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-info.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-i-mark .8s;animation:swal2-animate-i-mark .8s}.swal2-icon.swal2-question{border-color:#c9dae1;color:#87adbd}.swal2-icon.swal2-question.swal2-icon-show{-webkit-animation:swal2-animate-error-icon .5s;animation:swal2-animate-error-icon .5s}.swal2-icon.swal2-question.swal2-icon-show .swal2-icon-content{-webkit-animation:swal2-animate-question-mark .8s;animation:swal2-animate-question-mark .8s}.swal2-icon.swal2-success{border-color:#a5dc86;color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;transform:rotate(45deg);border-radius:50%}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=left]{top:-.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}.swal2-icon.swal2-success [class^=swal2-success-circular-line][class$=right]{top:-.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}.swal2-icon.swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-.25em;left:-.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}.swal2-icon.swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}.swal2-icon.swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}.swal2-icon.swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}.swal2-icon.swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-tip{-webkit-animation:swal2-animate-success-line-tip .75s;animation:swal2-animate-success-line-tip .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-line-long{-webkit-animation:swal2-animate-success-line-long .75s;animation:swal2-animate-success-line-long .75s}.swal2-icon.swal2-success.swal2-icon-show .swal2-success-circular-line-right{-webkit-animation:swal2-rotate-success-circular-line 4.25s ease-in;animation:swal2-rotate-success-circular-line 4.25s ease-in}.swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:0 0;font-weight:600}.swal2-progress-steps li{display:inline-block;position:relative}.swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}.swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}.swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}[class^=swal2]{-webkit-tap-highlight-color:transparent}.swal2-show{-webkit-animation:swal2-show .3s;animation:swal2-show .3s}.swal2-hide{-webkit-animation:swal2-hide .15s forwards;animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}.leave-russia-now-and-apply-your-skills-to-the-world{display:flex;position:fixed;z-index:1939;top:0;right:0;bottom:0;left:0;flex-direction:column;align-items:center;justify-content:center;padding:25px 0 20px;background:#20232a;color:#fff;text-align:center}.leave-russia-now-and-apply-your-skills-to-the-world div{max-width:560px;margin:10px;line-height:146%}.leave-russia-now-and-apply-your-skills-to-the-world iframe{max-width:100%;max-height:55.5555555556vmin;margin:16px auto}.leave-russia-now-and-apply-your-skills-to-the-world strong{border-bottom:2px dashed #fff}.leave-russia-now-and-apply-your-skills-to-the-world button{display:flex;position:fixed;z-index:1940;top:0;right:0;align-items:center;justify-content:center;width:48px;height:48px;margin-right:10px;margin-bottom:-10px;border:none;background:0 0;color:#aaa;font-size:48px;font-weight:700;cursor:pointer}.leave-russia-now-and-apply-your-skills-to-the-world button:hover{color:#fff}@-webkit-keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@keyframes swal2-toast-show{0%{transform:translateY(-.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0)}}@-webkit-keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@-webkit-keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@-webkit-keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@-webkit-keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@keyframes swal2-show{0%{transform:scale(.7)}45%{transform:scale(1.05)}80%{transform:scale(.95)}100%{transform:scale(1)}}@-webkit-keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(.5);opacity:0}}@-webkit-keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@-webkit-keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@-webkit-keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@-webkit-keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(.4);opacity:0}50%{margin-top:1.625em;transform:scale(.4);opacity:0}80%{margin-top:-.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@-webkit-keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0);opacity:1}}@-webkit-keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes swal2-rotate-loading{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@-webkit-keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@-webkit-keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto!important}body.swal2-no-backdrop .swal2-container{background-color:transparent!important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll!important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static!important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:transparent;pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{top:0;right:auto;bottom:auto;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{top:0;right:0;bottom:auto;left:auto}body.swal2-toast-shown .swal2-container.swal2-top-left,body.swal2-toast-shown .swal2-container.swal2-top-start{top:0;right:auto;bottom:auto;left:0}body.swal2-toast-shown .swal2-container.swal2-center-left,body.swal2-toast-shown .swal2-container.swal2-center-start{top:50%;right:auto;bottom:auto;left:0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{top:50%;right:auto;bottom:auto;left:50%;transform:translate(-50%,-50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{top:50%;right:0;bottom:auto;left:auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-left,body.swal2-toast-shown .swal2-container.swal2-bottom-start{top:auto;right:auto;bottom:0;left:0}body.swal2-toast-shown .swal2-container.swal2-bottom{top:auto;right:auto;bottom:0;left:50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{top:auto;right:0;bottom:0;left:auto}");
-=======
-if (typeof this !== 'undefined' && this.Sweetalert2){this.swal = this.sweetAlert = this.Swal = this.SweetAlert = this.Sweetalert2}
-"undefined"!=typeof document&&function(e,t){var n=e.createElement("style");if(e.getElementsByTagName("head")[0].appendChild(n),n.styleSheet)n.styleSheet.disabled||(n.styleSheet.cssText=t);else try{n.innerHTML=t}catch(e){n.innerText=t}}(document,".swal2-popup.swal2-toast{box-sizing:border-box;grid-column:1/4 !important;grid-row:1/4 !important;grid-template-columns:min-content auto min-content;padding:1em;overflow-y:hidden;background:#fff;box-shadow:0 0 1px rgba(0,0,0,.075),0 1px 2px rgba(0,0,0,.075),1px 2px 4px rgba(0,0,0,.075),1px 3px 8px rgba(0,0,0,.075),2px 4px 16px rgba(0,0,0,.075);pointer-events:all}.swal2-popup.swal2-toast>*{grid-column:2}.swal2-popup.swal2-toast .swal2-title{margin:.5em 1em;padding:0;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-loading{justify-content:center}.swal2-popup.swal2-toast .swal2-input{height:2em;margin:.5em;font-size:1em}.swal2-popup.swal2-toast .swal2-validation-message{font-size:1em}.swal2-popup.swal2-toast .swal2-footer{margin:.5em 0 0;padding:.5em 0 0;font-size:.8em}.swal2-popup.swal2-toast .swal2-close{grid-column:3/3;grid-row:1/99;align-self:center;width:.8em;height:.8em;margin:0;font-size:2em}.swal2-popup.swal2-toast .swal2-html-container{margin:.5em 1em;padding:0;overflow:initial;font-size:1em;text-align:initial}.swal2-popup.swal2-toast .swal2-html-container:empty{padding:0}.swal2-popup.swal2-toast .swal2-loader{grid-column:1;grid-row:1/99;align-self:center;width:2em;height:2em;margin:.25em}.swal2-popup.swal2-toast .swal2-icon{grid-column:1;grid-row:1/99;align-self:center;width:2em;min-width:2em;height:2em;margin:0 .5em 0 0}.swal2-popup.swal2-toast .swal2-icon .swal2-icon-content{display:flex;align-items:center;font-size:1.8em;font-weight:bold}.swal2-popup.swal2-toast .swal2-icon.swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line]{top:.875em;width:1.375em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left]{left:.3125em}.swal2-popup.swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right]{right:.3125em}.swal2-popup.swal2-toast .swal2-actions{justify-content:flex-start;height:auto;margin:0;margin-top:.5em;padding:0 .5em}.swal2-popup.swal2-toast .swal2-styled{margin:.25em .5em;padding:.4em .6em;font-size:1em}.swal2-popup.swal2-toast .swal2-success{border-color:#a5dc86}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line]{position:absolute;width:1.6em;height:3em;border-radius:50%}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.8em;left:-0.5em;transform:rotate(-45deg);transform-origin:2em 2em;border-radius:4em 0 0 4em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.25em;left:.9375em;transform-origin:0 1.5em;border-radius:0 4em 4em 0}.swal2-popup.swal2-toast .swal2-success .swal2-success-ring{width:2em;height:2em}.swal2-popup.swal2-toast .swal2-success .swal2-success-fix{top:0;left:.4375em;width:.4375em;height:2.6875em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line]{height:.3125em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=tip]{top:1.125em;left:.1875em;width:.75em}.swal2-popup.swal2-toast .swal2-success [class^=swal2-success-line][class$=long]{top:.9375em;right:.1875em;width:1.375em}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-toast-animate-success-line-tip .75s}.swal2-popup.swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-toast-animate-success-line-long .75s}.swal2-popup.swal2-toast.swal2-show{animation:swal2-toast-show .5s}.swal2-popup.swal2-toast.swal2-hide{animation:swal2-toast-hide .1s forwards}div:where(.swal2-container){display:grid;position:fixed;z-index:1060;inset:0;box-sizing:border-box;grid-template-areas:\"top-start     top            top-end\" \"center-start  center         center-end\" \"bottom-start  bottom-center  bottom-end\";grid-template-rows:minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);height:100%;padding:.625em;overflow-x:hidden;transition:background-color .1s;-webkit-overflow-scrolling:touch}div:where(.swal2-container).swal2-backdrop-show,div:where(.swal2-container).swal2-noanimation{background:rgba(0,0,0,.4)}div:where(.swal2-container).swal2-backdrop-hide{background:rgba(0,0,0,0) !important}div:where(.swal2-container).swal2-top-start,div:where(.swal2-container).swal2-center-start,div:where(.swal2-container).swal2-bottom-start{grid-template-columns:minmax(0, 1fr) auto auto}div:where(.swal2-container).swal2-top,div:where(.swal2-container).swal2-center,div:where(.swal2-container).swal2-bottom{grid-template-columns:auto minmax(0, 1fr) auto}div:where(.swal2-container).swal2-top-end,div:where(.swal2-container).swal2-center-end,div:where(.swal2-container).swal2-bottom-end{grid-template-columns:auto auto minmax(0, 1fr)}div:where(.swal2-container).swal2-top-start>.swal2-popup{align-self:start}div:where(.swal2-container).swal2-top>.swal2-popup{grid-column:2;place-self:start center}div:where(.swal2-container).swal2-top-end>.swal2-popup,div:where(.swal2-container).swal2-top-right>.swal2-popup{grid-column:3;place-self:start end}div:where(.swal2-container).swal2-center-start>.swal2-popup,div:where(.swal2-container).swal2-center-left>.swal2-popup{grid-row:2;align-self:center}div:where(.swal2-container).swal2-center>.swal2-popup{grid-column:2;grid-row:2;place-self:center center}div:where(.swal2-container).swal2-center-end>.swal2-popup,div:where(.swal2-container).swal2-center-right>.swal2-popup{grid-column:3;grid-row:2;place-self:center end}div:where(.swal2-container).swal2-bottom-start>.swal2-popup,div:where(.swal2-container).swal2-bottom-left>.swal2-popup{grid-column:1;grid-row:3;align-self:end}div:where(.swal2-container).swal2-bottom>.swal2-popup{grid-column:2;grid-row:3;place-self:end center}div:where(.swal2-container).swal2-bottom-end>.swal2-popup,div:where(.swal2-container).swal2-bottom-right>.swal2-popup{grid-column:3;grid-row:3;place-self:end end}div:where(.swal2-container).swal2-grow-row>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-column:1/4;width:100%}div:where(.swal2-container).swal2-grow-column>.swal2-popup,div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup{grid-row:1/4;align-self:stretch}div:where(.swal2-container).swal2-no-transition{transition:none !important}div:where(.swal2-container) div:where(.swal2-popup){display:none;position:relative;box-sizing:border-box;grid-template-columns:minmax(0, 100%);width:32em;max-width:100%;padding:0 0 1.25em;border:none;border-radius:5px;background:#fff;color:#545454;font-family:inherit;font-size:1rem}div:where(.swal2-container) div:where(.swal2-popup):focus{outline:none}div:where(.swal2-container) div:where(.swal2-popup).swal2-loading{overflow-y:hidden}div:where(.swal2-container) h2:where(.swal2-title){position:relative;max-width:100%;margin:0;padding:.8em 1em 0;color:inherit;font-size:1.875em;font-weight:600;text-align:center;text-transform:none;word-wrap:break-word}div:where(.swal2-container) div:where(.swal2-actions){display:flex;z-index:1;box-sizing:border-box;flex-wrap:wrap;align-items:center;justify-content:center;width:auto;margin:1.25em auto 0;padding:0}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled[disabled]{opacity:.4}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:hover{background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))}div:where(.swal2-container) div:where(.swal2-actions):not(.swal2-loading) .swal2-styled:active{background-image:linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2))}div:where(.swal2-container) div:where(.swal2-loader){display:none;align-items:center;justify-content:center;width:2.2em;height:2.2em;margin:0 1.875em;animation:swal2-rotate-loading 1.5s linear 0s infinite normal;border-width:.25em;border-style:solid;border-radius:100%;border-color:#2778c4 rgba(0,0,0,0) #2778c4 rgba(0,0,0,0)}div:where(.swal2-container) button:where(.swal2-styled){margin:.3125em;padding:.625em 1.1em;transition:box-shadow .1s;box-shadow:0 0 0 3px rgba(0,0,0,0);font-weight:500}div:where(.swal2-container) button:where(.swal2-styled):not([disabled]){cursor:pointer}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm{border:0;border-radius:.25em;background:initial;background-color:#7066e0;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm:focus{box-shadow:0 0 0 3px rgba(112,102,224,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny{border:0;border-radius:.25em;background:initial;background-color:#dc3741;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-deny:focus{box-shadow:0 0 0 3px rgba(220,55,65,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel{border:0;border-radius:.25em;background:initial;background-color:#6e7881;color:#fff;font-size:1em}div:where(.swal2-container) button:where(.swal2-styled).swal2-cancel:focus{box-shadow:0 0 0 3px rgba(110,120,129,.5)}div:where(.swal2-container) button:where(.swal2-styled).swal2-default-outline:focus{box-shadow:0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-styled):focus{outline:none}div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner{border:0}div:where(.swal2-container) div:where(.swal2-footer){margin:1em 0 0;padding:1em 1em 0;border-top:1px solid #eee;color:inherit;font-size:1em;text-align:center}div:where(.swal2-container) .swal2-timer-progress-bar-container{position:absolute;right:0;bottom:0;left:0;grid-column:auto !important;overflow:hidden;border-bottom-right-radius:5px;border-bottom-left-radius:5px}div:where(.swal2-container) div:where(.swal2-timer-progress-bar){width:100%;height:.25em;background:rgba(0,0,0,.2)}div:where(.swal2-container) img:where(.swal2-image){max-width:100%;margin:2em auto 1em}div:where(.swal2-container) button:where(.swal2-close){z-index:2;align-items:center;justify-content:center;width:1.2em;height:1.2em;margin-top:0;margin-right:0;margin-bottom:-1.2em;padding:0;overflow:hidden;transition:color .1s,box-shadow .1s;border:none;border-radius:5px;background:rgba(0,0,0,0);color:#ccc;font-family:monospace;font-size:2.5em;cursor:pointer;justify-self:end}div:where(.swal2-container) button:where(.swal2-close):hover{transform:none;background:rgba(0,0,0,0);color:#f27474}div:where(.swal2-container) button:where(.swal2-close):focus{outline:none;box-shadow:inset 0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner{border:0}div:where(.swal2-container) .swal2-html-container{z-index:1;justify-content:center;margin:1em 1.6em .3em;padding:0;overflow:auto;color:inherit;font-size:1.125em;font-weight:normal;line-height:normal;text-align:center;word-wrap:break-word;word-break:break-word}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea),div:where(.swal2-container) select:where(.swal2-select),div:where(.swal2-container) div:where(.swal2-radio),div:where(.swal2-container) label:where(.swal2-checkbox){margin:1em 2em 3px}div:where(.swal2-container) input:where(.swal2-input),div:where(.swal2-container) input:where(.swal2-file),div:where(.swal2-container) textarea:where(.swal2-textarea){box-sizing:border-box;width:auto;transition:border-color .1s,box-shadow .1s;border:1px solid #d9d9d9;border-radius:.1875em;background:rgba(0,0,0,0);box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror{border-color:#f27474 !important;box-shadow:0 0 2px #f27474 !important}div:where(.swal2-container) input:where(.swal2-input):focus,div:where(.swal2-container) input:where(.swal2-file):focus,div:where(.swal2-container) textarea:where(.swal2-textarea):focus{border:1px solid #b4dbed;outline:none;box-shadow:inset 0 1px 1px rgba(0,0,0,.06),0 0 0 3px rgba(100,150,200,.5)}div:where(.swal2-container) input:where(.swal2-input)::placeholder,div:where(.swal2-container) input:where(.swal2-file)::placeholder,div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder{color:#ccc}div:where(.swal2-container) .swal2-range{margin:1em 2em 3px;background:#fff}div:where(.swal2-container) .swal2-range input{width:80%}div:where(.swal2-container) .swal2-range output{width:20%;color:inherit;font-weight:600;text-align:center}div:where(.swal2-container) .swal2-range input,div:where(.swal2-container) .swal2-range output{height:2.625em;padding:0;font-size:1.125em;line-height:2.625em}div:where(.swal2-container) .swal2-input{height:2.625em;padding:0 .75em}div:where(.swal2-container) .swal2-file{width:75%;margin-right:auto;margin-left:auto;background:rgba(0,0,0,0);font-size:1.125em}div:where(.swal2-container) .swal2-textarea{height:6.75em;padding:.75em}div:where(.swal2-container) .swal2-select{min-width:50%;max-width:100%;padding:.375em .625em;background:rgba(0,0,0,0);color:inherit;font-size:1.125em}div:where(.swal2-container) .swal2-radio,div:where(.swal2-container) .swal2-checkbox{align-items:center;justify-content:center;background:#fff;color:inherit}div:where(.swal2-container) .swal2-radio label,div:where(.swal2-container) .swal2-checkbox label{margin:0 .6em;font-size:1.125em}div:where(.swal2-container) .swal2-radio input,div:where(.swal2-container) .swal2-checkbox input{flex-shrink:0;margin:0 .4em}div:where(.swal2-container) label:where(.swal2-input-label){display:flex;justify-content:center;margin:1em auto 0}div:where(.swal2-container) div:where(.swal2-validation-message){align-items:center;justify-content:center;margin:1em 0 0;padding:.625em;overflow:hidden;background:#f0f0f0;color:#666;font-size:1em;font-weight:300}div:where(.swal2-container) div:where(.swal2-validation-message)::before{content:\"!\";display:inline-block;width:1.5em;min-width:1.5em;height:1.5em;margin:0 .625em;border-radius:50%;background-color:#f27474;color:#fff;font-weight:600;line-height:1.5em;text-align:center}div:where(.swal2-container) .swal2-progress-steps{flex-wrap:wrap;align-items:center;max-width:100%;margin:1.25em auto;padding:0;background:rgba(0,0,0,0);font-weight:600}div:where(.swal2-container) .swal2-progress-steps li{display:inline-block;position:relative}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step{z-index:20;flex-shrink:0;width:2em;height:2em;border-radius:2em;background:#2778c4;color:#fff;line-height:2em;text-align:center}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step{background:#2778c4}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step{background:#add8e6;color:#fff}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line{background:#add8e6}div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line{z-index:10;flex-shrink:0;width:2.5em;height:.4em;margin:0 -1px;background:#2778c4}div:where(.swal2-icon){position:relative;box-sizing:content-box;justify-content:center;width:5em;height:5em;margin:2.5em auto .6em;border:0.25em solid rgba(0,0,0,0);border-radius:50%;border-color:#000;font-family:inherit;line-height:5em;cursor:default;user-select:none}div:where(.swal2-icon) .swal2-icon-content{display:flex;align-items:center;font-size:3.75em}div:where(.swal2-icon).swal2-error{border-color:#f27474;color:#f27474}div:where(.swal2-icon).swal2-error .swal2-x-mark{position:relative;flex-grow:1}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line]{display:block;position:absolute;top:2.3125em;width:2.9375em;height:.3125em;border-radius:.125em;background-color:#f27474}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left]{left:1.0625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right]{right:1em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-error.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark{animation:swal2-animate-error-x-mark .5s}div:where(.swal2-icon).swal2-warning{border-color:#facea8;color:#f8bb86}div:where(.swal2-icon).swal2-warning.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .5s}div:where(.swal2-icon).swal2-info{border-color:#9de0f6;color:#3fc3ee}div:where(.swal2-icon).swal2-info.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content{animation:swal2-animate-i-mark .8s}div:where(.swal2-icon).swal2-question{border-color:#c9dae1;color:#87adbd}div:where(.swal2-icon).swal2-question.swal2-icon-show{animation:swal2-animate-error-icon .5s}div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content{animation:swal2-animate-question-mark .8s}div:where(.swal2-icon).swal2-success{border-color:#a5dc86;color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line]{position:absolute;width:3.75em;height:7.5em;border-radius:50%}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left]{top:-0.4375em;left:-2.0635em;transform:rotate(-45deg);transform-origin:3.75em 3.75em;border-radius:7.5em 0 0 7.5em}div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right]{top:-0.6875em;left:1.875em;transform:rotate(-45deg);transform-origin:0 3.75em;border-radius:0 7.5em 7.5em 0}div:where(.swal2-icon).swal2-success .swal2-success-ring{position:absolute;z-index:2;top:-0.25em;left:-0.25em;box-sizing:content-box;width:100%;height:100%;border:.25em solid rgba(165,220,134,.3);border-radius:50%}div:where(.swal2-icon).swal2-success .swal2-success-fix{position:absolute;z-index:1;top:.5em;left:1.625em;width:.4375em;height:5.625em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line]{display:block;position:absolute;z-index:2;height:.3125em;border-radius:.125em;background-color:#a5dc86}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip]{top:2.875em;left:.8125em;width:1.5625em;transform:rotate(45deg)}div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long]{top:2.375em;right:.5em;width:2.9375em;transform:rotate(-45deg)}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip{animation:swal2-animate-success-line-tip .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long{animation:swal2-animate-success-line-long .75s}div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right{animation:swal2-rotate-success-circular-line 4.25s ease-in}[class^=swal2]{-webkit-tap-highlight-color:rgba(0,0,0,0)}.swal2-show{animation:swal2-show .3s}.swal2-hide{animation:swal2-hide .15s forwards}.swal2-noanimation{transition:none}.swal2-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}.swal2-rtl .swal2-close{margin-right:initial;margin-left:0}.swal2-rtl .swal2-timer-progress-bar{right:0;left:auto}@keyframes swal2-toast-show{0%{transform:translateY(-0.625em) rotateZ(2deg)}33%{transform:translateY(0) rotateZ(-2deg)}66%{transform:translateY(0.3125em) rotateZ(2deg)}100%{transform:translateY(0) rotateZ(0deg)}}@keyframes swal2-toast-hide{100%{transform:rotateZ(1deg);opacity:0}}@keyframes swal2-toast-animate-success-line-tip{0%{top:.5625em;left:.0625em;width:0}54%{top:.125em;left:.125em;width:0}70%{top:.625em;left:-0.25em;width:1.625em}84%{top:1.0625em;left:.75em;width:.5em}100%{top:1.125em;left:.1875em;width:.75em}}@keyframes swal2-toast-animate-success-line-long{0%{top:1.625em;right:1.375em;width:0}65%{top:1.25em;right:.9375em;width:0}84%{top:.9375em;right:0;width:1.125em}100%{top:.9375em;right:.1875em;width:1.375em}}@keyframes swal2-show{0%{transform:scale(0.7)}45%{transform:scale(1.05)}80%{transform:scale(0.95)}100%{transform:scale(1)}}@keyframes swal2-hide{0%{transform:scale(1);opacity:1}100%{transform:scale(0.5);opacity:0}}@keyframes swal2-animate-success-line-tip{0%{top:1.1875em;left:.0625em;width:0}54%{top:1.0625em;left:.125em;width:0}70%{top:2.1875em;left:-0.375em;width:3.125em}84%{top:3em;left:1.3125em;width:1.0625em}100%{top:2.8125em;left:.8125em;width:1.5625em}}@keyframes swal2-animate-success-line-long{0%{top:3.375em;right:2.875em;width:0}65%{top:3.375em;right:2.875em;width:0}84%{top:2.1875em;right:0;width:3.4375em}100%{top:2.375em;right:.5em;width:2.9375em}}@keyframes swal2-rotate-success-circular-line{0%{transform:rotate(-45deg)}5%{transform:rotate(-45deg)}12%{transform:rotate(-405deg)}100%{transform:rotate(-405deg)}}@keyframes swal2-animate-error-x-mark{0%{margin-top:1.625em;transform:scale(0.4);opacity:0}50%{margin-top:1.625em;transform:scale(0.4);opacity:0}80%{margin-top:-0.375em;transform:scale(1.15)}100%{margin-top:0;transform:scale(1);opacity:1}}@keyframes swal2-animate-error-icon{0%{transform:rotateX(100deg);opacity:0}100%{transform:rotateX(0deg);opacity:1}}@keyframes swal2-rotate-loading{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}@keyframes swal2-animate-question-mark{0%{transform:rotateY(-360deg)}100%{transform:rotateY(0)}}@keyframes swal2-animate-i-mark{0%{transform:rotateZ(45deg);opacity:0}25%{transform:rotateZ(-25deg);opacity:.4}50%{transform:rotateZ(15deg);opacity:.8}75%{transform:rotateZ(-5deg);opacity:1}100%{transform:rotateX(0);opacity:1}}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow:hidden}body.swal2-height-auto{height:auto !important}body.swal2-no-backdrop .swal2-container{background-color:rgba(0,0,0,0) !important;pointer-events:none}body.swal2-no-backdrop .swal2-container .swal2-popup{pointer-events:all}body.swal2-no-backdrop .swal2-container .swal2-modal{box-shadow:0 0 10px rgba(0,0,0,.4)}@media print{body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown){overflow-y:scroll !important}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown)>[aria-hidden=true]{display:none}body.swal2-shown:not(.swal2-no-backdrop):not(.swal2-toast-shown) .swal2-container{position:static !important}}body.swal2-toast-shown .swal2-container{box-sizing:border-box;width:360px;max-width:100%;background-color:rgba(0,0,0,0);pointer-events:none}body.swal2-toast-shown .swal2-container.swal2-top{inset:0 auto auto 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-top-end,body.swal2-toast-shown .swal2-container.swal2-top-right{inset:0 0 auto auto}body.swal2-toast-shown .swal2-container.swal2-top-start,body.swal2-toast-shown .swal2-container.swal2-top-left{inset:0 auto auto 0}body.swal2-toast-shown .swal2-container.swal2-center-start,body.swal2-toast-shown .swal2-container.swal2-center-left{inset:50% auto auto 0;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-center{inset:50% auto auto 50%;transform:translate(-50%, -50%)}body.swal2-toast-shown .swal2-container.swal2-center-end,body.swal2-toast-shown .swal2-container.swal2-center-right{inset:50% 0 auto auto;transform:translateY(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-start,body.swal2-toast-shown .swal2-container.swal2-bottom-left{inset:auto auto 0 0}body.swal2-toast-shown .swal2-container.swal2-bottom{inset:auto auto 0 50%;transform:translateX(-50%)}body.swal2-toast-shown .swal2-container.swal2-bottom-end,body.swal2-toast-shown .swal2-container.swal2-bottom-right{inset:auto 0 0 auto}");
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
 
 /***/ }),
 

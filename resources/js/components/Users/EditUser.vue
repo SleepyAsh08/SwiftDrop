@@ -10,16 +10,9 @@
                     <alert-error :form="form"></alert-error>
                     <div class="form-group">
                         <label>Upload User photo</label>
-<<<<<<< HEAD
-                        <input ref="userPhotoInput" @change="handleFileChange" type="file" class="form-control"
-                            required>
-                         <has-error :form="form" field="user_photo" />
-                </div> -->
-=======
                         <input type="file" @change="onFileChange" required multiple class="form-control">
                         <has-error :form="form" field="user_photo" />
                     </div>
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
                     <div class="form-group">
                         <label>Name</label>
                         <input v-model="form.name" type="text" class="form-control">
@@ -116,11 +109,7 @@ export default {
                 roles: null,
                 permissions: null,
             }),
-<<<<<<< HEAD
-            user_photo: [],
-=======
             photos: [],
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
             option_permissions: [],
             option_roles: [],
             options: {
@@ -132,45 +121,16 @@ export default {
         }
     },
     methods: {
-<<<<<<< HEAD
-        // handleFileChange(event) {
-        //     if (event.target.files.length === 0) {
-        //         // Handle no file selected case (optional: display an error message)
-        //         return;
-        //     }
-
-        //     const file = event.target.files[0]; // Get the first selected file
-        //     this.form.user_photo = file;
-        // },
-        onFileChange(e) {
-            this.user_photo = Array.from(e.target.files);
-        },
-
-        formatPhotoPath(photoPath) {
-            if (photoPath) {
-                return photoPath.replace(/^\["(.+)"\]$/, '$1');
-            } else {
-                return '';
-            }
-=======
         onFileChange(e) {
             this.photos = Array.from(e.target.files);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
         },
         selectRole() {
             this.form.permissions = this.form.roles.permissions;
         },
         update() {
-<<<<<<< HEAD
-
-            const formData = new FormData();
-
-            // formData.append('name', this.form.name);
-=======
             const formData = new FormData();
             formData.append('id', this.form.id);
             formData.append('name', this.form.name);
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
             formData.append('lastname', this.form.lastname);
             formData.append('middle_initial', this.form.middle_initial);
             formData.append('date_of_birth', this.form.date_of_birth);
@@ -178,18 +138,6 @@ export default {
             formData.append('telephone_number', this.form.telephone_number);
             formData.append('email', this.form.email);
             formData.append('password', this.form.password);
-<<<<<<< HEAD
-
-            // Append each photo to the FormData
-            this.user_photo.forEach((photo, index) => {
-                formData.append(`user_photo[${index}]`, photo);
-            });
-
-
-
-            // console.log(this.user_photo);
-            axios.put(`api/user/update/${this.form.id}`, formData, {
-=======
             formData.append('roles', this.form.roles);
             formData.append('permissions', this.form.permissions);
 
@@ -199,7 +147,6 @@ export default {
             });
 
             this.form.put('/api/user/update', formData, {
->>>>>>> 669de446e1ccc8bb561c34c6e3a865d323b22c0b
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -211,18 +158,6 @@ export default {
                 this.$emit('getData', this.page);
                 $('#edit-user').modal('hide');
             }).catch(error => {
-                toast.fire({
-                    icon: 'error',
-                    text: error.message,
-                });
-            });
-
-
-
-
-            // const formData = new FormData();
-            // formData.append('user_photo', this.form.user_photo);
-
 
             // this.form.put('api/user/update/' + this.form.id, {
             // }).then(() => {
@@ -232,18 +167,19 @@ export default {
             //     })
             //     //"page" maintain selected page in the parent page
             //     this.$emit('getData', this.page);// call method from parent (reload data table)
-            //     $('#edit-user').modal('hide');
             // }).catch(error => {
             //     toast.fire({
             //         icon: 'error',
             //         text: error.message,
             //     })
             // });
-        },
-        loadPermissions() {
-            axios.get('/api/permission/all')
+            });
+         },
+        loadMeasurement() {
+            axios.get('/api/measurement/all')
                 .then(response => {
-                    this.option_permissions = response.data.data;
+                    this.option_measurement = response.data.data;
+                    console.log('Loaded measurements:', this.option_measurement);
                 });
         },
         loadRoles() {
