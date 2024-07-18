@@ -159,22 +159,22 @@ export default {
                 $('#edit-user').modal('hide');
             }).catch(error => {
 
-            // this.form.put('api/user/update/' + this.form.id, {
-            // }).then(() => {
-            //     toast.fire({
-            //         icon: 'success',
-            //         text: 'Data Saved.',
-            //     })
-            //     //"page" maintain selected page in the parent page
-            //     this.$emit('getData', this.page);// call method from parent (reload data table)
-            // }).catch(error => {
-            //     toast.fire({
-            //         icon: 'error',
-            //         text: error.message,
-            //     })
-            // });
+                // this.form.put('api/user/update/' + this.form.id, {
+                // }).then(() => {
+                //     toast.fire({
+                //         icon: 'success',
+                //         text: 'Data Saved.',
+                //     })
+                //     //"page" maintain selected page in the parent page
+                //     this.$emit('getData', this.page);// call method from parent (reload data table)
+                // }).catch(error => {
+                //     toast.fire({
+                //         icon: 'error',
+                //         text: error.message,
+                //     })
+                // });
             });
-         },
+        },
         loadMeasurement() {
             axios.get('/api/measurement/all')
                 .then(response => {

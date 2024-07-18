@@ -13,7 +13,7 @@
 
                             <div class="row mb-3">
                                 <label for="name"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('firstname') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text"
@@ -45,7 +45,7 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="middle_initial"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('middle_initial') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('middle initial') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="middle_initial" type="text"
@@ -61,7 +61,7 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="date_of_birth"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('date_of_birth') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('date of birth') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="date_of_birth" type="date"
@@ -77,7 +77,7 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="contact_number"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('contact_number') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('contact number') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="contact_number" type="number"
@@ -93,7 +93,7 @@
                             </div>
                             <div class="row mb-3">
                                 <label for="telephone_number"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('telephone_number') }}</label>
+                                    class="col-md-4 col-form-label text-md-end">{{ __('telephone number') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="telephone_number" type="number"
@@ -169,8 +169,8 @@
                                 <label class="col-md-4 col-form-label text-md-end"></label>
 
                                 <div class="col-md-6">
-                                    <span class="text-danger">You are Buyer provide your valid Id</span><br>
-                                    <span class="text-danger">You are Seller provide your Business Permit</span>
+                                    <span class="text-danger">If You are a Buyer provide your valid Id</span><br>
+                                    <span class="text-danger">If You are a Seller provide your Business Permit</span>
                                 </div>
                             </div>
 

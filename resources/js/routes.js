@@ -75,6 +75,14 @@ const routes = [
         props: true,
     },
     //---------------------------------------------------------END USER
+    //---------------------------------------------------------USER
+    {
+        path: '/deliquency',
+        name: 'deliquency',
+        component: require('./components/Deliquency/IndexDeliquency.vue').default,
+        props: true,
+    },
+    //---------------------------------------------------------END USER
     //---------------------------------------------------------ROLE
     {
         path: '/role',

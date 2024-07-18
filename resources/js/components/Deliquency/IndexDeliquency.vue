@@ -4,11 +4,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Users</h1>
+                        <h1 class="m-0">Deliquency</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Users</a></li>
+                            <li class="breadcrumb-item"><a href="#">Deliquency</a></li>
                             <!-- <li class="breadcrumb-item active">Starter Page</li> -->
                         </ol>
                     </div>
@@ -24,12 +24,12 @@
                                 <h3 class="card-title"> </h3>
                                 <div class="card-tools float-left">
                                     <div class="input-group input-group-sm">
-                                        <select v-model="filter" @change="getData"
+                                        <!-- <select v-model="filter" @change="getData"
                                             class="form-control form-control-sm pr-3 input-group-append bg-white">
                                             <option value="All">All</option>
                                             <option value="Deactivate">Deactivate</option>
                                             <option value="Activate">Activate</option>
-                                        </select>
+                                        </select> -->
                                         <select v-model="length" @change="getData" class="form-control form-control-sm">
                                             <option value="10">10</option>
                                             <option value="25">25</option>
@@ -57,63 +57,39 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Email</th>
-                                            <th>Contact Number</th>
-                                            <th>Type of User</th>
-                                            <th>Date of Validation</th>
+                                            <th>Reported User ID</th>
+                                            <th>Reported User Name</th>
+                                            <th>Reason</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(data, index) in         option_users.data        " :key="index">
                                             <td>{{ data.id }}</td>
-                                            <td>{{ data.name }}</td>
-                                            <td>{{ data.email }}</td>
-                                            <td>{{ data.contact_number }}</td>
-                                            <td v-if="data.roles.length > 0">
-                                                <span v-for="role in data.roles" :key="role.id">
-                                                    {{ role.name }}
-                                                </span>
-                                            </td>
-                                            <td v-else-if="data.reason_of_disapproval != null">
-                                                <span class="badge badge-danger">
-                                                    This user is denied
-                                                </span>
-                                            </td>
-                                            <td v-else>
-                                                <span class="badge badge-danger">
-                                                    No User Type for Evaluation and
-                                                    Approval
-                                                </span>
-                                            </td>
-                                            <td v-if="data.approved_at == NULL">
-                                                <span class="badge badge-danger">
-                                                    Not Validated
-                                                </span>
-                                            </td>
-                                            <td v-else>
-                                                {{ data.approved_at }}
-                                            </td>
+                                            <td>{{ data.committed_by.id }}</td>
+                                            <td>{{ data.committed_by.name + ' ' + data.committed_by.middle_initial + ' '
+                                            + data.committed_by.lastname }}</td>
+                                            <td>{{ data.reason }}</td>
                                             <td class="text-right">
-                                                <button
+                                                <!-- <button
                                                     v-if="data.approved_at === null && data.reason_of_disapproval === null && can('approve user')"
                                                     type="button" class="btn btn-success btn-sm"
                                                     @click="openValidateModal(data)"><i class="fas fa-search"></i>
-                                                    Validate</button>
-                                                <button
+                                                    Validate</button> -->
+                                                <!-- <button
                                                     v-if="data.approved_at != null && data.reason_of_disapproval === null && can('approve user')"
                                                     type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
-                                                    Edit</button>
+                                                    Edit</button> -->
                                                 <button v-if="data.deleted_at === null && can('delete user')"
                                                     type="button" class="btn btn-danger btn-sm"
-                                                    @click="remove(data.id)"><i class="fas fa-ban"></i> Deactivate
+                                                    @click="remove(data.committed_by.id)"><i class="fas fa-ban"></i>
+                                                    Deactivate
                                                 </button>
-                                                <button v-if="data.deleted_at != null && can('delete user')"
+                                                <!-- <button v-if="data.deleted_at != null && can('delete user')"
                                                     type="button" class="btn btn-success btn-sm"
                                                     @click="activate(data.id)"><i class="fas fa-check"></i> Activate
-                                                </button>
+                                                </button> -->
                                             </td>
                                         </tr>
                                     </tbody>
@@ -143,14 +119,14 @@
     </div>
 </template>
 <script>
-import addModal from "./AddUser.vue";
-import EditModal from "./EditUser.vue";
-import ValidateModal from "./ValidateUser.vue";
+// import addModal from "./AddUser.vue";
+// import EditModal from "./EditUser.vue";
+// import ValidateModal from "./ValidateUser.vue";
 export default {
     components: {
-        addModal,
-        EditModal,
-        ValidateModal,
+        // addModal,
+        // EditModal,
+        // ValidateModal,
     },
     data() {
         return {
@@ -182,7 +158,7 @@ export default {
         },
         getData(page) {
             if (typeof page === 'undefined' || page.type == 'keyup' || page.type == 'change' || page.type == 'click') {
-                page = '/api/user/list/?page=1';
+                page = '/api/deliquency/list/?page=1';
             }
             this.current_page = page;
             if (this.timer) {
@@ -204,6 +180,7 @@ export default {
                     .then(response => {
                         if (response.data.data) {
                             this.option_users = response.data.data;
+                            console.log(this.option_users);
                         }
                     }).catch(error => {
                         this.error = error;

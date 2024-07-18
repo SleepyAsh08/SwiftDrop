@@ -20,6 +20,30 @@
                             </div>
                         </div>
                     </div>
+                    <h3 class="profile-username text-center">Information Details</h3>
+                    <ul class="list-group list-group-unbordered mb-3">
+                        <li class="list-group-item">
+                            <b>First Name</b> <b class="float-right">{{ form.name }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Middle Initial</b> <b class="float-right">{{ form.middle_initial }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Last Name</b> <b class="float-right">{{ form.lastname }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Date of Birth</b> <b class="float-right">{{ form.date_of_birth }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Contact Number</b> <b class="float-right">{{ form.contact_number }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Telephone Number</b> <b class="float-right">{{ form.telephone_number }}</b>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Email</b> <b class="float-right">{{ form.email }}</b>
+                        </li>
+                    </ul>
                     <div v-if="!form.selectedOption">
                         <button type="button" class="btn btn-danger" @click="selectDisapprove">Disapprove</button>
                         <button type="button" class="btn btn-success" @click="selectApprove">Approve</button>
@@ -34,9 +58,6 @@
                         <h4>Reason for Disapproval</h4>
                         <input type="text" class="form-control" v-model="form.txtdesapproval"
                             placeholder="Enter your reason ">
-                    </div>
-                    <div v-else>
-
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -67,6 +88,11 @@ export default {
             form: new Form({
                 id: '',
                 name: '',
+                middle_initial: '',
+                lastname: '',
+                date_of_birth: '',
+                contact_number: '',
+                telephone_number: '',
                 email: '',
                 password: '',
                 roles: null,

@@ -57,8 +57,6 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-
-
                         {{-- <li class="nav-item">
                             <router-link to="/Student" class="nav-link">
                                 <i class="nav-icon fas fa-user-alt"></i>
@@ -73,7 +71,6 @@
                                 </p>
                             </router-link>
                         </li> --}}
-
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa fa-address-book"></i>
@@ -82,7 +79,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ml-3">
                                 <li class="nav-item">
                                     <router-link to="/Products" class="nav-link">
                                         <i class="nav-icon fas fa fa-cutlery"></i>
@@ -103,7 +100,7 @@
                                             <i class="right fas fa-angle-left"></i>
                                         </p>
                                     </a>
-                                    <ul class="nav nav-treeview">
+                                    <ul class="nav nav-treeview ml-3">
                                         <li class="nav-item">
                                             <router-link to="/Category" class="nav-link">
                                                 <i class="far fa-table-list nav-icon"></i>
@@ -120,9 +117,6 @@
                                 </li>
                             </ul>
                         </li>
-
-
-
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa fa-bell"></i>
@@ -131,7 +125,7 @@
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview ml-3">
                                 <li class="nav-item">
                                     <router-link to="/Purchase" class="nav-link">
                                         <i class="nav-icon fa fa-credit-card"></i>
@@ -152,6 +146,16 @@
                                     <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Users
+                                    </p>
+                                </router-link>
+                            </li>
+                        @endcan
+                        @can('access user')
+                            <li class="nav-item">
+                                <router-link to="/deliquency" class="nav-link">
+                                    <i class="nav-icon fas fa-user-tag"></i>
+                                    <p>
+                                        Deliquency
                                     </p>
                                 </router-link>
                             </li>

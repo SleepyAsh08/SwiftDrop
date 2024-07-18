@@ -13,6 +13,8 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasRoles;
 use LaravelAndVueJS\Traits\LaravelPermissionToVueJS;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -86,5 +88,10 @@ class User extends Authenticatable
             'roles' => $this->getRoleNames(),
             'permissions' => $this->getAllPermissions()->pluck('name'),
         ]);
+    }
+
+    public function deliquencies(): HasMany
+    {
+        return $this->hasMany(Deliquency::class, 'committed_by');
     }
 }

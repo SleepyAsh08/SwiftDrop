@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\MobileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +24,7 @@ Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, 'index_all']);
 });
 Route::prefix('login')->group(function () {
-    Route::get('/', [UserController::class, 'index']);
+    Route::get('/submit', [MobileController::class, 'authenticate']);
 });
 Auth::routes();
 Route::get('/student', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
