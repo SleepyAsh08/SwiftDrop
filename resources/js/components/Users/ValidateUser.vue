@@ -1,5 +1,6 @@
 <template>
-    <div class="modal fade" id="validate-user">
+    <div class="modal fade" id="validate-user" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modal1Label"
+        aria-hidden="true">
         <div class="modal-dialog model-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -44,36 +45,21 @@
                             <b>Email</b> <b class="float-right">{{ form.email }}</b>
                         </li>
                     </ul>
-                    <div v-if="!form.selectedOption">
-                        <button type="button" class="btn btn-danger" @click="selectDisapprove">Disapprove</button>
-                        <button type="button" class="btn btn-success" @click="selectApprove">Approve</button>
-                    </div>
-                    <div class="d-inline-block" v-else>
-                        <p class="lead">You have selected: <span class="font-weight-bold">{{ form.selectedOption }}
-                            </span>
-                            <button type="button" class=" btn-sm btn-info" @click="undo">Undo</button>
-                        </p>
-                    </div>
-                    <div v-if="form.selectedOption == 'disapprove'" class="form-group text-center">
-                        <h4>Reason for Disapproval</h4>
-                        <input type="text" class="form-control" v-model="form.txtdesapproval"
-                            placeholder="Enter your reason ">
-                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <!-- <button type="button" class="btn btn-danger" @click="denied">Denied</button> -->
-                    <button type="button" class="btn btn-success" v-if="form.selectedOption"
-                        @click="submit">Submit</button>
+                    <button type="button" class="btn btn-danger" @click="selectDisapprove">Disapprove</button>
+                    <button type="button" class="btn btn-success" @click="selectApprove">Approve</button>
                 </div>
             </div>
         </div>
         <!-- declare the edit modal -->
-        <!-- <edit-modal :row="selected_user" :page="current_page"></edit-modal> -->
+        <disapprove-modal :row="selected_user" :page="current_page"></disapprove-modal>
+        <edit-modal :row="selected_user" :page="current_page"></edit-modal>
     </div>
 </template>
 
 <script>
+import DisapproveModal from "./DisapproveUser.vue";
 import EditModal from "./EditUser.vue";
 export default {
     props: {
@@ -81,7 +67,8 @@ export default {
         page: { required: true },
     },
     components: {
-        EditModal,
+        DisapproveModal,
+        EditModal
     },
     data() {
         return {
@@ -108,6 +95,7 @@ export default {
                 title: true
             },
             submitted: false,
+            selected_user: [],
         }
     },
     methods: {
@@ -123,57 +111,40 @@ export default {
             $('#edit-user').modal('show');
         },
         selectDisapprove() {
-            this.form.selectedOption = 'disapprove';
-            this.submitted = true;
+            this.selected_user = this.form;
+            $('#disapprove-user').modal('show');
         },
         selectApprove() {
             this.form.selectedOption = 'approve';
-            this.submitted = true;
-        },
-        undo() {
-            this.submitted = false;
-            this.form.selectedOption = null;
-        },
-        handleClick(event) {
-            // Your button click logic here
-            // Prevent default behavior to stop modal closing
-            event.preventDefault();
-        },
-        submit() {
-            if (this.form.selectedOption) {
-                Swal.fire({
-                    title: 'Are you sure you want to validate the user?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showDenyButton: true,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'Validate, This User',
-                    denyButtonText: 'Cancel',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        this.form.put('api/user/validate/' + this.form.id).then(() => {
-                            toast.fire({
-                                icon: 'success',
-                                text: 'Data Saved.',
-                            })
-                            $('#validate-user').modal('hide');
-
-                            if (this.form.selectedOption == 'approve') {
-                                this.openEditModal(this.form);
-                            }
-                            this.getData();
-
+            Swal.fire({
+                title: 'Are you sure you want to validate the user?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showDenyButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Yes',
+                denyButtonText: 'Cancel',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.form.put('api/user/validate/' + this.form.id).then(() => {
+                        toast.fire({
+                            icon: 'success',
+                            text: 'Data Saved.',
                         })
-                    }
-                }).catch(() => {
-                    toast.fire({
-                        icon: 'error',
-                        text: 'Something went wrong!',
+                        $('#validate-user').modal('hide');
+
+                        if (this.form.selectedOption == 'approve') {
+                            this.openEditModal(this.form);
+                        }
+                        this.getData();
                     })
-                });
-            } else {
-                alert('Please select either Disapprove or Approve');
-            }
+                }
+            }).catch(() => {
+                toast.fire({
+                    icon: 'error',
+                    text: 'Something went wrong!',
+                })
+            });
         }
     },
     watch: {

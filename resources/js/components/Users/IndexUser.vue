@@ -87,7 +87,12 @@
                                                     Approval
                                                 </span>
                                             </td>
-                                            <td v-if="data.approved_at == NULL">
+                                            <td v-if="data.reason_of_disapproval != null && data.approved_at == NULL">
+                                                <span class="badge badge-danger">
+                                                    This user is denied
+                                                </span>
+                                            </td>
+                                            <td v-else-if="data.approved_at == NULL">
                                                 <span class="badge badge-danger">
                                                     Not Validated
                                                 </span>

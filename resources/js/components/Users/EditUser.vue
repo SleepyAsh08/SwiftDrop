@@ -196,7 +196,7 @@ export default {
         }
     },
     mounted() {
-        this.loadPermissions();
+        // this.loadPermissions();
         this.loadRoles();
     }
 }
