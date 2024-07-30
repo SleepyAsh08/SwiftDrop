@@ -26,6 +26,9 @@ Route::prefix('products')->group(function () {
 Route::prefix('login')->group(function () {
     Route::get('/submit', [MobileController::class, 'authenticate']);
 });
+Route::prefix('register')->group(function () {
+    Route::get('/submit', [MobileController::class, 'Registration']);
+});
 Auth::routes();
 Route::get('/student', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
 // Route::get('/{any}', [App\Http\Controllers\HomeController::class, 'index'])->where('any', '.*');

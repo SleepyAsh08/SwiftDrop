@@ -72,7 +72,6 @@ class RegisterController extends Controller
 
     protected function create(array $data)
     {
-
         $photos = request()->file('photos');
         $paths = [];
 
