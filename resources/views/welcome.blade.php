@@ -37,7 +37,7 @@
                     @endauth
                 </div>
             @endif
-            
+
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8 text-center">
                 <section class="hero d-flex align-items-center">
                     <div class="container">
@@ -49,7 +49,7 @@
                             <h1 data-aos="fade-up" >One-Stop Shop for Quality Agricultural Products</h1>
                                 <div>
                                 <a href="/login" class="btn btn-lg btn-primary">
-                                    <span>Get Started</span>
+                                    <span>Get Started!</span>
                                 </a>
                                 </div>
                             </div>

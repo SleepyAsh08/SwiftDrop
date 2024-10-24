@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/index', function () {
+    return public_path ('index');
+});
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, 'index_all']);
 });
