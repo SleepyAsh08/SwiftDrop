@@ -19,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/index', function () {
-    return public_path ('index');
+
+Route::get('/public/buyerindex.blade.php', function () {
+    return view('buyerindex');
 });
+
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, 'index_all']);
 });

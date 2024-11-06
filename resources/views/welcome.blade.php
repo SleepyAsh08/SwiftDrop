@@ -48,7 +48,7 @@
                             <div class="d-flex flex-column justify-content-center">
                             <h1 data-aos="fade-up" >One-Stop Shop for Quality Agricultural Products</h1>
                                 <div>
-                                <a href="/login" class="btn btn-lg btn-primary">
+                                <a href="/buyerindex.blade.php" class="btn btn-lg btn-primary">
                                     <span>Get Started!</span>
                                 </a>
                                 </div>
