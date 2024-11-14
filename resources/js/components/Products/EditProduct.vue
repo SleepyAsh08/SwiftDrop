@@ -29,10 +29,13 @@
                         <has-error :form="form" field="Description" />
                     </div>
                     <div class="form-group">
+
+
+
                         <label>Measurement</label>
-                        <multiselect v-model="form.measurement_id" :options="option_measurement" :multiple="true"
-                            :close-on-select="false" :clear-on-select="false" :preserve-search="true"
-                            placeholder="Pick some" label="measurement" track-by="id" :preselect-first="true">
+                        <multiselect v-model="form.measurement_id" :options="option_measurement"
+                            :close-on-select="true" :clear-on-select="false" :preserve-search="true"
+                            placeholder="Measurement" label="measurement" track-by="id" :preselect-first="true">
                         </multiselect>
                         <has-error :form="form" field="measurement" />
                     </div>
