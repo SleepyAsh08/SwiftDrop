@@ -107,7 +107,7 @@
                                                     @click="openValidateModal(data)"><i class="fas fa-search"></i>
                                                     Validate</button>
                                                 <button
-                                                    v-if="data.approved_at != null && data.reason_of_disapproval === null && can('approve user')"
+
                                                     type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
                                                     Edit</button>
