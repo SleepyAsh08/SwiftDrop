@@ -74,7 +74,7 @@
                                                     :src="'/storage/'+formatPhotoPath(data.photos)" alt="Product Photo"
                                                     style="max-width: 200px; max-height: 200px;"></td>
                                             <!-- <td>{{ data }}</td> -->
-                                            <td>{{ data.name }}</td>
+                                            <td>{{ data.name + " " + data.lastname}}</td>
                                             <td>{{ data.email }}</td>
 
                                             <td>{{ data.contact_number }}</td>

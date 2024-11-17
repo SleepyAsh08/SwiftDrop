@@ -11357,7 +11357,7 @@ var staticRenderFns = [function () {
     attrs: {
       id: "exampleModalLabel"
     }
-  }, [_vm._v("Edit User")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Edit Product")]), _vm._v(" "), _c("button", {
     staticClass: "btn-close",
     attrs: {
       type: "button",
@@ -13135,11 +13135,10 @@ var render = function render() {
   }, [_c("label", [_vm._v("Measurement")]), _vm._v(" "), _c("multiselect", {
     attrs: {
       options: _vm.option_measurement,
-      multiple: true,
-      "close-on-select": false,
+      "close-on-select": true,
       "clear-on-select": false,
       "preserve-search": true,
-      placeholder: "Pick some",
+      placeholder: "Measurement",
       label: "measurement",
       "track-by": "id",
       "preselect-first": true
@@ -15153,7 +15152,7 @@ var render = function render() {
         src: "/storage/" + _vm.formatPhotoPath(data.photos),
         alt: "Product Photo"
       }
-    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
+    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name + " " + data.lastname))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
       return _c("span", {
         key: role.id
       }, [_vm._v("\n                                                " + _vm._s(role.name) + "\n                                            ")]);
@@ -33993,7 +33992,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-c3c451e8] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-c3c451e8] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-c3c451e8]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-c3c451e8] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-c3c451e8] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-c3c451e8]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34017,7 +34016,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-98c5f55e] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-98c5f55e] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-98c5f55e]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-98c5f55e] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-98c5f55e] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-98c5f55e]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34041,7 +34040,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-62bcfb78] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-62bcfb78] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-62bcfb78]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-62bcfb78] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-62bcfb78] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-62bcfb78]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34065,7 +34064,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-1dc5b81c] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-1dc5b81c] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-1dc5b81c]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-1dc5b81c] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-1dc5b81c] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-1dc5b81c]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34089,7 +34088,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-a6ae3e56] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-a6ae3e56] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-a6ae3e56]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-a6ae3e56] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-a6ae3e56] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-a6ae3e56]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -34113,7 +34112,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-609380cc] {\r\n    background: none;\r\n    border: 1px solid #ccc;\r\n    /* Adjust border color as needed */\r\n    padding: 5px 10px;\r\n    /* Adjust padding as needed */\r\n    font: inherit;\r\n    color: inherit;\r\n    cursor: pointer;\r\n    display: flex;\r\n    align-items: center;\r\n    border-radius: 4px;\r\n    /* Optional: for rounded corners */\r\n    text-align: left;\r\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-609380cc] {\r\n    margin: 0;\r\n    /* Remove default margin from <p> */\r\n    padding-left: 5px;\r\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-609380cc]:hover {\r\n    background-color: #f0f0f0;\r\n    /* Optional: add a hover effect */\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-link.btn[data-v-609380cc] {\n    background: none;\n    border: 1px solid #ccc;\n    /* Adjust border color as needed */\n    padding: 5px 10px;\n    /* Adjust padding as needed */\n    font: inherit;\n    color: inherit;\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    border-radius: 4px;\n    /* Optional: for rounded corners */\n    text-align: left;\n    /* Ensure text is left-aligned */\n}\n.nav-link.btn p[data-v-609380cc] {\n    margin: 0;\n    /* Remove default margin from <p> */\n    padding-left: 5px;\n    /* Add some space between icon and text */\n}\n.nav-link.btn[data-v-609380cc]:hover {\n    background-color: #f0f0f0;\n    /* Optional: add a hover effect */\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
