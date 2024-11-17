@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Measurement;
 use App\Models\Products;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
@@ -22,11 +23,22 @@ class ProductsController extends Controller
         $userID = auth()->user()->id;
 
         // dd($emp_code);
-        $data = Products::OrderBy('Quantity', 'desc')
+        $data = Products::with('Category', 'Measurement')
+            ->OrderBy('Quantity', 'desc')
             ->where('userID', $userID)
             ->where('Quantity', '>', 10)
             ->latest();
+
         $data = $data->paginate($request->length);
+
+        $data->getCollection()->transform(function ($item) {
+            // Add the 'category' field from the related Category model to the product data
+            $item->category_name = $item->category ? $item->category->category : null; // 'category' is the field in the Category model
+
+            $item->measurement_name = $item->measurement ? $item->measurement->measurement : null;
+            return $item;
+        });
+        // dd($data);
         return response([
             'data' => $data,
             'userID' => $userID,
@@ -35,8 +47,35 @@ class ProductsController extends Controller
 
     public function index_all()
     {
-        $data = Products::all();
-        return response()->json(['data' => $data], 200);
+        // $user = User::all();
+
+        $data = Products::with('User')->get();
+
+        // dd($data);
+
+        $formattedData = $data->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'Product_Name' => $product->Product_Name,
+                'idCategory' => $product->idCategory,
+                'price' => $product->price,
+                'idMeasurement' => $product->idMeasurement,
+                'Quantity' => $product->Quantity,
+                'Description' => $product->Description,
+                'created_at' => $product->created_at,
+                'updated_at' => $product->updated_at,
+                'photos' => json_decode($product->photos),
+                'photos1' => json_decode($product->photos1),
+                'photos2' => json_decode($product->photos2),
+                'userID' => $product->userID,
+                'first_name' => $product->user->name ?? null,
+                'last_name' => $product->user->lastname ?? null, // Add user name here
+                'contact_number' => $product->user->contact_number ?? null, // Add user name here
+            ];
+        });
+
+        // dd($formattedData);
+        return response()->json(['data' => $formattedData], 200);
     }
 
     public function index1(Request $request)
@@ -44,13 +83,21 @@ class ProductsController extends Controller
         $userID = auth()->user()->id;
 
         // dd($emp_code);
-        $data = Products::OrderBy('Quantity', 'desc')
+        $data = Products::with('Category', 'Measurement')
+            ->OrderBy('Quantity', 'desc')
             ->where('userID', $userID)
             ->where('Quantity', '<=', 10)
             ->latest();
 
-        // dd($data);
         $data = $data->paginate($request->length);
+
+        $data->getCollection()->transform(function ($item) {
+            // Add the 'category' field from the related Category model to the product data
+            $item->category_name = $item->category ? $item->category->category : null; // 'category' is the field in the Category model
+
+            $item->measurement_name = $item->measurement ? $item->measurement->measurement : null;
+            return $item;
+        });
         return response([
             'data' => $data,
             'userID' => $userID,

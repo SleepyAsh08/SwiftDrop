@@ -53,8 +53,10 @@
                                         <tr>
                                             <th style="width: 10%;">Photo</th>
                                             <th style="width: 10%;">Product Name</th>
+                                            <th style="width: 10%;">Category</th>
                                             <th style="width: 10%;">Price</th>
                                             <th style="width: 10%;">Quantity</th>
+                                            <th style="width: 10%;">Measurement</th>
                                             <th style="width: 10%;"></th>
                                         </tr>
                                     </thead>
@@ -67,8 +69,10 @@
                                                     style="max-width: 200px; max-height: 200px;">
                                             </td>
                                             <td>{{ data.Product_Name }}</td>
-                                            <td>{{ data.price }}</td>
-                                            <td>{{ data.Quantity }}</td>
+                                            <td>{{ data.category_name }}</td>
+                                            <td>{{ data.price}}</td>
+                                            <td>{{ data.Quantity}}</td>
+                                            <td>{{ data.measurement_name }}</td>
                                             <td class="text-right">
                                                 <button type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
