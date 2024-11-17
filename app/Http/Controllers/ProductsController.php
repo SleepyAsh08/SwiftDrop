@@ -83,13 +83,21 @@ class ProductsController extends Controller
         $userID = auth()->user()->id;
 
         // dd($emp_code);
-        $data = Products::OrderBy('Quantity', 'desc')
+        $data = Products::with('Category', 'Measurement')
+            ->OrderBy('Quantity', 'desc')
             ->where('userID', $userID)
             ->where('Quantity', '<=', 10)
             ->latest();
 
-        // dd($data);
         $data = $data->paginate($request->length);
+
+        $data->getCollection()->transform(function ($item) {
+            // Add the 'category' field from the related Category model to the product data
+            $item->category_name = $item->category ? $item->category->category : null; // 'category' is the field in the Category model
+
+            $item->measurement_name = $item->measurement ? $item->measurement->measurement : null;
+            return $item;
+        });
         return response([
             'data' => $data,
             'userID' => $userID,

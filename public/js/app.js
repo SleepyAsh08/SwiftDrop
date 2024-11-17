@@ -13330,7 +13330,7 @@ var render = function render() {
         src: "/storage/" + _vm.formatPhotoPath(data.photos),
         alt: "Product Photo"
       }
-    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Product_Name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Quantity))]), _vm._v(" "), _c("td", {
+    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Product_Name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.category_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Quantity))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.measurement_name))]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
     }, [_c("button", {
       staticClass: "btn btn-primary btn-sm",
@@ -13416,11 +13416,19 @@ var staticRenderFns = [function () {
     staticStyle: {
       width: "10%"
     }
+  }, [_vm._v("Category")]), _vm._v(" "), _c("th", {
+    staticStyle: {
+      width: "10%"
+    }
   }, [_vm._v("Price")]), _vm._v(" "), _c("th", {
     staticStyle: {
       width: "10%"
     }
   }, [_vm._v("Quantity")]), _vm._v(" "), _c("th", {
+    staticStyle: {
+      width: "10%"
+    }
+  }, [_vm._v("Measurement")]), _vm._v(" "), _c("th", {
     staticStyle: {
       width: "10%"
     }
