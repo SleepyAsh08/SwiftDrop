@@ -15135,7 +15135,7 @@ var render = function render() {
       staticClass: "badge badge-danger"
     }, [_vm._v("\n                                                Not Validated\n                                            ")])]) : _c("td", [_vm._v("\n                                            " + _vm._s(data.approved_at) + "\n                                        ")]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
-    }, [data.approved_at === null && data.reason_of_disapproval === null && _vm.can("approve user") ? _c("button", {
+    }, [data.approved_at === null && data.reason_of_disapproval === null ? _c("button", {
       staticClass: "btn btn-success btn-sm",
       attrs: {
         type: "button"
@@ -15147,7 +15147,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-search"
-    }), _vm._v("\n                                                Validate")]) : _vm._e(), _vm._v(" "), _c("button", {
+    }), _vm._v("\n                                                Validate")]) : _vm._e(), _vm._v(" "), data.approved_at != null && data.reason_of_disapproval === null ? _c("button", {
       staticClass: "btn btn-primary btn-sm",
       attrs: {
         type: "button"
@@ -15159,7 +15159,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-edit"
-    }), _vm._v("\n                                                Edit")]), _vm._v(" "), data.deleted_at === null && _vm.can("delete user") ? _c("button", {
+    }), _vm._v("\n                                                Edit")]) : _vm._e(), _vm._v(" "), data.deleted_at === null && _vm.can("delete user") ? _c("button", {
       staticClass: "btn btn-danger btn-sm",
       attrs: {
         type: "button"

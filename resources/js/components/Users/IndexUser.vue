@@ -100,14 +100,16 @@
                                             <td v-else>
                                                 {{ data.approved_at }}
                                             </td>
+
                                             <td class="text-right">
+
                                                 <button
-                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null && can('approve user')"
+                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null"
                                                     type="button" class="btn btn-success btn-sm"
                                                     @click="openValidateModal(data)"><i class="fas fa-search"></i>
                                                     Validate</button>
                                                 <button
-
+                                                    v-if="data.approved_at != null && data.reason_of_disapproval === null"
                                                     type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
                                                     Edit</button>
