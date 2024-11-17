@@ -97,14 +97,18 @@ class ProductsController extends Controller
                 $photoPaths2[] = $path;
             }
         }
+
+
+        // dd($request->measurement_id + 0);
         // dd($photoPaths);
         // Create product with photo paths
         $product = Products::create([
             'Product_Name' => $request->product_name,
+            'idCategory' => $request->category_id,
             'price' => $request->price,
             'Quantity' => $request->quantity,
             'Description' => $request->description,
-            // 'idMeasurement' => $request->measurement_id,
+            'idMeasurement' => $request->measurement_id,
             'photos' => json_encode($photoPaths),
             'photos1' => json_encode($photoPaths1),
             'photos2' => json_encode($photoPaths2),
@@ -112,6 +116,7 @@ class ProductsController extends Controller
             // Store photo paths as JSON
         ]);
 
+        // dd($product);
         // Dump a message indicating product creation with photos
 
 
@@ -122,17 +127,22 @@ class ProductsController extends Controller
     {
 
         // dd($request->measurement_id);
+        // dd($request->measurement_id);
 
+        $measurement = $request->measurement_id['id'];
 
+        // dd($measurement);
         $this->validate($request, []);
         $user = Products::findOrFail($id);
+
         $user->update([
             'Product_Name' => $request->Product_Name,
             'price' => $request->price,
             'Quantity' => $request->Quantity,
             'Description' => $request->Description,
-            // 'idMeasurement' => $request->measurement_id,
+            'idMeasurement' => $measurement,
         ]);
+
 
         return response(['message' => 'success'], 200);
     }

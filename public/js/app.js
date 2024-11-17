@@ -6916,8 +6916,9 @@ __webpack_require__.r(__webpack_exports__);
 
       console.log('Photos before posting:', this.photos);
       var formData = new FormData();
-      formData.append('product_name', this.form.product_name); // formData.append('measurement_id', this.form.measurement_id.id);
-
+      formData.append('product_name', this.form.product_name);
+      formData.append('measurement_id', this.form.measurement_id.id);
+      formData.append('category_id', this.form.category_id.id);
       formData.append('price', this.form.price);
       formData.append('quantity', this.form.quantity);
       formData.append('description', this.form.description); // Append each selected photo file to the formData
@@ -8597,6 +8598,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    formatPhotoPath: function formatPhotoPath(photoPath) {
+      if (photoPath) {
+        return photoPath.replace(/^\["(.+)"\]$/, '$1');
+      } else {
+        return '';
+      }
+    },
     openAddModal: function openAddModal() {
       $('#add-user').modal('show');
     },
@@ -11299,11 +11307,10 @@ var render = function render() {
   }, [_c("label", [_vm._v("Measurement")]), _vm._v(" "), _c("multiselect", {
     attrs: {
       options: _vm.option_measurement,
-      multiple: true,
-      "close-on-select": false,
+      "close-on-select": true,
       "clear-on-select": false,
       "preserve-search": true,
-      placeholder: "Pick some",
+      placeholder: "Measurement",
       label: "measurement",
       "track-by": "id",
       "preselect-first": true
@@ -15121,7 +15128,16 @@ var render = function render() {
   }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.option_users.data, function (data, index) {
     return _c("tr", {
       key: index
-    }, [_c("td", [_vm._v(_vm._s(data.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.reason_of_disapproval))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
+    }, [_c("td", [_vm._v(_vm._s(data.id))]), _vm._v(" "), _c("td", [data.photos && data.photos.length ? _c("img", {
+      staticStyle: {
+        "max-width": "200px",
+        "max-height": "200px"
+      },
+      attrs: {
+        src: "/storage/" + _vm.formatPhotoPath(data.photos),
+        alt: "Product Photo"
+      }
+    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
       return _c("span", {
         key: role.id
       }, [_vm._v("\n                                                " + _vm._s(role.name) + "\n                                            ")]);
@@ -15135,7 +15151,7 @@ var render = function render() {
       staticClass: "badge badge-danger"
     }, [_vm._v("\n                                                Not Validated\n                                            ")])]) : _c("td", [_vm._v("\n                                            " + _vm._s(data.approved_at) + "\n                                        ")]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
-    }, [data.approved_at != _vm.NULL && data.reason_of_disapproval != _vm.NULL && _vm.can("approve user") ? _c("button", {
+    }, [data.approved_at === null && data.reason_of_disapproval === null ? _c("button", {
       staticClass: "btn btn-success btn-sm",
       attrs: {
         type: "button"
@@ -15147,7 +15163,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-search"
-    }), _vm._v("\n                                                Validate\n                                            ")]) : _vm._e(), _vm._v(" "), data.approved_at != null && data.reason_of_disapproval === null && _vm.can("approve user") ? _c("button", {
+    }), _vm._v("\n                                                Validate\n                                            ")]) : _vm._e(), _vm._v(" "), data.approved_at != null && data.reason_of_disapproval === null ? _c("button", {
       staticClass: "btn btn-primary btn-sm",
       attrs: {
         type: "button"
@@ -15259,7 +15275,7 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("thead", [_c("tr", [_c("th", [_vm._v("Id")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Email")]), _vm._v(" "), _c("th", [_vm._v("Contact Number")]), _vm._v(" "), _c("th", [_vm._v("Type of User")]), _vm._v(" "), _c("th", [_vm._v("Date of Validation")]), _vm._v(" "), _c("th")])]);
+  return _c("thead", [_c("tr", [_c("th", [_vm._v("Id")]), _vm._v(" "), _c("th", [_vm._v("Document")]), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Email")]), _vm._v(" "), _c("th", [_vm._v("Contact Number")]), _vm._v(" "), _c("th", [_vm._v("Type of User")]), _vm._v(" "), _c("th", [_vm._v("Date of Validation")]), _vm._v(" "), _c("th")])]);
 }];
 render._withStripped = true;
 
@@ -15307,7 +15323,7 @@ var render = function render() {
     staticClass: "gallery mx-auto d-block pb-0",
     staticStyle: {
       width: "400px",
-      height: "400px"
+      height: "200px"
     }
   }, [_c("div", {
     directives: [{
@@ -15319,7 +15335,8 @@ var render = function render() {
     staticClass: "images clearfix"
   }, [[_c("img", {
     staticStyle: {
-      height: "400px"
+      "max-width": "200px",
+      "max-height": "200px"
     },
     attrs: {
       "data-source": "/storage/" + _vm.formatPhotoPath(_vm.form.photos),
