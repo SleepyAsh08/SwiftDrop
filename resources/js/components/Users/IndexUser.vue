@@ -66,10 +66,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr v-for="(data, index) in         option_users.data        " :key="index">
                                             <td>{{ data.id }}</td>
+                                            <!-- <td>{{ data }}</td> -->
                                             <td>{{ data.name }}</td>
-                                            <td>{{ data.email }}</td>
+                                            <td>{{ data.reason_of_disapproval }}</td>
                                             <td>{{ data.contact_number }}</td>
                                             <td v-if="data.roles.length > 0">
                                                 <span v-for="role in data.roles" :key="role.id">
@@ -101,11 +103,13 @@
                                                 {{ data.approved_at }}
                                             </td>
                                             <td class="text-right">
+                                                <!-- {{ data }} -->
                                                 <button
-                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null && can('approve user')"
+                                                    v-if="data.approved_at != NULL && data.reason_of_disapproval != NULL && can('approve user')"
                                                     type="button" class="btn btn-success btn-sm"
                                                     @click="openValidateModal(data)"><i class="fas fa-search"></i>
-                                                    Validate</button>
+                                                    Validate
+                                                </button>
                                                 <button
                                                     v-if="data.approved_at != null && data.reason_of_disapproval === null && can('approve user')"
                                                     type="button" class="btn btn-primary btn-sm"

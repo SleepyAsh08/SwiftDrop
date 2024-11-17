@@ -15121,7 +15121,7 @@ var render = function render() {
   }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.option_users.data, function (data, index) {
     return _c("tr", {
       key: index
-    }, [_c("td", [_vm._v(_vm._s(data.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
+    }, [_c("td", [_vm._v(_vm._s(data.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.reason_of_disapproval))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.contact_number))]), _vm._v(" "), data.roles.length > 0 ? _c("td", _vm._l(data.roles, function (role) {
       return _c("span", {
         key: role.id
       }, [_vm._v("\n                                                " + _vm._s(role.name) + "\n                                            ")]);
@@ -15135,7 +15135,7 @@ var render = function render() {
       staticClass: "badge badge-danger"
     }, [_vm._v("\n                                                Not Validated\n                                            ")])]) : _c("td", [_vm._v("\n                                            " + _vm._s(data.approved_at) + "\n                                        ")]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
-    }, [data.approved_at === null && data.reason_of_disapproval === null && _vm.can("approve user") ? _c("button", {
+    }, [data.approved_at != _vm.NULL && data.reason_of_disapproval != _vm.NULL && _vm.can("approve user") ? _c("button", {
       staticClass: "btn btn-success btn-sm",
       attrs: {
         type: "button"
@@ -15147,7 +15147,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-search"
-    }), _vm._v("\n                                                Validate")]) : _vm._e(), _vm._v(" "), data.approved_at != null && data.reason_of_disapproval === null && _vm.can("approve user") ? _c("button", {
+    }), _vm._v("\n                                                Validate\n                                            ")]) : _vm._e(), _vm._v(" "), data.approved_at != null && data.reason_of_disapproval === null && _vm.can("approve user") ? _c("button", {
       staticClass: "btn btn-primary btn-sm",
       attrs: {
         type: "button"
