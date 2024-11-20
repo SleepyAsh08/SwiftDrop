@@ -75,7 +75,7 @@ class UserController extends Controller
             }
         }
 
-        dd($photoPaths);
+        // dd($photoPaths);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -145,6 +145,8 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
@@ -176,6 +178,8 @@ class UserController extends Controller
             'date_of_birth' => $request->date_of_birth,
             'contact_number' => $request->contact_number,
             'telephone_number' => $request->telephone_number,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
             // 'photos' => $request->photos,
             'user_photo' => json_encode($photoPaths)
         ]);
