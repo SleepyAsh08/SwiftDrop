@@ -9,7 +9,6 @@
 4.  php artisan key:generate
 
 5.  php artisan migrate
-
 6.  php artisan db:seed
 7.  change DB_DATABASE=agrishop in .env
 
@@ -36,3 +35,8 @@
     Default Password = password
 
 php artisan storage:link for image storage to public
+PS C:\xampp\htdocs\agrishop> git add .
+PS C:\xampp\htdocs\agrishop> git commit -m "randel update"
+PS C:\xampp\htdocs\agrishop> git pull
+PS C:\xampp\htdocs\agrishop> git push
+php artisan make:migration create_table_name_table -m-c

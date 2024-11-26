@@ -56,11 +56,11 @@ session_start();
             </nav>
 
         </header>
-
-        <section class="hero bg-image" data-image-src="images/img/pimg.jpg">
+        {{-- <link rel="icon" href="/images/AgrishopLogo.png" type="image/x-icon"> --}}
+        <section class="hero bg-image" data-image-src="images/pimg.jpg">
             <div class="hero-inner">
                 <div class="container text-center hero-text font-white">
-                    <h1>AgriSHop </h1>
+                    <h1>AgriShop </h1>
 
                     <div class="banner-form">
                         <form class="form-inline">
