@@ -146,7 +146,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
+
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
@@ -156,10 +157,11 @@ class UserController extends Controller
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
             'telephone_number' => 'nullable|string|digits:7',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
             // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
+        dd($request->hasFile('photos'));
         $photoPaths = [];
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {

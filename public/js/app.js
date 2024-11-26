@@ -8437,8 +8437,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_1__);
 function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -8446,6 +8448,7 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -8553,12 +8556,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.$emit('getData', _this.page);
 
         $('#edit-user').modal('hide');
-      })["catch"](function (error) {});
+      })["catch"](function (error) {
+        console.error('Error during submission:', error);
+      });
     },
     loadMeasurement: function loadMeasurement() {
       var _this2 = this;
 
-      axios.get('/api/measurement/all').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/measurement/all').then(function (response) {
         _this2.option_measurement = response.data.data;
         console.log('Loaded measurements:', _this2.option_measurement);
       });
@@ -8566,7 +8571,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     loadRoles: function loadRoles() {
       var _this3 = this;
 
-      axios.get('/api/role/all').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/role/all').then(function (response) {
         _this3.option_roles = response.data.data;
       });
     },
@@ -15007,18 +15012,7 @@ var render = function render() {
       form: _vm.form,
       field: "roles"
     }
-  })], 1) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Upload Profile")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      multiple: ""
-    },
-    on: {
-      change: _vm.onFileChange
-    }
-  })]), _vm._v(" "), _vm.can("approve user") ? _c("div", {
+  })], 1) : _vm._e(), _vm._v(" "), _vm.can("approve user") ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Permission")]), _vm._v(" "), _c("multiselect", {
     attrs: {

@@ -64,10 +64,10 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Upload Profile</label>
                         <input type="file" @change="onFileChange" multiple class="form-control">
-                    </div>
+                    </div> -->
 
 
                     <div v-if="can('approve user')" class="form-group">
@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import L from 'leaflet';
 
 export default {
@@ -128,8 +129,8 @@ export default {
                 permissions: null,
                 latitude: null,
                 longitude: null,
-            }),
 
+            }),
             photos: [],
             option_permissions: [],
             option_roles: [],
@@ -183,7 +184,6 @@ export default {
             for (let pair of formData.entries()) {
         console.log(pair[0], pair[1]);  // Log each key-value pair in the formData
     }
-
             this.form.put('/api/user/update', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -196,7 +196,7 @@ export default {
                 this.$emit('getData', this.page);
                 $('#edit-user').modal('hide');
             }).catch(error => {
-
+                console.error('Error during submission:', error);
             });
         },
         loadMeasurement() {
