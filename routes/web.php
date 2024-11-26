@@ -20,8 +20,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/public/buyerindex.blade.php', function () {
-    return view('buyerindex');
+Route::get('/public/buyer/index.php', function () {
+    return view('index');
 });
 
 Route::prefix('products')->group(function () {
