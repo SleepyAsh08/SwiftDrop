@@ -146,7 +146,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
 
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
@@ -161,7 +161,7 @@ class UserController extends Controller
             // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
-        dd($request->hasFile('photos'));
+        // dd($request->hasFile('photos'));
         $photoPaths = [];
         if ($request->hasFile('photos')) {
             foreach ($request->file('photos') as $photo) {
