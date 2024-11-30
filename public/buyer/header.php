@@ -54,15 +54,15 @@ foreach ($result as $row) {
 		$statement1->execute(array($row['payment_id']));
 		$result1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result1 as $row1) {
-			$statement2 = $pdo->prepare("SELECT * FROM tbl_product WHERE p_id=?");
+			$statement2 = $pdo->prepare("SELECT * FROM products WHERE id=?");
 			$statement2->execute(array($row1['product_id']));
 			$result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
 			foreach ($result2 as $row2) {
-				$p_qty = $row2['p_qty'];
+				$p_qty = $row2['Quantity'];
 			}
 			$final = $p_qty+$row1['quantity'];
 
-			$statement = $pdo->prepare("UPDATE tbl_product SET p_qty=? WHERE p_id=?");
+			$statement = $pdo->prepare("UPDATE products SET Quantity=? WHERE id=?");
 			$statement->execute(array($final,$row1['product_id']));
 		}
 
@@ -165,15 +165,15 @@ foreach ($result as $row) {
 	}
 	if($cur_page == 'product.php')
 	{
-		$statement = $pdo->prepare("SELECT * FROM tbl_product WHERE p_id=?");
+		$statement = $pdo->prepare("SELECT * FROM products WHERE id=?");
 		$statement->execute(array($_REQUEST['id']));
 		$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 		foreach ($result as $row)
 		{
-		    $og_photo = $row['p_featured_photo'];
-		    $og_title = $row['p_name'];
+		    $og_photo = $row['photos'];
+		    $og_title = $row['Product_Name'];
 		    $og_slug = 'product.php?id='.$_REQUEST['id'];
-			$og_description = substr(strip_tags($row['p_description']),0,200).'...';
+			$og_description = substr(strip_tags($row['Description']),0,200).'...';
 		}
 	}
 
@@ -319,42 +319,7 @@ foreach ($result as $row) {
 						<ul>
 							<li><a href="index.php">Home</a></li>
 
-							<?php
-							$statement = $pdo->prepare("SELECT * FROM tbl_top_category WHERE show_on_menu=1");
-							$statement->execute();
-							$result = $statement->fetchAll(PDO::FETCH_ASSOC);
-							foreach ($result as $row) {
-								?>
-								<li><a href="product-category.php?id=<?php echo $row['tcat_id']; ?>&type=top-category"><?php echo $row['tcat_name']; ?></a>
-									<ul>
-										<?php
-										$statement1 = $pdo->prepare("SELECT * FROM tbl_mid_category WHERE tcat_id=?");
-										$statement1->execute(array($row['tcat_id']));
-										$result1 = $statement1->fetchAll(PDO::FETCH_ASSOC);
-										foreach ($result1 as $row1) {
-											?>
-											<li><a href="product-category.php?id=<?php echo $row1['mcat_id']; ?>&type=mid-category"><?php echo $row1['mcat_name']; ?></a>
-												<ul>
-													<?php
-													$statement2 = $pdo->prepare("SELECT * FROM tbl_end_category WHERE mcat_id=?");
-													$statement2->execute(array($row1['mcat_id']));
-													$result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
-													foreach ($result2 as $row2) {
-														?>
-														<li><a href="product-category.php?id=<?php echo $row2['ecat_id']; ?>&type=end-category"><?php echo $row2['ecat_name']; ?></a></li>
-														<?php
-													}
-													?>
-												</ul>
-											</li>
-											<?php
-										}
-										?>
-									</ul>
-								</li>
-								<?php
-							}
-							?>
+
 
 							<?php
 							$statement = $pdo->prepare("SELECT * FROM tbl_page WHERE id=1");
