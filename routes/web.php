@@ -28,6 +28,7 @@ Route::get('/public/buyer/index.php', function () {
 
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, 'index_all']);
+    Route::get('/category/{id}', [App\Http\Controllers\ProductsController::class, 'category_all']);
 });
 
 Route::prefix('categories')->group(function () {

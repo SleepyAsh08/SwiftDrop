@@ -40,7 +40,7 @@
                             if($row['position'] == 'Left') {echo 'fadeInLeft';}
                             elseif($row['position'] == 'Center') {echo 'fadeInDown';}
                             elseif($row['position'] == 'Right') {echo 'fadeInRight';} ?>">One-Stop Shop for Quality Agricultural Products</p>
-                            <a href="<?php echo $row['button_url']; ?>" target="_blank"  class="btn btn-primary" data-animation="animated <?php
+                            <a href="<?php echo $row['button_url']; ?>" target="buyer/product-category.php"  class="btn btn-primary" data-animation="animated <?php
                             if($row['position'] == 'Left') {echo 'fadeInLeft';}
                             elseif($row['position'] == 'Center') {echo 'fadeInDown';}
                             elseif($row['position'] == 'Right') {echo 'fadeInRight';} ?>">Browse Products</a>

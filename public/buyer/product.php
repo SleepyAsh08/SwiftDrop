@@ -41,9 +41,9 @@ if(isset($_POST['form_add_to_cart'])) {
 	$statement->execute(array($_REQUEST['id']));
 	$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 	foreach ($result as $row) {
-		$current_p_qty = $row['p_qty'];
+		$current_p_qty = $row['Quantity'];
 	}
-	if($_POST['p_qty'] > $current_p_qty):
+	if($_POST['p_Quantityqty'] > $current_p_qty):
 		$temp_msg = 'Sorry! There are only '.$current_p_qty.' item(s) in stock';
 		?>
 		<script type="text/javascript">alert('<?php echo $temp_msg; ?>');</script>
@@ -360,7 +360,19 @@ if($success_message1 != '') {
                         ?>
                         <div class="item">
                             <div class="thumb">
-                                <div class="photo" style="background-image:url((http://192.168.1.9:8080/storage/<?php echo $row['photos'][0]; ?>);"></div>
+
+                            <?php
+// Decode the JSON and extract the first photo URL
+                                            $photos = json_decode($row['photos'], true);
+
+                                            if (!empty($photos[0])) {
+                                                $photoUrl = str_replace('\/', '/', $photos[0]);
+                                                echo '<div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/' . $photoUrl . ');"></div>';
+                                            } else {
+                                                echo '<div class="photo" style="background-color: gray;">No photo available</div>';
+                                            }
+                                            ?>
+                            <!-- <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($row['photos'][0])); ?>);"></div> -->
                                 <div class="overlay"></div>
                             </div>
                             <div class="text">
