@@ -15,10 +15,10 @@ class AdditionalInformationToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->string('lastname')->after('name');
+            $table->string('lastname')->after('name')->nullable();;
             $table->string('middle_initial', 2)->after('lastname')->nullable();
             $table->date('date_of_birth')->after('middle_initial')->nullable();
-            $table->string('contact_number')->after('date_of_birth');
+            $table->string('contact_number')->after('date_of_birth')->nullable();;
             $table->string('telephone_number')->after('contact_number')->nullable();
             $table->string('reason_of_disapproval')->after('telephone_number')->nullable();
             $table->json('user_photo')->nullable();

@@ -79,7 +79,7 @@ if(isset($_POST['form1'])) {
 		<div class="row">
 			<div class="col-md-12">
 
-                <?php var_dump($_SESSION) ?>
+
                 <?php if(!isset($_SESSION['cart_p_id'])): ?>
                     <?php echo '<h2 class="text-center">Cart is Empty!!</h2></br>'; ?>
                     <?php echo '<h4 class="text-center">Add products to the cart in order to view it here.</h4>'; ?>
