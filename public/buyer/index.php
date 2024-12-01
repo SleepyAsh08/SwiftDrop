@@ -67,7 +67,7 @@
             <div class="col-md-12">
                 <div class="headline">
                     <h2>List of Products</h2>
-                    <!-- <h3><?php echo $popular_product_subtitle; ?></h3> -->
+
                 </div>
             </div>
         </div>
@@ -76,8 +76,9 @@
                 <div class="product-carousel">
                     <?php
                     // Fetch product data from the API
-                    $apiUrl = 'http://192.168.1.9:8080/products/all';
-                    $json = file_get_contents($apiUrl);
+                    $apiUrl = 'http://192.168.1.101:8080/products/all';
+                    $json = @file_get_contents($apiUrl); // Suppress warnings with @
+
                     $products = json_decode($json, true)['data']; // Decode the JSON response to PHP array
 
                     // Check if products are fetched
@@ -87,19 +88,14 @@
                             ?>
                             <div class="item">
                                 <div class="thumb">
-                                    <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
+                                    <div class="photo" style="background-image:url(http://192.168.1.101:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
                                     <div class="overlay"></div>
                                 </div>
                                 <div class="text">
                                     <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['Product_Name']; ?></a></h3>
-                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
+
                                     <h4>
                                     ₱<?php echo $product['price']; ?>
-                                    <?php if(isset($product['p_old_price']) && $product['p_old_price'] != ''): ?>
-                                    <del>
-                                    ₱<?php echo $product['p_old_price']; ?>
-                                    </del>
-                                    <?php endif; ?>
                                     </h4>
                                     <div class="rating">
                                         <?php
@@ -110,6 +106,7 @@
                                         }
                                         ?>
                                     </div>
+                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
                                     <?php if($product['Quantity'] == 0): ?>
                                         <div class="out-of-stock">
                                             <div class="inner">

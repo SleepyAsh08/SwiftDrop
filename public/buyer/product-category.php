@@ -1,6 +1,6 @@
 <?php
 // Fetch categories from API
-$api_url = 'http://192.168.1.9:8080/categories/all';
+$api_url = 'http://192.168.1.101:8080/categories/all';
 $response = file_get_contents($api_url);
 $categories = json_decode($response, true);  // Decode the categories JSON response
 
@@ -17,7 +17,7 @@ $products = [];
 
 if ($category_id) {
     // Fetch products for the selected category using API
-    $product_api_url = "http://192.168.1.9:8080/products/category/{$category_id}";
+    $product_api_url = "http://192.168.1.101:8080/products/category/{$category_id}";
     $product_response = file_get_contents($product_api_url);
     $products = json_decode($product_response, true);  // Decode the product JSON response
 
@@ -33,7 +33,7 @@ if ($category_id) {
     // }
 } else {
     // If no category is selected, fetch and display all products
-    $product_api_url = "http://192.168.1.9:8080/products/all";
+    $product_api_url = "http://192.168.1.101:8080/products/all";
     $product_response = file_get_contents($product_api_url);
     $products = json_decode($product_response, true);  // Decode the product JSON response
 
@@ -77,6 +77,7 @@ if ($category_id) {
             <div class="col-md-9">
     <h3>Products</h3>
     <div class="product-list">
+        <?php var_dump($products) ?>
         <?php if (isset($products['data']) && count($products['data']) > 0): ?>
             <div class="row">
                 <?php foreach ($products['data'] as $product): ?>
@@ -88,7 +89,7 @@ if ($category_id) {
                                 <?php
                                 $photoPath = json_decode($product['photos'])[0];  // Decode the string into an array and get the first element
                                 ?>
-                                <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $photoPath; ?>); width: 100%; height: 200px; background-size: cover;"></div>
+                                <div class="photo" style="background-image:url(http://192.168.1.101:8080/storage/<?php echo $photoPath; ?>); width: 100%; height: 200px; background-size: cover;"></div>
                                     <div class="overlay"></div>
                                 </div>
                                 <div class="text">
