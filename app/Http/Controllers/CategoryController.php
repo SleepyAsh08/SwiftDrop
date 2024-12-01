@@ -26,6 +26,15 @@ class CategoryController extends Controller
         $data = Category::all();
         return response(['data' => $data], 200);
     }
+
+    public function all()
+    {
+        $data = Category::get();
+        // dd($data);
+        return response()->json(['data' => $data], 200);
+    }
+
+
     public function store(Request $request)
     {
         // $this->validate($request, [

@@ -3,7 +3,7 @@
 <?php
 $statement = $pdo->prepare("SELECT * FROM tbl_settings WHERE id=1");
 $statement->execute();
-$result = $statement->fetchAll(PDO::FETCH_ASSOC);                            
+$result = $statement->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $row) {
     $banner_cart = $row['banner_cart'];
 }
@@ -14,13 +14,13 @@ $error_message = '';
 if(isset($_POST['form1'])) {
 
     $i = 0;
-    $statement = $pdo->prepare("SELECT * FROM tbl_product");
+    $statement = $pdo->prepare("SELECT * FROM products");
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     foreach ($result as $row) {
         $i++;
-        $table_product_id[$i] = $row['p_id'];
-        $table_quantity[$i] = $row['p_qty'];
+        $table_product_id[$i] = $row['id'];
+        $table_quantity[$i] = $row['Quantity'];
     }
 
     $i=0;
@@ -38,7 +38,7 @@ if(isset($_POST['form1'])) {
         $i++;
         $arr3[$i] = $val;
     }
-    
+
     $allow_update = 1;
     for($i=1;$i<=count($arr1);$i++) {
         for($j=1;$j<=count($table_product_id);$j++) {
@@ -56,7 +56,7 @@ if(isset($_POST['form1'])) {
     }
     $error_message .= '\nOther items quantity are updated successfully!';
     ?>
-    
+
     <?php if($allow_update == 0): ?>
     	<script>alert('<?php echo $error_message; ?>');</script>
 	<?php else: ?>
@@ -102,63 +102,63 @@ if(isset($_POST['form1'])) {
                         $table_total_price = 0;
 
                         $i=0;
-                        foreach($_SESSION['cart_p_id'] as $key => $value) 
+                        foreach($_SESSION['cart_p_id'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_p_id[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_size_id'] as $key => $value) 
+                        foreach($_SESSION['cart_size_id'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_size_id[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_size_name'] as $key => $value) 
+                        foreach($_SESSION['cart_size_name'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_size_name[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_color_id'] as $key => $value) 
+                        foreach($_SESSION['cart_color_id'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_color_id[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_color_name'] as $key => $value) 
+                        foreach($_SESSION['cart_color_name'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_color_name[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_p_qty'] as $key => $value) 
+                        foreach($_SESSION['cart_p_qty'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_p_qty[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_p_current_price'] as $key => $value) 
+                        foreach($_SESSION['cart_p_current_price'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_p_current_price[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_p_name'] as $key => $value) 
+                        foreach($_SESSION['cart_p_name'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_p_name[$i] = $value;
                         }
 
                         $i=0;
-                        foreach($_SESSION['cart_p_featured_photo'] as $key => $value) 
+                        foreach($_SESSION['cart_p_featured_photo'] as $key => $value)
                         {
                             $i++;
                             $arr_cart_p_featured_photo[$i] = $value;
@@ -168,7 +168,7 @@ if(isset($_POST['form1'])) {
                         <tr>
                             <td><?php echo $i; ?></td>
                             <td>
-                                <img src="assets/uploads/<?php echo $arr_cart_p_featured_photo[$i]; ?>" alt="">
+                                <img src="http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($arr_cart_p_featured_photo[$i])); ?>" alt="">
                             </td>
                             <td><?php echo $arr_cart_p_name[$i]; ?></td>
                             <td><?php echo $arr_cart_size_name[$i]; ?></td>
@@ -196,7 +196,7 @@ if(isset($_POST['form1'])) {
                             <th class="total-amount"><?php echo LANG_VALUE_1; ?><?php echo $table_total_price; ?></th>
                             <th></th>
                         </tr>
-                    </table> 
+                    </table>
                 </div>
 
                 <div class="cart-buttons">
@@ -209,7 +209,7 @@ if(isset($_POST['form1'])) {
                 </form>
                 <?php endif; ?>
 
-                
+
 
 			</div>
 		</div>

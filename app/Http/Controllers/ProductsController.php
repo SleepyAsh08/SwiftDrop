@@ -45,6 +45,12 @@ class ProductsController extends Controller
         ], 200);
     }
 
+    public function category_all(Request $request, $id){
+        $data = Products::where('idCategory', $id)->get();
+
+        return response()->json(['data' => $data], 200);
+    }
+
     public function index_all()
     {
         // $user = User::all();
