@@ -21,6 +21,7 @@ if(!isset($_REQUEST['id'])) {
         exit;
     }
 
+<<<<<<< HEAD
         // Decode the JSON response
         $data = json_decode($response, true);
 
@@ -64,6 +65,20 @@ if(!isset($_REQUEST['id'])) {
     //     header('location: index.php');
     //     exit;
     // }
+=======
+foreach($result as $row) {
+    $p_name = $row['Product_Name'];
+    $p_current_price = $row['price'];
+    $p_qty = $row['Quantity'];
+    $p_featured_photo = $row['photos'];
+    $photo2 = $row['photos1'];
+    $photo3 = $row['photos2'];
+    $p_description = $row['Description'];
+    // $p_total_view = $row['p_total_view'];
+    // $p_is_featured = $row['p_is_featured'];
+    // $p_is_active = $row['p_is_active'];
+    // $ecat_id = $row['ecat_id'];
+>>>>>>> b196eea0dabd0b73f76af63777ab320230a5dfeb
 }
 
 // foreach($result as $row) {
@@ -276,8 +291,8 @@ if($success_message1 != '') {
 						<div class="col-md-5">
 							<ul class="prod-slider">
 
-                            <li style="background-image: url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($photo1, '[]"')); ?>);">
-                                <a class="popup" href="http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($photo1, '[]"')); ?>"></a>
+                            <li style="background-image: url(http://192.168.1.101:8080/storage/<?php echo str_replace('\/', '/', trim($p_featured_photo, '[]"')); ?>);">
+                                <a class="popup" href="http://192.168.1.101:8080/storage/<?php echo str_replace('\/', '/', trim($p_featured_photo, '[]"')); ?>"></a>
                             </li>
 
 							</ul>
@@ -289,7 +304,7 @@ if($success_message1 != '') {
                                 $result = $statement->fetchAll(PDO::FETCH_ASSOC);
                                 foreach ($result as $row) {
                                     ?>
-                                    <a data-slide-index="<?php echo $i; ?>" href=""><div class="prod-pager-thumb" style="background-image: url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($photo1, '[]"')); ?>"></div></a>
+                                    <a data-slide-index="<?php echo $i; ?>" href=""><div class="prod-pager-thumb" style="background-image: url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($p_featured_photo, '[]"')); ?>"></div></a>
                                     <a data-slide-index="<?php echo $i; ?>" href=""><div class="prod-pager-thumb" style="background-image: url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($photo2, '[]"')); ?>"></div></a>
                                     <a data-slide-index="<?php echo $i; ?>" href=""><div class="prod-pager-thumb" style="background-image: url(http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($photo3, '[]"')); ?>"></div></a>
                                     <?php
@@ -360,7 +375,7 @@ if($success_message1 != '') {
                                 <span style="font-size:14px;"><?php echo LANG_VALUE_54; ?></span><br>
                                 <span>
 
-                                        <?php echo LANG_VALUE_1; ?><?php echo $p_current_price; ?>
+                                        <?php echo LANG_VALUE_1; ?><?php echo $p_current_price; ?>s
                                 </span>
                             </div>
                             <input type="hidden" name="p_current_price" value="<?php echo $p_current_price; ?>">
@@ -417,7 +432,7 @@ if($success_message1 != '') {
 
                                             if (!empty($photos[0])) {
                                                 $photoUrl = str_replace('\/', '/', $photos[0]);
-                                                echo '<div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/' . $photoUrl . ');"></div>';
+                                                echo '<div class="photo" style="background-image:url(http://192.168.1.101:8080/storage/' . $photoUrl . ');"></div>';
                                             } else {
                                                 echo '<div class="photo" style="background-color: gray;">No photo available</div>';
                                             }
