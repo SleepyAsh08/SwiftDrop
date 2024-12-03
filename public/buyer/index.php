@@ -90,18 +90,9 @@
                         foreach ($products as $product) {
                             ?>
                             <div class="item">
-<<<<<<< HEAD
-                                <div class="thumb" >
-                                    <div class="photo" style="
-        background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
-=======
                                 <div class="thumb">
-<<<<<<< HEAD
                                     <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
-=======
-                                    <div class="photo" style="background-image:url(http://192.168.1.101:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
->>>>>>> a558bc884e6dac0da09950a0cba2fe5e4cf44cd1
->>>>>>> f5c4a655a471272d3fb453304b3969fd46cecc32
+
                                     <div class="overlay"></div>
                                 </div>
                                 <div class="text">

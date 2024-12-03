@@ -169,7 +169,7 @@ if(isset($_POST['form1'])) {
 
                         <?php for($i=1;$i<=count($arr_cart_p_id);$i++): ?>
                         <tr>
-                            <?php var_dump($arr_cart_p_featured_photo) ?>
+
                             <td><?php echo $i; ?></td>
                             <td>
                                 <img src="http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($arr_cart_p_featured_photo[$i])); ?>" alt="">
@@ -201,13 +201,7 @@ if(isset($_POST['form1'])) {
                             <th></th>
                         </tr>
                     </table>
-<<<<<<< HEAD
-                </div></div>
-
-
-=======
                 </div>
->>>>>>> a558bc884e6dac0da09950a0cba2fe5e4cf44cd1
 
                 <div class="cart-buttons">
                     <ul>
