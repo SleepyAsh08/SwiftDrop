@@ -6,7 +6,7 @@ ini_set('error_reporting', E_ALL);
 date_default_timezone_set('America/Los_Angeles');
 
 // Host Name
-$dbhost = 'localhost';
+$dbhost = '127.0.0.1';
 
 // Database Name
 $dbname = 'agrishop';

@@ -14,13 +14,13 @@ $error_message = '';
 if(isset($_POST['form1'])) {
 
     $i = 0;
-    $statement = $pdo->prepare("SELECT * FROM tbl_product");
+    $statement = $pdo->prepare("SELECT * FROM products");
     $statement->execute();
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
     foreach ($result as $row) {
         $i++;
-        $table_product_id[$i] = $row['p_id'];
-        $table_quantity[$i] = $row['p_qty'];
+        $table_product_id[$i] = $row['id'];
+        $table_quantity[$i] = $row['Quantity'];
     }
 
     $i=0;
@@ -77,6 +77,7 @@ if(isset($_POST['form1'])) {
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
+
 
                 <?php if(!isset($_SESSION['cart_p_id'])): ?>
                     <?php echo '<h2 class="text-center">Cart is Empty!!</h2></br>'; ?>
@@ -168,9 +169,10 @@ if(isset($_POST['form1'])) {
 
                         <?php for($i=1;$i<=count($arr_cart_p_id);$i++): ?>
                         <tr>
+                            <?php var_dump($arr_cart_p_featured_photo) ?>
                             <td><?php echo $i; ?></td>
                             <td>
-                                <img src="assets/uploads/<?php echo $arr_cart_p_featured_photo[$i]; ?>" alt="">
+                                <img src="http://192.168.1.9:8080/storage/<?php echo str_replace('\/', '/', trim($arr_cart_p_featured_photo[$i])); ?>" alt="">
                             </td>
                             <td><?php echo $arr_cart_p_name[$i]; ?></td>
                             <td><?php echo $arr_cart_size_name[$i]; ?></td>
@@ -199,9 +201,13 @@ if(isset($_POST['form1'])) {
                             <th></th>
                         </tr>
                     </table>
+<<<<<<< HEAD
                 </div></div>
 
 
+=======
+                </div>
+>>>>>>> a558bc884e6dac0da09950a0cba2fe5e4cf44cd1
 
                 <div class="cart-buttons">
                     <ul>

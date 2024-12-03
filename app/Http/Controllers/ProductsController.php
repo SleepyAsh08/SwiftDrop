@@ -45,6 +45,12 @@ class ProductsController extends Controller
         ], 200);
     }
 
+    public function category_all(Request $request, $id){
+        $data = Products::where('idCategory', $id)->get();
+
+        return response()->json(['data' => $data], 200);
+    }
+
     public function index_all()
     {
         // $user = User::all();
@@ -76,6 +82,39 @@ class ProductsController extends Controller
 
         // dd($formattedData);
         return response()->json(['data' => $formattedData], 200);
+    }
+
+    public function product($id){
+         // Fetch the product by ID with the associated User
+    $product = Products::with('User')->find($id);
+
+    // Check if product exists
+    if (!$product) {
+        return response()->json(['message' => 'Product not found'], 404);
+    }
+
+    // Format the data
+    $formattedData = [
+        'id' => $product->id,
+        'Product_Name' => $product->Product_Name,
+        'idCategory' => $product->idCategory,
+        'price' => $product->price,
+        'idMeasurement' => $product->idMeasurement,
+        'Quantity' => $product->Quantity,
+        'Description' => $product->Description,
+        'created_at' => $product->created_at,
+        'updated_at' => $product->updated_at,
+        'photos' => json_decode($product->photos),
+        'photos1' => json_decode($product->photos1),
+        'photos2' => json_decode($product->photos2),
+        'userID' => $product->userID,
+        'first_name' => $product->user->name ?? null,
+        'last_name' => $product->user->lastname ?? null,
+        'contact_number' => $product->user->contact_number ?? null,
+    ];
+
+    return response()->json(['data' => $formattedData], 200);
+
     }
 
     public function index1(Request $request)

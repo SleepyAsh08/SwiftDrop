@@ -41,7 +41,7 @@
                             if($row['position'] == 'Left') {echo 'fadeInLeft';}
                             elseif($row['position'] == 'Center') {echo 'fadeInDown';}
                             elseif($row['position'] == 'Right') {echo 'fadeInRight';} ?>">One-Stop Shop for Quality Agricultural Products</p>
-                            <a href="<?php echo $row['button_url']; ?>" target="_blank"  class="btn btn-primary" data-animation="animated <?php
+                            <a href="<?php echo $row['button_url']; ?>" target="buyer/product-category.php"  class="btn btn-primary" data-animation="animated <?php
                             if($row['position'] == 'Left') {echo 'fadeInLeft';}
                             elseif($row['position'] == 'Center') {echo 'fadeInDown';}
                             elseif($row['position'] == 'Right') {echo 'fadeInRight';} ?>">Browse Products</a>
@@ -71,7 +71,10 @@
             <div class="col-md-12">
                 <div class="headline">
                     <h2>List of Products</h2>
-                    <!-- <h3><?php echo $popular_product_subtitle; ?></h3> -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> b196eea0dabd0b73f76af63777ab320230a5dfeb
                 </div>
             </div>
         </div>
@@ -80,8 +83,55 @@
                 <div class="product-carousel">
                     <?php
                     // Fetch product data from the API
+<<<<<<< HEAD
                     $apiUrl = 'http://192.168.1.9:8080/products/all';
+
+                    // Check if the API can be reached
                     $json = file_get_contents($apiUrl);
+
+                    // Initialize cURL
+
+
+                    // If the API request fails, show an error message
+                    if ($json === false) {
+                        echo '<p>Unable to fetch products. Please check the API server.</p>';
+                    } else {
+                        $data = json_decode($json, true);
+
+                        // Check if the JSON data is valid
+                        if ($data && isset($data['data']) && !empty($data['data'])) {
+                            $products = $data['data'];
+                            $i = 0;
+                            foreach ($products as $product) {
+                                ?>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="text">
+                                        <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['Product_Name']; ?></a></h3>
+                                        <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
+                                        <h4>
+                                        ₱<?php echo $product['price']; ?>
+                                        <?php if(isset($product['p_old_price']) && $product['p_old_price'] != ''): ?>
+                                        <del>
+                                        ₱<?php echo $product['p_old_price']; ?>
+                                        </del>
+                                        <?php endif; ?>
+                                        </h4>
+                                        <div class="rating">
+                                            <?php
+                                            // Assuming no rating system from API. If rating system exists, you can implement it here.
+                                            // Example: Displaying full stars for simplicity as there's no rating data in the API response.
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                echo '<i class="fa fa-star"></i>';
+                                            }
+                                            ?>
+=======
+                    $apiUrl = 'http://192.168.1.101:8080/products/all';
+                    $json = @file_get_contents($apiUrl); // Suppress warnings with @
+
                     $products = json_decode($json, true)['data']; // Decode the JSON response to PHP array
 
                     // Check if products are fetched
@@ -90,21 +140,21 @@
                         foreach ($products as $product) {
                             ?>
                             <div class="item">
+<<<<<<< HEAD
                                 <div class="thumb" >
                                     <div class="photo" style="
         background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
+=======
+                                <div class="thumb">
+                                    <div class="photo" style="background-image:url(http://192.168.1.101:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
+>>>>>>> a558bc884e6dac0da09950a0cba2fe5e4cf44cd1
                                     <div class="overlay"></div>
                                 </div>
                                 <div class="text">
                                     <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['Product_Name']; ?></a></h3>
-                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
+
                                     <h4>
                                     ₱<?php echo $product['price']; ?>
-                                    <?php if(isset($product['p_old_price']) && $product['p_old_price'] != ''): ?>
-                                    <del>
-                                    ₱<?php echo $product['p_old_price']; ?>
-                                    </del>
-                                    <?php endif; ?>
                                     </h4>
                                     <div class="rating">
                                         <?php
@@ -115,22 +165,31 @@
                                         }
                                         ?>
                                     </div>
+                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
                                     <?php if($product['Quantity'] == 0): ?>
                                         <div class="out-of-stock">
                                             <div class="inner">
                                                 Out Of Stock
                                             </div>
+>>>>>>> b196eea0dabd0b73f76af63777ab320230a5dfeb
                                         </div>
-                                    <?php else: ?>
-                                        <p><a href="product.php?id=<?php echo $product['id']; ?>"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
-                                    <?php endif; ?>
+                                        <?php if($product['Quantity'] == 0): ?>
+                                            <div class="out-of-stock">
+                                                <div class="inner">
+                                                    Out Of Stock
+                                                </div>
+                                            </div>
+                                        <?php else: ?>
+                                            <p><a href="product.php?id=<?php echo $product['id']; ?>"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
+                                        <?php endif; ?>
+                                    </div>
                                 </div>
-                            </div>
-                            <?php
-                            $i++;
+                                <?php
+                                $i++;
+                            }
+                        } else {
+                            echo '<p>No popular products found.</p>';
                         }
-                    } else {
-                        echo '<p>No popular products found.</p>';
                     }
                     ?>
                 </div>
@@ -138,5 +197,6 @@
         </div>
     </div>
 </div>
+
 
 <?php require_once('footer.php'); ?>
