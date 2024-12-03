@@ -9,7 +9,7 @@ $category_id = isset($_GET['category_id']) ? $_GET['category_id'] : null;
 $products = [];
 
 if ($category_id) {
-    $product_api_url = "http://192.168.1.9:8080/products/category/{$category_id}";
+    $product_api_url = "http://192.168.1.9 :8080/products/category/{$category_id}";
     $product_response = file_get_contents($product_api_url);
     $products = json_decode($product_response, true);  // Decode the product JSON response
 } else {

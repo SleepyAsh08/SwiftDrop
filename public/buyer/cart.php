@@ -67,12 +67,11 @@ if(isset($_POST['form1'])) {
 }
 ?>
 
-<div class="page-banner" style="background-image: url(assets/uploads/<?php echo $banner_cart; ?>)">
-    <div class="overlay"></div>
-    <div class="page-banner-inner">
-        <h1><?php echo LANG_VALUE_18; ?></h1>
-    </div>
+
+    <div class="page-banner-inner" style="font-size: 4vw;">
+    <h1 style="font-size: 6vw; text-align: center"><?php echo LANG_VALUE_18; ?></h1>
 </div>
+
 
 <div class="page">
 	<div class="container">
@@ -86,6 +85,7 @@ if(isset($_POST['form1'])) {
                 <?php else: ?>
                 <form action="" method="post">
                     <?php $csrf->echoInputField(); ?>
+                    <div class="table-responsive">
 				<div class="cart">
                     <table class="table table-responsive table-hover table-bordered">
                         <tr>
@@ -165,6 +165,8 @@ if(isset($_POST['form1'])) {
                             $arr_cart_p_featured_photo[$i] = $value;
                         }
                         ?>
+
+
                         <?php for($i=1;$i<=count($arr_cart_p_id);$i++): ?>
                         <tr>
                             <?php var_dump($arr_cart_p_featured_photo) ?>
@@ -189,7 +191,7 @@ if(isset($_POST['form1'])) {
                                 <?php echo LANG_VALUE_1; ?><?php echo $row_total_price; ?>
                             </td>
                             <td class="text-center">
-                                <a onclick="return confirmDelete();" href="cart-item-delete.php?id=<?php echo $arr_cart_p_id[$i]; ?>&size=<?php echo $arr_cart_size_id[$i]; ?>&color=<?php echo $arr_cart_color_id[$i]; ?>" class="trash"><i class="fa fa-trash" style="color:red;"></i></a>
+                                <a  onclick="return confirmDelete();" href="cart-item-delete.php?id=<?php echo $arr_cart_p_id[$i]; ?>&size=<?php echo $arr_cart_size_id[$i]; ?>&color=<?php echo $arr_cart_color_id[$i]; ?>" class="trash"><i class="fa fa-trash" style="color:red;"></i></a>
                             </td>
                         </tr>
                         <?php endfor; ?>
@@ -199,13 +201,17 @@ if(isset($_POST['form1'])) {
                             <th></th>
                         </tr>
                     </table>
+<<<<<<< HEAD
+                </div></div>
+
+
+=======
                 </div>
+>>>>>>> a558bc884e6dac0da09950a0cba2fe5e4cf44cd1
 
                 <div class="cart-buttons">
                     <ul>
-                        <li><input type="submit" value="<?php echo LANG_VALUE_20; ?>" class="btn btn-primary" name="form1"></li>
-                        <li><a href="index.php" class="btn btn-primary"><?php echo LANG_VALUE_85; ?></a></li>
-                        <li><a href="checkout.php" class="btn btn-primary"><?php echo LANG_VALUE_23; ?></a></li>
+                         <li><input type="submit" value="<?php echo LANG_VALUE_20; ?>" class="btn btn-primary" name="form1"><a href="index.php" class="btn btn-primary"><?php echo LANG_VALUE_85; ?></a><a href="checkout.php" class="btn btn-primary"><?php echo LANG_VALUE_23; ?></a></li>
                     </ul>
                 </div>
                 </form>
