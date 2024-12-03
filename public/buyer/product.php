@@ -5,30 +5,80 @@ if(!isset($_REQUEST['id'])) {
     header('location: index.php');
     exit;
 } else {
-    // Check the id is valid or not
-    $statement = $pdo->prepare("SELECT * FROM products WHERE id=?");
-    $statement->execute(array($_REQUEST['id']));
-    $total = $statement->rowCount();
-    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-    if( $total == 0 ) {
-        header('location: index.php');
+
+    $api_url = "http://192.168.1.9:8080/products/all";
+
+    // Use cURL to fetch data from API
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $api_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($ch);
+    curl_close($ch);
+
+    // Check if the response is not empty or false
+    if (!$response) {
+        echo "Error fetching data from API.";
         exit;
     }
+
+        // Decode the JSON response
+        $data = json_decode($response, true);
+
+        // Check if the data contains the product ID
+        $productFound = false;
+        $product = null;
+
+        // Iterate through products to find the product by ID
+        foreach ($data as $row) {
+            if ($row['id'] == $_REQUEST['id']) {
+                $product = $row;
+                $productFound = true;
+                break;
+            }
+        }
+
+        // If product not found, redirect to index page
+        if (!$productFound) {
+            header('location: index.php');
+            exit;
+        }
+
+        // Get product details
+    $p_name = $product['Product_Name'];
+    $p_current_price = $product['price'];
+    $p_qty = $product['Quantity'];
+    $photo1 = $product['photos'];
+    $photo2 = $product['photos1'];
+    $photo3 = $product['photos2'];
+    $p_description = $product['Description'];
+
+
+
+
+    // Check the id is valid or not
+    // $statement = $pdo->prepare("SELECT * FROM products WHERE id=?");
+    // $statement->execute(array($_REQUEST['id']));
+    // $total = $statement->rowCount();
+    // $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    // if( $total == 0 ) {
+    //     header('location: index.php');
+    //     exit;
+    // }
 }
 
-foreach($result as $row) {
-    $p_name = $row['Product_Name'];
-    $p_current_price = $row['price'];
-    $p_qty = $row['Quantity'];
-    $photo1 = $row['photos'];
-    $photo2 = $row['photos1'];
-    $photo3 = $row['photos2'];
-    $p_description = $row['Description'];
-    // $p_total_view = $row['p_total_view'];
-    // $p_is_featured = $row['p_is_featured'];
-    // $p_is_active = $row['p_is_active'];
-    // $ecat_id = $row['ecat_id'];
-}
+// foreach($result as $row) {
+//     $p_name = $row['Product_Name'];
+//     $p_current_price = $row['price'];
+//     $p_qty = $row['Quantity'];
+//     $photo1 = $row['photos'];
+//     $photo2 = $row['photos1'];
+//     $photo3 = $row['photos2'];
+//     $p_description = $row['Description'];
+//     // $p_total_view = $row['p_total_view'];
+//     // $p_is_featured = $row['p_is_featured'];
+//     // $p_is_active = $row['p_is_active'];
+//     // $ecat_id = $row['ecat_id'];
+// }
 
 
 

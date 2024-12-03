@@ -67,7 +67,6 @@
             <div class="col-md-12">
                 <div class="headline">
                     <h2>List of Products</h2>
-                    <!-- <h3><?php echo $popular_product_subtitle; ?></h3> -->
                 </div>
             </div>
         </div>
@@ -77,55 +76,67 @@
                     <?php
                     // Fetch product data from the API
                     $apiUrl = 'http://192.168.1.9:8080/products/all';
-                    $json = file_get_contents($apiUrl);
-                    $products = json_decode($json, true)['data']; // Decode the JSON response to PHP array
 
-                    // Check if products are fetched
-                    if ($products) {
-                        $i = 0;
-                        foreach ($products as $product) {
-                            ?>
-                            <div class="item">
-                                <div class="thumb">
-                                    <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
-                                    <div class="overlay"></div>
-                                </div>
-                                <div class="text">
-                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['Product_Name']; ?></a></h3>
-                                    <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
-                                    <h4>
-                                    ₱<?php echo $product['price']; ?>
-                                    <?php if(isset($product['p_old_price']) && $product['p_old_price'] != ''): ?>
-                                    <del>
-                                    ₱<?php echo $product['p_old_price']; ?>
-                                    </del>
-                                    <?php endif; ?>
-                                    </h4>
-                                    <div class="rating">
-                                        <?php
-                                        // Assuming no rating system from API. If rating system exists, you can implement it here.
-                                        // Example: Displaying full stars for simplicity as there's no rating data in the API response.
-                                        for ($i = 1; $i <= 5; $i++) {
-                                            echo '<i class="fa fa-star"></i>';
-                                        }
-                                        ?>
-                                    </div>
-                                    <?php if($product['Quantity'] == 0): ?>
-                                        <div class="out-of-stock">
-                                            <div class="inner">
-                                                Out Of Stock
-                                            </div>
-                                        </div>
-                                    <?php else: ?>
-                                        <p><a href="product.php?id=<?php echo $product['id']; ?>"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <?php
-                            $i++;
-                        }
+                    // Check if the API can be reached
+                    $json = file_get_contents($apiUrl);
+
+                    // Initialize cURL
+
+
+                    // If the API request fails, show an error message
+                    if ($json === false) {
+                        echo '<p>Unable to fetch products. Please check the API server.</p>';
                     } else {
-                        echo '<p>No popular products found.</p>';
+                        $data = json_decode($json, true);
+
+                        // Check if the JSON data is valid
+                        if ($data && isset($data['data']) && !empty($data['data'])) {
+                            $products = $data['data'];
+                            $i = 0;
+                            foreach ($products as $product) {
+                                ?>
+                                <div class="item">
+                                    <div class="thumb">
+                                        <div class="photo" style="background-image:url(http://192.168.1.9:8080/storage/<?php echo $product['photos'][0]; ?>);"></div>
+                                        <div class="overlay"></div>
+                                    </div>
+                                    <div class="text">
+                                        <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['Product_Name']; ?></a></h3>
+                                        <h3><a href="product.php?id=<?php echo $product['id']; ?>"><?php echo $product['first_name']; ?> <?php echo $product['last_name']; ?></a></h3>
+                                        <h4>
+                                        ₱<?php echo $product['price']; ?>
+                                        <?php if(isset($product['p_old_price']) && $product['p_old_price'] != ''): ?>
+                                        <del>
+                                        ₱<?php echo $product['p_old_price']; ?>
+                                        </del>
+                                        <?php endif; ?>
+                                        </h4>
+                                        <div class="rating">
+                                            <?php
+                                            // Assuming no rating system from API. If rating system exists, you can implement it here.
+                                            // Example: Displaying full stars for simplicity as there's no rating data in the API response.
+                                            for ($i = 1; $i <= 5; $i++) {
+                                                echo '<i class="fa fa-star"></i>';
+                                            }
+                                            ?>
+                                        </div>
+                                        <?php if($product['Quantity'] == 0): ?>
+                                            <div class="out-of-stock">
+                                                <div class="inner">
+                                                    Out Of Stock
+                                                </div>
+                                            </div>
+                                        <?php else: ?>
+                                            <p><a href="product.php?id=<?php echo $product['id']; ?>"><i class="fa fa-shopping-cart"></i> Add to Cart</a></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <?php
+                                $i++;
+                            }
+                        } else {
+                            echo '<p>No popular products found.</p>';
+                        }
                     }
                     ?>
                 </div>
@@ -133,5 +144,6 @@
         </div>
     </div>
 </div>
+
 
 <?php require_once('footer.php'); ?>
