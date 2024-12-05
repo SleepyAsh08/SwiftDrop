@@ -38,7 +38,7 @@ class User extends Authenticatable
         'reason_of_disapproval',
         'photos',
         'approved_at',
-        'user_photo'
+        'user_photo',
     ];
 
     /**

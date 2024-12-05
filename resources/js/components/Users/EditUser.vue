@@ -10,8 +10,8 @@
                     <alert-error :form="form"></alert-error>
                     <div class="form-group">
                         <label>Upload User photo</label>
-                        <input type="file" @change="onFileChange" required multiple class="form-control">
-                        <has-error :form="form" field="user_photo" />
+                        <input type="file" @change="onFileChange" multiple class="form-control">
+                        <!-- <has-error :form="form" field="user_photo" /> -->
                     </div>
                     <div class="form-group">
                         <label>Name</label>
@@ -64,10 +64,10 @@
 
                     </div>
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label>Upload Profile</label>
                         <input type="file" @change="onFileChange" multiple class="form-control">
-                    </div>
+                    </div> -->
 
 
                     <div v-if="can('approve user')" class="form-group">
@@ -109,7 +109,7 @@ export default {
                 roles: null,
                 permissions: null,
             }),
-            photos: [],
+            user_photo: [],
             option_permissions: [],
             option_roles: [],
             options: {
@@ -122,12 +122,13 @@ export default {
     },
     methods: {
         onFileChange(e) {
-            this.photos = Array.from(e.target.files);
+            this.user_photo = Array.from(e.target.files);
         },
         selectRole() {
             this.form.permissions = this.form.roles.permissions;
         },
         update() {
+            console.log('Photos before posting:', this.user_photo);
             const formData = new FormData();
             formData.append('id', this.form.id);
             formData.append('name', this.form.name);
@@ -142,9 +143,10 @@ export default {
             formData.append('permissions', this.form.permissions);
 
             // Append each selected photo file to the formData
-            this.photos.forEach((photo, index) => {
-                formData.append(`photos[${index}]`, photo);
+            this.user_photo.forEach((photo, index) => {
+                formData.append(`user_photo[${index}]`, photo);
             });
+            // console.log('FormData:', formData.getAll('user_photo[0]'));
 
             this.form.put('/api/user/update', formData, {
                 headers: {
@@ -155,6 +157,7 @@ export default {
                     icon: 'success',
                     text: 'Data Saved.',
                 });
+                this.form.reset();
                 this.$emit('getData', this.page);
                 $('#edit-user').modal('hide');
             }).catch(error => {

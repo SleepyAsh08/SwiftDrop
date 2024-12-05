@@ -8465,7 +8465,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         roles: null,
         permissions: null
       }),
-      photos: [],
+      user_photo: [],
       option_permissions: [],
       option_roles: [],
       options: (_options = {
@@ -8476,7 +8476,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     onFileChange: function onFileChange(e) {
-      this.photos = Array.from(e.target.files);
+      this.user_photo = Array.from(e.target.files);
     },
     selectRole: function selectRole() {
       this.form.permissions = this.form.roles.permissions;
@@ -8484,6 +8484,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     update: function update() {
       var _this = this;
 
+      console.log('Photos before posting:', this.user_photo);
       var formData = new FormData();
       formData.append('id', this.form.id);
       formData.append('name', this.form.name);
@@ -8497,9 +8498,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       formData.append('roles', this.form.roles);
       formData.append('permissions', this.form.permissions); // Append each selected photo file to the formData
 
-      this.photos.forEach(function (photo, index) {
-        formData.append("photos[".concat(index, "]"), photo);
-      });
+      this.user_photo.forEach(function (photo, index) {
+        formData.append("user_photo[".concat(index, "]"), photo);
+      }); // console.log('FormData:', formData.getAll('user_photo[0]'));
+
       this.form.put('/api/user/update', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -8509,6 +8511,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           icon: 'success',
           text: 'Data Saved.'
         });
+
+        _this.form.reset();
 
         _this.$emit('getData', _this.page);
 
@@ -14627,18 +14631,12 @@ var render = function render() {
     staticClass: "form-control",
     attrs: {
       type: "file",
-      required: "",
       multiple: ""
     },
     on: {
       change: _vm.onFileChange
     }
-  }), _vm._v(" "), _c("has-error", {
-    attrs: {
-      form: _vm.form,
-      field: "user_photo"
-    }
-  })], 1), _vm._v(" "), _c("div", {
+  })]), _vm._v(" "), _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Name")]), _vm._v(" "), _c("input", {
     directives: [{
@@ -14891,18 +14889,7 @@ var render = function render() {
       form: _vm.form,
       field: "roles"
     }
-  })], 1) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Upload Profile")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      multiple: ""
-    },
-    on: {
-      change: _vm.onFileChange
-    }
-  })]), _vm._v(" "), _vm.can("approve user") ? _c("div", {
+  })], 1) : _vm._e(), _vm._v(" "), _vm.can("approve user") ? _c("div", {
     staticClass: "form-group"
   }, [_c("label", [_vm._v("Permission")]), _vm._v(" "), _c("multiselect", {
     attrs: {
