@@ -10,12 +10,12 @@
                 <div class="modal-body">
                     <alert-error :form="form"></alert-error>
                     <div class="form-group text-center">
-                        <div class="gallery mx-auto d-block pb-0" style="width: 400px; height: 400px;">
+                        <div class="gallery mx-auto d-block pb-0" style="width: 400px; height: 200px;">
                             <div v-viewer="options" class="images clearfix">
                                 <template class=" card">
                                     <img :data-source="'/storage/' + formatPhotoPath(form.photos)"
                                         :src="'/storage/' + formatPhotoPath(form.photos)" lass="image"
-                                        style="height:400px;">
+                                        style="max-width: 200px; max-height: 200px;">
 
                                 </template>
                             </div>

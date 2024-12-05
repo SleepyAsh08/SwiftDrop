@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\MobileController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +22,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/public/buyerindex.blade.php', function () {
-    return view('buyerindex');
+Route::get('/public/buyer/index.php', function () {
+    return view('index');
 });
 
 Route::prefix('products')->group(function () {
     Route::get('/all', [ProductsController::class, 'index_all']);
+    Route::get('/category/{id}', [App\Http\Controllers\ProductsController::class, 'category_all']);
+    Route::get('/product/{id}', [App\Http\Controllers\ProductsController::class, 'product']);
+});
+
+Route::prefix('categories')->group(function () {
+    Route::get('/all', [CategoryController::class, 'all']);
 });
 Route::prefix('login')->group(function () {
     Route::get('/submit', [MobileController::class, 'authenticate']);

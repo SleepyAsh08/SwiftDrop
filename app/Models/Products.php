@@ -20,4 +20,18 @@ class Products extends Model
         'photos2',
         'userID',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'userID');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'idCategory'); // Make sure the foreign key is correct
+    }
+
+    public function measurement(){
+        return $this->belongsTo(Measurement::class, 'idMeasurement');
+    }
 }

@@ -57,6 +57,7 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
+                                            <th>Document</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Contact Number</th>
@@ -66,10 +67,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <tr v-for="(data, index) in         option_users.data        " :key="index">
                                             <td>{{ data.id }}</td>
-                                            <td>{{ data.name }}</td>
+                                            <td><img v-if="data.photos && data.photos.length"
+                                                    :src="'/storage/'+formatPhotoPath(data.photos)" alt="Product Photo"
+                                                    style="max-width: 200px; max-height: 200px;"></td>
+                                            <!-- <td>{{ data }}</td> -->
+                                            <td>{{ data.name + " " + data.lastname}}</td>
                                             <td>{{ data.email }}</td>
+
                                             <td>{{ data.contact_number }}</td>
                                             <td v-if="data.roles.length > 0">
                                                 <span v-for="role in data.roles" :key="role.id">
@@ -100,14 +107,17 @@
                                             <td v-else>
                                                 {{ data.approved_at }}
                                             </td>
+
                                             <td class="text-right">
+
                                                 <button
-                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null && can('approve user')"
+                                                    v-if="data.approved_at === null && data.reason_of_disapproval === null"
                                                     type="button" class="btn btn-success btn-sm"
                                                     @click="openValidateModal(data)"><i class="fas fa-search"></i>
-                                                    Validate</button>
+                                                    Validate
+                                                </button>
                                                 <button
-                                                    v-if="data.approved_at != null && data.reason_of_disapproval === null && can('approve user')"
+                                                    v-if="data.approved_at != null && data.reason_of_disapproval === null"
                                                     type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
                                                     Edit</button>
@@ -174,6 +184,13 @@ export default {
         }
     },
     methods: {
+        formatPhotoPath(photoPath) {
+            if (photoPath) {
+                return photoPath.replace(/^\["(.+)"\]$/, '$1');
+            } else {
+                return '';
+            }
+        },
         openAddModal() {
             $('#add-user').modal('show');
         },
