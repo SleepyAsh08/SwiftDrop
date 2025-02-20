@@ -169,8 +169,8 @@
                                 <label class="col-md-4 col-form-label text-md-end"></label>
 
                                 <div class="col-md-6">
-                                    <span class="text-danger">If You are a Buyer provide your valid Id</span><br>
-                                    <span class="text-danger">If You are a Seller provide your Business Permit</span>
+                                    <span class="text-danger">If You are a Seller provide your Valid Id</span><br>
+                                    <span class="text-danger">If You are a Courier provide your Business Permit</span>
                                 </div>
                             </div>
 

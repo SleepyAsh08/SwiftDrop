@@ -4,13 +4,13 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Products </h1>
+                        <h1 class="m-0">Items</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <button class="nav-link btn" @click="goToAddProducts">
                                 <i class="nav-icon fas fa-user-tag"></i>
-                                <p>Add Products</p>
+                                <p>Add Items</p>
                             </button>
                         </ol>
                     </div>
@@ -51,28 +51,16 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%;">Photo</th>
-                                            <th style="width: 10%;">Product Name</th>
-                                            <th style="width: 10%;">Category</th>
-                                            <th style="width: 10%;">Price</th>
-                                            <th style="width: 10%;">Quantity</th>
-                                            <th style="width: 10%;">Measurement</th>
+                                            <th style="width: 10%;">Item Barcode</th>
+                                            <th style="width: 10%;">Item Name</th>
                                             <th style="width: 10%;"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <tr v-for="(data, index) in option_users.data" :key="index">
-
-                                            <td> <img v-if="data.photos && data.photos.length"
-                                                    :src="'/storage/'+formatPhotoPath(data.photos)" alt="Product Photo"
-                                                    style="max-width: 200px; max-height: 200px;">
-                                            </td>
-                                            <td>{{ data.Product_Name }}</td>
-                                            <td>{{ data.category_name }}</td>
-                                            <td>{{ data.price}}</td>
-                                            <td>{{ data.Quantity}}</td>
-                                            <td>{{ data.measurement_name }}</td>
+                                            <td>{{ data.Item_Barcode }}</td>
+                                            <td>{{ data.Item_Name }}</td>
                                             <td class="text-right">
                                                 <button type="button" class="btn btn-primary btn-sm"
                                                     @click="openEditModal(data)"><i class="fas fa-edit"></i>
@@ -130,18 +118,7 @@ export default {
         }
     },
     methods: {
-        formatPhotoPath(photoPath) {
-            if (photoPath) {
-                return photoPath.replace(/^\["(.+)"\]$/, '$1');
-            } else {
-                return '';
-            }
 
-
-        },
-        // openAddModal() {
-        //     $('#add-user').modal('show');
-        // },
         openEditModal(data) {
             this.selected_user = data;
             $('#edit-user').modal('show');

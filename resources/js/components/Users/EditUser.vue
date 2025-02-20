@@ -79,21 +79,6 @@
                         <has-error :form="form" field="permissions" />
                     </div>
 
-                    <div class="form-group">
-                        <label>Location</label>
-                        <div id="map" style="height: 400px;"></div>
-                    </div>
-
-                    <!-- Add Latitude and Longitude inputs -->
-                    <div class="form-group">
-                        <label>Latitude</label>
-                        <input v-model="form.latitude" type="text" class="form-control" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label>Longitude</label>
-                        <input v-model="form.longitude" type="text" class="form-control" readonly>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

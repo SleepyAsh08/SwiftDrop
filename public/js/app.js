@@ -6888,52 +6888,18 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new Form({
         userID: 0,
-        product_name: '',
-        measurement_id: null,
-        price: 0,
-        quantity: 0,
-        description: ''
-      }),
-      option_measurement: [],
-      option_category: [],
-      photos: [],
-      photos1: [],
-      photos2: []
+        item_barcode: '',
+        item_name: ''
+      })
     };
   },
   methods: {
-    onFileChange: function onFileChange(e) {
-      this.photos = Array.from(e.target.files);
-    },
-    onFileChange1: function onFileChange1(e) {
-      this.photos1 = Array.from(e.target.files);
-    },
-    onFileChange2: function onFileChange2(e) {
-      this.photos2 = Array.from(e.target.files);
-    },
     create: function create() {
       var _this = this;
 
-      console.log('Photos before posting:', this.photos);
       var formData = new FormData();
-      formData.append('product_name', this.form.product_name);
-      formData.append('measurement_id', this.form.measurement_id.id);
-      formData.append('category_id', this.form.category_id.id);
-      formData.append('price', this.form.price);
-      formData.append('quantity', this.form.quantity);
-      formData.append('description', this.form.description); // Append each selected photo file to the formData
-
-      this.photos.forEach(function (photo, index) {
-        formData.append("photos[".concat(index, "]"), photo);
-      }); // Append each selected photo file to the formData
-
-      this.photos1.forEach(function (photo, index) {
-        formData.append("photos1[".concat(index, "]"), photo);
-      }); // Append each selected photo file to the formData
-
-      this.photos2.forEach(function (photo, index) {
-        formData.append("photos2[".concat(index, "]"), photo);
-      });
+      formData.append('Item_Barcode', this.form.item_barcode);
+      formData.append('Item_Name', this.form.item_name);
       axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/product/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -7100,16 +7066,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    formatPhotoPath: function formatPhotoPath(photoPath) {
-      if (photoPath) {
-        return photoPath.replace(/^\["(.+)"\]$/, '$1');
-      } else {
-        return '';
-      }
-    },
-    // openAddModal() {
-    //     $('#add-user').modal('show');
-    // },
     openEditModal: function openEditModal(data) {
       this.selected_user = data;
       $('#edit-user').modal('show');
@@ -11056,25 +11012,25 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Product Name")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Item Barcode")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.product_name,
-      expression: "form.product_name"
+      value: _vm.form.item_barcode,
+      expression: "form.item_barcode"
     }],
     staticClass: "form-control",
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.form.product_name
+      value: _vm.form.item_barcode
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.form, "product_name", $event.target.value);
+        _vm.$set(_vm.form, "item_barcode", $event.target.value);
       }
     }
   }), _vm._v(" "), _c("has-error", {
@@ -11083,163 +11039,32 @@ var render = function render() {
       field: "Product Name"
     }
   })], 1), _vm._v(" "), _c("div", {
-    staticClass: "form-group required"
-  }, [_c("label", [_vm._v("Category")]), _vm._v(" "), _c("multiselect", {
-    attrs: {
-      placeholder: "Search Category",
-      label: "category",
-      "track-by": "id",
-      options: _vm.option_category,
-      "close-on-select": true,
-      "clear-on-select": false
-    },
-    model: {
-      value: _vm.form.category_id,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form, "category_id", $$v);
-      },
-      expression: "form.category_id"
-    }
-  }), _vm._v(" "), _c("has-error", {
-    attrs: {
-      form: _vm.form,
-      field: "category_id"
-    }
-  })], 1), _vm._v(" "), _c("div", {
     staticClass: "form-group"
-  }, [_c("label", [_vm._v("Price")]), _vm._v(" "), _c("input", {
+  }, [_c("label", [_vm._v("Item Name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.form.price,
-      expression: "form.price"
+      value: _vm.form.item_name,
+      expression: "form.item_name"
     }],
     staticClass: "form-control",
     attrs: {
       type: "text"
     },
     domProps: {
-      value: _vm.form.price
+      value: _vm.form.item_name
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
 
-        _vm.$set(_vm.form, "price", $event.target.value);
+        _vm.$set(_vm.form, "item_name", $event.target.value);
       }
     }
   }), _vm._v(" "), _c("has-error", {
     attrs: {
       form: _vm.form,
       field: "Price"
-    }
-  })], 1), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Quantity")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.quantity,
-      expression: "form.quantity"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "number"
-    },
-    domProps: {
-      value: _vm.form.quantity
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "quantity", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("has-error", {
-    attrs: {
-      form: _vm.form,
-      field: "Quantity"
-    }
-  })], 1), _vm._v(" "), _c("div", {
-    staticClass: "form-group required"
-  }, [_c("label", [_vm._v("Measurement")]), _vm._v(" "), _c("multiselect", {
-    attrs: {
-      placeholder: "Search Measurement",
-      label: "measurement",
-      "track-by": "id",
-      options: _vm.option_measurement,
-      "close-on-select": true,
-      "clear-on-select": false
-    },
-    model: {
-      value: _vm.form.measurement_id,
-      callback: function callback($$v) {
-        _vm.$set(_vm.form, "measurement_id", $$v);
-      },
-      expression: "form.measurement_id"
-    }
-  }), _vm._v(" "), _c("has-error", {
-    attrs: {
-      form: _vm.form,
-      field: "measurement_id"
-    }
-  })], 1), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Upload Photos")]), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      multiple: ""
-    },
-    on: {
-      change: _vm.onFileChange
-    }
-  }), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      multiple: ""
-    },
-    on: {
-      change: _vm.onFileChange1
-    }
-  }), _vm._v(" "), _c("br"), _vm._v(" "), _c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "file",
-      multiple: ""
-    },
-    on: {
-      change: _vm.onFileChange2
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Description")]), _vm._v(" "), _c("textarea", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.description,
-      expression: "form.description"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    },
-    domProps: {
-      value: _vm.form.description
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "description", $event.target.value);
-      }
-    }
-  }), _vm._v(" "), _c("has-error", {
-    attrs: {
-      form: _vm.form,
-      field: "Description"
     }
   })], 1), _vm._v(" "), _c("button", {
     staticClass: "btn btn-primary",
@@ -11503,7 +11328,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "nav-icon fas fa-user-tag"
-  }), _vm._v(" "), _c("p", [_vm._v("Add Products")])])])])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("p", [_vm._v("Add Items")])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "content"
   }, [_c("div", {
     staticClass: "container-fluid"
@@ -11598,16 +11423,7 @@ var render = function render() {
   }, [_vm._m(1), _vm._v(" "), _c("tbody", _vm._l(_vm.option_users.data, function (data, index) {
     return _c("tr", {
       key: index
-    }, [_c("td", [data.photos && data.photos.length ? _c("img", {
-      staticStyle: {
-        "max-width": "200px",
-        "max-height": "200px"
-      },
-      attrs: {
-        src: "/storage/" + _vm.formatPhotoPath(data.photos),
-        alt: "Product Photo"
-      }
-    }) : _vm._e()]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Product_Name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.category_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.price))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Quantity))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.measurement_name))]), _vm._v(" "), _c("td", {
+    }, [_c("td", [_vm._v(_vm._s(data.Item_Barcode))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(data.Item_Name))]), _vm._v(" "), _c("td", {
       staticClass: "text-right"
     }, [_c("button", {
       staticClass: "btn btn-primary btn-sm",
@@ -11676,7 +11492,7 @@ var staticRenderFns = [function () {
     staticClass: "col-sm-6"
   }, [_c("h1", {
     staticClass: "m-0"
-  }, [_vm._v("Products ")])]);
+  }, [_vm._v("Items")])]);
 }, function () {
   var _vm = this,
       _c = _vm._self._c;
@@ -11685,27 +11501,11 @@ var staticRenderFns = [function () {
     staticStyle: {
       width: "10%"
     }
-  }, [_vm._v("Photo")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Item Barcode")]), _vm._v(" "), _c("th", {
     staticStyle: {
       width: "10%"
     }
-  }, [_vm._v("Product Name")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      width: "10%"
-    }
-  }, [_vm._v("Category")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      width: "10%"
-    }
-  }, [_vm._v("Price")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      width: "10%"
-    }
-  }, [_vm._v("Quantity")]), _vm._v(" "), _c("th", {
-    staticStyle: {
-      width: "10%"
-    }
-  }, [_vm._v("Measurement")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Item Name")]), _vm._v(" "), _c("th", {
     staticStyle: {
       width: "10%"
     }
@@ -15032,55 +14832,7 @@ var render = function render() {
       form: _vm.form,
       field: "permissions"
     }
-  })], 1), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Latitude")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.latitude,
-      expression: "form.latitude"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.form.latitude
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "latitude", $event.target.value);
-      }
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Longitude")]), _vm._v(" "), _c("input", {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: _vm.form.longitude,
-      expression: "form.longitude"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      type: "text",
-      readonly: ""
-    },
-    domProps: {
-      value: _vm.form.longitude
-    },
-    on: {
-      input: function input($event) {
-        if ($event.target.composing) return;
-
-        _vm.$set(_vm.form, "longitude", $event.target.value);
-      }
-    }
-  })])], 1), _vm._v(" "), _c("div", {
+  })], 1)], 1), _vm._v(" "), _c("div", {
     staticClass: "modal-footer"
   }, [_c("button", {
     staticClass: "btn btn-secondary",
@@ -15116,20 +14868,6 @@ var staticRenderFns = [function () {
       type: "button",
       "data-bs-dismiss": "modal",
       "aria-label": "Close"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-      _c = _vm._self._c;
-
-  return _c("div", {
-    staticClass: "form-group"
-  }, [_c("label", [_vm._v("Location")]), _vm._v(" "), _c("div", {
-    staticStyle: {
-      height: "400px"
-    },
-    attrs: {
-      id: "map"
     }
   })]);
 }];

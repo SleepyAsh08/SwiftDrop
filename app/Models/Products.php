@@ -9,29 +9,13 @@ class Products extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Product_Name',
-        'idCategory',
-        'price',
-        'Quantity',
-        'Description',
-        'idMeasurement',
-        'photos',
-        'photos1',
-        'photos2',
+        'Item_Name',
+        'Item_Barcode',
         'userID',
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'userID');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo(Category::class, 'idCategory'); // Make sure the foreign key is correct
-    }
-
-    public function measurement(){
-        return $this->belongsTo(Measurement::class, 'idMeasurement');
     }
 }

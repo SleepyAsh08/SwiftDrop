@@ -46,9 +46,9 @@
                                 <img src="/images/AgrishopLogo.png" class="img-fluid" alt="">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                            <h1 data-aos="fade-up" >One-Stop Shop for Quality Agricultural Products</h1>
+                            <h1 data-aos="fade-up" >Smart Parcel Box Drop Off Center!</h1>
                                 <div>
-                                <a href="/buyer/index.php" class="btn btn-lg btn-primary">
+                                <a href="/login.php" class="btn btn-lg btn-primary">
                                     <span>Get Started!</span>
                                 </a>
                                 </div>
