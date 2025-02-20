@@ -23,21 +23,10 @@ class ProductsController extends Controller
         $userID = auth()->user()->id;
 
         // dd($emp_code);
-        $data = Products::with('Category', 'Measurement')
-            ->OrderBy('Quantity', 'desc')
-            ->where('userID', $userID)
-            ->where('Quantity', '>', 10)
+        $data = Products::where('userID', $userID)
             ->latest();
 
         $data = $data->paginate($request->length);
-
-        $data->getCollection()->transform(function ($item) {
-            // Add the 'category' field from the related Category model to the product data
-            $item->category_name = $item->category ? $item->category->category : null; // 'category' is the field in the Category model
-
-            $item->measurement_name = $item->measurement ? $item->measurement->measurement : null;
-            return $item;
-        });
         // dd($data);
         return response([
             'data' => $data,
@@ -45,11 +34,6 @@ class ProductsController extends Controller
         ], 200);
     }
 
-    public function category_all(Request $request, $id){
-        $data = Products::where('idCategory', $id)->get();
-
-        return response()->json(['data' => $data], 200);
-    }
 
     public function index_all()
     {
@@ -62,17 +46,8 @@ class ProductsController extends Controller
         $formattedData = $data->map(function ($product) {
             return [
                 'id' => $product->id,
-                'Product_Name' => $product->Product_Name,
-                'idCategory' => $product->idCategory,
-                'price' => $product->price,
-                'idMeasurement' => $product->idMeasurement,
-                'Quantity' => $product->Quantity,
-                'Description' => $product->Description,
-                'created_at' => $product->created_at,
-                'updated_at' => $product->updated_at,
-                'photos' => json_decode($product->photos),
-                'photos1' => json_decode($product->photos1),
-                'photos2' => json_decode($product->photos2),
+                'Item_Name' => $product->Item_Name,
+                'Item_Barcode' => $product->Item_Barcode,
                 'userID' => $product->userID,
                 'first_name' => $product->user->name ?? null,
                 'last_name' => $product->user->lastname ?? null, // Add user name here
@@ -146,71 +121,23 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         // dd($request->all());
-=======
-
->>>>>>> 6c2ff7cd5b9363eceb49ba4888f32643521e8d0e
         $userID = auth()->user()->id;
         // dd($request->all());
         // dd($request->measurement_id);
         $request->validate([
-            'product_name' => 'required|string|max:255',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
-            'description' => 'required|string',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
-            'photos1.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
-            'photos2.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            'Item_Name' => 'required|string|max:255',
         ]);
 
-        // Handle file uploads
-        $photoPaths = [];
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('product_photos', 'public');
-                $photoPaths[] = $path;
-            }
-        }
 
-        $photoPaths1 = [];
-        if ($request->hasFile('photos1')) {
-            foreach ($request->file('photos1') as $photo) {
-                $path = $photo->store('product_photos', 'public');
-                $photoPaths1[] = $path;
-            }
-        }
-
-        $photoPaths2 = [];
-        if ($request->hasFile('photos2')) {
-            foreach ($request->file('photos2') as $photo) {
-                $path = $photo->store('product_photos', 'public');
-                $photoPaths2[] = $path;
-            }
-        }
-
-
-        // dd($request->measurement_id + 0);
-        // dd($photoPaths);
-        // Create product with photo paths
         $product = Products::create([
-            'Product_Name' => $request->product_name,
-            'idCategory' => $request->category_id,
-            'price' => $request->price,
-            'Quantity' => $request->quantity,
-            'Description' => $request->description,
-            'idMeasurement' => $request->measurement_id,
-            'photos' => json_encode($photoPaths),
-            'photos1' => json_encode($photoPaths1),
-            'photos2' => json_encode($photoPaths2),
+            'Item_Name' => $request->Item_Name,
+            'Item_Barcode' => $request->Item_Barcode,
             'userID' => $userID,
             // Store photo paths as JSON
         ]);
 
         // dd($product);
-        // Dump a message indicating product creation with photos
-
-
         return response(['message' => 'success'], 200);
     }
 

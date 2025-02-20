@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('/images/AgrishopLogo.png') }}" rel="icon">
+    <link href="{{ asset('/images/Swiftdrop.png') }}" rel="icon">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet"
@@ -75,7 +75,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa fa-address-book"></i>
                                 <p>
-                                    Product Management
+                                    Item Management
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -83,63 +83,13 @@
                                 <li class="nav-item">
                                     <router-link to="/Products" class="nav-link">
                                         <i class="nav-icon fas fa fa-cutlery"></i>
-                                        <p>Products</p>
+                                        <p>Items</p>
                                     </router-link>
                                 </li>
-                                <li class="nav-item">
-                                    <router-link to="/Replenishment" class="nav-link">
-                                        <i class="nav-icon fas fa fa-plus-square"></i>
-                                        <p>Replenishment</p>
-                                    </router-link>
-                                </li>
-                                <li class="nav-item has-treeview">
-                                    <a href="#" class="nav-link">
-                                        <i class="nav-icon fas fa fa-tag"></i>
-                                        <p>
-                                            Others
-                                            <i class="right fas fa-angle-left"></i>
-                                        </p>
-                                    </a>
-                                    <ul class="nav nav-treeview ml-3">
-                                        <li class="nav-item">
-                                            <router-link to="/Category" class="nav-link">
-                                                <i class="far fa-table-list nav-icon"></i>
-                                                <p>Category</p>
-                                            </router-link>
-                                        </li>
-                                        <li class="nav-item">
-                                            <router-link to="/Measurement" class="nav-link">
-                                                <i class="far fa-ruler-combined nav-icon"></i>
-                                                <p>Measurement</p>
-                                            </router-link>
-                                        </li>
-                                    </ul>
-                                </li>
+
                             </ul>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa fa-bell"></i>
-                                <p>
-                                    Manage Orders
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview ml-3">
-                                <li class="nav-item">
-                                    <router-link to="/Purchase" class="nav-link">
-                                        <i class="nav-icon fa fa-credit-card"></i>
-                                        <p>Purchase Order</p>
-                                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                    <router-link to="/Order" class="nav-link">
-                                        <i class="far fa-ruler-combined nav-icon"></i>
-                                        <p>Complete Orders</p>
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
+
                         @can('access user')
                             <li class="nav-item">
                                 <router-link to="/users" class="nav-link">
@@ -225,7 +175,7 @@
             <div class="float-right d-none d-sm-inline">
                 One-Stop Shop for Quality Agricultural Products
             </div>
-            Copyright &copy; 2024 <strong>AgriShop.com</strong> All rights
+            Copyright &copy; 2024 <strong>SwiftDrop.com</strong> All rights
             reserved.
         </footer>
     </div>
