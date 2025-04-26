@@ -30,10 +30,13 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'product'], function () {
         Route::get('list', [App\Http\Controllers\ProductsController::class, 'index']);
+        Route::get('lists', [App\Http\Controllers\ProductsController::class, 'indexs']);
         Route::get('all', [App\Http\Controllers\ProductsController::class, 'index_all']);
-
+        Route::get('list_user', [App\Http\Controllers\ProductsController::class, 'index_user']);
+        Route::get('list_users', [App\Http\Controllers\ProductsController::class, 'index_users']);
         Route::post('create', [App\Http\Controllers\ProductsController::class, 'store']);
         Route::put('update/{id}', [App\Http\Controllers\ProductsController::class, 'update']);
+        Route::put('update1/{id}', [App\Http\Controllers\ProductsController::class, 'updateDelivery']);
         Route::delete('delete/{id}', [App\Http\Controllers\ProductsController::class, 'destroy']);
     });
 
@@ -70,7 +73,8 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('show', [App\Http\Controllers\API\UserController::class, 'show']);
         Route::post('create', [App\Http\Controllers\API\UserController::class, 'store']);
         Route::put('validate/{id}', [App\Http\Controllers\API\UserController::class, 'validated']);
-        Route::put('update', [App\Http\Controllers\API\UserController::class, 'update']);
+        Route::post('update', [App\Http\Controllers\API\UserController::class, 'update']);
+        Route::put('assign', [App\Http\Controllers\API\UserController::class, 'assign']);
         Route::delete('delete/{id}', [App\Http\Controllers\API\UserController::class, 'destroy']);
         Route::put('activate/{id}', [App\Http\Controllers\API\UserController::class, 'activate']);
     });

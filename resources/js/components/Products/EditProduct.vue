@@ -3,18 +3,18 @@
         <div class="modal-dialog model-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Item</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <alert-error :form="form"></alert-error>
                     <div class="form-group">
-                        <label>Product Name</label>
+                        <label>Item Name</label>
                         <input v-model="form.Product_Name" type="text" class="form-control">
                         <has-error :form="form" field="Product Name" />
                     </div>
                     <div class="form-group">
-                        <label>Price</label>
+                        <label>Item Barcode</label>
                         <input v-model="form.price" type="text" class="form-control">
                         <has-error :form="form" field="Price" />
                     </div>

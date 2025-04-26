@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Add Product</div>
+                    <div class="card-header">Add Item</div>
 
                     <div class="card-body">
                         <alert-error :form="form"></alert-error>
@@ -24,10 +24,13 @@
                                 <has-error :form="form" field="Price" />
                             </div>
 
-
-
-
-
+                            <div class="form-group required">
+                                <label>Courier</label>
+                                <multiselect v-model="form.idCourier" placeholder="Search Courier"
+                                   track-by="id" :options="option_measurement"
+                                    :close-on-select="true" :clear-on-select="false" :custom-label="customLabel"></multiselect>
+                                <has-error :form="form" field="idCourier" />
+                            </div>
                             <button type="button" class="btn btn-primary" @click="create">Save</button>
                         </form>
                     </div>
@@ -53,15 +56,21 @@ export default {
                 userID: 0,
                 item_barcode: '',
                 item_name: '',
+                idCourier: null,
             }),
-
+            option_measurement: [],
         }
     },
     methods: {
+        customLabel(option) {
+            return `${option.name} ${option.lastname}`;
+        },
+
         create() {
             const formData = new FormData();
             formData.append('Item_Barcode', this.form.item_barcode);
             formData.append('Item_Name', this.form.item_name);
+            formData.append('idCourier', this.form.idCourier.id);
 
             axios.post('/api/product/create', formData, {
                 headers: {

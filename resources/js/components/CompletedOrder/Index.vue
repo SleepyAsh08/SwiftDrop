@@ -51,28 +51,18 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th style="width: 20%;">Buyer's Name</th>
-                                            <th style="width: 20%;">Product Name</th>
-                                            <th style="width: 20%;">Ordered Quantity</th>
-                                            <th style="width: 20%;">Total Price</th>
-                                            <th style="width: 20%;"></th>
+                                            <th style="width: 10%;">Item Barcode</th>
+                                            <th style="width: 10%;">Item Name</th>
+                                            <th style="width: 10%;">Courier</th>
+                                            <th style="width: 10%;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(data, index) in option_users.data" :key="index">
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td>{{ }}</td>
-                                            <td class="text-right">
-                                                <button type="button" class="btn btn-primary btn-sm"><i
-                                                        class="fas fa-edit"></i>
-                                                    Confirm Order</button>
-                                                <button type="button" class="btn btn-danger btn-sm"><i
-                                                        class="fas fa-trash-alt"></i>
-                                                    Cancel Order</button>
-                                            </td>
+                                            <td>{{ data.Item_Barcode }}</td>
+                                            <td>{{ data.Item_Name }}</td>
+                                            <td>{{ data.courier_name }}</td>
+                                            <td>{{ data.status }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -133,7 +123,7 @@ export default {
         },
         getData(page) {
             if (typeof page === 'undefined' || page.type == 'keyup' || page.type == 'change' || page.type == 'click') {
-                page = '/api/product/list/?page=1';
+                page = '/api/product/lists/?page=1';
             }
             this.current_page = page;
             if (this.timer) {

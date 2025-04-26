@@ -9,7 +9,7 @@
             <span>NEW HERE?</span></br>
           </h1>
           <h1 class="my-3 lead fw-bold ls-tight">
-            Connect farmers and buyers easily - Sign up to buy or sell agricultural products today!
+            Connect Courier and Sellers easily - Sign up to pick up and deliver products today!
           </h1>
           <a type="button"class="btn btn-success text-dark rounded-pill border-white" style="color: black" href="{{ route('register') }}">Sign Up</a>
         </div>

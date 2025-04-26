@@ -41,9 +41,11 @@ class UserController extends Controller
 
     public function show()
     {
-        abort_if(Gate::denies('access user'), 403, 'You do not have the required authorization.');
+
+        abort_if(Gate::denies('edit user'), 403, 'You do not have the required authorization.');
         $data = User::with('roles', 'permissions')->where('id', Auth::user()->id)->get();
 
+        // dd($data);
         return response(['data' => $data], 200);
     }
 
@@ -146,43 +148,47 @@ class UserController extends Controller
     public function update(Request $request)
     {
 
-        // dd($request->all());
+        // dd($request->all())
 
         $this->validate($request, [
             'name' => 'required|string|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
             'password' => 'required|sometimes',
             'lastname' => 'required|string',
-            'middle_initial' => 'nullable|string|max:2',
             'date_of_birth' => 'required|date',
             'contact_number' => 'required|string|digits:11',
-            'telephone_number' => 'nullable|string|digits:7',
-            'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
+            // 'user_photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // validate each uploaded file
             // 'user_photo.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048']
         ]);
 
-        // dd($request->hasFile('photos'));
+        // dd($request->hasFile('user_photo'));
         $photoPaths = [];
-        if ($request->hasFile('photos')) {
-            foreach ($request->file('photos') as $photo) {
+        if ($request->hasFile('user_photo')) {
+            foreach ($request->file('user_photo') as $photo) {
                 $path = $photo->store('user_photo', 'public');
                 $photoPaths[] = $path;
             }
         }
-        // dd(json_encode($photoPaths));
+
+        $middle_initial = $request->middle_initial == "null" ? " " :$request->middle_initial;
+        // dd($middle_initial);
 
         $user = User::findOrFail($request->id);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'lastname' => $request->lastname,
-            'middle_initial' => $request->middle_initial,
+            'middle_initial' => $middle_initial,
             'date_of_birth' => $request->date_of_birth,
             'contact_number' => $request->contact_number,
             'telephone_number' => $request->telephone_number,
             // 'photos' => $request->photos,
             'user_photo' => json_encode($photoPaths)
         ]);
+
+        if (!empty($photoPaths)) {
+            $user['user_photo'] = json_encode($photoPaths);
+        }
 
         if ($request->password) {
             // $user->password = Hash::make($request->password);
@@ -221,6 +227,33 @@ class UserController extends Controller
     {
         $user = User::withTrashed()->findOrFail($id);
         $user->restore();
+        return response(['message' => 'success'], 200);
+    }
+
+    public function assign(Request $request)
+    {
+        // dd(json_encode($photoPaths));
+
+        $user = User::findOrFail($request->id);
+
+        if ($request->password) {
+            // $user->password = Hash::make($request->password);
+            $user->password  = $request->password;
+            $user->save();
+        }
+
+        if (isset($request->roles['name'])) {
+            $user->roles()->detach();
+            $user->assignRole($request->roles['name']);
+
+            foreach ($user->permissions as $permission) {
+                $user->revokePermissionTo($permission['name']);
+            }
+            foreach ($request->permissions as $permission) {
+                $user->givePermissionTo($permission['name']);
+            }
+        }
+
         return response(['message' => 'success'], 200);
     }
 }

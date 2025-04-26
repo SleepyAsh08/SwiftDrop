@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -56,7 +57,15 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'lastname' => ['required', 'string'],
             'middle_initial' => ['nullable', 'string', 'max:2'],
-            'date_of_birth' => ['required', 'date'],
+            'date_of_birth' => [
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    if (Carbon::parse($value)->diffInYears(Carbon::now()) < 18) {
+                        $fail('The date of birth indicates the user is under 18 years old.');
+                    }
+                },
+            ],
             'contact_number' => ['required', 'string', 'digits:11'],
             'telephone_number' => ['nullable', 'string', 'digits:7'],
             'photos.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // validate each uploaded file
@@ -82,6 +91,7 @@ class RegisterController extends Controller
                 $paths[] = $path; // Add path to the array
             }
         }
+
 
         return User::create([
             'name' => $data['name'],

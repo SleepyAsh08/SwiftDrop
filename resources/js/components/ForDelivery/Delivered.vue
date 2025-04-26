@@ -4,15 +4,15 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Items</h1>
+                        <h1 class="m-0">Delivered Items</h1>
                     </div>
                     <div class="col-sm-6">
-                        <ol class="breadcrumb float-sm-right">
+                        <!-- <ol class="breadcrumb float-sm-right">
                             <button class="nav-link btn" @click="goToAddProducts">
                                 <i class="nav-icon fas fa-user-tag"></i>
-                                <p>Add Items</p>
+                                <p>Add Products</p>
                             </button>
-                        </ol>
+                        </ol> -->
                     </div>
                 </div>
             </div>
@@ -51,28 +51,18 @@
                                 <table class="table table-head-fixed text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th style="width: 10%;">Item Barcode</th>
-                                            <th style="width: 10%;">Item Name</th>
-                                            <th style="width: 10%;">Courier</th>
-                                            <th style="width: 10%;">Status</th>
-                                            <th style="width: 10%;"></th>
+                                            <th style="width: 20%;">Client's Name</th>
+                                            <th style="width: 20%;">Product Barcode</th>
+                                            <th style="width: 20%;">Product Name</th>
+                                            <th style="width: 20%;">Status</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         <tr v-for="(data, index) in option_users.data" :key="index">
+                                            <td>{{ data.seller_name }}</td>
                                             <td>{{ data.Item_Barcode }}</td>
                                             <td>{{ data.Item_Name }}</td>
-                                            <td>{{ data.courier_name }}</td>
                                             <td>{{ data.status }}</td>
-                                            <td class="text-right">
-                                                <button type="button" class="btn btn-primary btn-sm"
-                                                    @click="openEditModal(data)"><i class="fas fa-edit"></i>
-                                                    Edit</button>
-                                                <button type="button" class="btn btn-danger btn-sm"
-                                                    @click="remove(data.id)"><i class="fas fa-trash-alt"></i>
-                                                    Remove</button>
-                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -92,7 +82,7 @@
                     <!-- declare the add modal -->
                     <!-- <add-modal @getData="getData"></add-modal> -->
                     <!-- declare the edit modal -->
-                    <edit-modal @getData="getData" :row="selected_user" :page="current_page"></edit-modal>
+                    <!-- <edit-modal @getData="getData" :row="selected_user" :page="current_page"></edit-modal> -->
                 </div>
             </div>
         </div>
@@ -100,15 +90,14 @@
 </template>
 <script>
 
-import EditModal from "./EditProduct.vue";
+// import EditModal from "./EditProduct.vue";
 export default {
     components: {
-        EditModal,
+        // EditModal,
     },
     data() {
         return {
             option_users: [],
-            userID: null,
             length: 10,
             search: '',
             showSchedule: false,
@@ -122,7 +111,9 @@ export default {
         }
     },
     methods: {
-
+        // openAddModal() {
+        //     $('#add-user').modal('show');
+        // },
         openEditModal(data) {
             this.selected_user = data;
             $('#edit-user').modal('show');
@@ -132,7 +123,7 @@ export default {
         },
         getData(page) {
             if (typeof page === 'undefined' || page.type == 'keyup' || page.type == 'change' || page.type == 'click') {
-                page = '/api/product/list/?page=1';
+                page = '/api/product/list_users/?page=1';
             }
             this.current_page = page;
             if (this.timer) {
@@ -153,9 +144,7 @@ export default {
                     .then(response => {
                         if (response.data.data) {
                             this.option_users = response.data.data;
-                            this.userID = response.data.userID;
                         }
-                        console.log(this.userID);
                     }).catch(error => {
                         this.error = error;
                         toast.fire({
@@ -165,6 +154,37 @@ export default {
                     });
             }, 500);
         },
+        confirmOrder(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Confirm this order for delivery?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, confirm it!',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            axios.put('/api/product/update1/' + id)
+                .then(response => {
+                    Swal.fire(
+                        'Confirmed!',
+                        'The order has been confirmed for delivery.',
+                        'success'
+                    )
+                    this.getData(); // Refresh the table
+                })
+                .catch(error => {
+                    console.error(error);
+                    Swal.fire(
+                        'Error!',
+                        'Something went wrong while confirming the order.',
+                        'error'
+                    );
+                });
+        }
+    });
+},
         remove(id) {
             Swal.fire({
                 title: 'Are you sure?',

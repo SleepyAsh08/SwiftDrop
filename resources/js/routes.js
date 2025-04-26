@@ -38,6 +38,17 @@ const routes = [
         component: require('./components/CompletedOrder/Index.vue').default,
     },
     {
+        path: '/ForDelivery',
+        name: 'ForDelivery',
+        component: require('./components/ForDelivery/Index.vue').default,
+    },
+
+    {
+        path: '/Delivered',
+        name: 'Delivered',
+        component: require('./components/ForDelivery/Delivered.vue').default,
+    },
+    {
         path: '/Category',
         name: 'Category',
         component: require('./components/Category/Index.vue').default,

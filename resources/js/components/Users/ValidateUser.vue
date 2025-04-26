@@ -60,7 +60,7 @@
 
 <script>
 import DisapproveModal from "./DisapproveUser.vue";
-import EditModal from "./EditUser.vue";
+import EditModal from "./AssignUser.vue";
 export default {
     props: {
         row: { required: true },
