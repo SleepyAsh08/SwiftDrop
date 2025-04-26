@@ -6,6 +6,7 @@ use App\Models\Measurement;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
@@ -23,8 +24,16 @@ class ProductsController extends Controller
         $userID = auth()->user()->id;
 
         // dd($emp_code);
-        $data = Products::where('userID', $userID)
-            ->latest();
+        $data = Products::select(
+            'products.*',
+            DB::raw("CONCAT(users.name, ' ', users.lastname) as courier_name")
+        )
+        ->leftJoin('users', 'products.idCourier', '=', 'users.id')
+        ->where('products.userID', $userID)
+        ->where('products.status', 'For Pick Up')
+        ->latest();
+        // $data = Products::where('userID', $userID)
+        //     ->latest();
 
         $data = $data->paginate($request->length);
         // dd($data);
@@ -34,12 +43,83 @@ class ProductsController extends Controller
         ], 200);
     }
 
+    public function indexs(Request $request)
+    {
+        $userID = auth()->user()->id;
+
+        // dd($emp_code);
+        $data = Products::select(
+            'products.*',
+            DB::raw("CONCAT(users.name, ' ', users.lastname) as courier_name")
+        )
+        ->leftJoin('users', 'products.idCourier', '=', 'users.id')
+        ->where('products.userID', $userID)
+        ->where('products.status', 'Picked Up')
+        ->latest();
+        // $data = Products::where('userID', $userID)
+        //     ->latest();
+
+        $data = $data->paginate($request->length);
+        // dd($data);
+        return response([
+            'data' => $data,
+            'userID' => $userID,
+        ], 200);
+    }
+    public function index_user(Request $request)
+    {
+        $userID = auth()->user()->id;
+
+        // dd($emp_code);
+        $data = Products::select(
+            'products.*',
+            DB::raw("CONCAT(users.name, ' ', users.lastname) as seller_name")
+        )
+        ->leftJoin('users', 'products.userID', '=', 'users.id')
+        ->where('products.idCourier', $userID)
+        ->where('products.status', 'For Pick Up')
+        ->latest();
+        // $data = Products::where('userID', $userID)
+        //     ->latest();
+
+        $data = $data->paginate($request->length);
+        // dd($data);
+        return response([
+            'data' => $data,
+            'userID' => $userID,
+        ], 200);
+    }
+
+    public function index_users(Request $request)
+    {
+        $userID = auth()->user()->id;
+
+        // dd($emp_code);
+        $data = Products::select(
+            'products.*',
+            DB::raw("CONCAT(users.name, ' ', users.lastname) as seller_name")
+        )
+        ->leftJoin('users', 'products.userID', '=', 'users.id')
+        ->where('products.idCourier', $userID)
+        ->where('products.status', 'Picked Up')
+        ->latest();
+        // $data = Products::where('userID', $userID)
+        //     ->latest();
+
+        $data = $data->paginate($request->length);
+        // dd($data);
+        return response([
+            'data' => $data,
+            'userID' => $userID,
+        ], 200);
+    }
 
     public function index_all()
     {
         // $user = User::all();
 
-        $data = Products::with('User')->get();
+        $data = Products::with('User')->where('status', 'For Pick Up')
+        ->get();
 
         // dd($data);
 
@@ -49,9 +129,7 @@ class ProductsController extends Controller
                 'Item_Name' => $product->Item_Name,
                 'Item_Barcode' => $product->Item_Barcode,
                 'userID' => $product->userID,
-                'first_name' => $product->user->name ?? null,
-                'last_name' => $product->user->lastname ?? null, // Add user name here
-                'contact_number' => $product->user->contact_number ?? null, // Add user name here
+                'status' =>$product->status,
             ];
         });
 
@@ -123,21 +201,21 @@ class ProductsController extends Controller
     {
         // dd($request->all());
         $userID = auth()->user()->id;
-        // dd($request->all());
-        // dd($request->measurement_id);
         $request->validate([
             'Item_Name' => 'required|string|max:255',
         ]);
 
+        $status = 'For Pick Up';
 
         $product = Products::create([
             'Item_Name' => $request->Item_Name,
             'Item_Barcode' => $request->Item_Barcode,
             'userID' => $userID,
-            // Store photo paths as JSON
+            'idCourier' => $request->idCourier,
+            'status' => $status,
         ]);
 
-        // dd($product);
+
         return response(['message' => 'success'], 200);
     }
 
@@ -159,6 +237,23 @@ class ProductsController extends Controller
             'Quantity' => $request->Quantity,
             'Description' => $request->Description,
             'idMeasurement' => $measurement,
+        ]);
+
+
+        return response(['message' => 'success'], 200);
+    }
+
+    public function updateDelivery(Request $request, $id)
+    {
+
+        // dd($request->all());
+        $user = Products::findOrFail($id);
+
+        // dd($user);
+
+        $status = "Picked Up";
+        $user->update([
+            'status' => $status,
         ]);
 
 

@@ -39,8 +39,6 @@ class User extends Authenticatable
         'photos',
         'approved_at',
         'user_photo',
-        'latitude',
-        'longitude',
     ];
 
     /**

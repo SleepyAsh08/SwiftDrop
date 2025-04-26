@@ -12,6 +12,8 @@ class Products extends Model
         'Item_Name',
         'Item_Barcode',
         'userID',
+        'idCourier',
+        'status'
     ];
 
     public function user()

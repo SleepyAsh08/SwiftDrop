@@ -57,20 +57,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        {{-- <li class="nav-item">
-                            <router-link to="/Student" class="nav-link">
-                                <i class="nav-icon fas fa-user-alt"></i>
-                                <p>Student</p>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/Courses" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Courses
-                                </p>
-                            </router-link>
-                        </li> --}}
+                        @if (Auth::check() && strtoupper(Auth::user()->getRoleNames()->first()) === 'SELLER')
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa fa-address-book"></i>
@@ -82,13 +69,46 @@
                             <ul class="nav nav-treeview ml-3">
                                 <li class="nav-item">
                                     <router-link to="/Products" class="nav-link">
-                                        <i class="nav-icon fas fa fa-cutlery"></i>
+                                        <i class="nav-icon fas fa fa-exchange"></i>
                                         <p>Items</p>
                                     </router-link>
                                 </li>
-
+                                <li class="nav-item">
+                                    <router-link to="/Order" class="nav-link">
+                                        <i class="nav-icon fas fa fa-check-square"></i>
+                                        <p>Picked Up Items</p>
+                                    </router-link>
+                                </li>
                             </ul>
                         </li>
+                        @endif
+
+                        @if (Auth::check() && strtoupper(Auth::user()->getRoleNames()->first()) === 'COURIER')
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa fa-address-book"></i>
+                                <p>
+                                    Item Management
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item">
+                                    <router-link to="/ForDelivery" class="nav-link">
+                                        <i class="nav-icon fas fa fa-car"></i>
+                                        <p>For Pick Up</p>
+                                    </router-link>
+                                </li>
+                                <li class="nav-item">
+                                    <router-link to="/Delivered" class="nav-link">
+                                        <i class="nav-icon fas fa fa-check-square"></i>
+                                        <p>Completed Orders</p>
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </li>
+                        @endif
+
 
                         @can('access user')
                             <li class="nav-item">
@@ -173,7 +193,7 @@
         </div>
         <footer class="main-footer">
             <div class="float-right d-none d-sm-inline">
-                One-Stop Shop for Quality Agricultural Products
+                One-Stop Delivery for Courier and Sellers
             </div>
             Copyright &copy; 2024 <strong>SwiftDrop.com</strong> All rights
             reserved.

@@ -157,8 +157,6 @@ export default {
             formData.append('password', this.form.password);
             formData.append('roles', this.form.roles);
             formData.append('permissions', this.form.permissions);
-            formData.append('latitude', this.form.latitude); // Use default if undefined
-            formData.append('longitude', this.form.longitude); // Use default if undefined
 
 
             // Append each selected photo file to the formData
@@ -170,10 +168,10 @@ export default {
             for (let pair of formData.entries()) {
         console.log(pair[0], pair[1]);  // Log each key-value pair in the formData
     }
-            this.form.put('/api/user/update', formData, {
+            axios.post(`/api/user/update`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+                        'Content-Type': 'multipart/form-data',
+                    },
             }).then(() => {
                 toast.fire({
                     icon: 'success',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Measurement;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MeasurementController extends Controller
@@ -22,7 +23,11 @@ class MeasurementController extends Controller
     }
     public function index_all()
     {
-        $data = Measurement::all();
+        $data = User::join('model_has_roles', 'users.id', '=', 'model_has_roles.model_id')
+                    ->join('roles', 'model_has_roles.role_id', '=', 'roles.id')
+                    ->where('roles.name', 'courier')
+                    ->select('users.*') // or add specific fields you want
+                    ->get();
         return response(['data' => $data], 200);
     }
     public function store(Request $request)
