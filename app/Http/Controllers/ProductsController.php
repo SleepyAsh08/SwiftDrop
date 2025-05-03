@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ForP;
+use App\Mail\ForPickUp;
+use App\Mail\PickedUp;
 use App\Models\Measurement;
 use App\Models\Products;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Inertia\Inertia;
 
 class ProductsController extends Controller
@@ -205,6 +209,9 @@ class ProductsController extends Controller
             'Item_Name' => 'required|string|max:255',
         ]);
 
+        $Courier = User::where('id', $request->idCourier)
+        ->first();
+        // dd($Courier);
         $status = 'For Pick Up';
 
         $product = Products::create([
@@ -215,6 +222,8 @@ class ProductsController extends Controller
             'status' => $status,
         ]);
 
+
+        Mail::to($Courier->email)->send(new ForPickUp($Courier));
 
         return response(['message' => 'success'], 200);
     }
@@ -249,13 +258,18 @@ class ProductsController extends Controller
         // dd($request->all());
         $user = Products::findOrFail($id);
 
-        // dd($user);
+        // dd($user->userID);
+
+        $seller= User::where('id', $user->userID)->first();
+
+        // dd($seller);
 
         $status = "Picked Up";
         $user->update([
             'status' => $status,
         ]);
 
+        Mail::to($seller->email)->send(new PickedUp($seller));
 
         return response(['message' => 'success'], 200);
     }
