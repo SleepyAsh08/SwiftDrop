@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ApprovalConfirmation;
+use App\Mail\Disapproval;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -116,6 +119,8 @@ class UserController extends Controller
             $user->update([
                 'approved_at' => Carbon::now()->format('Y-m-d H:i:s')
             ]);
+
+            Mail::to($user->email)->send(new ApprovalConfirmation($user));
         } else {
             // dd($request->txtdesapproval);
             $user = User::findOrFail($id);
@@ -123,6 +128,8 @@ class UserController extends Controller
             $user->update([
                 'reason_of_disapproval' => $request->txtdesapproval
             ]);
+
+            Mail::to($user->email)->send(new Disapproval($user));
         }
 
         return response(['message' => 'success'], 200);
