@@ -120,7 +120,7 @@
                                 </router-link>
                             </li>
                         @endcan
-                        @can('access user')
+                        {{-- @can('access user')
                             <li class="nav-item">
                                 <router-link to="/deliquency" class="nav-link">
                                     <i class="nav-icon fas fa-user-tag"></i>
@@ -129,7 +129,7 @@
                                     </p>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
                         @can('access permission')
                             <li class="nav-item">
                                 <router-link to="/permission" class="nav-link">
