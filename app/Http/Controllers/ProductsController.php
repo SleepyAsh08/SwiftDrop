@@ -209,6 +209,21 @@ class ProductsController extends Controller
             'Item_Name' => 'required|string|max:255',
         ]);
 
+
+        // dd($request->Item_Barcode);
+
+        $existingProduct = Products::where('Item_Barcode', $request->Item_Barcode)->first();
+
+
+        // dd($existingProduct);
+
+        if ($existingProduct) {
+            return response([
+                'message' => 'Item_Barcode already exists.'
+            ], 409); // 409 Conflict
+        }
+
+        // dd($existingProduct);
         $Courier = User::where('id', $request->idCourier)
         ->first();
         // dd($Courier);

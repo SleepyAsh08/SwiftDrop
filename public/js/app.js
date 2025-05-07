@@ -7193,11 +7193,18 @@ __webpack_require__.r(__webpack_exports__);
         _this.form.reset();
 
         _this.photos = []; // Reset the photos array
-      })["catch"](function () {
-        toast.fire({
-          icon: 'error',
-          text: 'Something went wrong!'
-        });
+      })["catch"](function (error) {
+        if (error.response && error.response.status === 409) {
+          toast.fire({
+            icon: 'error',
+            text: 'Item Barcode already exists!'
+          });
+        } else {
+          toast.fire({
+            icon: 'error',
+            text: 'Something went wrong!'
+          });
+        }
       });
     },
     loadMeasurement: function loadMeasurement() {
