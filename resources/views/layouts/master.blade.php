@@ -6,8 +6,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="{{ asset('/images/Swiftdrop.png') }}" rel="icon">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link href="{{ asset('/images/AgrishopLogo.png') }}" rel="icon">
+    <title>{{ "Smart Parcel Box" }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -120,7 +120,7 @@
                                 </router-link>
                             </li>
                         @endcan
-                        @can('access user')
+                        {{-- @can('access user')
                             <li class="nav-item">
                                 <router-link to="/deliquency" class="nav-link">
                                     <i class="nav-icon fas fa-user-tag"></i>
@@ -129,7 +129,7 @@
                                     </p>
                                 </router-link>
                             </li>
-                        @endcan
+                        @endcan --}}
                         @can('access permission')
                             <li class="nav-item">
                                 <router-link to="/permission" class="nav-link">
@@ -193,9 +193,9 @@
         </div>
         <footer class="main-footer">
             <div class="float-right d-none d-sm-inline">
-                One-Stop Delivery for Courier and Sellers
+                Easy Drop and Go Solution
             </div>
-            Copyright &copy; 2024 <strong>SwiftDrop.com</strong> All rights
+            Copyright &copy; 2024 <strong>SmartParcelBox.com</strong> All rights
             reserved.
         </footer>
     </div>
