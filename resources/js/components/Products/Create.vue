@@ -84,7 +84,6 @@ export default {
                 this.form.reset();
                 this.photos = []; // Reset the photos array
             }).catch((error) => {
-
                 if (error.response && error.response.status === 409) {
                     toast.fire({
                         icon: 'error',
